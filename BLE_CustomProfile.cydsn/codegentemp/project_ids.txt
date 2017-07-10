@@ -1,0 +1,9 @@
+D:\Henny\magisterka\CY8KIT\BLE\BLE\BLE_Battery_Level01.cydsn\BLE_Battery_Level01.cyprj|72af393e-6938-4a12-b727-f202f8d3c971
+D:\programy\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyAnnotationLibrary\CyAnnotationLibrary.cylib\CyAnnotationLibrary.cyprj|fd095db4-87c4-4512-9527-d725e8696690
+D:\programy\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibraryupdates\CyComponentLibraryUpdates.cylib\CyComponentLibraryUpdates.cyprj|ac7c4d82-83ad-4200-9608-2c1e6f5b09d5
+D:\programy\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CyComponentLibrary.cyprj|ca45dbd1-d63b-4d2e-8a97-8a8794f1c90b
+D:\programy\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cyprimitives\CyPrimitives.cylib\CyPrimitives.cyprj|4a598541-2a89-49fd-a1fa-8ec30b9ce759
+D:\Henny\magisterka\CY8KIT\BLE\BLE\BLE_FindMe.cydsn\BLE_FindMe.cyprj|25ca5856-05ff-44c6-bd37-32b309d9b515
+D:\Henny\magisterka\CY8KIT\BLE\BLE\BLE_CustomProfile.cydsn\BLE_CustomProfile.cyprj|2ffe8f7d-e356-44f0-b329-61ad0271b32e
+D:\Henny\magisterka\CY8KIT\BLE\BLE\WaveSim.cydsn\WaveSim.cyprj|4c77ed7e-9c10-4c64-8802-fb98f503912e
+D:\Henny\magisterka\CY8KIT\BLE\BLE\BLE_Temperature_Measurement01.cydsn\BLE_Temperature_Measurement01.cyprj|60924db2-e7a0-424b-80e3-fd8442adb2b6

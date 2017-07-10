@@ -1,0 +1,3396 @@
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"main.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text.Stack_Handler,"ax",%progbits
+  18              		.align	2
+  19              		.global	Stack_Handler
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	Stack_Handler, %function
+  23              	Stack_Handler:
+  24              	.LFB37:
+  25              		.file 1 ".\\main.c"
+   1:.\main.c      **** /* ========================================
+   2:.\main.c      ****  *
+   3:.\main.c      ****  * Copyright YOUR COMPANY, THE YEAR
+   4:.\main.c      ****  * All Rights Reserved
+   5:.\main.c      ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\main.c      ****  *
+   7:.\main.c      ****  * CONFIDENTIAL AND PROPRIETARY INFORMATION
+   8:.\main.c      ****  * WHICH IS THE PROPERTY OF your company.
+   9:.\main.c      ****  *
+  10:.\main.c      ****  * ========================================
+  11:.\main.c      **** */
+  12:.\main.c      **** #include <project.h>
+  13:.\main.c      **** 
+  14:.\main.c      **** int capsenseNotify;
+  15:.\main.c      **** int bleConnected = 0;
+  16:.\main.c      **** 
+  17:.\main.c      **** CYBLE_CONN_HANDLE_T connectionHandle;
+  18:.\main.c      **** 
+  19:.\main.c      **** void Stack_Handler( uint32 eventCode, void *eventParam )
+  20:.\main.c      **** {
+  26              		.loc 1 20 0
+  27              		.cfi_startproc
+  28              	.LVL0:
+  29 0000 10B5     		push	{r4, lr}
+  30              		.cfi_def_cfa_offset 8
+  31              		.cfi_offset 4, -8
+  32              		.cfi_offset 14, -4
+  33 0002 0C1C     		mov	r4, r1
+  21:.\main.c      ****     CYBLE_GATTS_WRITE_REQ_PARAM_T *wrReq;
+  22:.\main.c      ****     
+  23:.\main.c      ****     switch ( eventCode )
+  34              		.loc 1 23 0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 2
+
+
+  35 0004 2828     		cmp	r0, #40
+  36 0006 18D0     		beq	.L3
+  37 0008 04D8     		bhi	.L4
+  38 000a 0128     		cmp	r0, #1
+  39 000c 07D0     		beq	.L5
+  40 000e 2728     		cmp	r0, #39
+  41 0010 05D0     		beq	.L5
+  42 0012 33E0     		b	.L1
+  43              	.L4:
+  44 0014 4128     		cmp	r0, #65
+  45 0016 0CD0     		beq	.L6
+  46 0018 4C28     		cmp	r0, #76
+  47 001a 15D0     		beq	.L7
+  48 001c 2EE0     		b	.L1
+  49              	.L5:
+  24:.\main.c      ****     {
+  25:.\main.c      ****         case CYBLE_EVT_STACK_ON:
+  26:.\main.c      ****         case CYBLE_EVT_GAP_DEVICE_CONNECTED:
+  27:.\main.c      ****             CyBle_GappStartAdvertisement( CYBLE_ADVERTISING_FAST );
+  50              		.loc 1 27 0
+  51 001e 0020     		mov	r0, #0
+  52              	.LVL1:
+  53 0020 FFF7FEFF 		bl	CyBle_GappStartAdvertisement
+  54              	.LVL2:
+  28:.\main.c      ****             UART_UartPutString("Adv started");
+  55              		.loc 1 28 0
+  56 0024 1648     		ldr	r0, .L9
+  57 0026 FFF7FEFF 		bl	UART_UartPutString
+  58              	.LVL3:
+  29:.\main.c      ****             bleConnected = 1;
+  59              		.loc 1 29 0
+  60 002a 0122     		mov	r2, #1
+  61 002c 154B     		ldr	r3, .L9+4
+  62 002e 1A60     		str	r2, [r3]
+  30:.\main.c      ****             break;
+  63              		.loc 1 30 0
+  64 0030 24E0     		b	.L1
+  65              	.LVL4:
+  66              	.L6:
+  31:.\main.c      ****             
+  32:.\main.c      ****         case CYBLE_EVT_GATT_CONNECT_IND:
+  33:.\main.c      ****             //connectionHandle = *(CYBLE_CONN_HANDLE_T *) eventParam;
+  34:.\main.c      ****             UART_UartPutString("Device connected");
+  67              		.loc 1 34 0
+  68 0032 1548     		ldr	r0, .L9+8
+  69              	.LVL5:
+  70 0034 FFF7FEFF 		bl	UART_UartPutString
+  71              	.LVL6:
+  35:.\main.c      ****             break;
+  72              		.loc 1 35 0
+  73 0038 20E0     		b	.L1
+  74              	.LVL7:
+  75              	.L3:
+  36:.\main.c      ****             
+  37:.\main.c      ****         case CYBLE_EVT_GAP_DEVICE_DISCONNECTED:
+  38:.\main.c      ****             bleConnected = 0;
+  76              		.loc 1 38 0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 3
+
+
+  77 003a 0022     		mov	r2, #0
+  78 003c 114B     		ldr	r3, .L9+4
+  79 003e 1A60     		str	r2, [r3]
+  39:.\main.c      ****             UART_UartPutString("Device disconnected");
+  80              		.loc 1 39 0
+  81 0040 1248     		ldr	r0, .L9+12
+  82              	.LVL8:
+  83 0042 FFF7FEFF 		bl	UART_UartPutString
+  84              	.LVL9:
+  40:.\main.c      ****             break;
+  85              		.loc 1 40 0
+  86 0046 19E0     		b	.L1
+  87              	.LVL10:
+  88              	.L7:
+  41:.\main.c      ****             
+  42:.\main.c      ****         case CYBLE_EVT_GATTS_WRITE_REQ:
+  43:.\main.c      ****             UART_UartPutString("Write request");
+  89              		.loc 1 43 0
+  90 0048 1148     		ldr	r0, .L9+16
+  91              	.LVL11:
+  92 004a FFF7FEFF 		bl	UART_UartPutString
+  93              	.LVL12:
+  44:.\main.c      ****             wrReq = (CYBLE_GATTS_WRITE_REQ_PARAM_T *) eventParam;
+  45:.\main.c      ****             if ( wrReq->handleValPair.attrHandle == CYBLE_CAPSENSE_SLIDER_SLIDERCCCD_DESC_HANDLE )
+  94              		.loc 1 45 0
+  95 004e A389     		ldrh	r3, [r4, #12]
+  96 0050 112B     		cmp	r3, #17
+  97 0052 0CD1     		bne	.L8
+  46:.\main.c      ****             {
+  47:.\main.c      ****                 UART_UartPutString("Requested slider desc value");
+  98              		.loc 1 47 0
+  99 0054 0F48     		ldr	r0, .L9+20
+ 100 0056 FFF7FEFF 		bl	UART_UartPutString
+ 101              	.LVL13:
+  48:.\main.c      ****                 CyBle_GattsWriteAttributeValue( &wrReq->handleValPair, 0, &cyBle_connHandle, CYBLE_
+ 102              		.loc 1 48 0
+ 103 005a 201D     		add	r0, r4, #4
+ 104 005c 0021     		mov	r1, #0
+ 105 005e 0E4A     		ldr	r2, .L9+24
+ 106 0060 0023     		mov	r3, #0
+ 107 0062 FFF7FEFF 		bl	CyBle_GattsWriteAttributeValue
+ 108              	.LVL14:
+  49:.\main.c      ****                 capsenseNotify = wrReq->handleValPair.value.val[0];
+ 109              		.loc 1 49 0
+ 110 0066 6368     		ldr	r3, [r4, #4]
+ 111 0068 1A78     		ldrb	r2, [r3]
+ 112 006a 0C4B     		ldr	r3, .L9+28
+ 113 006c 1A60     		str	r2, [r3]
+ 114              	.L8:
+  50:.\main.c      ****             }
+  51:.\main.c      ****             CyBle_GattsWriteRsp( cyBle_connHandle );
+ 115              		.loc 1 51 0
+ 116 006e 0A4A     		ldr	r2, .L9+24
+ 117 0070 1378     		ldrb	r3, [r2]
+ 118 0072 5078     		ldrb	r0, [r2, #1]
+ 119 0074 0002     		lsl	r0, r0, #8
+ 120 0076 1843     		orr	r0, r3
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 4
+
+
+ 121 0078 FFF7FEFF 		bl	CyBle_GattsWriteRsp
+ 122              	.LVL15:
+ 123              	.L1:
+  52:.\main.c      ****             break;
+  53:.\main.c      ****            
+  54:.\main.c      ****             default:
+  55:.\main.c      ****             break;
+  56:.\main.c      ****             
+  57:.\main.c      ****     }
+  58:.\main.c      **** }
+ 124              		.loc 1 58 0
+ 125              		@ sp needed
+ 126              	.LVL16:
+ 127 007c 10BD     		pop	{r4, pc}
+ 128              	.L10:
+ 129 007e C046     		.align	2
+ 130              	.L9:
+ 131 0080 00000000 		.word	.LC0
+ 132 0084 00000000 		.word	.LANCHOR0
+ 133 0088 0C000000 		.word	.LC3
+ 134 008c 20000000 		.word	.LC5
+ 135 0090 34000000 		.word	.LC7
+ 136 0094 44000000 		.word	.LC9
+ 137 0098 00000000 		.word	cyBle_connHandle
+ 138 009c 00000000 		.word	capsenseNotify
+ 139              		.cfi_endproc
+ 140              	.LFE37:
+ 141              		.size	Stack_Handler, .-Stack_Handler
+ 142              		.section	.text.main,"ax",%progbits
+ 143              		.align	2
+ 144              		.global	main
+ 145              		.code	16
+ 146              		.thumb_func
+ 147              		.type	main, %function
+ 148              	main:
+ 149              	.LFB38:
+  59:.\main.c      **** 
+  60:.\main.c      **** int main()
+  61:.\main.c      **** {
+ 150              		.loc 1 61 0
+ 151              		.cfi_startproc
+ 152 0000 10B5     		push	{r4, lr}
+ 153              		.cfi_def_cfa_offset 8
+ 154              		.cfi_offset 4, -8
+ 155              		.cfi_offset 14, -4
+ 156 0002 84B0     		sub	sp, sp, #16
+ 157              		.cfi_def_cfa_offset 24
+  62:.\main.c      ****     CyGlobalIntEnable; 
+ 158              		.loc 1 62 0
+ 159              	@ 62 ".\main.c" 1
+ 160 0004 62B6     		CPSIE   i
+ 161              	@ 0 "" 2
+  63:.\main.c      ****     
+  64:.\main.c      ****     CapSense_Start();
+ 162              		.loc 1 64 0
+ 163              		.code	16
+ 164 0006 FFF7FEFF 		bl	CapSense_Start
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 5
+
+
+ 165              	.LVL17:
+  65:.\main.c      ****     CapSense_InitializeAllBaselines();
+ 166              		.loc 1 65 0
+ 167 000a FFF7FEFF 		bl	CapSense_InitializeAllBaselines
+ 168              	.LVL18:
+  66:.\main.c      ****     CapSense_ScanEnabledWidgets();
+ 169              		.loc 1 66 0
+ 170 000e FFF7FEFF 		bl	CapSense_ScanEnabledWidgets
+ 171              	.LVL19:
+  67:.\main.c      ****     
+  68:.\main.c      ****     UART_Start();
+ 172              		.loc 1 68 0
+ 173 0012 FFF7FEFF 		bl	UART_Start
+ 174              	.LVL20:
+  69:.\main.c      ****     
+  70:.\main.c      ****     CyBle_Start( Stack_Handler );
+ 175              		.loc 1 70 0
+ 176 0016 1B48     		ldr	r0, .L16
+ 177 0018 FFF7FEFF 		bl	CyBle_Start
+ 178              	.LVL21:
+ 179              	.L12:
+  71:.\main.c      ****     
+  72:.\main.c      ****     for(;;)
+  73:.\main.c      ****     {
+  74:.\main.c      ****         CyBle_ProcessEvents();
+ 180              		.loc 1 74 0
+ 181 001c FFF7FEFF 		bl	CyBle_ProcessEvents
+ 182              	.LVL22:
+  75:.\main.c      ****         
+  76:.\main.c      ****         if (!CapSense_IsBusy() && bleConnected)
+ 183              		.loc 1 76 0
+ 184 0020 FFF7FEFF 		bl	CapSense_IsBusy
+ 185              	.LVL23:
+ 186 0024 0028     		cmp	r0, #0
+ 187 0026 F9D1     		bne	.L12
+ 188              		.loc 1 76 0 is_stmt 0 discriminator 1
+ 189 0028 174B     		ldr	r3, .L16+4
+ 190 002a 1B68     		ldr	r3, [r3]
+ 191 002c 002B     		cmp	r3, #0
+ 192 002e F5D0     		beq	.L12
+ 193              	.LBB2:
+  77:.\main.c      ****         {
+  78:.\main.c      ****             uint8 pos = (uint8) CapSense_GetCentroidPos( CapSense_LINEARSLIDER0__LS );
+ 194              		.loc 1 78 0 is_stmt 1
+ 195 0030 FFF7FEFF 		bl	CapSense_GetCentroidPos
+ 196              	.LVL24:
+ 197 0034 6B46     		mov	r3, sp
+ 198 0036 DC1C     		add	r4, r3, #3
+ 199 0038 D870     		strb	r0, [r3, #3]
+  79:.\main.c      ****             
+  80:.\main.c      ****             CapSense_UpdateEnabledBaselines();
+ 200              		.loc 1 80 0
+ 201 003a FFF7FEFF 		bl	CapSense_UpdateEnabledBaselines
+ 202              	.LVL25:
+  81:.\main.c      ****             CapSense_ScanEnabledWidgets();
+ 203              		.loc 1 81 0
+ 204 003e FFF7FEFF 		bl	CapSense_ScanEnabledWidgets
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 6
+
+
+ 205              	.LVL26:
+  82:.\main.c      ****             
+  83:.\main.c      ****             if (pos!=0xFF)
+ 206              		.loc 1 83 0
+ 207 0042 2378     		ldrb	r3, [r4]
+ 208 0044 FF2B     		cmp	r3, #255
+ 209 0046 E9D0     		beq	.L12
+ 210              	.LBB3:
+  84:.\main.c      ****             {
+  85:.\main.c      ****                 CYBLE_GATTS_HANDLE_VALUE_NTF_T capsenseHandle;
+  86:.\main.c      ****                 capsenseHandle.attrHandle = CYBLE_CAPSENSE_SLIDER_CHAR_HANDLE;
+ 211              		.loc 1 86 0
+ 212 0048 01AC     		add	r4, sp, #4
+ 213 004a 1023     		mov	r3, #16
+ 214 004c 2381     		strh	r3, [r4, #8]
+  87:.\main.c      ****                 capsenseHandle.value.len = 1;
+ 215              		.loc 1 87 0
+ 216 004e 0F3B     		sub	r3, r3, #15
+ 217 0050 A380     		strh	r3, [r4, #4]
+  88:.\main.c      ****                 capsenseHandle.value.val = &pos;
+ 218              		.loc 1 88 0
+ 219 0052 6B46     		mov	r3, sp
+ 220 0054 D81C     		add	r0, r3, #3
+ 221 0056 0190     		str	r0, [sp, #4]
+  89:.\main.c      ****                 
+  90:.\main.c      ****                 UART_UartPutChar(&pos);
+ 222              		.loc 1 90 0
+ 223 0058 FFF7FEFF 		bl	UART_SpiUartWriteTxData
+ 224              	.LVL27:
+  91:.\main.c      ****                 
+  92:.\main.c      ****                 CyBle_GattsWriteAttributeValue( &capsenseHandle, 0, &cyBle_connHandle, 0);
+ 225              		.loc 1 92 0
+ 226 005c 201C     		mov	r0, r4
+ 227 005e 0021     		mov	r1, #0
+ 228 0060 0A4A     		ldr	r2, .L16+8
+ 229 0062 0023     		mov	r3, #0
+ 230 0064 FFF7FEFF 		bl	CyBle_GattsWriteAttributeValue
+ 231              	.LVL28:
+  93:.\main.c      ****                 
+  94:.\main.c      ****                 if (capsenseNotify)
+ 232              		.loc 1 94 0
+ 233 0068 094B     		ldr	r3, .L16+12
+ 234 006a 1B68     		ldr	r3, [r3]
+ 235 006c 002B     		cmp	r3, #0
+ 236 006e D5D0     		beq	.L12
+  95:.\main.c      ****                     CyBle_GattsNotification( cyBle_connHandle, &capsenseHandle );
+ 237              		.loc 1 95 0
+ 238 0070 064A     		ldr	r2, .L16+8
+ 239 0072 1378     		ldrb	r3, [r2]
+ 240 0074 5078     		ldrb	r0, [r2, #1]
+ 241 0076 0002     		lsl	r0, r0, #8
+ 242 0078 1843     		orr	r0, r3
+ 243 007a 01A9     		add	r1, sp, #4
+ 244 007c FFF7FEFF 		bl	CyBle_GattsNotification
+ 245              	.LVL29:
+ 246 0080 CCE7     		b	.L12
+ 247              	.L17:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 7
+
+
+ 248 0082 C046     		.align	2
+ 249              	.L16:
+ 250 0084 00000000 		.word	Stack_Handler
+ 251 0088 00000000 		.word	.LANCHOR0
+ 252 008c 00000000 		.word	cyBle_connHandle
+ 253 0090 00000000 		.word	capsenseNotify
+ 254              	.LBE3:
+ 255              	.LBE2:
+ 256              		.cfi_endproc
+ 257              	.LFE38:
+ 258              		.size	main, .-main
+ 259              		.comm	connectionHandle,2,4
+ 260              		.global	bleConnected
+ 261              		.comm	capsenseNotify,4,4
+ 262              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 263              		.align	2
+ 264              	.LC0:
+ 265 0000 41647620 		.ascii	"Adv started\000"
+ 265      73746172 
+ 265      74656400 
+ 266              	.LC3:
+ 267 000c 44657669 		.ascii	"Device connected\000"
+ 267      63652063 
+ 267      6F6E6E65 
+ 267      63746564 
+ 267      00
+ 268 001d 000000   		.space	3
+ 269              	.LC5:
+ 270 0020 44657669 		.ascii	"Device disconnected\000"
+ 270      63652064 
+ 270      6973636F 
+ 270      6E6E6563 
+ 270      74656400 
+ 271              	.LC7:
+ 272 0034 57726974 		.ascii	"Write request\000"
+ 272      65207265 
+ 272      71756573 
+ 272      7400
+ 273 0042 0000     		.space	2
+ 274              	.LC9:
+ 275 0044 52657175 		.ascii	"Requested slider desc value\000"
+ 275      65737465 
+ 275      6420736C 
+ 275      69646572 
+ 275      20646573 
+ 276              		.bss
+ 277              		.align	2
+ 278              		.set	.LANCHOR0,. + 0
+ 279              		.type	bleConnected, %object
+ 280              		.size	bleConnected, 4
+ 281              	bleConnected:
+ 282 0000 00000000 		.space	4
+ 283              		.text
+ 284              	.Letext0:
+ 285              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 286              		.file 3 "Generated_Source\\PSoC4/BLE_1_Stack.h"
+ 287              		.file 4 "Generated_Source\\PSoC4/BLE_1_StackGatt.h"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 8
+
+
+ 288              		.file 5 "Generated_Source\\PSoC4/BLE_1_StackGattServer.h"
+ 289              		.file 6 "Generated_Source\\PSoC4/BLE_1.h"
+ 290              		.file 7 "Generated_Source\\PSoC4/BLE_1_eventHandler.h"
+ 291              		.file 8 "Generated_Source\\PSoC4/BLE_1_StackGattDb.h"
+ 292              		.file 9 "Generated_Source\\PSoC4/UART_SPI_UART.h"
+ 293              		.file 10 "Generated_Source\\PSoC4/CapSense_CSHL.h"
+ 294              		.file 11 "Generated_Source\\PSoC4/CapSense.h"
+ 295              		.file 12 "Generated_Source\\PSoC4/UART.h"
+ 296              		.section	.debug_info,"",%progbits
+ 297              	.Ldebug_info0:
+ 298 0000 A2080000 		.4byte	0x8a2
+ 299 0004 0400     		.2byte	0x4
+ 300 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 301 000a 04       		.byte	0x4
+ 302 000b 01       		.uleb128 0x1
+ 303 000c DC0E0000 		.4byte	.LASF193
+ 304 0010 01       		.byte	0x1
+ 305 0011 6F070000 		.4byte	.LASF194
+ 306 0015 46100000 		.4byte	.LASF195
+ 307 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 308 001d 00000000 		.4byte	0
+ 309 0021 00000000 		.4byte	.Ldebug_line0
+ 310 0025 02       		.uleb128 0x2
+ 311 0026 01       		.byte	0x1
+ 312 0027 06       		.byte	0x6
+ 313 0028 36040000 		.4byte	.LASF0
+ 314 002c 02       		.uleb128 0x2
+ 315 002d 01       		.byte	0x1
+ 316 002e 08       		.byte	0x8
+ 317 002f 340E0000 		.4byte	.LASF1
+ 318 0033 02       		.uleb128 0x2
+ 319 0034 02       		.byte	0x2
+ 320 0035 05       		.byte	0x5
+ 321 0036 6A0F0000 		.4byte	.LASF2
+ 322 003a 02       		.uleb128 0x2
+ 323 003b 02       		.byte	0x2
+ 324 003c 07       		.byte	0x7
+ 325 003d AB120000 		.4byte	.LASF3
+ 326 0041 02       		.uleb128 0x2
+ 327 0042 04       		.byte	0x4
+ 328 0043 05       		.byte	0x5
+ 329 0044 96020000 		.4byte	.LASF4
+ 330 0048 02       		.uleb128 0x2
+ 331 0049 04       		.byte	0x4
+ 332 004a 07       		.byte	0x7
+ 333 004b 3A080000 		.4byte	.LASF5
+ 334 004f 02       		.uleb128 0x2
+ 335 0050 08       		.byte	0x8
+ 336 0051 05       		.byte	0x5
+ 337 0052 28040000 		.4byte	.LASF6
+ 338 0056 02       		.uleb128 0x2
+ 339 0057 08       		.byte	0x8
+ 340 0058 07       		.byte	0x7
+ 341 0059 33070000 		.4byte	.LASF7
+ 342 005d 03       		.uleb128 0x3
+ 343 005e 04       		.byte	0x4
+ 344 005f 05       		.byte	0x5
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 9
+
+
+ 345 0060 696E7400 		.ascii	"int\000"
+ 346 0064 02       		.uleb128 0x2
+ 347 0065 04       		.byte	0x4
+ 348 0066 07       		.byte	0x7
+ 349 0067 70110000 		.4byte	.LASF8
+ 350 006b 04       		.uleb128 0x4
+ 351 006c 79050000 		.4byte	.LASF9
+ 352 0070 02       		.byte	0x2
+ 353 0071 3801     		.2byte	0x138
+ 354 0073 2C000000 		.4byte	0x2c
+ 355 0077 04       		.uleb128 0x4
+ 356 0078 3F000000 		.4byte	.LASF10
+ 357 007c 02       		.byte	0x2
+ 358 007d 3901     		.2byte	0x139
+ 359 007f 3A000000 		.4byte	0x3a
+ 360 0083 04       		.uleb128 0x4
+ 361 0084 18060000 		.4byte	.LASF11
+ 362 0088 02       		.byte	0x2
+ 363 0089 3A01     		.2byte	0x13a
+ 364 008b 48000000 		.4byte	0x48
+ 365 008f 02       		.uleb128 0x2
+ 366 0090 04       		.byte	0x4
+ 367 0091 04       		.byte	0x4
+ 368 0092 780D0000 		.4byte	.LASF12
+ 369 0096 02       		.uleb128 0x2
+ 370 0097 08       		.byte	0x8
+ 371 0098 04       		.byte	0x4
+ 372 0099 9E050000 		.4byte	.LASF13
+ 373 009d 04       		.uleb128 0x4
+ 374 009e A6110000 		.4byte	.LASF14
+ 375 00a2 02       		.byte	0x2
+ 376 00a3 4901     		.2byte	0x149
+ 377 00a5 A9000000 		.4byte	0xa9
+ 378 00a9 02       		.uleb128 0x2
+ 379 00aa 01       		.byte	0x1
+ 380 00ab 08       		.byte	0x8
+ 381 00ac 29110000 		.4byte	.LASF15
+ 382 00b0 02       		.uleb128 0x2
+ 383 00b1 04       		.byte	0x4
+ 384 00b2 07       		.byte	0x7
+ 385 00b3 3E0B0000 		.4byte	.LASF16
+ 386 00b7 05       		.uleb128 0x5
+ 387 00b8 04       		.byte	0x4
+ 388 00b9 06       		.uleb128 0x6
+ 389 00ba 01       		.byte	0x1
+ 390 00bb 03       		.byte	0x3
+ 391 00bc 4201     		.2byte	0x142
+ 392 00be 76020000 		.4byte	0x276
+ 393 00c2 07       		.uleb128 0x7
+ 394 00c3 34090000 		.4byte	.LASF17
+ 395 00c7 00       		.sleb128 0
+ 396 00c8 07       		.uleb128 0x7
+ 397 00c9 42040000 		.4byte	.LASF18
+ 398 00cd 01       		.sleb128 1
+ 399 00ce 07       		.uleb128 0x7
+ 400 00cf 84020000 		.4byte	.LASF19
+ 401 00d3 02       		.sleb128 2
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 10
+
+
+ 402 00d4 07       		.uleb128 0x7
+ 403 00d5 92120000 		.4byte	.LASF20
+ 404 00d9 03       		.sleb128 3
+ 405 00da 07       		.uleb128 0x7
+ 406 00db F4020000 		.4byte	.LASF21
+ 407 00df 04       		.sleb128 4
+ 408 00e0 07       		.uleb128 0x7
+ 409 00e1 23000000 		.4byte	.LASF22
+ 410 00e5 05       		.sleb128 5
+ 411 00e6 07       		.uleb128 0x7
+ 412 00e7 69090000 		.4byte	.LASF23
+ 413 00eb 06       		.sleb128 6
+ 414 00ec 07       		.uleb128 0x7
+ 415 00ed BD0A0000 		.4byte	.LASF24
+ 416 00f1 20       		.sleb128 32
+ 417 00f2 07       		.uleb128 0x7
+ 418 00f3 9E040000 		.4byte	.LASF25
+ 419 00f7 21       		.sleb128 33
+ 420 00f8 07       		.uleb128 0x7
+ 421 00f9 A6090000 		.4byte	.LASF26
+ 422 00fd 22       		.sleb128 34
+ 423 00fe 07       		.uleb128 0x7
+ 424 00ff 3F120000 		.4byte	.LASF27
+ 425 0103 23       		.sleb128 35
+ 426 0104 07       		.uleb128 0x7
+ 427 0105 720C0000 		.4byte	.LASF28
+ 428 0109 24       		.sleb128 36
+ 429 010a 07       		.uleb128 0x7
+ 430 010b A90B0000 		.4byte	.LASF29
+ 431 010f 25       		.sleb128 37
+ 432 0110 07       		.uleb128 0x7
+ 433 0111 2E050000 		.4byte	.LASF30
+ 434 0115 26       		.sleb128 38
+ 435 0116 07       		.uleb128 0x7
+ 436 0117 CA090000 		.4byte	.LASF31
+ 437 011b 27       		.sleb128 39
+ 438 011c 07       		.uleb128 0x7
+ 439 011d 4E110000 		.4byte	.LASF32
+ 440 0121 28       		.sleb128 40
+ 441 0122 07       		.uleb128 0x7
+ 442 0123 7A030000 		.4byte	.LASF33
+ 443 0127 29       		.sleb128 41
+ 444 0128 07       		.uleb128 0x7
+ 445 0129 4A010000 		.4byte	.LASF34
+ 446 012d 2A       		.sleb128 42
+ 447 012e 07       		.uleb128 0x7
+ 448 012f C7010000 		.4byte	.LASF35
+ 449 0133 2B       		.sleb128 43
+ 450 0134 07       		.uleb128 0x7
+ 451 0135 91140000 		.4byte	.LASF36
+ 452 0139 2C       		.sleb128 44
+ 453 013a 07       		.uleb128 0x7
+ 454 013b B7030000 		.4byte	.LASF37
+ 455 013f 2D       		.sleb128 45
+ 456 0140 07       		.uleb128 0x7
+ 457 0141 680E0000 		.4byte	.LASF38
+ 458 0145 2E       		.sleb128 46
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 11
+
+
+ 459 0146 07       		.uleb128 0x7
+ 460 0147 E6010000 		.4byte	.LASF39
+ 461 014b 2F       		.sleb128 47
+ 462 014c 07       		.uleb128 0x7
+ 463 014d 270C0000 		.4byte	.LASF40
+ 464 0151 30       		.sleb128 48
+ 465 0152 07       		.uleb128 0x7
+ 466 0153 3B150000 		.4byte	.LASF41
+ 467 0157 31       		.sleb128 49
+ 468 0158 07       		.uleb128 0x7
+ 469 0159 EE0B0000 		.4byte	.LASF42
+ 470 015d 32       		.sleb128 50
+ 471 015e 07       		.uleb128 0x7
+ 472 015f CC100000 		.4byte	.LASF43
+ 473 0163 33       		.sleb128 51
+ 474 0164 07       		.uleb128 0x7
+ 475 0165 BE120000 		.4byte	.LASF44
+ 476 0169 C000     		.sleb128 64
+ 477 016b 07       		.uleb128 0x7
+ 478 016c 490A0000 		.4byte	.LASF45
+ 479 0170 C100     		.sleb128 65
+ 480 0172 07       		.uleb128 0x7
+ 481 0173 7B150000 		.4byte	.LASF46
+ 482 0177 C200     		.sleb128 66
+ 483 0179 07       		.uleb128 0x7
+ 484 017a 79130000 		.4byte	.LASF47
+ 485 017e C300     		.sleb128 67
+ 486 0180 07       		.uleb128 0x7
+ 487 0181 89080000 		.4byte	.LASF48
+ 488 0185 C400     		.sleb128 68
+ 489 0187 07       		.uleb128 0x7
+ 490 0188 3E0D0000 		.4byte	.LASF49
+ 491 018c C500     		.sleb128 69
+ 492 018e 07       		.uleb128 0x7
+ 493 018f 1D0B0000 		.4byte	.LASF50
+ 494 0193 C600     		.sleb128 70
+ 495 0195 07       		.uleb128 0x7
+ 496 0196 4B090000 		.4byte	.LASF51
+ 497 019a C700     		.sleb128 71
+ 498 019c 07       		.uleb128 0x7
+ 499 019d 55140000 		.4byte	.LASF52
+ 500 01a1 C800     		.sleb128 72
+ 501 01a3 07       		.uleb128 0x7
+ 502 01a4 B5040000 		.4byte	.LASF53
+ 503 01a8 C900     		.sleb128 73
+ 504 01aa 07       		.uleb128 0x7
+ 505 01ab C5130000 		.4byte	.LASF54
+ 506 01af CA00     		.sleb128 74
+ 507 01b1 07       		.uleb128 0x7
+ 508 01b2 0F020000 		.4byte	.LASF55
+ 509 01b6 CB00     		.sleb128 75
+ 510 01b8 07       		.uleb128 0x7
+ 511 01b9 6F080000 		.4byte	.LASF56
+ 512 01bd CC00     		.sleb128 76
+ 513 01bf 07       		.uleb128 0x7
+ 514 01c0 D40B0000 		.4byte	.LASF57
+ 515 01c4 CD00     		.sleb128 77
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 12
+
+
+ 516 01c6 07       		.uleb128 0x7
+ 517 01c7 03050000 		.4byte	.LASF58
+ 518 01cb CE00     		.sleb128 78
+ 519 01cd 07       		.uleb128 0x7
+ 520 01ce 27100000 		.4byte	.LASF59
+ 521 01d2 CF00     		.sleb128 79
+ 522 01d4 07       		.uleb128 0x7
+ 523 01d5 2E020000 		.4byte	.LASF60
+ 524 01d9 D000     		.sleb128 80
+ 525 01db 07       		.uleb128 0x7
+ 526 01dc 7F050000 		.4byte	.LASF61
+ 527 01e0 D100     		.sleb128 81
+ 528 01e2 07       		.uleb128 0x7
+ 529 01e3 A10C0000 		.4byte	.LASF62
+ 530 01e7 D200     		.sleb128 82
+ 531 01e9 07       		.uleb128 0x7
+ 532 01ea 830F0000 		.4byte	.LASF63
+ 533 01ee D300     		.sleb128 83
+ 534 01f0 07       		.uleb128 0x7
+ 535 01f1 81100000 		.4byte	.LASF64
+ 536 01f5 D400     		.sleb128 84
+ 537 01f7 07       		.uleb128 0x7
+ 538 01f8 A7080000 		.4byte	.LASF65
+ 539 01fc D500     		.sleb128 85
+ 540 01fe 07       		.uleb128 0x7
+ 541 01ff 78070000 		.4byte	.LASF66
+ 542 0203 D600     		.sleb128 86
+ 543 0205 07       		.uleb128 0x7
+ 544 0206 7D110000 		.4byte	.LASF67
+ 545 020a D700     		.sleb128 87
+ 546 020c 07       		.uleb128 0x7
+ 547 020d CB080000 		.4byte	.LASF68
+ 548 0211 D800     		.sleb128 88
+ 549 0213 07       		.uleb128 0x7
+ 550 0214 73060000 		.4byte	.LASF69
+ 551 0218 F000     		.sleb128 112
+ 552 021a 07       		.uleb128 0x7
+ 553 021b 10150000 		.4byte	.LASF70
+ 554 021f F100     		.sleb128 113
+ 555 0221 07       		.uleb128 0x7
+ 556 0222 6A0A0000 		.4byte	.LASF71
+ 557 0226 F200     		.sleb128 114
+ 558 0228 07       		.uleb128 0x7
+ 559 0229 4D020000 		.4byte	.LASF72
+ 560 022d F300     		.sleb128 115
+ 561 022f 07       		.uleb128 0x7
+ 562 0230 FA0C0000 		.4byte	.LASF73
+ 563 0234 F400     		.sleb128 116
+ 564 0236 07       		.uleb128 0x7
+ 565 0237 A5050000 		.4byte	.LASF74
+ 566 023b F500     		.sleb128 117
+ 567 023d 07       		.uleb128 0x7
+ 568 023e 73010000 		.4byte	.LASF75
+ 569 0242 F600     		.sleb128 118
+ 570 0244 07       		.uleb128 0x7
+ 571 0245 6A000000 		.4byte	.LASF76
+ 572 0249 F700     		.sleb128 119
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 13
+
+
+ 573 024b 07       		.uleb128 0x7
+ 574 024c 00000000 		.4byte	.LASF77
+ 575 0250 F800     		.sleb128 120
+ 576 0252 07       		.uleb128 0x7
+ 577 0253 05040000 		.4byte	.LASF78
+ 578 0257 F900     		.sleb128 121
+ 579 0259 07       		.uleb128 0x7
+ 580 025a BB060000 		.4byte	.LASF79
+ 581 025e FA00     		.sleb128 122
+ 582 0260 07       		.uleb128 0x7
+ 583 0261 F2140000 		.4byte	.LASF80
+ 584 0265 FA01     		.sleb128 250
+ 585 0267 07       		.uleb128 0x7
+ 586 0268 A9070000 		.4byte	.LASF81
+ 587 026c FB01     		.sleb128 251
+ 588 026e 07       		.uleb128 0x7
+ 589 026f 42060000 		.4byte	.LASF82
+ 590 0273 FF01     		.sleb128 255
+ 591 0275 00       		.byte	0
+ 592 0276 06       		.uleb128 0x6
+ 593 0277 02       		.byte	0x2
+ 594 0278 03       		.byte	0x3
+ 595 0279 FF02     		.2byte	0x2ff
+ 596 027b 46030000 		.4byte	0x346
+ 597 027f 07       		.uleb128 0x7
+ 598 0280 50060000 		.4byte	.LASF83
+ 599 0284 00       		.sleb128 0
+ 600 0285 07       		.uleb128 0x7
+ 601 0286 C6050000 		.4byte	.LASF84
+ 602 028a 01       		.sleb128 1
+ 603 028b 07       		.uleb128 0x7
+ 604 028c F5120000 		.4byte	.LASF85
+ 605 0290 02       		.sleb128 2
+ 606 0291 07       		.uleb128 0x7
+ 607 0292 D1000000 		.4byte	.LASF86
+ 608 0296 03       		.sleb128 3
+ 609 0297 07       		.uleb128 0x7
+ 610 0298 A2130000 		.4byte	.LASF87
+ 611 029c 04       		.sleb128 4
+ 612 029d 07       		.uleb128 0x7
+ 613 029e 2B0A0000 		.4byte	.LASF88
+ 614 02a2 05       		.sleb128 5
+ 615 02a3 07       		.uleb128 0x7
+ 616 02a4 E40F0000 		.4byte	.LASF89
+ 617 02a8 06       		.sleb128 6
+ 618 02a9 07       		.uleb128 0x7
+ 619 02aa 77040000 		.4byte	.LASF90
+ 620 02ae 07       		.sleb128 7
+ 621 02af 07       		.uleb128 0x7
+ 622 02b0 D1150000 		.4byte	.LASF91
+ 623 02b4 08       		.sleb128 8
+ 624 02b5 07       		.uleb128 0x7
+ 625 02b6 7C140000 		.4byte	.LASF92
+ 626 02ba 09       		.sleb128 9
+ 627 02bb 07       		.uleb128 0x7
+ 628 02bc DB0D0000 		.4byte	.LASF93
+ 629 02c0 0A       		.sleb128 10
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 14
+
+
+ 630 02c1 07       		.uleb128 0x7
+ 631 02c2 2E110000 		.4byte	.LASF94
+ 632 02c6 0B       		.sleb128 11
+ 633 02c7 07       		.uleb128 0x7
+ 634 02c8 63030000 		.4byte	.LASF95
+ 635 02cc 0C       		.sleb128 12
+ 636 02cd 07       		.uleb128 0x7
+ 637 02ce BC020000 		.4byte	.LASF96
+ 638 02d2 0D       		.sleb128 13
+ 639 02d3 07       		.uleb128 0x7
+ 640 02d4 11080000 		.4byte	.LASF97
+ 641 02d8 0E       		.sleb128 14
+ 642 02d9 07       		.uleb128 0x7
+ 643 02da BF0F0000 		.4byte	.LASF98
+ 644 02de 0F       		.sleb128 15
+ 645 02df 07       		.uleb128 0x7
+ 646 02e0 11120000 		.4byte	.LASF99
+ 647 02e4 10       		.sleb128 16
+ 648 02e5 07       		.uleb128 0x7
+ 649 02e6 EE080000 		.4byte	.LASF100
+ 650 02ea 11       		.sleb128 17
+ 651 02eb 07       		.uleb128 0x7
+ 652 02ec 56050000 		.4byte	.LASF101
+ 653 02f0 12       		.sleb128 18
+ 654 02f1 07       		.uleb128 0x7
+ 655 02f2 99150000 		.4byte	.LASF102
+ 656 02f6 13       		.sleb128 19
+ 657 02f7 07       		.uleb128 0x7
+ 658 02f8 55040000 		.4byte	.LASF103
+ 659 02fc 27       		.sleb128 39
+ 660 02fd 07       		.uleb128 0x7
+ 661 02fe EC110000 		.4byte	.LASF104
+ 662 0302 28       		.sleb128 40
+ 663 0303 07       		.uleb128 0x7
+ 664 0304 FF130000 		.4byte	.LASF105
+ 665 0308 29       		.sleb128 41
+ 666 0309 07       		.uleb128 0x7
+ 667 030a 9F020000 		.4byte	.LASF106
+ 668 030e 2A       		.sleb128 42
+ 669 030f 07       		.uleb128 0x7
+ 670 0310 94010000 		.4byte	.LASF107
+ 671 0314 2B       		.sleb128 43
+ 672 0315 07       		.uleb128 0x7
+ 673 0316 050B0000 		.4byte	.LASF108
+ 674 031a 2C       		.sleb128 44
+ 675 031b 07       		.uleb128 0x7
+ 676 031c E3130000 		.4byte	.LASF109
+ 677 0320 FE01     		.sleb128 254
+ 678 0322 07       		.uleb128 0x7
+ 679 0323 F50A0000 		.4byte	.LASF110
+ 680 0327 FF01     		.sleb128 255
+ 681 0329 07       		.uleb128 0x7
+ 682 032a 6B020000 		.4byte	.LASF111
+ 683 032e 8002     		.sleb128 256
+ 684 0330 07       		.uleb128 0x7
+ 685 0331 C20C0000 		.4byte	.LASF112
+ 686 0335 8102     		.sleb128 257
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 15
+
+
+ 687 0337 07       		.uleb128 0x7
+ 688 0338 F50D0000 		.4byte	.LASF113
+ 689 033c 8202     		.sleb128 258
+ 690 033e 07       		.uleb128 0x7
+ 691 033f E9040000 		.4byte	.LASF114
+ 692 0343 8302     		.sleb128 259
+ 693 0345 00       		.byte	0
+ 694 0346 04       		.uleb128 0x4
+ 695 0347 8E0C0000 		.4byte	.LASF115
+ 696 034b 03       		.byte	0x3
+ 697 034c 6B03     		.2byte	0x36b
+ 698 034e 76020000 		.4byte	0x276
+ 699 0352 08       		.uleb128 0x8
+ 700 0353 04       		.byte	0x4
+ 701 0354 6B000000 		.4byte	0x6b
+ 702 0358 09       		.uleb128 0x9
+ 703 0359 01       		.byte	0x1
+ 704 035a 04       		.byte	0x4
+ 705 035b AB       		.byte	0xab
+ 706 035c 59040000 		.4byte	0x459
+ 707 0360 07       		.uleb128 0x7
+ 708 0361 5F060000 		.4byte	.LASF116
+ 709 0365 00       		.sleb128 0
+ 710 0366 07       		.uleb128 0x7
+ 711 0367 2C010000 		.4byte	.LASF117
+ 712 036b 01       		.sleb128 1
+ 713 036c 07       		.uleb128 0x7
+ 714 036d 99060000 		.4byte	.LASF118
+ 715 0371 02       		.sleb128 2
+ 716 0372 07       		.uleb128 0x7
+ 717 0373 1F060000 		.4byte	.LASF119
+ 718 0377 03       		.sleb128 3
+ 719 0378 07       		.uleb128 0x7
+ 720 0379 CE040000 		.4byte	.LASF120
+ 721 037d 04       		.sleb128 4
+ 722 037e 07       		.uleb128 0x7
+ 723 037f FD060000 		.4byte	.LASF121
+ 724 0383 05       		.sleb128 5
+ 725 0384 07       		.uleb128 0x7
+ 726 0385 F6000000 		.4byte	.LASF122
+ 727 0389 06       		.sleb128 6
+ 728 038a 07       		.uleb128 0x7
+ 729 038b DF060000 		.4byte	.LASF123
+ 730 038f 07       		.sleb128 7
+ 731 0390 07       		.uleb128 0x7
+ 732 0391 480C0000 		.4byte	.LASF124
+ 733 0395 08       		.sleb128 8
+ 734 0396 07       		.uleb128 0x7
+ 735 0397 7E0D0000 		.4byte	.LASF125
+ 736 039b 09       		.sleb128 9
+ 737 039c 07       		.uleb128 0x7
+ 738 039d 4C080000 		.4byte	.LASF126
+ 739 03a1 0A       		.sleb128 10
+ 740 03a2 07       		.uleb128 0x7
+ 741 03a3 12090000 		.4byte	.LASF127
+ 742 03a7 0B       		.sleb128 11
+ 743 03a8 07       		.uleb128 0x7
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 16
+
+
+ 744 03a9 9D000000 		.4byte	.LASF128
+ 745 03ad 0C       		.sleb128 12
+ 746 03ae 07       		.uleb128 0x7
+ 747 03af 8C0E0000 		.4byte	.LASF129
+ 748 03b3 0D       		.sleb128 13
+ 749 03b4 07       		.uleb128 0x7
+ 750 03b5 AC110000 		.4byte	.LASF130
+ 751 03b9 0E       		.sleb128 14
+ 752 03ba 07       		.uleb128 0x7
+ 753 03bb 41130000 		.4byte	.LASF131
+ 754 03bf 0F       		.sleb128 15
+ 755 03c0 07       		.uleb128 0x7
+ 756 03c1 E4050000 		.4byte	.LASF132
+ 757 03c5 10       		.sleb128 16
+ 758 03c6 07       		.uleb128 0x7
+ 759 03c7 470B0000 		.4byte	.LASF133
+ 760 03cb 11       		.sleb128 17
+ 761 03cc 07       		.uleb128 0x7
+ 762 03cd F3100000 		.4byte	.LASF134
+ 763 03d1 8001     		.sleb128 128
+ 764 03d3 07       		.uleb128 0x7
+ 765 03d4 13130000 		.4byte	.LASF135
+ 766 03d8 8001     		.sleb128 128
+ 767 03da 07       		.uleb128 0x7
+ 768 03db 860A0000 		.4byte	.LASF136
+ 769 03df 8001     		.sleb128 128
+ 770 03e1 07       		.uleb128 0x7
+ 771 03e2 0B0A0000 		.4byte	.LASF137
+ 772 03e6 8001     		.sleb128 128
+ 773 03e8 07       		.uleb128 0x7
+ 774 03e9 E3070000 		.4byte	.LASF138
+ 775 03ed 8001     		.sleb128 128
+ 776 03ef 07       		.uleb128 0x7
+ 777 03f0 E0030000 		.4byte	.LASF139
+ 778 03f4 8001     		.sleb128 128
+ 779 03f6 07       		.uleb128 0x7
+ 780 03f7 A40F0000 		.4byte	.LASF140
+ 781 03fb 8001     		.sleb128 128
+ 782 03fd 07       		.uleb128 0x7
+ 783 03fe B10E0000 		.4byte	.LASF141
+ 784 0402 8101     		.sleb128 129
+ 785 0404 07       		.uleb128 0x7
+ 786 0405 14030000 		.4byte	.LASF142
+ 787 0409 8101     		.sleb128 129
+ 788 040b 07       		.uleb128 0x7
+ 789 040c C8070000 		.4byte	.LASF143
+ 790 0410 8101     		.sleb128 129
+ 791 0412 07       		.uleb128 0x7
+ 792 0413 46000000 		.4byte	.LASF144
+ 793 0417 8101     		.sleb128 129
+ 794 0419 07       		.uleb128 0x7
+ 795 041a 1B140000 		.4byte	.LASF145
+ 796 041e 8201     		.sleb128 130
+ 797 0420 07       		.uleb128 0x7
+ 798 0421 FE0F0000 		.4byte	.LASF146
+ 799 0425 A001     		.sleb128 160
+ 800 0427 07       		.uleb128 0x7
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 17
+
+
+ 801 0428 82090000 		.4byte	.LASF147
+ 802 042c A001     		.sleb128 160
+ 803 042e 07       		.uleb128 0x7
+ 804 042f 35030000 		.4byte	.LASF148
+ 805 0433 A101     		.sleb128 161
+ 806 0435 07       		.uleb128 0x7
+ 807 0436 180D0000 		.4byte	.LASF149
+ 808 043a A201     		.sleb128 162
+ 809 043c 07       		.uleb128 0x7
+ 810 043d CA110000 		.4byte	.LASF150
+ 811 0441 A301     		.sleb128 163
+ 812 0443 07       		.uleb128 0x7
+ 813 0444 A2100000 		.4byte	.LASF151
+ 814 0448 FD01     		.sleb128 253
+ 815 044a 07       		.uleb128 0x7
+ 816 044b 65120000 		.4byte	.LASF152
+ 817 044f FE01     		.sleb128 254
+ 818 0451 07       		.uleb128 0x7
+ 819 0452 180E0000 		.4byte	.LASF153
+ 820 0456 FF01     		.sleb128 255
+ 821 0458 00       		.byte	0
+ 822 0459 04       		.uleb128 0x4
+ 823 045a F5090000 		.4byte	.LASF154
+ 824 045e 04       		.byte	0x4
+ 825 045f 6201     		.2byte	0x162
+ 826 0461 58030000 		.4byte	0x358
+ 827 0465 04       		.uleb128 0x4
+ 828 0466 5F150000 		.4byte	.LASF155
+ 829 046a 04       		.byte	0x4
+ 830 046b 9201     		.2byte	0x192
+ 831 046d 77000000 		.4byte	0x77
+ 832 0471 0A       		.uleb128 0xa
+ 833 0472 02       		.byte	0x2
+ 834 0473 04       		.byte	0x4
+ 835 0474 9C01     		.2byte	0x19c
+ 836 0476 95040000 		.4byte	0x495
+ 837 047a 0B       		.uleb128 0xb
+ 838 047b CD140000 		.4byte	.LASF156
+ 839 047f 04       		.byte	0x4
+ 840 0480 A301     		.2byte	0x1a3
+ 841 0482 6B000000 		.4byte	0x6b
+ 842 0486 00       		.byte	0
+ 843 0487 0B       		.uleb128 0xb
+ 844 0488 640A0000 		.4byte	.LASF157
+ 845 048c 04       		.byte	0x4
+ 846 048d A901     		.2byte	0x1a9
+ 847 048f 6B000000 		.4byte	0x6b
+ 848 0493 01       		.byte	0x1
+ 849 0494 00       		.byte	0
+ 850 0495 04       		.uleb128 0x4
+ 851 0496 89000000 		.4byte	.LASF158
+ 852 049a 04       		.byte	0x4
+ 853 049b AB01     		.2byte	0x1ab
+ 854 049d 71040000 		.4byte	0x471
+ 855 04a1 0A       		.uleb128 0xa
+ 856 04a2 08       		.byte	0x8
+ 857 04a3 04       		.byte	0x4
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 18
+
+
+ 858 04a4 C701     		.2byte	0x1c7
+ 859 04a6 D2040000 		.4byte	0x4d2
+ 860 04aa 0C       		.uleb128 0xc
+ 861 04ab 76616C00 		.ascii	"val\000"
+ 862 04af 04       		.byte	0x4
+ 863 04b0 CA01     		.2byte	0x1ca
+ 864 04b2 52030000 		.4byte	0x352
+ 865 04b6 00       		.byte	0
+ 866 04b7 0C       		.uleb128 0xc
+ 867 04b8 6C656E00 		.ascii	"len\000"
+ 868 04bc 04       		.byte	0x4
+ 869 04bd CD01     		.2byte	0x1cd
+ 870 04bf 77000000 		.4byte	0x77
+ 871 04c3 04       		.byte	0x4
+ 872 04c4 0B       		.uleb128 0xb
+ 873 04c5 94040000 		.4byte	.LASF159
+ 874 04c9 04       		.byte	0x4
+ 875 04ca D401     		.2byte	0x1d4
+ 876 04cc 77000000 		.4byte	0x77
+ 877 04d0 06       		.byte	0x6
+ 878 04d1 00       		.byte	0
+ 879 04d2 04       		.uleb128 0x4
+ 880 04d3 E1020000 		.4byte	.LASF160
+ 881 04d7 04       		.byte	0x4
+ 882 04d8 D601     		.2byte	0x1d6
+ 883 04da A1040000 		.4byte	0x4a1
+ 884 04de 0A       		.uleb128 0xa
+ 885 04df 0C       		.byte	0xc
+ 886 04e0 04       		.byte	0x4
+ 887 04e1 D901     		.2byte	0x1d9
+ 888 04e3 02050000 		.4byte	0x502
+ 889 04e7 0B       		.uleb128 0xb
+ 890 04e8 4A070000 		.4byte	.LASF161
+ 891 04ec 04       		.byte	0x4
+ 892 04ed DC01     		.2byte	0x1dc
+ 893 04ef D2040000 		.4byte	0x4d2
+ 894 04f3 00       		.byte	0
+ 895 04f4 0B       		.uleb128 0xb
+ 896 04f5 28070000 		.4byte	.LASF162
+ 897 04f9 04       		.byte	0x4
+ 898 04fa DF01     		.2byte	0x1df
+ 899 04fc 65040000 		.4byte	0x465
+ 900 0500 08       		.byte	0x8
+ 901 0501 00       		.byte	0
+ 902 0502 04       		.uleb128 0x4
+ 903 0503 DB0C0000 		.4byte	.LASF163
+ 904 0507 04       		.byte	0x4
+ 905 0508 E101     		.2byte	0x1e1
+ 906 050a DE040000 		.4byte	0x4de
+ 907 050e 0D       		.uleb128 0xd
+ 908 050f 8A0B0000 		.4byte	.LASF164
+ 909 0513 05       		.byte	0x5
+ 910 0514 34       		.byte	0x34
+ 911 0515 02050000 		.4byte	0x502
+ 912 0519 0E       		.uleb128 0xe
+ 913 051a 10       		.byte	0x10
+ 914 051b 05       		.byte	0x5
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 19
+
+
+ 915 051c 8A       		.byte	0x8a
+ 916 051d 3A050000 		.4byte	0x53a
+ 917 0521 0F       		.uleb128 0xf
+ 918 0522 C6000000 		.4byte	.LASF165
+ 919 0526 05       		.byte	0x5
+ 920 0527 8D       		.byte	0x8d
+ 921 0528 95040000 		.4byte	0x495
+ 922 052c 00       		.byte	0
+ 923 052d 0F       		.uleb128 0xf
+ 924 052e D8120000 		.4byte	.LASF166
+ 925 0532 05       		.byte	0x5
+ 926 0533 90       		.byte	0x90
+ 927 0534 02050000 		.4byte	0x502
+ 928 0538 04       		.byte	0x4
+ 929 0539 00       		.byte	0
+ 930 053a 0D       		.uleb128 0xd
+ 931 053b 6C0B0000 		.4byte	.LASF167
+ 932 053f 05       		.byte	0x5
+ 933 0540 92       		.byte	0x92
+ 934 0541 19050000 		.4byte	0x519
+ 935 0545 04       		.uleb128 0x4
+ 936 0546 68130000 		.4byte	.LASF168
+ 937 054a 06       		.byte	0x6
+ 938 054b E601     		.2byte	0x1e6
+ 939 054d 51050000 		.4byte	0x551
+ 940 0551 08       		.uleb128 0x8
+ 941 0552 04       		.byte	0x4
+ 942 0553 57050000 		.4byte	0x557
+ 943 0557 10       		.uleb128 0x10
+ 944 0558 67050000 		.4byte	0x567
+ 945 055c 11       		.uleb128 0x11
+ 946 055d 83000000 		.4byte	0x83
+ 947 0561 11       		.uleb128 0x11
+ 948 0562 B7000000 		.4byte	0xb7
+ 949 0566 00       		.byte	0
+ 950 0567 12       		.uleb128 0x12
+ 951 0568 0A060000 		.4byte	.LASF171
+ 952 056c 01       		.byte	0x1
+ 953 056d 13       		.byte	0x13
+ 954 056e 00000000 		.4byte	.LFB37
+ 955 0572 A0000000 		.4byte	.LFE37-.LFB37
+ 956 0576 01       		.uleb128 0x1
+ 957 0577 9C       		.byte	0x9c
+ 958 0578 57060000 		.4byte	0x657
+ 959 057c 13       		.uleb128 0x13
+ 960 057d 59030000 		.4byte	.LASF169
+ 961 0581 01       		.byte	0x1
+ 962 0582 13       		.byte	0x13
+ 963 0583 83000000 		.4byte	0x83
+ 964 0587 00000000 		.4byte	.LLST0
+ 965 058b 13       		.uleb128 0x13
+ 966 058c 97130000 		.4byte	.LASF170
+ 967 0590 01       		.byte	0x1
+ 968 0591 13       		.byte	0x13
+ 969 0592 B7000000 		.4byte	0xb7
+ 970 0596 6C000000 		.4byte	.LLST1
+ 971 059a 14       		.uleb128 0x14
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 20
+
+
+ 972 059b 620E0000 		.4byte	.LASF173
+ 973 059f 01       		.byte	0x1
+ 974 05a0 15       		.byte	0x15
+ 975 05a1 57060000 		.4byte	0x657
+ 976 05a5 DA000000 		.4byte	.LLST2
+ 977 05a9 15       		.uleb128 0x15
+ 978 05aa 24000000 		.4byte	.LVL2
+ 979 05ae 98070000 		.4byte	0x798
+ 980 05b2 BC050000 		.4byte	0x5bc
+ 981 05b6 16       		.uleb128 0x16
+ 982 05b7 01       		.uleb128 0x1
+ 983 05b8 50       		.byte	0x50
+ 984 05b9 01       		.uleb128 0x1
+ 985 05ba 30       		.byte	0x30
+ 986 05bb 00       		.byte	0
+ 987 05bc 15       		.uleb128 0x15
+ 988 05bd 2A000000 		.4byte	.LVL3
+ 989 05c1 AE070000 		.4byte	0x7ae
+ 990 05c5 D3050000 		.4byte	0x5d3
+ 991 05c9 16       		.uleb128 0x16
+ 992 05ca 01       		.uleb128 0x1
+ 993 05cb 50       		.byte	0x50
+ 994 05cc 05       		.uleb128 0x5
+ 995 05cd 03       		.byte	0x3
+ 996 05ce 00000000 		.4byte	.LC0
+ 997 05d2 00       		.byte	0
+ 998 05d3 15       		.uleb128 0x15
+ 999 05d4 38000000 		.4byte	.LVL6
+ 1000 05d8 AE070000 		.4byte	0x7ae
+ 1001 05dc EA050000 		.4byte	0x5ea
+ 1002 05e0 16       		.uleb128 0x16
+ 1003 05e1 01       		.uleb128 0x1
+ 1004 05e2 50       		.byte	0x50
+ 1005 05e3 05       		.uleb128 0x5
+ 1006 05e4 03       		.byte	0x3
+ 1007 05e5 0C000000 		.4byte	.LC3
+ 1008 05e9 00       		.byte	0
+ 1009 05ea 15       		.uleb128 0x15
+ 1010 05eb 46000000 		.4byte	.LVL9
+ 1011 05ef AE070000 		.4byte	0x7ae
+ 1012 05f3 01060000 		.4byte	0x601
+ 1013 05f7 16       		.uleb128 0x16
+ 1014 05f8 01       		.uleb128 0x1
+ 1015 05f9 50       		.byte	0x50
+ 1016 05fa 05       		.uleb128 0x5
+ 1017 05fb 03       		.byte	0x3
+ 1018 05fc 20000000 		.4byte	.LC5
+ 1019 0600 00       		.byte	0
+ 1020 0601 15       		.uleb128 0x15
+ 1021 0602 4E000000 		.4byte	.LVL12
+ 1022 0606 AE070000 		.4byte	0x7ae
+ 1023 060a 18060000 		.4byte	0x618
+ 1024 060e 16       		.uleb128 0x16
+ 1025 060f 01       		.uleb128 0x1
+ 1026 0610 50       		.byte	0x50
+ 1027 0611 05       		.uleb128 0x5
+ 1028 0612 03       		.byte	0x3
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 21
+
+
+ 1029 0613 34000000 		.4byte	.LC7
+ 1030 0617 00       		.byte	0
+ 1031 0618 15       		.uleb128 0x15
+ 1032 0619 5A000000 		.4byte	.LVL13
+ 1033 061d AE070000 		.4byte	0x7ae
+ 1034 0621 2F060000 		.4byte	0x62f
+ 1035 0625 16       		.uleb128 0x16
+ 1036 0626 01       		.uleb128 0x1
+ 1037 0627 50       		.byte	0x50
+ 1038 0628 05       		.uleb128 0x5
+ 1039 0629 03       		.byte	0x3
+ 1040 062a 44000000 		.4byte	.LC9
+ 1041 062e 00       		.byte	0
+ 1042 062f 15       		.uleb128 0x15
+ 1043 0630 66000000 		.4byte	.LVL14
+ 1044 0634 CB070000 		.4byte	0x7cb
+ 1045 0638 4D060000 		.4byte	0x64d
+ 1046 063c 16       		.uleb128 0x16
+ 1047 063d 01       		.uleb128 0x1
+ 1048 063e 53       		.byte	0x53
+ 1049 063f 01       		.uleb128 0x1
+ 1050 0640 30       		.byte	0x30
+ 1051 0641 16       		.uleb128 0x16
+ 1052 0642 01       		.uleb128 0x1
+ 1053 0643 51       		.byte	0x51
+ 1054 0644 01       		.uleb128 0x1
+ 1055 0645 30       		.byte	0x30
+ 1056 0646 16       		.uleb128 0x16
+ 1057 0647 01       		.uleb128 0x1
+ 1058 0648 50       		.byte	0x50
+ 1059 0649 02       		.uleb128 0x2
+ 1060 064a 74       		.byte	0x74
+ 1061 064b 04       		.sleb128 4
+ 1062 064c 00       		.byte	0
+ 1063 064d 17       		.uleb128 0x17
+ 1064 064e 7C000000 		.4byte	.LVL15
+ 1065 0652 FC070000 		.4byte	0x7fc
+ 1066 0656 00       		.byte	0
+ 1067 0657 08       		.uleb128 0x8
+ 1068 0658 04       		.byte	0x4
+ 1069 0659 3A050000 		.4byte	0x53a
+ 1070 065d 18       		.uleb128 0x18
+ 1071 065e 36150000 		.4byte	.LASF172
+ 1072 0662 01       		.byte	0x1
+ 1073 0663 3C       		.byte	0x3c
+ 1074 0664 5D000000 		.4byte	0x5d
+ 1075 0668 00000000 		.4byte	.LFB38
+ 1076 066c 94000000 		.4byte	.LFE38-.LFB38
+ 1077 0670 01       		.uleb128 0x1
+ 1078 0671 9C       		.byte	0x9c
+ 1079 0672 59070000 		.4byte	0x759
+ 1080 0676 19       		.uleb128 0x19
+ 1081 0677 30000000 		.4byte	.LBB2
+ 1082 067b 64000000 		.4byte	.LBE2-.LBB2
+ 1083 067f 0B070000 		.4byte	0x70b
+ 1084 0683 1A       		.uleb128 0x1a
+ 1085 0684 706F7300 		.ascii	"pos\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 22
+
+
+ 1086 0688 01       		.byte	0x1
+ 1087 0689 4E       		.byte	0x4e
+ 1088 068a 6B000000 		.4byte	0x6b
+ 1089 068e 02       		.uleb128 0x2
+ 1090 068f 91       		.byte	0x91
+ 1091 0690 6B       		.sleb128 -21
+ 1092 0691 19       		.uleb128 0x19
+ 1093 0692 48000000 		.4byte	.LBB3
+ 1094 0696 4C000000 		.4byte	.LBE3-.LBB3
+ 1095 069a EF060000 		.4byte	0x6ef
+ 1096 069e 1B       		.uleb128 0x1b
+ 1097 069f E6120000 		.4byte	.LASF174
+ 1098 06a3 01       		.byte	0x1
+ 1099 06a4 55       		.byte	0x55
+ 1100 06a5 0E050000 		.4byte	0x50e
+ 1101 06a9 02       		.uleb128 0x2
+ 1102 06aa 91       		.byte	0x91
+ 1103 06ab 6C       		.sleb128 -20
+ 1104 06ac 15       		.uleb128 0x15
+ 1105 06ad 5C000000 		.4byte	.LVL27
+ 1106 06b1 12080000 		.4byte	0x812
+ 1107 06b5 C0060000 		.4byte	0x6c0
+ 1108 06b9 16       		.uleb128 0x16
+ 1109 06ba 01       		.uleb128 0x1
+ 1110 06bb 50       		.byte	0x50
+ 1111 06bc 02       		.uleb128 0x2
+ 1112 06bd 7D       		.byte	0x7d
+ 1113 06be 03       		.sleb128 3
+ 1114 06bf 00       		.byte	0
+ 1115 06c0 15       		.uleb128 0x15
+ 1116 06c1 68000000 		.4byte	.LVL28
+ 1117 06c5 CB070000 		.4byte	0x7cb
+ 1118 06c9 DE060000 		.4byte	0x6de
+ 1119 06cd 16       		.uleb128 0x16
+ 1120 06ce 01       		.uleb128 0x1
+ 1121 06cf 53       		.byte	0x53
+ 1122 06d0 01       		.uleb128 0x1
+ 1123 06d1 30       		.byte	0x30
+ 1124 06d2 16       		.uleb128 0x16
+ 1125 06d3 01       		.uleb128 0x1
+ 1126 06d4 51       		.byte	0x51
+ 1127 06d5 01       		.uleb128 0x1
+ 1128 06d6 30       		.byte	0x30
+ 1129 06d7 16       		.uleb128 0x16
+ 1130 06d8 01       		.uleb128 0x1
+ 1131 06d9 50       		.byte	0x50
+ 1132 06da 02       		.uleb128 0x2
+ 1133 06db 74       		.byte	0x74
+ 1134 06dc 00       		.sleb128 0
+ 1135 06dd 00       		.byte	0
+ 1136 06de 1C       		.uleb128 0x1c
+ 1137 06df 80000000 		.4byte	.LVL29
+ 1138 06e3 24080000 		.4byte	0x824
+ 1139 06e7 16       		.uleb128 0x16
+ 1140 06e8 01       		.uleb128 0x1
+ 1141 06e9 51       		.byte	0x51
+ 1142 06ea 02       		.uleb128 0x2
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 23
+
+
+ 1143 06eb 74       		.byte	0x74
+ 1144 06ec 00       		.sleb128 0
+ 1145 06ed 00       		.byte	0
+ 1146 06ee 00       		.byte	0
+ 1147 06ef 17       		.uleb128 0x17
+ 1148 06f0 34000000 		.4byte	.LVL24
+ 1149 06f4 44080000 		.4byte	0x844
+ 1150 06f8 17       		.uleb128 0x17
+ 1151 06f9 3E000000 		.4byte	.LVL25
+ 1152 06fd 59080000 		.4byte	0x859
+ 1153 0701 17       		.uleb128 0x17
+ 1154 0702 42000000 		.4byte	.LVL26
+ 1155 0706 60080000 		.4byte	0x860
+ 1156 070a 00       		.byte	0
+ 1157 070b 17       		.uleb128 0x17
+ 1158 070c 0A000000 		.4byte	.LVL17
+ 1159 0710 67080000 		.4byte	0x867
+ 1160 0714 17       		.uleb128 0x17
+ 1161 0715 0E000000 		.4byte	.LVL18
+ 1162 0719 6E080000 		.4byte	0x86e
+ 1163 071d 17       		.uleb128 0x17
+ 1164 071e 12000000 		.4byte	.LVL19
+ 1165 0722 60080000 		.4byte	0x860
+ 1166 0726 17       		.uleb128 0x17
+ 1167 0727 16000000 		.4byte	.LVL20
+ 1168 072b 75080000 		.4byte	0x875
+ 1169 072f 15       		.uleb128 0x15
+ 1170 0730 1C000000 		.4byte	.LVL21
+ 1171 0734 7C080000 		.4byte	0x87c
+ 1172 0738 46070000 		.4byte	0x746
+ 1173 073c 16       		.uleb128 0x16
+ 1174 073d 01       		.uleb128 0x1
+ 1175 073e 50       		.byte	0x50
+ 1176 073f 05       		.uleb128 0x5
+ 1177 0740 03       		.byte	0x3
+ 1178 0741 00000000 		.4byte	Stack_Handler
+ 1179 0745 00       		.byte	0
+ 1180 0746 17       		.uleb128 0x17
+ 1181 0747 20000000 		.4byte	.LVL22
+ 1182 074b 92080000 		.4byte	0x892
+ 1183 074f 17       		.uleb128 0x17
+ 1184 0750 24000000 		.4byte	.LVL23
+ 1185 0754 9A080000 		.4byte	0x89a
+ 1186 0758 00       		.byte	0
+ 1187 0759 1D       		.uleb128 0x1d
+ 1188 075a C30B0000 		.4byte	.LASF175
+ 1189 075e 07       		.byte	0x7
+ 1190 075f DB09     		.2byte	0x9db
+ 1191 0761 95040000 		.4byte	0x495
+ 1192 0765 1E       		.uleb128 0x1e
+ 1193 0766 740F0000 		.4byte	.LASF176
+ 1194 076a 01       		.byte	0x1
+ 1195 076b 0E       		.byte	0xe
+ 1196 076c 5D000000 		.4byte	0x5d
+ 1197 0770 05       		.uleb128 0x5
+ 1198 0771 03       		.byte	0x3
+ 1199 0772 00000000 		.4byte	capsenseNotify
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 24
+
+
+ 1200 0776 1E       		.uleb128 0x1e
+ 1201 0777 21050000 		.4byte	.LASF177
+ 1202 077b 01       		.byte	0x1
+ 1203 077c 0F       		.byte	0xf
+ 1204 077d 5D000000 		.4byte	0x5d
+ 1205 0781 05       		.uleb128 0x5
+ 1206 0782 03       		.byte	0x3
+ 1207 0783 00000000 		.4byte	bleConnected
+ 1208 0787 1E       		.uleb128 0x1e
+ 1209 0788 1B010000 		.4byte	.LASF178
+ 1210 078c 01       		.byte	0x1
+ 1211 078d 11       		.byte	0x11
+ 1212 078e 95040000 		.4byte	0x495
+ 1213 0792 05       		.uleb128 0x5
+ 1214 0793 03       		.byte	0x3
+ 1215 0794 00000000 		.4byte	connectionHandle
+ 1216 0798 1F       		.uleb128 0x1f
+ 1217 0799 A60D0000 		.4byte	.LASF179
+ 1218 079d 06       		.byte	0x6
+ 1219 079e 6302     		.2byte	0x263
+ 1220 07a0 46030000 		.4byte	0x346
+ 1221 07a4 AE070000 		.4byte	0x7ae
+ 1222 07a8 11       		.uleb128 0x11
+ 1223 07a9 6B000000 		.4byte	0x6b
+ 1224 07ad 00       		.byte	0
+ 1225 07ae 20       		.uleb128 0x20
+ 1226 07af 650D0000 		.4byte	.LASF182
+ 1227 07b3 09       		.byte	0x9
+ 1228 07b4 2103     		.2byte	0x321
+ 1229 07b6 C0070000 		.4byte	0x7c0
+ 1230 07ba 11       		.uleb128 0x11
+ 1231 07bb C0070000 		.4byte	0x7c0
+ 1232 07bf 00       		.byte	0
+ 1233 07c0 08       		.uleb128 0x8
+ 1234 07c1 04       		.byte	0x4
+ 1235 07c2 C6070000 		.4byte	0x7c6
+ 1236 07c6 21       		.uleb128 0x21
+ 1237 07c7 9D000000 		.4byte	0x9d
+ 1238 07cb 1F       		.uleb128 0x1f
+ 1239 07cc 50070000 		.4byte	.LASF180
+ 1240 07d0 08       		.byte	0x8
+ 1241 07d1 7801     		.2byte	0x178
+ 1242 07d3 59040000 		.4byte	0x459
+ 1243 07d7 F0070000 		.4byte	0x7f0
+ 1244 07db 11       		.uleb128 0x11
+ 1245 07dc F0070000 		.4byte	0x7f0
+ 1246 07e0 11       		.uleb128 0x11
+ 1247 07e1 77000000 		.4byte	0x77
+ 1248 07e5 11       		.uleb128 0x11
+ 1249 07e6 F6070000 		.4byte	0x7f6
+ 1250 07ea 11       		.uleb128 0x11
+ 1251 07eb 6B000000 		.4byte	0x6b
+ 1252 07ef 00       		.byte	0
+ 1253 07f0 08       		.uleb128 0x8
+ 1254 07f1 04       		.byte	0x4
+ 1255 07f2 02050000 		.4byte	0x502
+ 1256 07f6 08       		.uleb128 0x8
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 25
+
+
+ 1257 07f7 04       		.byte	0x4
+ 1258 07f8 95040000 		.4byte	0x495
+ 1259 07fc 1F       		.uleb128 0x1f
+ 1260 07fd 41140000 		.4byte	.LASF181
+ 1261 0801 05       		.byte	0x5
+ 1262 0802 C601     		.2byte	0x1c6
+ 1263 0804 46030000 		.4byte	0x346
+ 1264 0808 12080000 		.4byte	0x812
+ 1265 080c 11       		.uleb128 0x11
+ 1266 080d 95040000 		.4byte	0x495
+ 1267 0811 00       		.byte	0
+ 1268 0812 20       		.uleb128 0x20
+ 1269 0813 0F0C0000 		.4byte	.LASF183
+ 1270 0817 09       		.byte	0x9
+ 1271 0818 3A03     		.2byte	0x33a
+ 1272 081a 24080000 		.4byte	0x824
+ 1273 081e 11       		.uleb128 0x11
+ 1274 081f 83000000 		.4byte	0x83
+ 1275 0823 00       		.byte	0
+ 1276 0824 22       		.uleb128 0x22
+ 1277 0825 B5140000 		.4byte	.LASF184
+ 1278 0829 05       		.byte	0x5
+ 1279 082a F2       		.byte	0xf2
+ 1280 082b 46030000 		.4byte	0x346
+ 1281 082f 3E080000 		.4byte	0x83e
+ 1282 0833 11       		.uleb128 0x11
+ 1283 0834 95040000 		.4byte	0x495
+ 1284 0838 11       		.uleb128 0x11
+ 1285 0839 3E080000 		.4byte	0x83e
+ 1286 083d 00       		.byte	0
+ 1287 083e 08       		.uleb128 0x8
+ 1288 083f 04       		.byte	0x4
+ 1289 0840 0E050000 		.4byte	0x50e
+ 1290 0844 22       		.uleb128 0x22
+ 1291 0845 C30D0000 		.4byte	.LASF185
+ 1292 0849 0A       		.byte	0xa
+ 1293 084a E2       		.byte	0xe2
+ 1294 084b 77000000 		.4byte	0x77
+ 1295 084f 59080000 		.4byte	0x859
+ 1296 0853 11       		.uleb128 0x11
+ 1297 0854 83000000 		.4byte	0x83
+ 1298 0858 00       		.byte	0
+ 1299 0859 23       		.uleb128 0x23
+ 1300 085a 97030000 		.4byte	.LASF186
+ 1301 085e 0A       		.byte	0xa
+ 1302 085f AF       		.byte	0xaf
+ 1303 0860 23       		.uleb128 0x23
+ 1304 0861 D6140000 		.4byte	.LASF187
+ 1305 0865 0B       		.byte	0xb
+ 1306 0866 A2       		.byte	0xa2
+ 1307 0867 23       		.uleb128 0x23
+ 1308 0868 9A070000 		.4byte	.LASF188
+ 1309 086c 0B       		.byte	0xb
+ 1310 086d 99       		.byte	0x99
+ 1311 086e 23       		.uleb128 0x23
+ 1312 086f 420E0000 		.4byte	.LASF189
+ 1313 0873 0A       		.byte	0xa
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 26
+
+
+ 1314 0874 AB       		.byte	0xab
+ 1315 0875 23       		.uleb128 0x23
+ 1316 0876 09030000 		.4byte	.LASF190
+ 1317 087a 0C       		.byte	0xc
+ 1318 087b 6E       		.byte	0x6e
+ 1319 087c 1F       		.uleb128 0x1f
+ 1320 087d E9090000 		.4byte	.LASF191
+ 1321 0881 06       		.byte	0x6
+ 1322 0882 5302     		.2byte	0x253
+ 1323 0884 46030000 		.4byte	0x346
+ 1324 0888 92080000 		.4byte	0x892
+ 1325 088c 11       		.uleb128 0x11
+ 1326 088d 45050000 		.4byte	0x545
+ 1327 0891 00       		.byte	0
+ 1328 0892 24       		.uleb128 0x24
+ 1329 0893 E10A0000 		.4byte	.LASF192
+ 1330 0897 03       		.byte	0x3
+ 1331 0898 4C06     		.2byte	0x64c
+ 1332 089a 25       		.uleb128 0x25
+ 1333 089b C1150000 		.4byte	.LASF196
+ 1334 089f 0B       		.byte	0xb
+ 1335 08a0 9F       		.byte	0x9f
+ 1336 08a1 83000000 		.4byte	0x83
+ 1337 08a5 00       		.byte	0
+ 1338              		.section	.debug_abbrev,"",%progbits
+ 1339              	.Ldebug_abbrev0:
+ 1340 0000 01       		.uleb128 0x1
+ 1341 0001 11       		.uleb128 0x11
+ 1342 0002 01       		.byte	0x1
+ 1343 0003 25       		.uleb128 0x25
+ 1344 0004 0E       		.uleb128 0xe
+ 1345 0005 13       		.uleb128 0x13
+ 1346 0006 0B       		.uleb128 0xb
+ 1347 0007 03       		.uleb128 0x3
+ 1348 0008 0E       		.uleb128 0xe
+ 1349 0009 1B       		.uleb128 0x1b
+ 1350 000a 0E       		.uleb128 0xe
+ 1351 000b 55       		.uleb128 0x55
+ 1352 000c 17       		.uleb128 0x17
+ 1353 000d 11       		.uleb128 0x11
+ 1354 000e 01       		.uleb128 0x1
+ 1355 000f 10       		.uleb128 0x10
+ 1356 0010 17       		.uleb128 0x17
+ 1357 0011 00       		.byte	0
+ 1358 0012 00       		.byte	0
+ 1359 0013 02       		.uleb128 0x2
+ 1360 0014 24       		.uleb128 0x24
+ 1361 0015 00       		.byte	0
+ 1362 0016 0B       		.uleb128 0xb
+ 1363 0017 0B       		.uleb128 0xb
+ 1364 0018 3E       		.uleb128 0x3e
+ 1365 0019 0B       		.uleb128 0xb
+ 1366 001a 03       		.uleb128 0x3
+ 1367 001b 0E       		.uleb128 0xe
+ 1368 001c 00       		.byte	0
+ 1369 001d 00       		.byte	0
+ 1370 001e 03       		.uleb128 0x3
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 27
+
+
+ 1371 001f 24       		.uleb128 0x24
+ 1372 0020 00       		.byte	0
+ 1373 0021 0B       		.uleb128 0xb
+ 1374 0022 0B       		.uleb128 0xb
+ 1375 0023 3E       		.uleb128 0x3e
+ 1376 0024 0B       		.uleb128 0xb
+ 1377 0025 03       		.uleb128 0x3
+ 1378 0026 08       		.uleb128 0x8
+ 1379 0027 00       		.byte	0
+ 1380 0028 00       		.byte	0
+ 1381 0029 04       		.uleb128 0x4
+ 1382 002a 16       		.uleb128 0x16
+ 1383 002b 00       		.byte	0
+ 1384 002c 03       		.uleb128 0x3
+ 1385 002d 0E       		.uleb128 0xe
+ 1386 002e 3A       		.uleb128 0x3a
+ 1387 002f 0B       		.uleb128 0xb
+ 1388 0030 3B       		.uleb128 0x3b
+ 1389 0031 05       		.uleb128 0x5
+ 1390 0032 49       		.uleb128 0x49
+ 1391 0033 13       		.uleb128 0x13
+ 1392 0034 00       		.byte	0
+ 1393 0035 00       		.byte	0
+ 1394 0036 05       		.uleb128 0x5
+ 1395 0037 0F       		.uleb128 0xf
+ 1396 0038 00       		.byte	0
+ 1397 0039 0B       		.uleb128 0xb
+ 1398 003a 0B       		.uleb128 0xb
+ 1399 003b 00       		.byte	0
+ 1400 003c 00       		.byte	0
+ 1401 003d 06       		.uleb128 0x6
+ 1402 003e 04       		.uleb128 0x4
+ 1403 003f 01       		.byte	0x1
+ 1404 0040 0B       		.uleb128 0xb
+ 1405 0041 0B       		.uleb128 0xb
+ 1406 0042 3A       		.uleb128 0x3a
+ 1407 0043 0B       		.uleb128 0xb
+ 1408 0044 3B       		.uleb128 0x3b
+ 1409 0045 05       		.uleb128 0x5
+ 1410 0046 01       		.uleb128 0x1
+ 1411 0047 13       		.uleb128 0x13
+ 1412 0048 00       		.byte	0
+ 1413 0049 00       		.byte	0
+ 1414 004a 07       		.uleb128 0x7
+ 1415 004b 28       		.uleb128 0x28
+ 1416 004c 00       		.byte	0
+ 1417 004d 03       		.uleb128 0x3
+ 1418 004e 0E       		.uleb128 0xe
+ 1419 004f 1C       		.uleb128 0x1c
+ 1420 0050 0D       		.uleb128 0xd
+ 1421 0051 00       		.byte	0
+ 1422 0052 00       		.byte	0
+ 1423 0053 08       		.uleb128 0x8
+ 1424 0054 0F       		.uleb128 0xf
+ 1425 0055 00       		.byte	0
+ 1426 0056 0B       		.uleb128 0xb
+ 1427 0057 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 28
+
+
+ 1428 0058 49       		.uleb128 0x49
+ 1429 0059 13       		.uleb128 0x13
+ 1430 005a 00       		.byte	0
+ 1431 005b 00       		.byte	0
+ 1432 005c 09       		.uleb128 0x9
+ 1433 005d 04       		.uleb128 0x4
+ 1434 005e 01       		.byte	0x1
+ 1435 005f 0B       		.uleb128 0xb
+ 1436 0060 0B       		.uleb128 0xb
+ 1437 0061 3A       		.uleb128 0x3a
+ 1438 0062 0B       		.uleb128 0xb
+ 1439 0063 3B       		.uleb128 0x3b
+ 1440 0064 0B       		.uleb128 0xb
+ 1441 0065 01       		.uleb128 0x1
+ 1442 0066 13       		.uleb128 0x13
+ 1443 0067 00       		.byte	0
+ 1444 0068 00       		.byte	0
+ 1445 0069 0A       		.uleb128 0xa
+ 1446 006a 13       		.uleb128 0x13
+ 1447 006b 01       		.byte	0x1
+ 1448 006c 0B       		.uleb128 0xb
+ 1449 006d 0B       		.uleb128 0xb
+ 1450 006e 3A       		.uleb128 0x3a
+ 1451 006f 0B       		.uleb128 0xb
+ 1452 0070 3B       		.uleb128 0x3b
+ 1453 0071 05       		.uleb128 0x5
+ 1454 0072 01       		.uleb128 0x1
+ 1455 0073 13       		.uleb128 0x13
+ 1456 0074 00       		.byte	0
+ 1457 0075 00       		.byte	0
+ 1458 0076 0B       		.uleb128 0xb
+ 1459 0077 0D       		.uleb128 0xd
+ 1460 0078 00       		.byte	0
+ 1461 0079 03       		.uleb128 0x3
+ 1462 007a 0E       		.uleb128 0xe
+ 1463 007b 3A       		.uleb128 0x3a
+ 1464 007c 0B       		.uleb128 0xb
+ 1465 007d 3B       		.uleb128 0x3b
+ 1466 007e 05       		.uleb128 0x5
+ 1467 007f 49       		.uleb128 0x49
+ 1468 0080 13       		.uleb128 0x13
+ 1469 0081 38       		.uleb128 0x38
+ 1470 0082 0B       		.uleb128 0xb
+ 1471 0083 00       		.byte	0
+ 1472 0084 00       		.byte	0
+ 1473 0085 0C       		.uleb128 0xc
+ 1474 0086 0D       		.uleb128 0xd
+ 1475 0087 00       		.byte	0
+ 1476 0088 03       		.uleb128 0x3
+ 1477 0089 08       		.uleb128 0x8
+ 1478 008a 3A       		.uleb128 0x3a
+ 1479 008b 0B       		.uleb128 0xb
+ 1480 008c 3B       		.uleb128 0x3b
+ 1481 008d 05       		.uleb128 0x5
+ 1482 008e 49       		.uleb128 0x49
+ 1483 008f 13       		.uleb128 0x13
+ 1484 0090 38       		.uleb128 0x38
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 29
+
+
+ 1485 0091 0B       		.uleb128 0xb
+ 1486 0092 00       		.byte	0
+ 1487 0093 00       		.byte	0
+ 1488 0094 0D       		.uleb128 0xd
+ 1489 0095 16       		.uleb128 0x16
+ 1490 0096 00       		.byte	0
+ 1491 0097 03       		.uleb128 0x3
+ 1492 0098 0E       		.uleb128 0xe
+ 1493 0099 3A       		.uleb128 0x3a
+ 1494 009a 0B       		.uleb128 0xb
+ 1495 009b 3B       		.uleb128 0x3b
+ 1496 009c 0B       		.uleb128 0xb
+ 1497 009d 49       		.uleb128 0x49
+ 1498 009e 13       		.uleb128 0x13
+ 1499 009f 00       		.byte	0
+ 1500 00a0 00       		.byte	0
+ 1501 00a1 0E       		.uleb128 0xe
+ 1502 00a2 13       		.uleb128 0x13
+ 1503 00a3 01       		.byte	0x1
+ 1504 00a4 0B       		.uleb128 0xb
+ 1505 00a5 0B       		.uleb128 0xb
+ 1506 00a6 3A       		.uleb128 0x3a
+ 1507 00a7 0B       		.uleb128 0xb
+ 1508 00a8 3B       		.uleb128 0x3b
+ 1509 00a9 0B       		.uleb128 0xb
+ 1510 00aa 01       		.uleb128 0x1
+ 1511 00ab 13       		.uleb128 0x13
+ 1512 00ac 00       		.byte	0
+ 1513 00ad 00       		.byte	0
+ 1514 00ae 0F       		.uleb128 0xf
+ 1515 00af 0D       		.uleb128 0xd
+ 1516 00b0 00       		.byte	0
+ 1517 00b1 03       		.uleb128 0x3
+ 1518 00b2 0E       		.uleb128 0xe
+ 1519 00b3 3A       		.uleb128 0x3a
+ 1520 00b4 0B       		.uleb128 0xb
+ 1521 00b5 3B       		.uleb128 0x3b
+ 1522 00b6 0B       		.uleb128 0xb
+ 1523 00b7 49       		.uleb128 0x49
+ 1524 00b8 13       		.uleb128 0x13
+ 1525 00b9 38       		.uleb128 0x38
+ 1526 00ba 0B       		.uleb128 0xb
+ 1527 00bb 00       		.byte	0
+ 1528 00bc 00       		.byte	0
+ 1529 00bd 10       		.uleb128 0x10
+ 1530 00be 15       		.uleb128 0x15
+ 1531 00bf 01       		.byte	0x1
+ 1532 00c0 27       		.uleb128 0x27
+ 1533 00c1 19       		.uleb128 0x19
+ 1534 00c2 01       		.uleb128 0x1
+ 1535 00c3 13       		.uleb128 0x13
+ 1536 00c4 00       		.byte	0
+ 1537 00c5 00       		.byte	0
+ 1538 00c6 11       		.uleb128 0x11
+ 1539 00c7 05       		.uleb128 0x5
+ 1540 00c8 00       		.byte	0
+ 1541 00c9 49       		.uleb128 0x49
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 30
+
+
+ 1542 00ca 13       		.uleb128 0x13
+ 1543 00cb 00       		.byte	0
+ 1544 00cc 00       		.byte	0
+ 1545 00cd 12       		.uleb128 0x12
+ 1546 00ce 2E       		.uleb128 0x2e
+ 1547 00cf 01       		.byte	0x1
+ 1548 00d0 3F       		.uleb128 0x3f
+ 1549 00d1 19       		.uleb128 0x19
+ 1550 00d2 03       		.uleb128 0x3
+ 1551 00d3 0E       		.uleb128 0xe
+ 1552 00d4 3A       		.uleb128 0x3a
+ 1553 00d5 0B       		.uleb128 0xb
+ 1554 00d6 3B       		.uleb128 0x3b
+ 1555 00d7 0B       		.uleb128 0xb
+ 1556 00d8 27       		.uleb128 0x27
+ 1557 00d9 19       		.uleb128 0x19
+ 1558 00da 11       		.uleb128 0x11
+ 1559 00db 01       		.uleb128 0x1
+ 1560 00dc 12       		.uleb128 0x12
+ 1561 00dd 06       		.uleb128 0x6
+ 1562 00de 40       		.uleb128 0x40
+ 1563 00df 18       		.uleb128 0x18
+ 1564 00e0 9742     		.uleb128 0x2117
+ 1565 00e2 19       		.uleb128 0x19
+ 1566 00e3 01       		.uleb128 0x1
+ 1567 00e4 13       		.uleb128 0x13
+ 1568 00e5 00       		.byte	0
+ 1569 00e6 00       		.byte	0
+ 1570 00e7 13       		.uleb128 0x13
+ 1571 00e8 05       		.uleb128 0x5
+ 1572 00e9 00       		.byte	0
+ 1573 00ea 03       		.uleb128 0x3
+ 1574 00eb 0E       		.uleb128 0xe
+ 1575 00ec 3A       		.uleb128 0x3a
+ 1576 00ed 0B       		.uleb128 0xb
+ 1577 00ee 3B       		.uleb128 0x3b
+ 1578 00ef 0B       		.uleb128 0xb
+ 1579 00f0 49       		.uleb128 0x49
+ 1580 00f1 13       		.uleb128 0x13
+ 1581 00f2 02       		.uleb128 0x2
+ 1582 00f3 17       		.uleb128 0x17
+ 1583 00f4 00       		.byte	0
+ 1584 00f5 00       		.byte	0
+ 1585 00f6 14       		.uleb128 0x14
+ 1586 00f7 34       		.uleb128 0x34
+ 1587 00f8 00       		.byte	0
+ 1588 00f9 03       		.uleb128 0x3
+ 1589 00fa 0E       		.uleb128 0xe
+ 1590 00fb 3A       		.uleb128 0x3a
+ 1591 00fc 0B       		.uleb128 0xb
+ 1592 00fd 3B       		.uleb128 0x3b
+ 1593 00fe 0B       		.uleb128 0xb
+ 1594 00ff 49       		.uleb128 0x49
+ 1595 0100 13       		.uleb128 0x13
+ 1596 0101 02       		.uleb128 0x2
+ 1597 0102 17       		.uleb128 0x17
+ 1598 0103 00       		.byte	0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 31
+
+
+ 1599 0104 00       		.byte	0
+ 1600 0105 15       		.uleb128 0x15
+ 1601 0106 898201   		.uleb128 0x4109
+ 1602 0109 01       		.byte	0x1
+ 1603 010a 11       		.uleb128 0x11
+ 1604 010b 01       		.uleb128 0x1
+ 1605 010c 31       		.uleb128 0x31
+ 1606 010d 13       		.uleb128 0x13
+ 1607 010e 01       		.uleb128 0x1
+ 1608 010f 13       		.uleb128 0x13
+ 1609 0110 00       		.byte	0
+ 1610 0111 00       		.byte	0
+ 1611 0112 16       		.uleb128 0x16
+ 1612 0113 8A8201   		.uleb128 0x410a
+ 1613 0116 00       		.byte	0
+ 1614 0117 02       		.uleb128 0x2
+ 1615 0118 18       		.uleb128 0x18
+ 1616 0119 9142     		.uleb128 0x2111
+ 1617 011b 18       		.uleb128 0x18
+ 1618 011c 00       		.byte	0
+ 1619 011d 00       		.byte	0
+ 1620 011e 17       		.uleb128 0x17
+ 1621 011f 898201   		.uleb128 0x4109
+ 1622 0122 00       		.byte	0
+ 1623 0123 11       		.uleb128 0x11
+ 1624 0124 01       		.uleb128 0x1
+ 1625 0125 31       		.uleb128 0x31
+ 1626 0126 13       		.uleb128 0x13
+ 1627 0127 00       		.byte	0
+ 1628 0128 00       		.byte	0
+ 1629 0129 18       		.uleb128 0x18
+ 1630 012a 2E       		.uleb128 0x2e
+ 1631 012b 01       		.byte	0x1
+ 1632 012c 3F       		.uleb128 0x3f
+ 1633 012d 19       		.uleb128 0x19
+ 1634 012e 03       		.uleb128 0x3
+ 1635 012f 0E       		.uleb128 0xe
+ 1636 0130 3A       		.uleb128 0x3a
+ 1637 0131 0B       		.uleb128 0xb
+ 1638 0132 3B       		.uleb128 0x3b
+ 1639 0133 0B       		.uleb128 0xb
+ 1640 0134 49       		.uleb128 0x49
+ 1641 0135 13       		.uleb128 0x13
+ 1642 0136 11       		.uleb128 0x11
+ 1643 0137 01       		.uleb128 0x1
+ 1644 0138 12       		.uleb128 0x12
+ 1645 0139 06       		.uleb128 0x6
+ 1646 013a 40       		.uleb128 0x40
+ 1647 013b 18       		.uleb128 0x18
+ 1648 013c 9742     		.uleb128 0x2117
+ 1649 013e 19       		.uleb128 0x19
+ 1650 013f 01       		.uleb128 0x1
+ 1651 0140 13       		.uleb128 0x13
+ 1652 0141 00       		.byte	0
+ 1653 0142 00       		.byte	0
+ 1654 0143 19       		.uleb128 0x19
+ 1655 0144 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 32
+
+
+ 1656 0145 01       		.byte	0x1
+ 1657 0146 11       		.uleb128 0x11
+ 1658 0147 01       		.uleb128 0x1
+ 1659 0148 12       		.uleb128 0x12
+ 1660 0149 06       		.uleb128 0x6
+ 1661 014a 01       		.uleb128 0x1
+ 1662 014b 13       		.uleb128 0x13
+ 1663 014c 00       		.byte	0
+ 1664 014d 00       		.byte	0
+ 1665 014e 1A       		.uleb128 0x1a
+ 1666 014f 34       		.uleb128 0x34
+ 1667 0150 00       		.byte	0
+ 1668 0151 03       		.uleb128 0x3
+ 1669 0152 08       		.uleb128 0x8
+ 1670 0153 3A       		.uleb128 0x3a
+ 1671 0154 0B       		.uleb128 0xb
+ 1672 0155 3B       		.uleb128 0x3b
+ 1673 0156 0B       		.uleb128 0xb
+ 1674 0157 49       		.uleb128 0x49
+ 1675 0158 13       		.uleb128 0x13
+ 1676 0159 02       		.uleb128 0x2
+ 1677 015a 18       		.uleb128 0x18
+ 1678 015b 00       		.byte	0
+ 1679 015c 00       		.byte	0
+ 1680 015d 1B       		.uleb128 0x1b
+ 1681 015e 34       		.uleb128 0x34
+ 1682 015f 00       		.byte	0
+ 1683 0160 03       		.uleb128 0x3
+ 1684 0161 0E       		.uleb128 0xe
+ 1685 0162 3A       		.uleb128 0x3a
+ 1686 0163 0B       		.uleb128 0xb
+ 1687 0164 3B       		.uleb128 0x3b
+ 1688 0165 0B       		.uleb128 0xb
+ 1689 0166 49       		.uleb128 0x49
+ 1690 0167 13       		.uleb128 0x13
+ 1691 0168 02       		.uleb128 0x2
+ 1692 0169 18       		.uleb128 0x18
+ 1693 016a 00       		.byte	0
+ 1694 016b 00       		.byte	0
+ 1695 016c 1C       		.uleb128 0x1c
+ 1696 016d 898201   		.uleb128 0x4109
+ 1697 0170 01       		.byte	0x1
+ 1698 0171 11       		.uleb128 0x11
+ 1699 0172 01       		.uleb128 0x1
+ 1700 0173 31       		.uleb128 0x31
+ 1701 0174 13       		.uleb128 0x13
+ 1702 0175 00       		.byte	0
+ 1703 0176 00       		.byte	0
+ 1704 0177 1D       		.uleb128 0x1d
+ 1705 0178 34       		.uleb128 0x34
+ 1706 0179 00       		.byte	0
+ 1707 017a 03       		.uleb128 0x3
+ 1708 017b 0E       		.uleb128 0xe
+ 1709 017c 3A       		.uleb128 0x3a
+ 1710 017d 0B       		.uleb128 0xb
+ 1711 017e 3B       		.uleb128 0x3b
+ 1712 017f 05       		.uleb128 0x5
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 33
+
+
+ 1713 0180 49       		.uleb128 0x49
+ 1714 0181 13       		.uleb128 0x13
+ 1715 0182 3F       		.uleb128 0x3f
+ 1716 0183 19       		.uleb128 0x19
+ 1717 0184 3C       		.uleb128 0x3c
+ 1718 0185 19       		.uleb128 0x19
+ 1719 0186 00       		.byte	0
+ 1720 0187 00       		.byte	0
+ 1721 0188 1E       		.uleb128 0x1e
+ 1722 0189 34       		.uleb128 0x34
+ 1723 018a 00       		.byte	0
+ 1724 018b 03       		.uleb128 0x3
+ 1725 018c 0E       		.uleb128 0xe
+ 1726 018d 3A       		.uleb128 0x3a
+ 1727 018e 0B       		.uleb128 0xb
+ 1728 018f 3B       		.uleb128 0x3b
+ 1729 0190 0B       		.uleb128 0xb
+ 1730 0191 49       		.uleb128 0x49
+ 1731 0192 13       		.uleb128 0x13
+ 1732 0193 3F       		.uleb128 0x3f
+ 1733 0194 19       		.uleb128 0x19
+ 1734 0195 02       		.uleb128 0x2
+ 1735 0196 18       		.uleb128 0x18
+ 1736 0197 00       		.byte	0
+ 1737 0198 00       		.byte	0
+ 1738 0199 1F       		.uleb128 0x1f
+ 1739 019a 2E       		.uleb128 0x2e
+ 1740 019b 01       		.byte	0x1
+ 1741 019c 3F       		.uleb128 0x3f
+ 1742 019d 19       		.uleb128 0x19
+ 1743 019e 03       		.uleb128 0x3
+ 1744 019f 0E       		.uleb128 0xe
+ 1745 01a0 3A       		.uleb128 0x3a
+ 1746 01a1 0B       		.uleb128 0xb
+ 1747 01a2 3B       		.uleb128 0x3b
+ 1748 01a3 05       		.uleb128 0x5
+ 1749 01a4 27       		.uleb128 0x27
+ 1750 01a5 19       		.uleb128 0x19
+ 1751 01a6 49       		.uleb128 0x49
+ 1752 01a7 13       		.uleb128 0x13
+ 1753 01a8 3C       		.uleb128 0x3c
+ 1754 01a9 19       		.uleb128 0x19
+ 1755 01aa 01       		.uleb128 0x1
+ 1756 01ab 13       		.uleb128 0x13
+ 1757 01ac 00       		.byte	0
+ 1758 01ad 00       		.byte	0
+ 1759 01ae 20       		.uleb128 0x20
+ 1760 01af 2E       		.uleb128 0x2e
+ 1761 01b0 01       		.byte	0x1
+ 1762 01b1 3F       		.uleb128 0x3f
+ 1763 01b2 19       		.uleb128 0x19
+ 1764 01b3 03       		.uleb128 0x3
+ 1765 01b4 0E       		.uleb128 0xe
+ 1766 01b5 3A       		.uleb128 0x3a
+ 1767 01b6 0B       		.uleb128 0xb
+ 1768 01b7 3B       		.uleb128 0x3b
+ 1769 01b8 05       		.uleb128 0x5
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 34
+
+
+ 1770 01b9 27       		.uleb128 0x27
+ 1771 01ba 19       		.uleb128 0x19
+ 1772 01bb 3C       		.uleb128 0x3c
+ 1773 01bc 19       		.uleb128 0x19
+ 1774 01bd 01       		.uleb128 0x1
+ 1775 01be 13       		.uleb128 0x13
+ 1776 01bf 00       		.byte	0
+ 1777 01c0 00       		.byte	0
+ 1778 01c1 21       		.uleb128 0x21
+ 1779 01c2 26       		.uleb128 0x26
+ 1780 01c3 00       		.byte	0
+ 1781 01c4 49       		.uleb128 0x49
+ 1782 01c5 13       		.uleb128 0x13
+ 1783 01c6 00       		.byte	0
+ 1784 01c7 00       		.byte	0
+ 1785 01c8 22       		.uleb128 0x22
+ 1786 01c9 2E       		.uleb128 0x2e
+ 1787 01ca 01       		.byte	0x1
+ 1788 01cb 3F       		.uleb128 0x3f
+ 1789 01cc 19       		.uleb128 0x19
+ 1790 01cd 03       		.uleb128 0x3
+ 1791 01ce 0E       		.uleb128 0xe
+ 1792 01cf 3A       		.uleb128 0x3a
+ 1793 01d0 0B       		.uleb128 0xb
+ 1794 01d1 3B       		.uleb128 0x3b
+ 1795 01d2 0B       		.uleb128 0xb
+ 1796 01d3 27       		.uleb128 0x27
+ 1797 01d4 19       		.uleb128 0x19
+ 1798 01d5 49       		.uleb128 0x49
+ 1799 01d6 13       		.uleb128 0x13
+ 1800 01d7 3C       		.uleb128 0x3c
+ 1801 01d8 19       		.uleb128 0x19
+ 1802 01d9 01       		.uleb128 0x1
+ 1803 01da 13       		.uleb128 0x13
+ 1804 01db 00       		.byte	0
+ 1805 01dc 00       		.byte	0
+ 1806 01dd 23       		.uleb128 0x23
+ 1807 01de 2E       		.uleb128 0x2e
+ 1808 01df 00       		.byte	0
+ 1809 01e0 3F       		.uleb128 0x3f
+ 1810 01e1 19       		.uleb128 0x19
+ 1811 01e2 03       		.uleb128 0x3
+ 1812 01e3 0E       		.uleb128 0xe
+ 1813 01e4 3A       		.uleb128 0x3a
+ 1814 01e5 0B       		.uleb128 0xb
+ 1815 01e6 3B       		.uleb128 0x3b
+ 1816 01e7 0B       		.uleb128 0xb
+ 1817 01e8 27       		.uleb128 0x27
+ 1818 01e9 19       		.uleb128 0x19
+ 1819 01ea 3C       		.uleb128 0x3c
+ 1820 01eb 19       		.uleb128 0x19
+ 1821 01ec 00       		.byte	0
+ 1822 01ed 00       		.byte	0
+ 1823 01ee 24       		.uleb128 0x24
+ 1824 01ef 2E       		.uleb128 0x2e
+ 1825 01f0 00       		.byte	0
+ 1826 01f1 3F       		.uleb128 0x3f
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 35
+
+
+ 1827 01f2 19       		.uleb128 0x19
+ 1828 01f3 03       		.uleb128 0x3
+ 1829 01f4 0E       		.uleb128 0xe
+ 1830 01f5 3A       		.uleb128 0x3a
+ 1831 01f6 0B       		.uleb128 0xb
+ 1832 01f7 3B       		.uleb128 0x3b
+ 1833 01f8 05       		.uleb128 0x5
+ 1834 01f9 27       		.uleb128 0x27
+ 1835 01fa 19       		.uleb128 0x19
+ 1836 01fb 3C       		.uleb128 0x3c
+ 1837 01fc 19       		.uleb128 0x19
+ 1838 01fd 00       		.byte	0
+ 1839 01fe 00       		.byte	0
+ 1840 01ff 25       		.uleb128 0x25
+ 1841 0200 2E       		.uleb128 0x2e
+ 1842 0201 00       		.byte	0
+ 1843 0202 3F       		.uleb128 0x3f
+ 1844 0203 19       		.uleb128 0x19
+ 1845 0204 03       		.uleb128 0x3
+ 1846 0205 0E       		.uleb128 0xe
+ 1847 0206 3A       		.uleb128 0x3a
+ 1848 0207 0B       		.uleb128 0xb
+ 1849 0208 3B       		.uleb128 0x3b
+ 1850 0209 0B       		.uleb128 0xb
+ 1851 020a 27       		.uleb128 0x27
+ 1852 020b 19       		.uleb128 0x19
+ 1853 020c 49       		.uleb128 0x49
+ 1854 020d 13       		.uleb128 0x13
+ 1855 020e 3C       		.uleb128 0x3c
+ 1856 020f 19       		.uleb128 0x19
+ 1857 0210 00       		.byte	0
+ 1858 0211 00       		.byte	0
+ 1859 0212 00       		.byte	0
+ 1860              		.section	.debug_loc,"",%progbits
+ 1861              	.Ldebug_loc0:
+ 1862              	.LLST0:
+ 1863 0000 00000000 		.4byte	.LVL0
+ 1864 0004 20000000 		.4byte	.LVL1
+ 1865 0008 0100     		.2byte	0x1
+ 1866 000a 50       		.byte	0x50
+ 1867 000b 20000000 		.4byte	.LVL1
+ 1868 000f 32000000 		.4byte	.LVL4
+ 1869 0013 0400     		.2byte	0x4
+ 1870 0015 F3       		.byte	0xf3
+ 1871 0016 01       		.uleb128 0x1
+ 1872 0017 50       		.byte	0x50
+ 1873 0018 9F       		.byte	0x9f
+ 1874 0019 32000000 		.4byte	.LVL4
+ 1875 001d 34000000 		.4byte	.LVL5
+ 1876 0021 0100     		.2byte	0x1
+ 1877 0023 50       		.byte	0x50
+ 1878 0024 34000000 		.4byte	.LVL5
+ 1879 0028 3A000000 		.4byte	.LVL7
+ 1880 002c 0400     		.2byte	0x4
+ 1881 002e F3       		.byte	0xf3
+ 1882 002f 01       		.uleb128 0x1
+ 1883 0030 50       		.byte	0x50
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 36
+
+
+ 1884 0031 9F       		.byte	0x9f
+ 1885 0032 3A000000 		.4byte	.LVL7
+ 1886 0036 42000000 		.4byte	.LVL8
+ 1887 003a 0100     		.2byte	0x1
+ 1888 003c 50       		.byte	0x50
+ 1889 003d 42000000 		.4byte	.LVL8
+ 1890 0041 48000000 		.4byte	.LVL10
+ 1891 0045 0400     		.2byte	0x4
+ 1892 0047 F3       		.byte	0xf3
+ 1893 0048 01       		.uleb128 0x1
+ 1894 0049 50       		.byte	0x50
+ 1895 004a 9F       		.byte	0x9f
+ 1896 004b 48000000 		.4byte	.LVL10
+ 1897 004f 4A000000 		.4byte	.LVL11
+ 1898 0053 0100     		.2byte	0x1
+ 1899 0055 50       		.byte	0x50
+ 1900 0056 4A000000 		.4byte	.LVL11
+ 1901 005a A0000000 		.4byte	.LFE37
+ 1902 005e 0400     		.2byte	0x4
+ 1903 0060 F3       		.byte	0xf3
+ 1904 0061 01       		.uleb128 0x1
+ 1905 0062 50       		.byte	0x50
+ 1906 0063 9F       		.byte	0x9f
+ 1907 0064 00000000 		.4byte	0
+ 1908 0068 00000000 		.4byte	0
+ 1909              	.LLST1:
+ 1910 006c 00000000 		.4byte	.LVL0
+ 1911 0070 23000000 		.4byte	.LVL2-1
+ 1912 0074 0100     		.2byte	0x1
+ 1913 0076 51       		.byte	0x51
+ 1914 0077 23000000 		.4byte	.LVL2-1
+ 1915 007b 32000000 		.4byte	.LVL4
+ 1916 007f 0100     		.2byte	0x1
+ 1917 0081 54       		.byte	0x54
+ 1918 0082 32000000 		.4byte	.LVL4
+ 1919 0086 37000000 		.4byte	.LVL6-1
+ 1920 008a 0100     		.2byte	0x1
+ 1921 008c 51       		.byte	0x51
+ 1922 008d 37000000 		.4byte	.LVL6-1
+ 1923 0091 3A000000 		.4byte	.LVL7
+ 1924 0095 0100     		.2byte	0x1
+ 1925 0097 54       		.byte	0x54
+ 1926 0098 3A000000 		.4byte	.LVL7
+ 1927 009c 45000000 		.4byte	.LVL9-1
+ 1928 00a0 0100     		.2byte	0x1
+ 1929 00a2 51       		.byte	0x51
+ 1930 00a3 45000000 		.4byte	.LVL9-1
+ 1931 00a7 48000000 		.4byte	.LVL10
+ 1932 00ab 0100     		.2byte	0x1
+ 1933 00ad 54       		.byte	0x54
+ 1934 00ae 48000000 		.4byte	.LVL10
+ 1935 00b2 4D000000 		.4byte	.LVL12-1
+ 1936 00b6 0100     		.2byte	0x1
+ 1937 00b8 51       		.byte	0x51
+ 1938 00b9 4D000000 		.4byte	.LVL12-1
+ 1939 00bd 7C000000 		.4byte	.LVL16
+ 1940 00c1 0100     		.2byte	0x1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 37
+
+
+ 1941 00c3 54       		.byte	0x54
+ 1942 00c4 7C000000 		.4byte	.LVL16
+ 1943 00c8 A0000000 		.4byte	.LFE37
+ 1944 00cc 0400     		.2byte	0x4
+ 1945 00ce F3       		.byte	0xf3
+ 1946 00cf 01       		.uleb128 0x1
+ 1947 00d0 51       		.byte	0x51
+ 1948 00d1 9F       		.byte	0x9f
+ 1949 00d2 00000000 		.4byte	0
+ 1950 00d6 00000000 		.4byte	0
+ 1951              	.LLST2:
+ 1952 00da 4E000000 		.4byte	.LVL12
+ 1953 00de 7C000000 		.4byte	.LVL15
+ 1954 00e2 0100     		.2byte	0x1
+ 1955 00e4 54       		.byte	0x54
+ 1956 00e5 00000000 		.4byte	0
+ 1957 00e9 00000000 		.4byte	0
+ 1958              		.section	.debug_aranges,"",%progbits
+ 1959 0000 24000000 		.4byte	0x24
+ 1960 0004 0200     		.2byte	0x2
+ 1961 0006 00000000 		.4byte	.Ldebug_info0
+ 1962 000a 04       		.byte	0x4
+ 1963 000b 00       		.byte	0
+ 1964 000c 0000     		.2byte	0
+ 1965 000e 0000     		.2byte	0
+ 1966 0010 00000000 		.4byte	.LFB37
+ 1967 0014 A0000000 		.4byte	.LFE37-.LFB37
+ 1968 0018 00000000 		.4byte	.LFB38
+ 1969 001c 94000000 		.4byte	.LFE38-.LFB38
+ 1970 0020 00000000 		.4byte	0
+ 1971 0024 00000000 		.4byte	0
+ 1972              		.section	.debug_ranges,"",%progbits
+ 1973              	.Ldebug_ranges0:
+ 1974 0000 00000000 		.4byte	.LFB37
+ 1975 0004 A0000000 		.4byte	.LFE37
+ 1976 0008 00000000 		.4byte	.LFB38
+ 1977 000c 94000000 		.4byte	.LFE38
+ 1978 0010 00000000 		.4byte	0
+ 1979 0014 00000000 		.4byte	0
+ 1980              		.section	.debug_line,"",%progbits
+ 1981              	.Ldebug_line0:
+ 1982 0000 4B010000 		.section	.debug_str,"MS",%progbits,1
+ 1982      0200FC00 
+ 1982      00000201 
+ 1982      FB0E0D00 
+ 1982      01010101 
+ 1983              	.LASF77:
+ 1984 0000 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_RX_CREDIT_IND\000"
+ 1984      455F4556 
+ 1984      545F4C32 
+ 1984      4341505F 
+ 1984      43424643 
+ 1985              	.LASF22:
+ 1986 0023 4359424C 		.ascii	"CYBLE_EVT_STACK_BUSY_STATUS\000"
+ 1986      455F4556 
+ 1986      545F5354 
+ 1986      41434B5F 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 38
+
+
+ 1986      42555359 
+ 1987              	.LASF10:
+ 1988 003f 75696E74 		.ascii	"uint16\000"
+ 1988      313600
+ 1989              	.LASF144:
+ 1990 0046 4359424C 		.ascii	"CYBLE_GATTS_ERR_HPS_INVALID_REQUEST\000"
+ 1990      455F4741 
+ 1990      5454535F 
+ 1990      4552525F 
+ 1990      4850535F 
+ 1991              	.LASF76:
+ 1992 006a 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_DATA_READ\000"
+ 1992      455F4556 
+ 1992      545F4C32 
+ 1992      4341505F 
+ 1992      43424643 
+ 1993              	.LASF158:
+ 1994 0089 4359424C 		.ascii	"CYBLE_CONN_HANDLE_T\000"
+ 1994      455F434F 
+ 1994      4E4E5F48 
+ 1994      414E444C 
+ 1994      455F5400 
+ 1995              	.LASF128:
+ 1996 009d 4359424C 		.ascii	"CYBLE_GATT_ERR_INSUFFICIENT_ENC_KEY_SIZE\000"
+ 1996      455F4741 
+ 1996      54545F45 
+ 1996      52525F49 
+ 1996      4E535546 
+ 1997              	.LASF165:
+ 1998 00c6 636F6E6E 		.ascii	"connHandle\000"
+ 1998      48616E64 
+ 1998      6C6500
+ 1999              	.LASF86:
+ 2000 00d1 4359424C 		.ascii	"CYBLE_ERROR_MEMORY_ALLOCATION_FAILED\000"
+ 2000      455F4552 
+ 2000      524F525F 
+ 2000      4D454D4F 
+ 2000      52595F41 
+ 2001              	.LASF122:
+ 2002 00f6 4359424C 		.ascii	"CYBLE_GATT_ERR_REQUEST_NOT_SUPPORTED\000"
+ 2002      455F4741 
+ 2002      54545F45 
+ 2002      52525F52 
+ 2002      45515545 
+ 2003              	.LASF178:
+ 2004 011b 636F6E6E 		.ascii	"connectionHandle\000"
+ 2004      65637469 
+ 2004      6F6E4861 
+ 2004      6E646C65 
+ 2004      00
+ 2005              	.LASF117:
+ 2006 012c 4359424C 		.ascii	"CYBLE_GATT_ERR_INVALID_HANDLE\000"
+ 2006      455F4741 
+ 2006      54545F45 
+ 2006      52525F49 
+ 2006      4E56414C 
+ 2007              	.LASF34:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 39
+
+
+ 2008 014a 4359424C 		.ascii	"CYBLE_EVT_GAP_CONNECTION_UPDATE_COMPLETE\000"
+ 2008      455F4556 
+ 2008      545F4741 
+ 2008      505F434F 
+ 2008      4E4E4543 
+ 2009              	.LASF75:
+ 2010 0173 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_DISCONN_CNF\000"
+ 2010      455F4556 
+ 2010      545F4C32 
+ 2010      4341505F 
+ 2010      43424643 
+ 2011              	.LASF107:
+ 2012 0194 4359424C 		.ascii	"CYBLE_ERROR_UNSUPPORTED_FEATURE_OR_PARAMETER_VALUE\000"
+ 2012      455F4552 
+ 2012      524F525F 
+ 2012      554E5355 
+ 2012      50504F52 
+ 2013              	.LASF35:
+ 2014 01c7 4359424C 		.ascii	"CYBLE_EVT_GAPC_SCAN_START_STOP\000"
+ 2014      455F4556 
+ 2014      545F4741 
+ 2014      50435F53 
+ 2014      43414E5F 
+ 2015              	.LASF39:
+ 2016 01e6 4359424C 		.ascii	"CYBLE_EVT_GAP_OOB_GENERATED_NOTIFICATION\000"
+ 2016      455F4556 
+ 2016      545F4741 
+ 2016      505F4F4F 
+ 2016      425F4745 
+ 2017              	.LASF55:
+ 2018 020f 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_MULTI_RSP\000"
+ 2018      455F4556 
+ 2018      545F4741 
+ 2018      5454435F 
+ 2018      52454144 
+ 2019              	.LASF60:
+ 2020 022e 4359424C 		.ascii	"CYBLE_EVT_GATTS_EXEC_WRITE_REQ\000"
+ 2020      455F4556 
+ 2020      545F4741 
+ 2020      5454535F 
+ 2020      45584543 
+ 2021              	.LASF72:
+ 2022 024d 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_CONN_IND\000"
+ 2022      455F4556 
+ 2022      545F4C32 
+ 2022      4341505F 
+ 2022      43424643 
+ 2023              	.LASF111:
+ 2024 026b 4359424C 		.ascii	"CYBLE_ERROR_NTF_DISABLED\000"
+ 2024      455F4552 
+ 2024      524F525F 
+ 2024      4E54465F 
+ 2024      44495341 
+ 2025              	.LASF19:
+ 2026 0284 4359424C 		.ascii	"CYBLE_EVT_TIMEOUT\000"
+ 2026      455F4556 
+ 2026      545F5449 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 40
+
+
+ 2026      4D454F55 
+ 2026      5400
+ 2027              	.LASF4:
+ 2028 0296 6C6F6E67 		.ascii	"long int\000"
+ 2028      20696E74 
+ 2028      00
+ 2029              	.LASF106:
+ 2030 029f 4359424C 		.ascii	"CYBLE_ERROR_HARDWARE_FAILURE\000"
+ 2030      455F4552 
+ 2030      524F525F 
+ 2030      48415244 
+ 2030      57415245 
+ 2031              	.LASF96:
+ 2032 02bc 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_WRONG_ENCODING\000"
+ 2032      455F4552 
+ 2032      524F525F 
+ 2032      4C324341 
+ 2032      505F5053 
+ 2033              	.LASF160:
+ 2034 02e1 4359424C 		.ascii	"CYBLE_GATT_VALUE_T\000"
+ 2034      455F4741 
+ 2034      54545F56 
+ 2034      414C5545 
+ 2034      5F5400
+ 2035              	.LASF21:
+ 2036 02f4 4359424C 		.ascii	"CYBLE_EVT_HCI_STATUS\000"
+ 2036      455F4556 
+ 2036      545F4843 
+ 2036      495F5354 
+ 2036      41545553 
+ 2037              	.LASF190:
+ 2038 0309 55415254 		.ascii	"UART_Start\000"
+ 2038      5F537461 
+ 2038      727400
+ 2039              	.LASF142:
+ 2040 0314 4359424C 		.ascii	"CYBLE_GATTS_ERR_OPERATION_FAILED\000"
+ 2040      455F4741 
+ 2040      5454535F 
+ 2040      4552525F 
+ 2040      4F504552 
+ 2041              	.LASF148:
+ 2042 0335 4359424C 		.ascii	"CYBLE_GATT_ERR_ANCS_INVALID_COMMAND\000"
+ 2042      455F4741 
+ 2042      54545F45 
+ 2042      52525F41 
+ 2042      4E43535F 
+ 2043              	.LASF169:
+ 2044 0359 6576656E 		.ascii	"eventCode\000"
+ 2044      74436F64 
+ 2044      6500
+ 2045              	.LASF95:
+ 2046 0363 4359424C 		.ascii	"CYBLE_ERROR_SEC_FAILED\000"
+ 2046      455F4552 
+ 2046      524F525F 
+ 2046      5345435F 
+ 2046      4641494C 
+ 2047              	.LASF33:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 41
+
+
+ 2048 037a 4359424C 		.ascii	"CYBLE_EVT_GAP_ENCRYPT_CHANGE\000"
+ 2048      455F4556 
+ 2048      545F4741 
+ 2048      505F454E 
+ 2048      43525950 
+ 2049              	.LASF186:
+ 2050 0397 43617053 		.ascii	"CapSense_UpdateEnabledBaselines\000"
+ 2050      656E7365 
+ 2050      5F557064 
+ 2050      61746545 
+ 2050      6E61626C 
+ 2051              	.LASF37:
+ 2052 03b7 4359424C 		.ascii	"CYBLE_EVT_GAP_NUMERIC_COMPARISON_REQUEST\000"
+ 2052      455F4556 
+ 2052      545F4741 
+ 2052      505F4E55 
+ 2052      4D455249 
+ 2053              	.LASF139:
+ 2054 03e0 4359424C 		.ascii	"CYBLE_GATT_ERR_OP_CODE_NOT_SUPPORTED\000"
+ 2054      455F4741 
+ 2054      54545F45 
+ 2054      52525F4F 
+ 2054      505F434F 
+ 2055              	.LASF78:
+ 2056 0405 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_TX_CREDIT_IND\000"
+ 2056      455F4556 
+ 2056      545F4C32 
+ 2056      4341505F 
+ 2056      43424643 
+ 2057              	.LASF6:
+ 2058 0428 6C6F6E67 		.ascii	"long long int\000"
+ 2058      206C6F6E 
+ 2058      6720696E 
+ 2058      7400
+ 2059              	.LASF0:
+ 2060 0436 7369676E 		.ascii	"signed char\000"
+ 2060      65642063 
+ 2060      68617200 
+ 2061              	.LASF18:
+ 2062 0442 4359424C 		.ascii	"CYBLE_EVT_STACK_ON\000"
+ 2062      455F4556 
+ 2062      545F5354 
+ 2062      41434B5F 
+ 2062      4F4E00
+ 2063              	.LASF103:
+ 2064 0455 4359424C 		.ascii	"CYBLE_ERROR_DEVICE_ALREADY_EXISTS\000"
+ 2064      455F4552 
+ 2064      524F525F 
+ 2064      44455649 
+ 2064      43455F41 
+ 2065              	.LASF90:
+ 2066 0477 4359424C 		.ascii	"CYBLE_ERROR_NO_DEVICE_ENTITY\000"
+ 2066      455F4552 
+ 2066      524F525F 
+ 2066      4E4F5F44 
+ 2066      45564943 
+ 2067              	.LASF159:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 42
+
+
+ 2068 0494 61637475 		.ascii	"actualLen\000"
+ 2068      616C4C65 
+ 2068      6E00
+ 2069              	.LASF25:
+ 2070 049e 4359424C 		.ascii	"CYBLE_EVT_GAP_AUTH_REQ\000"
+ 2070      455F4556 
+ 2070      545F4741 
+ 2070      505F4155 
+ 2070      54485F52 
+ 2071              	.LASF53:
+ 2072 04b5 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_RSP\000"
+ 2072      455F4556 
+ 2072      545F4741 
+ 2072      5454435F 
+ 2072      52454144 
+ 2073              	.LASF120:
+ 2074 04ce 4359424C 		.ascii	"CYBLE_GATT_ERR_INVALID_PDU\000"
+ 2074      455F4741 
+ 2074      54545F45 
+ 2074      52525F49 
+ 2074      4E56414C 
+ 2075              	.LASF114:
+ 2076 04e9 4359424C 		.ascii	"CYBLE_ERROR_INVALID_STATE\000"
+ 2076      455F4552 
+ 2076      524F525F 
+ 2076      494E5641 
+ 2076      4C49445F 
+ 2077              	.LASF58:
+ 2078 0503 4359424C 		.ascii	"CYBLE_EVT_GATTS_WRITE_CMD_REQ\000"
+ 2078      455F4556 
+ 2078      545F4741 
+ 2078      5454535F 
+ 2078      57524954 
+ 2079              	.LASF177:
+ 2080 0521 626C6543 		.ascii	"bleConnected\000"
+ 2080      6F6E6E65 
+ 2080      63746564 
+ 2080      00
+ 2081              	.LASF30:
+ 2082 052e 4359424C 		.ascii	"CYBLE_EVT_GAPP_ADVERTISEMENT_START_STOP\000"
+ 2082      455F4556 
+ 2082      545F4741 
+ 2082      50505F41 
+ 2082      44564552 
+ 2083              	.LASF101:
+ 2084 0556 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_NOT_IN_RANGE\000"
+ 2084      455F4552 
+ 2084      524F525F 
+ 2084      4C324341 
+ 2084      505F5053 
+ 2085              	.LASF9:
+ 2086 0579 75696E74 		.ascii	"uint8\000"
+ 2086      3800
+ 2087              	.LASF61:
+ 2088 057f 4359424C 		.ascii	"CYBLE_EVT_GATTC_EXEC_WRITE_RSP\000"
+ 2088      455F4556 
+ 2088      545F4741 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 43
+
+
+ 2088      5454435F 
+ 2088      45584543 
+ 2089              	.LASF13:
+ 2090 059e 646F7562 		.ascii	"double\000"
+ 2090      6C6500
+ 2091              	.LASF74:
+ 2092 05a5 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_DISCONN_IND\000"
+ 2092      455F4556 
+ 2092      545F4C32 
+ 2092      4341505F 
+ 2092      43424643 
+ 2093              	.LASF84:
+ 2094 05c6 4359424C 		.ascii	"CYBLE_ERROR_INVALID_PARAMETER\000"
+ 2094      455F4552 
+ 2094      524F525F 
+ 2094      494E5641 
+ 2094      4C49445F 
+ 2095              	.LASF132:
+ 2096 05e4 4359424C 		.ascii	"CYBLE_GATT_ERR_UNSUPPORTED_GROUP_TYPE\000"
+ 2096      455F4741 
+ 2096      54545F45 
+ 2096      52525F55 
+ 2096      4E535550 
+ 2097              	.LASF171:
+ 2098 060a 53746163 		.ascii	"Stack_Handler\000"
+ 2098      6B5F4861 
+ 2098      6E646C65 
+ 2098      7200
+ 2099              	.LASF11:
+ 2100 0618 75696E74 		.ascii	"uint32\000"
+ 2100      333200
+ 2101              	.LASF119:
+ 2102 061f 4359424C 		.ascii	"CYBLE_GATT_ERR_WRITE_NOT_PERMITTED\000"
+ 2102      455F4741 
+ 2102      54545F45 
+ 2102      52525F57 
+ 2102      52495445 
+ 2103              	.LASF82:
+ 2104 0642 4359424C 		.ascii	"CYBLE_EVT_MAX\000"
+ 2104      455F4556 
+ 2104      545F4D41 
+ 2104      5800
+ 2105              	.LASF83:
+ 2106 0650 4359424C 		.ascii	"CYBLE_ERROR_OK\000"
+ 2106      455F4552 
+ 2106      524F525F 
+ 2106      4F4B00
+ 2107              	.LASF116:
+ 2108 065f 4359424C 		.ascii	"CYBLE_GATT_ERR_NONE\000"
+ 2108      455F4741 
+ 2108      54545F45 
+ 2108      52525F4E 
+ 2108      4F4E4500 
+ 2109              	.LASF69:
+ 2110 0673 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CONN_PARAM_UPDATE_REQ\000"
+ 2110      455F4556 
+ 2110      545F4C32 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 44
+
+
+ 2110      4341505F 
+ 2110      434F4E4E 
+ 2111              	.LASF118:
+ 2112 0699 4359424C 		.ascii	"CYBLE_GATT_ERR_READ_NOT_PERMITTED\000"
+ 2112      455F4741 
+ 2112      54545F45 
+ 2112      52525F52 
+ 2112      4541445F 
+ 2113              	.LASF79:
+ 2114 06bb 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_DATA_WRITE_IND\000"
+ 2114      455F4556 
+ 2114      545F4C32 
+ 2114      4341505F 
+ 2114      43424643 
+ 2115              	.LASF123:
+ 2116 06df 4359424C 		.ascii	"CYBLE_GATT_ERR_INVALID_OFFSET\000"
+ 2116      455F4741 
+ 2116      54545F45 
+ 2116      52525F49 
+ 2116      4E56414C 
+ 2117              	.LASF121:
+ 2118 06fd 4359424C 		.ascii	"CYBLE_GATT_ERR_INSUFFICIENT_AUTHENTICATION\000"
+ 2118      455F4741 
+ 2118      54545F45 
+ 2118      52525F49 
+ 2118      4E535546 
+ 2119              	.LASF162:
+ 2120 0728 61747472 		.ascii	"attrHandle\000"
+ 2120      48616E64 
+ 2120      6C6500
+ 2121              	.LASF7:
+ 2122 0733 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2122      206C6F6E 
+ 2122      6720756E 
+ 2122      7369676E 
+ 2122      65642069 
+ 2123              	.LASF161:
+ 2124 074a 76616C75 		.ascii	"value\000"
+ 2124      6500
+ 2125              	.LASF180:
+ 2126 0750 4379426C 		.ascii	"CyBle_GattsWriteAttributeValue\000"
+ 2126      655F4761 
+ 2126      74747357 
+ 2126      72697465 
+ 2126      41747472 
+ 2127              	.LASF194:
+ 2128 076f 2E5C6D61 		.ascii	".\\main.c\000"
+ 2128      696E2E63 
+ 2128      00
+ 2129              	.LASF66:
+ 2130 0778 4359424C 		.ascii	"CYBLE_EVT_GATTC_STOP_CMD_COMPLETE\000"
+ 2130      455F4556 
+ 2130      545F4741 
+ 2130      5454435F 
+ 2130      53544F50 
+ 2131              	.LASF188:
+ 2132 079a 43617053 		.ascii	"CapSense_Start\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 45
+
+
+ 2132      656E7365 
+ 2132      5F537461 
+ 2132      727400
+ 2133              	.LASF81:
+ 2134 07a9 4359424C 		.ascii	"CYBLE_EVT_LE_PING_AUTH_TIMEOUT\000"
+ 2134      455F4556 
+ 2134      545F4C45 
+ 2134      5F50494E 
+ 2134      475F4155 
+ 2135              	.LASF143:
+ 2136 07c8 4359424C 		.ascii	"CYBLE_GATT_ERR_INVALID_CRC\000"
+ 2136      455F4741 
+ 2136      54545F45 
+ 2136      52525F49 
+ 2136      4E56414C 
+ 2137              	.LASF138:
+ 2138 07e3 4359424C 		.ascii	"CYBLE_GATTS_ERR_PROCEDURE_ALREADY_IN_PROGRESS\000"
+ 2138      455F4741 
+ 2138      5454535F 
+ 2138      4552525F 
+ 2138      50524F43 
+ 2139              	.LASF97:
+ 2140 0811 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_ALREADY_REGISTERED\000"
+ 2140      455F4552 
+ 2140      524F525F 
+ 2140      4C324341 
+ 2140      505F5053 
+ 2141              	.LASF5:
+ 2142 083a 6C6F6E67 		.ascii	"long unsigned int\000"
+ 2142      20756E73 
+ 2142      69676E65 
+ 2142      6420696E 
+ 2142      7400
+ 2143              	.LASF126:
+ 2144 084c 4359424C 		.ascii	"CYBLE_GATT_ERR_ATTRIBUTE_NOT_FOUND\000"
+ 2144      455F4741 
+ 2144      54545F45 
+ 2144      52525F41 
+ 2144      54545249 
+ 2145              	.LASF56:
+ 2146 086f 4359424C 		.ascii	"CYBLE_EVT_GATTS_WRITE_REQ\000"
+ 2146      455F4556 
+ 2146      545F4741 
+ 2146      5454535F 
+ 2146      57524954 
+ 2147              	.LASF48:
+ 2148 0889 4359424C 		.ascii	"CYBLE_EVT_GATTC_XCHNG_MTU_RSP\000"
+ 2148      455F4556 
+ 2148      545F4741 
+ 2148      5454435F 
+ 2148      5843484E 
+ 2149              	.LASF65:
+ 2150 08a7 4359424C 		.ascii	"CYBLE_EVT_GATTS_DATA_SIGNED_CMD_REQ\000"
+ 2150      455F4556 
+ 2150      545F4741 
+ 2150      5454535F 
+ 2150      44415441 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 46
+
+
+ 2151              	.LASF68:
+ 2152 08cb 4359424C 		.ascii	"CYBLE_EVT_GATTC_LONG_PROCEDURE_END\000"
+ 2152      455F4556 
+ 2152      545F4741 
+ 2152      5454435F 
+ 2152      4C4F4E47 
+ 2153              	.LASF100:
+ 2154 08ee 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_CHANNEL_NOT_FOUND\000"
+ 2154      455F4552 
+ 2154      524F525F 
+ 2154      4C324341 
+ 2154      505F4348 
+ 2155              	.LASF127:
+ 2156 0912 4359424C 		.ascii	"CYBLE_GATT_ERR_ATTRIBUTE_NOT_LONG\000"
+ 2156      455F4741 
+ 2156      54545F45 
+ 2156      52525F41 
+ 2156      54545249 
+ 2157              	.LASF17:
+ 2158 0934 4359424C 		.ascii	"CYBLE_EVT_HOST_INVALID\000"
+ 2158      455F4556 
+ 2158      545F484F 
+ 2158      53545F49 
+ 2158      4E56414C 
+ 2159              	.LASF51:
+ 2160 094b 4359424C 		.ascii	"CYBLE_EVT_GATTC_FIND_INFO_RSP\000"
+ 2160      455F4556 
+ 2160      545F4741 
+ 2160      5454435F 
+ 2160      46494E44 
+ 2161              	.LASF23:
+ 2162 0969 4359424C 		.ascii	"CYBLE_EVT_MEMORY_REQUEST\000"
+ 2162      455F4556 
+ 2162      545F4D45 
+ 2162      4D4F5259 
+ 2162      5F524551 
+ 2163              	.LASF147:
+ 2164 0982 4359424C 		.ascii	"CYBLE_GATT_ERR_ANCS_UNKNOWN_COMMAND\000"
+ 2164      455F4741 
+ 2164      54545F45 
+ 2164      52525F41 
+ 2164      4E43535F 
+ 2165              	.LASF26:
+ 2166 09a6 4359424C 		.ascii	"CYBLE_EVT_GAP_PASSKEY_ENTRY_REQUEST\000"
+ 2166      455F4556 
+ 2166      545F4741 
+ 2166      505F5041 
+ 2166      53534B45 
+ 2167              	.LASF31:
+ 2168 09ca 4359424C 		.ascii	"CYBLE_EVT_GAP_DEVICE_CONNECTED\000"
+ 2168      455F4556 
+ 2168      545F4741 
+ 2168      505F4445 
+ 2168      56494345 
+ 2169              	.LASF191:
+ 2170 09e9 4379426C 		.ascii	"CyBle_Start\000"
+ 2170      655F5374 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 47
+
+
+ 2170      61727400 
+ 2171              	.LASF154:
+ 2172 09f5 4359424C 		.ascii	"CYBLE_GATT_ERR_CODE_T\000"
+ 2172      455F4741 
+ 2172      54545F45 
+ 2172      52525F43 
+ 2172      4F44455F 
+ 2173              	.LASF137:
+ 2174 0a0b 4359424C 		.ascii	"CYBLE_GATT_ERR_HTS_OUT_OF_RANGE\000"
+ 2174      455F4741 
+ 2174      54545F45 
+ 2174      52525F48 
+ 2174      54535F4F 
+ 2175              	.LASF88:
+ 2176 0a2b 4359424C 		.ascii	"CYBLE_ERROR_OOB_NOT_AVAILABLE\000"
+ 2176      455F4552 
+ 2176      524F525F 
+ 2176      4F4F425F 
+ 2176      4E4F545F 
+ 2177              	.LASF45:
+ 2178 0a49 4359424C 		.ascii	"CYBLE_EVT_GATT_CONNECT_IND\000"
+ 2178      455F4556 
+ 2178      545F4741 
+ 2178      54545F43 
+ 2178      4F4E4E45 
+ 2179              	.LASF157:
+ 2180 0a64 61747449 		.ascii	"attId\000"
+ 2180      6400
+ 2181              	.LASF71:
+ 2182 0a6a 4359424C 		.ascii	"CYBLE_EVT_L2CAP_COMMAND_REJ\000"
+ 2182      455F4556 
+ 2182      545F4C32 
+ 2182      4341505F 
+ 2182      434F4D4D 
+ 2183              	.LASF136:
+ 2184 0a86 4359424C 		.ascii	"CYBLE_GATT_ERR_CPS_INAPPROPRIATE_CONNECTION_PARAMET"
+ 2184      455F4741 
+ 2184      54545F45 
+ 2184      52525F43 
+ 2184      50535F49 
+ 2185 0ab9 45525300 		.ascii	"ERS\000"
+ 2186              	.LASF24:
+ 2187 0abd 4359424C 		.ascii	"CYBLE_EVT_GAPC_SCAN_PROGRESS_RESULT\000"
+ 2187      455F4556 
+ 2187      545F4741 
+ 2187      50435F53 
+ 2187      43414E5F 
+ 2188              	.LASF192:
+ 2189 0ae1 4379426C 		.ascii	"CyBle_ProcessEvents\000"
+ 2189      655F5072 
+ 2189      6F636573 
+ 2189      73457665 
+ 2189      6E747300 
+ 2190              	.LASF110:
+ 2191 0af5 4359424C 		.ascii	"CYBLE_ERROR_MAX\000"
+ 2191      455F4552 
+ 2191      524F525F 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 48
+
+
+ 2191      4D415800 
+ 2192              	.LASF108:
+ 2193 0b05 4359424C 		.ascii	"CYBLE_ERROR_FLASH_WRITE\000"
+ 2193      455F4552 
+ 2193      524F525F 
+ 2193      464C4153 
+ 2193      485F5752 
+ 2194              	.LASF50:
+ 2195 0b1d 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_BY_TYPE_RSP\000"
+ 2195      455F4556 
+ 2195      545F4741 
+ 2195      5454435F 
+ 2195      52454144 
+ 2196              	.LASF16:
+ 2197 0b3e 73697A65 		.ascii	"sizetype\000"
+ 2197      74797065 
+ 2197      00
+ 2198              	.LASF133:
+ 2199 0b47 4359424C 		.ascii	"CYBLE_GATT_ERR_INSUFFICIENT_RESOURCE\000"
+ 2199      455F4741 
+ 2199      54545F45 
+ 2199      52525F49 
+ 2199      4E535546 
+ 2200              	.LASF167:
+ 2201 0b6c 4359424C 		.ascii	"CYBLE_GATTS_WRITE_REQ_PARAM_T\000"
+ 2201      455F4741 
+ 2201      5454535F 
+ 2201      57524954 
+ 2201      455F5245 
+ 2202              	.LASF164:
+ 2203 0b8a 4359424C 		.ascii	"CYBLE_GATTS_HANDLE_VALUE_NTF_T\000"
+ 2203      455F4741 
+ 2203      5454535F 
+ 2203      48414E44 
+ 2203      4C455F56 
+ 2204              	.LASF29:
+ 2205 0ba9 4359424C 		.ascii	"CYBLE_EVT_GAP_AUTH_FAILED\000"
+ 2205      455F4556 
+ 2205      545F4741 
+ 2205      505F4155 
+ 2205      54485F46 
+ 2206              	.LASF175:
+ 2207 0bc3 6379426C 		.ascii	"cyBle_connHandle\000"
+ 2207      655F636F 
+ 2207      6E6E4861 
+ 2207      6E646C65 
+ 2207      00
+ 2208              	.LASF57:
+ 2209 0bd4 4359424C 		.ascii	"CYBLE_EVT_GATTC_WRITE_RSP\000"
+ 2209      455F4556 
+ 2209      545F4741 
+ 2209      5454435F 
+ 2209      57524954 
+ 2210              	.LASF42:
+ 2211 0bee 4359424C 		.ascii	"CYBLE_EVT_GAPC_DIRECT_ADV_REPORT\000"
+ 2211      455F4556 
+ 2211      545F4741 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 49
+
+
+ 2211      50435F44 
+ 2211      49524543 
+ 2212              	.LASF183:
+ 2213 0c0f 55415254 		.ascii	"UART_SpiUartWriteTxData\000"
+ 2213      5F537069 
+ 2213      55617274 
+ 2213      57726974 
+ 2213      65547844 
+ 2214              	.LASF40:
+ 2215 0c27 4359424C 		.ascii	"CYBLE_EVT_GAP_DATA_LENGTH_CHANGE\000"
+ 2215      455F4556 
+ 2215      545F4741 
+ 2215      505F4441 
+ 2215      54415F4C 
+ 2216              	.LASF124:
+ 2217 0c48 4359424C 		.ascii	"CYBLE_GATT_ERR_INSUFFICIENT_AUTHORIZATION\000"
+ 2217      455F4741 
+ 2217      54545F45 
+ 2217      52525F49 
+ 2217      4E535546 
+ 2218              	.LASF28:
+ 2219 0c72 4359424C 		.ascii	"CYBLE_EVT_GAP_AUTH_COMPLETE\000"
+ 2219      455F4556 
+ 2219      545F4741 
+ 2219      505F4155 
+ 2219      54485F43 
+ 2220              	.LASF115:
+ 2221 0c8e 4359424C 		.ascii	"CYBLE_API_RESULT_T\000"
+ 2221      455F4150 
+ 2221      495F5245 
+ 2221      53554C54 
+ 2221      5F5400
+ 2222              	.LASF62:
+ 2223 0ca1 4359424C 		.ascii	"CYBLE_EVT_GATTC_HANDLE_VALUE_NTF\000"
+ 2223      455F4556 
+ 2223      545F4741 
+ 2223      5454435F 
+ 2223      48414E44 
+ 2224              	.LASF112:
+ 2225 0cc2 4359424C 		.ascii	"CYBLE_ERROR_IND_DISABLED\000"
+ 2225      455F4552 
+ 2225      524F525F 
+ 2225      494E445F 
+ 2225      44495341 
+ 2226              	.LASF163:
+ 2227 0cdb 4359424C 		.ascii	"CYBLE_GATT_HANDLE_VALUE_PAIR_T\000"
+ 2227      455F4741 
+ 2227      54545F48 
+ 2227      414E444C 
+ 2227      455F5641 
+ 2228              	.LASF73:
+ 2229 0cfa 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_CONN_CNF\000"
+ 2229      455F4556 
+ 2229      545F4C32 
+ 2229      4341505F 
+ 2229      43424643 
+ 2230              	.LASF149:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 50
+
+
+ 2231 0d18 4359424C 		.ascii	"CYBLE_GATT_ERR_ANCS_INVALID_PARAMETER\000"
+ 2231      455F4741 
+ 2231      54545F45 
+ 2231      52525F41 
+ 2231      4E43535F 
+ 2232              	.LASF49:
+ 2233 0d3e 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_BY_GROUP_TYPE_RSP\000"
+ 2233      455F4556 
+ 2233      545F4741 
+ 2233      5454435F 
+ 2233      52454144 
+ 2234              	.LASF182:
+ 2235 0d65 55415254 		.ascii	"UART_UartPutString\000"
+ 2235      5F556172 
+ 2235      74507574 
+ 2235      53747269 
+ 2235      6E6700
+ 2236              	.LASF12:
+ 2237 0d78 666C6F61 		.ascii	"float\000"
+ 2237      7400
+ 2238              	.LASF125:
+ 2239 0d7e 4359424C 		.ascii	"CYBLE_GATT_ERR_PREPARE_WRITE_QUEUE_FULL\000"
+ 2239      455F4741 
+ 2239      54545F45 
+ 2239      52525F50 
+ 2239      52455041 
+ 2240              	.LASF179:
+ 2241 0da6 4379426C 		.ascii	"CyBle_GappStartAdvertisement\000"
+ 2241      655F4761 
+ 2241      70705374 
+ 2241      61727441 
+ 2241      64766572 
+ 2242              	.LASF185:
+ 2243 0dc3 43617053 		.ascii	"CapSense_GetCentroidPos\000"
+ 2243      656E7365 
+ 2243      5F476574 
+ 2243      43656E74 
+ 2243      726F6964 
+ 2244              	.LASF93:
+ 2245 0ddb 4359424C 		.ascii	"CYBLE_ERROR_TX_POWER_READ\000"
+ 2245      455F4552 
+ 2245      524F525F 
+ 2245      54585F50 
+ 2245      4F574552 
+ 2246              	.LASF113:
+ 2247 0df5 4359424C 		.ascii	"CYBLE_ERROR_CHAR_IS_NOT_DISCOVERED\000"
+ 2247      455F4552 
+ 2247      524F525F 
+ 2247      43484152 
+ 2247      5F49535F 
+ 2248              	.LASF153:
+ 2249 0e18 4359424C 		.ascii	"CYBLE_GATT_ERR_OUT_OF_RANGE\000"
+ 2249      455F4741 
+ 2249      54545F45 
+ 2249      52525F4F 
+ 2249      55545F4F 
+ 2250              	.LASF1:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 51
+
+
+ 2251 0e34 756E7369 		.ascii	"unsigned char\000"
+ 2251      676E6564 
+ 2251      20636861 
+ 2251      7200
+ 2252              	.LASF189:
+ 2253 0e42 43617053 		.ascii	"CapSense_InitializeAllBaselines\000"
+ 2253      656E7365 
+ 2253      5F496E69 
+ 2253      7469616C 
+ 2253      697A6541 
+ 2254              	.LASF173:
+ 2255 0e62 77725265 		.ascii	"wrReq\000"
+ 2255      7100
+ 2256              	.LASF38:
+ 2257 0e68 4359424C 		.ascii	"CYBLE_EVT_GAP_KEYPRESS_NOTIFICATION\000"
+ 2257      455F4556 
+ 2257      545F4741 
+ 2257      505F4B45 
+ 2257      59505245 
+ 2258              	.LASF129:
+ 2259 0e8c 4359424C 		.ascii	"CYBLE_GATT_ERR_INVALID_ATTRIBUTE_LEN\000"
+ 2259      455F4741 
+ 2259      54545F45 
+ 2259      52525F49 
+ 2259      4E56414C 
+ 2260              	.LASF141:
+ 2261 0eb1 4359424C 		.ascii	"CYBLE_GATTS_ERR_CCCD_IMPROPERLY_CONFIGURED\000"
+ 2261      455F4741 
+ 2261      5454535F 
+ 2261      4552525F 
+ 2261      43434344 
+ 2262              	.LASF193:
+ 2263 0edc 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2263      4320342E 
+ 2263      392E3320 
+ 2263      32303135 
+ 2263      30333033 
+ 2264 0f0f 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 2264      20726576 
+ 2264      6973696F 
+ 2264      6E203232 
+ 2264      31323230 
+ 2265 0f42 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2265      66756E63 
+ 2265      74696F6E 
+ 2265      2D736563 
+ 2265      74696F6E 
+ 2266              	.LASF2:
+ 2267 0f6a 73686F72 		.ascii	"short int\000"
+ 2267      7420696E 
+ 2267      7400
+ 2268              	.LASF176:
+ 2269 0f74 63617073 		.ascii	"capsenseNotify\000"
+ 2269      656E7365 
+ 2269      4E6F7469 
+ 2269      667900
+ 2270              	.LASF63:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 52
+
+
+ 2271 0f83 4359424C 		.ascii	"CYBLE_EVT_GATTC_HANDLE_VALUE_IND\000"
+ 2271      455F4556 
+ 2271      545F4741 
+ 2271      5454435F 
+ 2271      48414E44 
+ 2272              	.LASF140:
+ 2273 0fa4 4359424C 		.ascii	"CYBLE_GATT_ERR_MISSING_CRC\000"
+ 2273      455F4741 
+ 2273      54545F45 
+ 2273      52525F4D 
+ 2273      49535349 
+ 2274              	.LASF98:
+ 2275 0fbf 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_NOT_REGISTERED\000"
+ 2275      455F4552 
+ 2275      524F525F 
+ 2275      4C324341 
+ 2275      505F5053 
+ 2276              	.LASF89:
+ 2277 0fe4 4359424C 		.ascii	"CYBLE_ERROR_NO_CONNECTION\000"
+ 2277      455F4552 
+ 2277      524F525F 
+ 2277      4E4F5F43 
+ 2277      4F4E4E45 
+ 2278              	.LASF146:
+ 2279 0ffe 4359424C 		.ascii	"CYBLE_GATT_ERR_ANS_COMMAND_NOT_SUPPORTED\000"
+ 2279      455F4741 
+ 2279      54545F45 
+ 2279      52525F41 
+ 2279      4E535F43 
+ 2280              	.LASF59:
+ 2281 1027 4359424C 		.ascii	"CYBLE_EVT_GATTS_PREP_WRITE_REQ\000"
+ 2281      455F4556 
+ 2281      545F4741 
+ 2281      5454535F 
+ 2281      50524550 
+ 2282              	.LASF195:
+ 2283 1046 443A5C48 		.ascii	"D:\\Henny\\magisterka\\CY8KIT\\BLE\\BLE\\BLE_Custom"
+ 2283      656E6E79 
+ 2283      5C6D6167 
+ 2283      69737465 
+ 2283      726B615C 
+ 2284 1073 50726F66 		.ascii	"Profile.cydsn\000"
+ 2284      696C652E 
+ 2284      63796473 
+ 2284      6E00
+ 2285              	.LASF64:
+ 2286 1081 4359424C 		.ascii	"CYBLE_EVT_GATTS_HANDLE_VALUE_CNF\000"
+ 2286      455F4556 
+ 2286      545F4741 
+ 2286      5454535F 
+ 2286      48414E44 
+ 2287              	.LASF151:
+ 2288 10a2 4359424C 		.ascii	"CYBLE_GATT_ERR_CCCD_IMPROPERLY_CONFIGURED\000"
+ 2288      455F4741 
+ 2288      54545F45 
+ 2288      52525F43 
+ 2288      4343445F 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 53
+
+
+ 2289              	.LASF43:
+ 2290 10cc 4359424C 		.ascii	"CYBLE_EVT_GAP_SMP_NEGOTIATED_AUTH_INFO\000"
+ 2290      455F4556 
+ 2290      545F4741 
+ 2290      505F534D 
+ 2290      505F4E45 
+ 2291              	.LASF134:
+ 2292 10f3 4359424C 		.ascii	"CYBLE_GATT_ERR_HEART_RATE_CONTROL_POINT_NOT_SUPPORT"
+ 2292      455F4741 
+ 2292      54545F45 
+ 2292      52525F48 
+ 2292      45415254 
+ 2293 1126 454400   		.ascii	"ED\000"
+ 2294              	.LASF15:
+ 2295 1129 63686172 		.ascii	"char\000"
+ 2295      00
+ 2296              	.LASF94:
+ 2297 112e 4359424C 		.ascii	"CYBLE_ERROR_BT_ON_NOT_COMPLETED\000"
+ 2297      455F4552 
+ 2297      524F525F 
+ 2297      42545F4F 
+ 2297      4E5F4E4F 
+ 2298              	.LASF32:
+ 2299 114e 4359424C 		.ascii	"CYBLE_EVT_GAP_DEVICE_DISCONNECTED\000"
+ 2299      455F4556 
+ 2299      545F4741 
+ 2299      505F4445 
+ 2299      56494345 
+ 2300              	.LASF8:
+ 2301 1170 756E7369 		.ascii	"unsigned int\000"
+ 2301      676E6564 
+ 2301      20696E74 
+ 2301      00
+ 2302              	.LASF67:
+ 2303 117d 4359424C 		.ascii	"CYBLE_EVT_GATTS_READ_CHAR_VAL_ACCESS_REQ\000"
+ 2303      455F4556 
+ 2303      545F4741 
+ 2303      5454535F 
+ 2303      52454144 
+ 2304              	.LASF14:
+ 2305 11a6 63686172 		.ascii	"char8\000"
+ 2305      3800
+ 2306              	.LASF130:
+ 2307 11ac 4359424C 		.ascii	"CYBLE_GATT_ERR_UNLIKELY_ERROR\000"
+ 2307      455F4741 
+ 2307      54545F45 
+ 2307      52525F55 
+ 2307      4E4C494B 
+ 2308              	.LASF150:
+ 2309 11ca 4359424C 		.ascii	"CYBLE_GATT_ERR_ANCS_ACTION_FAILED\000"
+ 2309      455F4741 
+ 2309      54545F45 
+ 2309      52525F41 
+ 2309      4E43535F 
+ 2310              	.LASF104:
+ 2311 11ec 4359424C 		.ascii	"CYBLE_ERROR_FLASH_WRITE_NOT_PERMITED\000"
+ 2311      455F4552 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 54
+
+
+ 2311      524F525F 
+ 2311      464C4153 
+ 2311      485F5752 
+ 2312              	.LASF99:
+ 2313 1211 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_CONNECTION_ENTITY_NOT_FOUND\000"
+ 2313      455F4552 
+ 2313      524F525F 
+ 2313      4C324341 
+ 2313      505F434F 
+ 2314              	.LASF27:
+ 2315 123f 4359424C 		.ascii	"CYBLE_EVT_GAP_PASSKEY_DISPLAY_REQUEST\000"
+ 2315      455F4556 
+ 2315      545F4741 
+ 2315      505F5041 
+ 2315      53534B45 
+ 2316              	.LASF152:
+ 2317 1265 4359424C 		.ascii	"CYBLE_GATT_ERR_PROCEDURE_ALREADY_IN_PROGRESS\000"
+ 2317      455F4741 
+ 2317      54545F45 
+ 2317      52525F50 
+ 2317      524F4345 
+ 2318              	.LASF20:
+ 2319 1292 4359424C 		.ascii	"CYBLE_EVT_HARDWARE_ERROR\000"
+ 2319      455F4556 
+ 2319      545F4841 
+ 2319      52445741 
+ 2319      52455F45 
+ 2320              	.LASF3:
+ 2321 12ab 73686F72 		.ascii	"short unsigned int\000"
+ 2321      7420756E 
+ 2321      7369676E 
+ 2321      65642069 
+ 2321      6E7400
+ 2322              	.LASF44:
+ 2323 12be 4359424C 		.ascii	"CYBLE_EVT_GATTC_ERROR_RSP\000"
+ 2323      455F4556 
+ 2323      545F4741 
+ 2323      5454435F 
+ 2323      4552524F 
+ 2324              	.LASF166:
+ 2325 12d8 68616E64 		.ascii	"handleValPair\000"
+ 2325      6C655661 
+ 2325      6C506169 
+ 2325      7200
+ 2326              	.LASF174:
+ 2327 12e6 63617073 		.ascii	"capsenseHandle\000"
+ 2327      656E7365 
+ 2327      48616E64 
+ 2327      6C6500
+ 2328              	.LASF85:
+ 2329 12f5 4359424C 		.ascii	"CYBLE_ERROR_INVALID_OPERATION\000"
+ 2329      455F4552 
+ 2329      524F525F 
+ 2329      494E5641 
+ 2329      4C49445F 
+ 2330              	.LASF135:
+ 2331 1313 4359424C 		.ascii	"CYBLE_GATT_ERR_USER_DATA_ACCESS_NOT_PERMITTED\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 55
+
+
+ 2331      455F4741 
+ 2331      54545F45 
+ 2331      52525F55 
+ 2331      5345525F 
+ 2332              	.LASF131:
+ 2333 1341 4359424C 		.ascii	"CYBLE_GATT_ERR_INSUFFICIENT_ENCRYPTION\000"
+ 2333      455F4741 
+ 2333      54545F45 
+ 2333      52525F49 
+ 2333      4E535546 
+ 2334              	.LASF168:
+ 2335 1368 4359424C 		.ascii	"CYBLE_CALLBACK_T\000"
+ 2335      455F4341 
+ 2335      4C4C4241 
+ 2335      434B5F54 
+ 2335      00
+ 2336              	.LASF47:
+ 2337 1379 4359424C 		.ascii	"CYBLE_EVT_GATTS_XCNHG_MTU_REQ\000"
+ 2337      455F4556 
+ 2337      545F4741 
+ 2337      5454535F 
+ 2337      58434E48 
+ 2338              	.LASF170:
+ 2339 1397 6576656E 		.ascii	"eventParam\000"
+ 2339      74506172 
+ 2339      616D00
+ 2340              	.LASF87:
+ 2341 13a2 4359424C 		.ascii	"CYBLE_ERROR_INSUFFICIENT_RESOURCES\000"
+ 2341      455F4552 
+ 2341      524F525F 
+ 2341      494E5355 
+ 2341      46464943 
+ 2342              	.LASF54:
+ 2343 13c5 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_BLOB_RSP\000"
+ 2343      455F4556 
+ 2343      545F4741 
+ 2343      5454435F 
+ 2343      52454144 
+ 2344              	.LASF109:
+ 2345 13e3 4359424C 		.ascii	"CYBLE_ERROR_CONTROLLER_BUSY\000"
+ 2345      455F4552 
+ 2345      524F525F 
+ 2345      434F4E54 
+ 2345      524F4C4C 
+ 2346              	.LASF105:
+ 2347 13ff 4359424C 		.ascii	"CYBLE_ERROR_MIC_AUTH_FAILED\000"
+ 2347      455F4552 
+ 2347      524F525F 
+ 2347      4D49435F 
+ 2347      41555448 
+ 2348              	.LASF145:
+ 2349 141b 4359424C 		.ascii	"CYBLE_GATTS_ERR_NETWORK_NOT_AVAILABLE\000"
+ 2349      455F4741 
+ 2349      5454535F 
+ 2349      4552525F 
+ 2349      4E455457 
+ 2350              	.LASF181:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 56
+
+
+ 2351 1441 4379426C 		.ascii	"CyBle_GattsWriteRsp\000"
+ 2351      655F4761 
+ 2351      74747357 
+ 2351      72697465 
+ 2351      52737000 
+ 2352              	.LASF52:
+ 2353 1455 4359424C 		.ascii	"CYBLE_EVT_GATTC_FIND_BY_TYPE_VALUE_RSP\000"
+ 2353      455F4556 
+ 2353      545F4741 
+ 2353      5454435F 
+ 2353      46494E44 
+ 2354              	.LASF92:
+ 2355 147c 4359424C 		.ascii	"CYBLE_ERROR_GAP_ROLE\000"
+ 2355      455F4552 
+ 2355      524F525F 
+ 2355      4741505F 
+ 2355      524F4C45 
+ 2356              	.LASF36:
+ 2357 1491 4359424C 		.ascii	"CYBLE_EVT_GAP_KEYINFO_EXCHNGE_CMPLT\000"
+ 2357      455F4556 
+ 2357      545F4741 
+ 2357      505F4B45 
+ 2357      59494E46 
+ 2358              	.LASF184:
+ 2359 14b5 4379426C 		.ascii	"CyBle_GattsNotification\000"
+ 2359      655F4761 
+ 2359      7474734E 
+ 2359      6F746966 
+ 2359      69636174 
+ 2360              	.LASF156:
+ 2361 14cd 62644861 		.ascii	"bdHandle\000"
+ 2361      6E646C65 
+ 2361      00
+ 2362              	.LASF187:
+ 2363 14d6 43617053 		.ascii	"CapSense_ScanEnabledWidgets\000"
+ 2363      656E7365 
+ 2363      5F536361 
+ 2363      6E456E61 
+ 2363      626C6564 
+ 2364              	.LASF80:
+ 2365 14f2 4359424C 		.ascii	"CYBLE_EVT_PENDING_FLASH_WRITE\000"
+ 2365      455F4556 
+ 2365      545F5045 
+ 2365      4E44494E 
+ 2365      475F464C 
+ 2366              	.LASF70:
+ 2367 1510 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CONN_PARAM_UPDATE_RSP\000"
+ 2367      455F4556 
+ 2367      545F4C32 
+ 2367      4341505F 
+ 2367      434F4E4E 
+ 2368              	.LASF172:
+ 2369 1536 6D61696E 		.ascii	"main\000"
+ 2369      00
+ 2370              	.LASF41:
+ 2371 153b 4359424C 		.ascii	"CYBLE_EVT_GAP_ENHANCE_CONN_COMPLETE\000"
+ 2371      455F4556 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccT9UXCv.s 			page 57
+
+
+ 2371      545F4741 
+ 2371      505F454E 
+ 2371      48414E43 
+ 2372              	.LASF155:
+ 2373 155f 4359424C 		.ascii	"CYBLE_GATT_DB_ATTR_HANDLE_T\000"
+ 2373      455F4741 
+ 2373      54545F44 
+ 2373      425F4154 
+ 2373      54525F48 
+ 2374              	.LASF46:
+ 2375 157b 4359424C 		.ascii	"CYBLE_EVT_GATT_DISCONNECT_IND\000"
+ 2375      455F4556 
+ 2375      545F4741 
+ 2375      54545F44 
+ 2375      4953434F 
+ 2376              	.LASF102:
+ 2377 1599 4359424C 		.ascii	"CYBLE_ERROR_GATT_DB_INVALID_ATTR_HANDLE\000"
+ 2377      455F4552 
+ 2377      524F525F 
+ 2377      47415454 
+ 2377      5F44425F 
+ 2378              	.LASF196:
+ 2379 15c1 43617053 		.ascii	"CapSense_IsBusy\000"
+ 2379      656E7365 
+ 2379      5F497342 
+ 2379      75737900 
+ 2380              	.LASF91:
+ 2381 15d1 4359424C 		.ascii	"CYBLE_ERROR_REPEATED_ATTEMPTS\000"
+ 2381      455F4552 
+ 2381      524F525F 
+ 2381      52455045 
+ 2381      41544544 
+ 2382              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br

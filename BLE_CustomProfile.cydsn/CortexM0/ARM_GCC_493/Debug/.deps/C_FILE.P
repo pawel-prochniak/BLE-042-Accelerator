@@ -1,0 +1,104 @@
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/CortexM0/ARM_GCC_493/Debug/main.o : D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_HAL_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_STACK_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_Stack.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGap.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGatt.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGattClient.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGattDb.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGattServer.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackHostMain.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackL2cap.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_bless_isr.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_custom.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_eventHandler.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_gatt.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_CSHL.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_IP.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_SMS.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_SampleClk.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_SenseClk.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_Sns_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_TunerHelper.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CyFlash.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CyLFClk.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CyLib.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_BOOT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_PINS.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_SCBCLK.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_SPI_UART.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_SPI_UART_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_rx.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_rx_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_tx.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_tx_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/core_cm0.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/core_cmFunc.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/core_cmInstr.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cyPm.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cydevice_trm.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cydisabledsheets.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cyfitter.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cypins.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cytypes.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/project.h D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/main.c 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_HAL_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_STACK_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_Stack.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGap.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGatt.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGattClient.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGattDb.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackGattServer.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackHostMain.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_StackL2cap.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_bless_isr.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_custom.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_eventHandler.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/BLE_1_gatt.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_CSHL.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_IP.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_SMS.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_SampleClk.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_SenseClk.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_Sns_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CapSense_TunerHelper.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CyFlash.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CyLFClk.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/CyLib.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_BOOT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_PINS.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_SCBCLK.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_SPI_UART.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_SPI_UART_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_rx.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_rx_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_tx.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/UART_tx_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/core_cm0.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/core_cmFunc.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/core_cmInstr.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cyPm.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cydevice_trm.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cydisabledsheets.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cyfitter.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cypins.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/cytypes.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/Generated_Source/PSoC4/project.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/BLE_CustomProfile.cydsn/main.c : 
+

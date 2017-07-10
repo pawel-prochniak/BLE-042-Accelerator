@@ -1,0 +1,126 @@
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/CortexM0/ARM_GCC_493/Debug/ADXL345.o : D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/AdvLED.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/AdvLED_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_HAL_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_STACK_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_Stack.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGap.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGatt.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGattClient.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGattDb.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGattServer.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackHostMain.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackL2cap.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_bless_isr.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_custom.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_eventHandler.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_gatt.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BlueLED.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BlueLED_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/ConnectedLED.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/ConnectedLED_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/CyFlash.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/CyLFClk.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/CyLib.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_BOOT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_I2C.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_I2C_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_PINS.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_SCBCLK.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_SCB_IRQ.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_scl.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_scl_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_sda.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_sda_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_BOOT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_PINS.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_SCBCLK.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_SPI_UART.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_SPI_UART_PVT.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_rx.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_rx_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_tx.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_tx_aliases.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/core_cm0.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/core_cmFunc.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/core_cmInstr.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cyPm.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cydevice_trm.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cydisabledsheets.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cyfitter.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cypins.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cytypes.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/project.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/ADXL345.c D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/ADXL345.h D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/common.h 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/AdvLED.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/AdvLED_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_HAL_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_STACK_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_Stack.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGap.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGatt.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGattClient.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGattDb.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackGattServer.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackHostMain.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_StackL2cap.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_bless_isr.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_custom.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_eventHandler.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BLE_gatt.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BlueLED.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/BlueLED_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/ConnectedLED.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/ConnectedLED_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/CyFlash.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/CyLFClk.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/CyLib.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_BOOT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_I2C.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_I2C_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_PINS.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_SCBCLK.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_SCB_IRQ.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_scl.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_scl_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_sda.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/I2C_sda_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_BOOT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_PINS.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_SCBCLK.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_SPI_UART.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_SPI_UART_PVT.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_rx.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_rx_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_tx.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/UART_tx_aliases.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/core_cm0.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/core_cm0_psoc4.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/core_cmFunc.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/core_cmInstr.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cyPm.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cydevice_trm.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cydisabledsheets.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cyfitter.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cyfitter_cfg.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cypins.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/cytypes.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/Generated_Source/PSoC4/project.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/ADXL345.c : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/ADXL345.h : 
+
+D:/Henny/magisterka/CY8KIT/BLE/BLE/WaveSim.cydsn/common.h : 
+

@@ -1,0 +1,3723 @@
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 1
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"ADXL345.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.global	__aeabi_i2d
+  18              		.global	__aeabi_dmul
+  19              		.global	__aeabi_d2f
+  20              		.section	.text.scaleAccValues,"ax",%progbits
+  21              		.align	2
+  22              		.global	scaleAccValues
+  23              		.code	16
+  24              		.thumb_func
+  25              		.type	scaleAccValues, %function
+  26              	scaleAccValues:
+  27              	.LFB42:
+  28              		.file 1 ".\\ADXL345.c"
+   1:.\ADXL345.c   **** /* ========================================
+   2:.\ADXL345.c   ****  *
+   3:.\ADXL345.c   ****  * Copyright Pawel Prochniak, 2017
+   4:.\ADXL345.c   ****  * All Rights Reserved
+   5:.\ADXL345.c   ****  * UNPUBLISHED, LICENSED SOFTWARE.
+   6:.\ADXL345.c   ****  *
+   7:.\ADXL345.c   ****  * ========================================
+   8:.\ADXL345.c   **** */
+   9:.\ADXL345.c   **** 
+  10:.\ADXL345.c   **** #include <project.h>
+  11:.\ADXL345.c   **** #include <stdbool.h>
+  12:.\ADXL345.c   **** #include <ADXL345.h>
+  13:.\ADXL345.c   **** #include <common.h>
+  14:.\ADXL345.c   **** 
+  15:.\ADXL345.c   **** uint16 rawDataX, rawDataY, rawDataZ;
+  16:.\ADXL345.c   **** 
+  17:.\ADXL345.c   **** bool startAccConnection() 
+  18:.\ADXL345.c   **** {      
+  19:.\ADXL345.c   ****     CyDelay(50); // wait for initialization
+  20:.\ADXL345.c   ****     writeRegister(ADXL345_REG_POWER_CTL, 0x08);  
+  21:.\ADXL345.c   ****     debug("Started measurement mode");
+  22:.\ADXL345.c   ****     
+  23:.\ADXL345.c   ****     return true;
+  24:.\ADXL345.c   **** }
+  25:.\ADXL345.c   **** 
+  26:.\ADXL345.c   **** uint8 getDeviceId() 
+  27:.\ADXL345.c   **** {    
+  28:.\ADXL345.c   ****     return readRegister(ADXL345_REG_DEVID);
+  29:.\ADXL345.c   **** }
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 2
+
+
+  30:.\ADXL345.c   **** 
+  31:.\ADXL345.c   **** void getRawDataX() 
+  32:.\ADXL345.c   **** {
+  33:.\ADXL345.c   ****     rawDataX = readRegister16(ADXL345_REG_DATAX0);
+  34:.\ADXL345.c   ****     debug("Raw X: ");
+  35:.\ADXL345.c   ****     debugInt(rawDataX);
+  36:.\ADXL345.c   **** }
+  37:.\ADXL345.c   **** 
+  38:.\ADXL345.c   **** void getRawDataY() 
+  39:.\ADXL345.c   **** {
+  40:.\ADXL345.c   ****     rawDataY = readRegister16(ADXL345_REG_DATAY0);
+  41:.\ADXL345.c   **** }
+  42:.\ADXL345.c   **** 
+  43:.\ADXL345.c   **** void getRawDataZ() 
+  44:.\ADXL345.c   **** {
+  45:.\ADXL345.c   ****     rawDataZ = readRegister16(ADXL345_REG_DATAZ0);
+  46:.\ADXL345.c   **** }
+  47:.\ADXL345.c   **** 
+  48:.\ADXL345.c   **** void scaleAccValues()
+  49:.\ADXL345.c   **** {
+  29              		.loc 1 49 0
+  30              		.cfi_startproc
+  31 0000 08B5     		push	{r3, lr}
+  32              		.cfi_def_cfa_offset 8
+  33              		.cfi_offset 3, -8
+  34              		.cfi_offset 14, -4
+  50:.\ADXL345.c   ****     xData.floatVal = rawDataX * SCALE_FACTOR;
+  35              		.loc 1 50 0
+  36 0002 124B     		ldr	r3, .L2
+  37 0004 1888     		ldrh	r0, [r3]
+  38 0006 FFF7FEFF 		bl	__aeabi_i2d
+  39              	.LVL0:
+  40 000a 114A     		ldr	r2, .L2+4
+  41 000c 114B     		ldr	r3, .L2+8
+  42 000e FFF7FEFF 		bl	__aeabi_dmul
+  43              	.LVL1:
+  44 0012 FFF7FEFF 		bl	__aeabi_d2f
+  45              	.LVL2:
+  46 0016 104B     		ldr	r3, .L2+12
+  47 0018 1860     		str	r0, [r3]
+  51:.\ADXL345.c   ****     yData.floatVal = rawDataY * SCALE_FACTOR;
+  48              		.loc 1 51 0
+  49 001a 104B     		ldr	r3, .L2+16
+  50 001c 1888     		ldrh	r0, [r3]
+  51 001e FFF7FEFF 		bl	__aeabi_i2d
+  52              	.LVL3:
+  53 0022 0B4A     		ldr	r2, .L2+4
+  54 0024 0B4B     		ldr	r3, .L2+8
+  55 0026 FFF7FEFF 		bl	__aeabi_dmul
+  56              	.LVL4:
+  57 002a FFF7FEFF 		bl	__aeabi_d2f
+  58              	.LVL5:
+  59 002e 0C4B     		ldr	r3, .L2+20
+  60 0030 1860     		str	r0, [r3]
+  52:.\ADXL345.c   ****     zData.floatVal = rawDataZ * SCALE_FACTOR;
+  61              		.loc 1 52 0
+  62 0032 0C4B     		ldr	r3, .L2+24
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 3
+
+
+  63 0034 1888     		ldrh	r0, [r3]
+  64 0036 FFF7FEFF 		bl	__aeabi_i2d
+  65              	.LVL6:
+  66 003a 054A     		ldr	r2, .L2+4
+  67 003c 054B     		ldr	r3, .L2+8
+  68 003e FFF7FEFF 		bl	__aeabi_dmul
+  69              	.LVL7:
+  70 0042 FFF7FEFF 		bl	__aeabi_d2f
+  71              	.LVL8:
+  72 0046 084B     		ldr	r3, .L2+28
+  73 0048 1860     		str	r0, [r3]
+  53:.\ADXL345.c   **** }
+  74              		.loc 1 53 0
+  75              		@ sp needed
+  76 004a 08BD     		pop	{r3, pc}
+  77              	.L3:
+  78              		.align	2
+  79              	.L2:
+  80 004c 00000000 		.word	rawDataX
+  81 0050 FCA9F1D2 		.word	-755914244
+  82 0054 4D62703F 		.word	1064329805
+  83 0058 00000000 		.word	xData
+  84 005c 00000000 		.word	rawDataY
+  85 0060 00000000 		.word	yData
+  86 0064 00000000 		.word	rawDataZ
+  87 0068 00000000 		.word	zData
+  88              		.cfi_endproc
+  89              	.LFE42:
+  90              		.size	scaleAccValues, .-scaleAccValues
+  91              		.section	.text.readRegister,"ax",%progbits
+  92              		.align	2
+  93              		.global	readRegister
+  94              		.code	16
+  95              		.thumb_func
+  96              		.type	readRegister, %function
+  97              	readRegister:
+  98              	.LFB48:
+  54:.\ADXL345.c   **** 
+  55:.\ADXL345.c   **** void setMeasurementRate(DataRate_t range) 
+  56:.\ADXL345.c   **** {
+  57:.\ADXL345.c   ****     writeRegister(ADXL345_REG_BW_RATE, range);
+  58:.\ADXL345.c   **** }
+  59:.\ADXL345.c   **** 
+  60:.\ADXL345.c   **** DataRate_t getMeasurementRate() 
+  61:.\ADXL345.c   **** {
+  62:.\ADXL345.c   ****     return (DataRate_t) (readRegister(ADXL345_REG_BW_RATE) & 0xF0);
+  63:.\ADXL345.c   **** }
+  64:.\ADXL345.c   **** 
+  65:.\ADXL345.c   **** void setRange(Range_t range) 
+  66:.\ADXL345.c   **** {
+  67:.\ADXL345.c   ****     uint8 value = getRange();
+  68:.\ADXL345.c   ****     
+  69:.\ADXL345.c   ****   // Update the data rate
+  70:.\ADXL345.c   ****   // (&) 0b11110000 (0xF0 - Leave MSB)
+  71:.\ADXL345.c   ****   // (|) 0b0000xx?? (range - Set range)
+  72:.\ADXL345.c   ****   // (|) 0b00001000 (0x08 - Set Full Res)
+  73:.\ADXL345.c   ****     
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 4
+
+
+  74:.\ADXL345.c   ****     value &= 0xF0;
+  75:.\ADXL345.c   ****     value |= range;
+  76:.\ADXL345.c   ****     value |= 0x08;
+  77:.\ADXL345.c   ****     
+  78:.\ADXL345.c   ****     writeRegister(ADXL345_REG_DATA_FORMAT, value);
+  79:.\ADXL345.c   **** }
+  80:.\ADXL345.c   **** 
+  81:.\ADXL345.c   **** Range_t getRange() 
+  82:.\ADXL345.c   **** {
+  83:.\ADXL345.c   ****     return (Range_t) (readRegister(ADXL345_REG_DATA_FORMAT) & 0x03);
+  84:.\ADXL345.c   **** }
+  85:.\ADXL345.c   **** 
+  86:.\ADXL345.c   **** void getSensorData() 
+  87:.\ADXL345.c   **** {
+  88:.\ADXL345.c   ****     getRawDataX();
+  89:.\ADXL345.c   ****     getRawDataY();
+  90:.\ADXL345.c   ****     getRawDataZ();
+  91:.\ADXL345.c   ****     
+  92:.\ADXL345.c   ****     scaleAccValues();
+  93:.\ADXL345.c   **** }
+  94:.\ADXL345.c   **** 
+  95:.\ADXL345.c   **** uint8 readRegister(uint8 reg)
+  96:.\ADXL345.c   **** {
+  99              		.loc 1 96 0
+ 100              		.cfi_startproc
+ 101              	.LVL9:
+ 102 0000 00B5     		push	{lr}
+ 103              		.cfi_def_cfa_offset 4
+ 104              		.cfi_offset 14, -4
+ 105 0002 83B0     		sub	sp, sp, #12
+ 106              		.cfi_def_cfa_offset 16
+ 107 0004 6B46     		mov	r3, sp
+ 108 0006 D91D     		add	r1, r3, #7
+ 109 0008 0870     		strb	r0, [r1]
+  97:.\ADXL345.c   ****     static uint8 readBuffer[0x01];
+  98:.\ADXL345.c   ****     uint8 status = I2C_I2CMasterWriteBuf(ADXL345_ADDRESS, &reg, sizeof(reg), I2C_I2C_MODE_COMPLETE_
+ 110              		.loc 1 98 0
+ 111 000a 5320     		mov	r0, #83
+ 112              	.LVL10:
+ 113 000c 0122     		mov	r2, #1
+ 114 000e 0023     		mov	r3, #0
+ 115 0010 FFF7FEFF 		bl	I2C_I2CMasterWriteBuf
+ 116              	.LVL11:
+ 117 0014 C0B2     		uxtb	r0, r0
+ 118              	.LVL12:
+  99:.\ADXL345.c   ****     if (status != I2C_I2C_MSTR_NO_ERROR) debug("Write operation in readRegister ended with error!")
+ 119              		.loc 1 99 0
+ 120 0016 0028     		cmp	r0, #0
+ 121 0018 02D0     		beq	.L6
+ 122              		.loc 1 99 0 is_stmt 0 discriminator 1
+ 123 001a 0F48     		ldr	r0, .L9
+ 124              	.LVL13:
+ 125 001c FFF7FEFF 		bl	debug
+ 126              	.LVL14:
+ 127              	.L6:
+ 100:.\ADXL345.c   ****     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_WR_CMPLT));
+ 128              		.loc 1 100 0 is_stmt 1 discriminator 1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 5
+
+
+ 129 0020 FFF7FEFF 		bl	I2C_I2CMasterStatus
+ 130              	.LVL15:
+ 131 0024 8307     		lsl	r3, r0, #30
+ 132 0026 FBD5     		bpl	.L6
+ 101:.\ADXL345.c   ****     I2C_I2CMasterClearStatus();
+ 133              		.loc 1 101 0
+ 134 0028 FFF7FEFF 		bl	I2C_I2CMasterClearStatus
+ 135              	.LVL16:
+ 102:.\ADXL345.c   ****     status = I2C_I2CMasterReadBuf(ADXL345_ADDRESS, (uint8 *) readBuffer, sizeof(readBuffer), I2C_I2
+ 136              		.loc 1 102 0
+ 137 002c 5320     		mov	r0, #83
+ 138 002e 0B49     		ldr	r1, .L9+4
+ 139 0030 0122     		mov	r2, #1
+ 140 0032 0023     		mov	r3, #0
+ 141 0034 FFF7FEFF 		bl	I2C_I2CMasterReadBuf
+ 142              	.LVL17:
+ 143 0038 C0B2     		uxtb	r0, r0
+ 144              	.LVL18:
+ 103:.\ADXL345.c   ****     if (status != I2C_I2C_MSTR_NO_ERROR) debug("Read operation in readRegister ended with error!");
+ 145              		.loc 1 103 0
+ 146 003a 0028     		cmp	r0, #0
+ 147 003c 02D0     		beq	.L8
+ 148              		.loc 1 103 0 is_stmt 0 discriminator 1
+ 149 003e 0848     		ldr	r0, .L9+8
+ 150              	.LVL19:
+ 151 0040 FFF7FEFF 		bl	debug
+ 152              	.LVL20:
+ 153              	.L8:
+ 104:.\ADXL345.c   ****     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_RD_CMPLT));
+ 154              		.loc 1 104 0 is_stmt 1 discriminator 1
+ 155 0044 FFF7FEFF 		bl	I2C_I2CMasterStatus
+ 156              	.LVL21:
+ 157 0048 C307     		lsl	r3, r0, #31
+ 158 004a FBD5     		bpl	.L8
+ 105:.\ADXL345.c   ****     I2C_I2CMasterClearStatus();
+ 159              		.loc 1 105 0
+ 160 004c FFF7FEFF 		bl	I2C_I2CMasterClearStatus
+ 161              	.LVL22:
+ 106:.\ADXL345.c   ****     return readBuffer[0x00];
+ 162              		.loc 1 106 0
+ 163 0050 024B     		ldr	r3, .L9+4
+ 164 0052 1878     		ldrb	r0, [r3]
+ 107:.\ADXL345.c   **** }
+ 165              		.loc 1 107 0
+ 166 0054 03B0     		add	sp, sp, #12
+ 167              	.LVL23:
+ 168              		@ sp needed
+ 169 0056 00BD     		pop	{pc}
+ 170              	.L10:
+ 171              		.align	2
+ 172              	.L9:
+ 173 0058 00000000 		.word	.LC6
+ 174 005c 00000000 		.word	.LANCHOR0
+ 175 0060 34000000 		.word	.LC9
+ 176              		.cfi_endproc
+ 177              	.LFE48:
+ 178              		.size	readRegister, .-readRegister
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 6
+
+
+ 179              		.section	.text.getDeviceId,"ax",%progbits
+ 180              		.align	2
+ 181              		.global	getDeviceId
+ 182              		.code	16
+ 183              		.thumb_func
+ 184              		.type	getDeviceId, %function
+ 185              	getDeviceId:
+ 186              	.LFB38:
+  27:.\ADXL345.c   ****     return readRegister(ADXL345_REG_DEVID);
+ 187              		.loc 1 27 0
+ 188              		.cfi_startproc
+ 189 0000 08B5     		push	{r3, lr}
+ 190              		.cfi_def_cfa_offset 8
+ 191              		.cfi_offset 3, -8
+ 192              		.cfi_offset 14, -4
+  28:.\ADXL345.c   **** }
+ 193              		.loc 1 28 0
+ 194 0002 0020     		mov	r0, #0
+ 195 0004 FFF7FEFF 		bl	readRegister
+ 196              	.LVL24:
+  29:.\ADXL345.c   **** 
+ 197              		.loc 1 29 0
+ 198              		@ sp needed
+ 199 0008 08BD     		pop	{r3, pc}
+ 200              		.cfi_endproc
+ 201              	.LFE38:
+ 202              		.size	getDeviceId, .-getDeviceId
+ 203 000a C046     		.section	.text.getMeasurementRate,"ax",%progbits
+ 204              		.align	2
+ 205              		.global	getMeasurementRate
+ 206              		.code	16
+ 207              		.thumb_func
+ 208              		.type	getMeasurementRate, %function
+ 209              	getMeasurementRate:
+ 210              	.LFB44:
+  61:.\ADXL345.c   ****     return (DataRate_t) (readRegister(ADXL345_REG_BW_RATE) & 0xF0);
+ 211              		.loc 1 61 0
+ 212              		.cfi_startproc
+ 213 0000 08B5     		push	{r3, lr}
+ 214              		.cfi_def_cfa_offset 8
+ 215              		.cfi_offset 3, -8
+ 216              		.cfi_offset 14, -4
+  62:.\ADXL345.c   **** }
+ 217              		.loc 1 62 0
+ 218 0002 2C20     		mov	r0, #44
+ 219 0004 FFF7FEFF 		bl	readRegister
+ 220              	.LVL25:
+ 221 0008 F023     		mov	r3, #240
+ 222 000a 1840     		and	r0, r3
+  63:.\ADXL345.c   **** 
+ 223              		.loc 1 63 0
+ 224              		@ sp needed
+ 225 000c 08BD     		pop	{r3, pc}
+ 226              		.cfi_endproc
+ 227              	.LFE44:
+ 228              		.size	getMeasurementRate, .-getMeasurementRate
+ 229 000e C046     		.section	.text.getRange,"ax",%progbits
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 7
+
+
+ 230              		.align	2
+ 231              		.global	getRange
+ 232              		.code	16
+ 233              		.thumb_func
+ 234              		.type	getRange, %function
+ 235              	getRange:
+ 236              	.LFB46:
+  82:.\ADXL345.c   ****     return (Range_t) (readRegister(ADXL345_REG_DATA_FORMAT) & 0x03);
+ 237              		.loc 1 82 0
+ 238              		.cfi_startproc
+ 239 0000 08B5     		push	{r3, lr}
+ 240              		.cfi_def_cfa_offset 8
+ 241              		.cfi_offset 3, -8
+ 242              		.cfi_offset 14, -4
+  83:.\ADXL345.c   **** }
+ 243              		.loc 1 83 0
+ 244 0002 3120     		mov	r0, #49
+ 245 0004 FFF7FEFF 		bl	readRegister
+ 246              	.LVL26:
+ 247 0008 0323     		mov	r3, #3
+ 248 000a 1840     		and	r0, r3
+  84:.\ADXL345.c   **** 
+ 249              		.loc 1 84 0
+ 250              		@ sp needed
+ 251 000c 08BD     		pop	{r3, pc}
+ 252              		.cfi_endproc
+ 253              	.LFE46:
+ 254              		.size	getRange, .-getRange
+ 255 000e C046     		.section	.text.readRegister16,"ax",%progbits
+ 256              		.align	2
+ 257              		.global	readRegister16
+ 258              		.code	16
+ 259              		.thumb_func
+ 260              		.type	readRegister16, %function
+ 261              	readRegister16:
+ 262              	.LFB49:
+ 108:.\ADXL345.c   **** 
+ 109:.\ADXL345.c   **** long readRegister16(uint8 reg) 
+ 110:.\ADXL345.c   **** {
+ 263              		.loc 1 110 0
+ 264              		.cfi_startproc
+ 265              	.LVL27:
+ 266 0000 00B5     		push	{lr}
+ 267              		.cfi_def_cfa_offset 4
+ 268              		.cfi_offset 14, -4
+ 269 0002 83B0     		sub	sp, sp, #12
+ 270              		.cfi_def_cfa_offset 16
+ 271 0004 6B46     		mov	r3, sp
+ 272 0006 D91D     		add	r1, r3, #7
+ 273 0008 0870     		strb	r0, [r1]
+ 111:.\ADXL345.c   ****     static uint8 readBuffer[0x02];
+ 112:.\ADXL345.c   ****     uint8 status = I2C_I2CMasterWriteBuf(ADXL345_ADDRESS, &reg, sizeof(reg), I2C_I2C_MODE_COMPLETE_
+ 274              		.loc 1 112 0
+ 275 000a 5320     		mov	r0, #83
+ 276              	.LVL28:
+ 277 000c 0122     		mov	r2, #1
+ 278 000e 0023     		mov	r3, #0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 8
+
+
+ 279 0010 FFF7FEFF 		bl	I2C_I2CMasterWriteBuf
+ 280              	.LVL29:
+ 281 0014 C0B2     		uxtb	r0, r0
+ 282              	.LVL30:
+ 113:.\ADXL345.c   ****     if (status != I2C_I2C_MSTR_NO_ERROR) debug("Write operation in readRegister16 ended with error!
+ 283              		.loc 1 113 0
+ 284 0016 0028     		cmp	r0, #0
+ 285 0018 02D0     		beq	.L16
+ 286              		.loc 1 113 0 is_stmt 0 discriminator 1
+ 287 001a 1148     		ldr	r0, .L19
+ 288              	.LVL31:
+ 289 001c FFF7FEFF 		bl	debug
+ 290              	.LVL32:
+ 291              	.L16:
+ 114:.\ADXL345.c   ****     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_WR_CMPLT));
+ 292              		.loc 1 114 0 is_stmt 1 discriminator 1
+ 293 0020 FFF7FEFF 		bl	I2C_I2CMasterStatus
+ 294              	.LVL33:
+ 295 0024 8307     		lsl	r3, r0, #30
+ 296 0026 FBD5     		bpl	.L16
+ 115:.\ADXL345.c   ****     I2C_I2CMasterClearStatus();
+ 297              		.loc 1 115 0
+ 298 0028 FFF7FEFF 		bl	I2C_I2CMasterClearStatus
+ 299              	.LVL34:
+ 116:.\ADXL345.c   ****     status = I2C_I2CMasterReadBuf(ADXL345_ADDRESS, (uint8 *) readBuffer, sizeof(readBuffer), I2C_I2
+ 300              		.loc 1 116 0
+ 301 002c 5320     		mov	r0, #83
+ 302 002e 0D49     		ldr	r1, .L19+4
+ 303 0030 0431     		add	r1, r1, #4
+ 304 0032 0222     		mov	r2, #2
+ 305 0034 0023     		mov	r3, #0
+ 306 0036 FFF7FEFF 		bl	I2C_I2CMasterReadBuf
+ 307              	.LVL35:
+ 308 003a C0B2     		uxtb	r0, r0
+ 309              	.LVL36:
+ 117:.\ADXL345.c   ****         if (status != I2C_I2C_MSTR_NO_ERROR) debug("Read operation in readRegister16 ended with err
+ 310              		.loc 1 117 0
+ 311 003c 0028     		cmp	r0, #0
+ 312 003e 02D0     		beq	.L18
+ 313              		.loc 1 117 0 is_stmt 0 discriminator 1
+ 314 0040 0948     		ldr	r0, .L19+8
+ 315              	.LVL37:
+ 316 0042 FFF7FEFF 		bl	debug
+ 317              	.LVL38:
+ 318              	.L18:
+ 118:.\ADXL345.c   ****     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_RD_CMPLT));
+ 319              		.loc 1 118 0 is_stmt 1 discriminator 1
+ 320 0046 FFF7FEFF 		bl	I2C_I2CMasterStatus
+ 321              	.LVL39:
+ 322 004a C307     		lsl	r3, r0, #31
+ 323 004c FBD5     		bpl	.L18
+ 119:.\ADXL345.c   ****     I2C_I2CMasterClearStatus();
+ 324              		.loc 1 119 0
+ 325 004e FFF7FEFF 		bl	I2C_I2CMasterClearStatus
+ 326              	.LVL40:
+ 120:.\ADXL345.c   ****     return readBuffer[0x00] << 0x08 | readBuffer[0x01];   
+ 327              		.loc 1 120 0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 9
+
+
+ 328 0052 044B     		ldr	r3, .L19+4
+ 329 0054 1879     		ldrb	r0, [r3, #4]
+ 330 0056 0002     		lsl	r0, r0, #8
+ 331 0058 5B79     		ldrb	r3, [r3, #5]
+ 332 005a 1843     		orr	r0, r3
+ 121:.\ADXL345.c   **** }
+ 333              		.loc 1 121 0
+ 334 005c 03B0     		add	sp, sp, #12
+ 335              	.LVL41:
+ 336              		@ sp needed
+ 337 005e 00BD     		pop	{pc}
+ 338              	.L20:
+ 339              		.align	2
+ 340              	.L19:
+ 341 0060 68000000 		.word	.LC11
+ 342 0064 00000000 		.word	.LANCHOR0
+ 343 0068 9C000000 		.word	.LC14
+ 344              		.cfi_endproc
+ 345              	.LFE49:
+ 346              		.size	readRegister16, .-readRegister16
+ 347              		.section	.text.getRawDataX,"ax",%progbits
+ 348              		.align	2
+ 349              		.global	getRawDataX
+ 350              		.code	16
+ 351              		.thumb_func
+ 352              		.type	getRawDataX, %function
+ 353              	getRawDataX:
+ 354              	.LFB39:
+  32:.\ADXL345.c   ****     rawDataX = readRegister16(ADXL345_REG_DATAX0);
+ 355              		.loc 1 32 0
+ 356              		.cfi_startproc
+ 357 0000 10B5     		push	{r4, lr}
+ 358              		.cfi_def_cfa_offset 8
+ 359              		.cfi_offset 4, -8
+ 360              		.cfi_offset 14, -4
+  33:.\ADXL345.c   ****     debug("Raw X: ");
+ 361              		.loc 1 33 0
+ 362 0002 3220     		mov	r0, #50
+ 363 0004 FFF7FEFF 		bl	readRegister16
+ 364              	.LVL42:
+ 365 0008 044C     		ldr	r4, .L22
+ 366 000a 2080     		strh	r0, [r4]
+  34:.\ADXL345.c   ****     debugInt(rawDataX);
+ 367              		.loc 1 34 0
+ 368 000c 0448     		ldr	r0, .L22+4
+ 369 000e FFF7FEFF 		bl	debug
+ 370              	.LVL43:
+  35:.\ADXL345.c   **** }
+ 371              		.loc 1 35 0
+ 372 0012 2088     		ldrh	r0, [r4]
+ 373 0014 FFF7FEFF 		bl	debugInt
+ 374              	.LVL44:
+  36:.\ADXL345.c   **** 
+ 375              		.loc 1 36 0
+ 376              		@ sp needed
+ 377 0018 10BD     		pop	{r4, pc}
+ 378              	.L23:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 10
+
+
+ 379 001a C046     		.align	2
+ 380              	.L22:
+ 381 001c 00000000 		.word	rawDataX
+ 382 0020 D0000000 		.word	.LC17
+ 383              		.cfi_endproc
+ 384              	.LFE39:
+ 385              		.size	getRawDataX, .-getRawDataX
+ 386              		.section	.text.getRawDataY,"ax",%progbits
+ 387              		.align	2
+ 388              		.global	getRawDataY
+ 389              		.code	16
+ 390              		.thumb_func
+ 391              		.type	getRawDataY, %function
+ 392              	getRawDataY:
+ 393              	.LFB40:
+  39:.\ADXL345.c   ****     rawDataY = readRegister16(ADXL345_REG_DATAY0);
+ 394              		.loc 1 39 0
+ 395              		.cfi_startproc
+ 396 0000 08B5     		push	{r3, lr}
+ 397              		.cfi_def_cfa_offset 8
+ 398              		.cfi_offset 3, -8
+ 399              		.cfi_offset 14, -4
+  40:.\ADXL345.c   **** }
+ 400              		.loc 1 40 0
+ 401 0002 3420     		mov	r0, #52
+ 402 0004 FFF7FEFF 		bl	readRegister16
+ 403              	.LVL45:
+ 404 0008 014B     		ldr	r3, .L25
+ 405 000a 1880     		strh	r0, [r3]
+  41:.\ADXL345.c   **** 
+ 406              		.loc 1 41 0
+ 407              		@ sp needed
+ 408 000c 08BD     		pop	{r3, pc}
+ 409              	.L26:
+ 410 000e C046     		.align	2
+ 411              	.L25:
+ 412 0010 00000000 		.word	rawDataY
+ 413              		.cfi_endproc
+ 414              	.LFE40:
+ 415              		.size	getRawDataY, .-getRawDataY
+ 416              		.section	.text.getRawDataZ,"ax",%progbits
+ 417              		.align	2
+ 418              		.global	getRawDataZ
+ 419              		.code	16
+ 420              		.thumb_func
+ 421              		.type	getRawDataZ, %function
+ 422              	getRawDataZ:
+ 423              	.LFB41:
+  44:.\ADXL345.c   ****     rawDataZ = readRegister16(ADXL345_REG_DATAZ0);
+ 424              		.loc 1 44 0
+ 425              		.cfi_startproc
+ 426 0000 08B5     		push	{r3, lr}
+ 427              		.cfi_def_cfa_offset 8
+ 428              		.cfi_offset 3, -8
+ 429              		.cfi_offset 14, -4
+  45:.\ADXL345.c   **** }
+ 430              		.loc 1 45 0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 11
+
+
+ 431 0002 3620     		mov	r0, #54
+ 432 0004 FFF7FEFF 		bl	readRegister16
+ 433              	.LVL46:
+ 434 0008 014B     		ldr	r3, .L28
+ 435 000a 1880     		strh	r0, [r3]
+  46:.\ADXL345.c   **** 
+ 436              		.loc 1 46 0
+ 437              		@ sp needed
+ 438 000c 08BD     		pop	{r3, pc}
+ 439              	.L29:
+ 440 000e C046     		.align	2
+ 441              	.L28:
+ 442 0010 00000000 		.word	rawDataZ
+ 443              		.cfi_endproc
+ 444              	.LFE41:
+ 445              		.size	getRawDataZ, .-getRawDataZ
+ 446              		.section	.text.getSensorData,"ax",%progbits
+ 447              		.align	2
+ 448              		.global	getSensorData
+ 449              		.code	16
+ 450              		.thumb_func
+ 451              		.type	getSensorData, %function
+ 452              	getSensorData:
+ 453              	.LFB47:
+  87:.\ADXL345.c   ****     getRawDataX();
+ 454              		.loc 1 87 0
+ 455              		.cfi_startproc
+ 456 0000 08B5     		push	{r3, lr}
+ 457              		.cfi_def_cfa_offset 8
+ 458              		.cfi_offset 3, -8
+ 459              		.cfi_offset 14, -4
+  88:.\ADXL345.c   ****     getRawDataY();
+ 460              		.loc 1 88 0
+ 461 0002 FFF7FEFF 		bl	getRawDataX
+ 462              	.LVL47:
+  89:.\ADXL345.c   ****     getRawDataZ();
+ 463              		.loc 1 89 0
+ 464 0006 FFF7FEFF 		bl	getRawDataY
+ 465              	.LVL48:
+  90:.\ADXL345.c   ****     
+ 466              		.loc 1 90 0
+ 467 000a FFF7FEFF 		bl	getRawDataZ
+ 468              	.LVL49:
+  92:.\ADXL345.c   **** }
+ 469              		.loc 1 92 0
+ 470 000e FFF7FEFF 		bl	scaleAccValues
+ 471              	.LVL50:
+  93:.\ADXL345.c   **** 
+ 472              		.loc 1 93 0
+ 473              		@ sp needed
+ 474 0012 08BD     		pop	{r3, pc}
+ 475              		.cfi_endproc
+ 476              	.LFE47:
+ 477              		.size	getSensorData, .-getSensorData
+ 478              		.section	.text.writeRegister,"ax",%progbits
+ 479              		.align	2
+ 480              		.global	writeRegister
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 12
+
+
+ 481              		.code	16
+ 482              		.thumb_func
+ 483              		.type	writeRegister, %function
+ 484              	writeRegister:
+ 485              	.LFB50:
+ 122:.\ADXL345.c   **** 
+ 123:.\ADXL345.c   **** void writeRegister(uint8 reg, uint8 cmd)
+ 124:.\ADXL345.c   **** {
+ 486              		.loc 1 124 0
+ 487              		.cfi_startproc
+ 488              	.LVL51:
+ 489 0000 10B5     		push	{r4, lr}
+ 490              		.cfi_def_cfa_offset 8
+ 491              		.cfi_offset 4, -8
+ 492              		.cfi_offset 14, -4
+ 493 0002 82B0     		sub	sp, sp, #8
+ 494              		.cfi_def_cfa_offset 16
+ 125:.\ADXL345.c   ****     uint8 writeBuffer[0x02] = {0};
+ 495              		.loc 1 125 0
+ 496 0004 01AB     		add	r3, sp, #4
+ 126:.\ADXL345.c   ****     writeBuffer[0] = reg;
+ 497              		.loc 1 126 0
+ 498 0006 1870     		strb	r0, [r3]
+ 127:.\ADXL345.c   ****     writeBuffer[1] = cmd;
+ 499              		.loc 1 127 0
+ 500 0008 5970     		strb	r1, [r3, #1]
+ 128:.\ADXL345.c   ****     
+ 129:.\ADXL345.c   ****     uint8 status = I2C_I2CMasterWriteBuf(ADXL345_ADDRESS, (uint8 *) writeBuffer, sizeof(writeBuffer
+ 501              		.loc 1 129 0
+ 502 000a 5320     		mov	r0, #83
+ 503              	.LVL52:
+ 504 000c 191C     		mov	r1, r3
+ 505              	.LVL53:
+ 506 000e 0222     		mov	r2, #2
+ 507 0010 0023     		mov	r3, #0
+ 508              	.LVL54:
+ 509 0012 FFF7FEFF 		bl	I2C_I2CMasterWriteBuf
+ 510              	.LVL55:
+ 511 0016 C4B2     		uxtb	r4, r0
+ 512              	.LVL56:
+ 513              	.L32:
+ 130:.\ADXL345.c   ****     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_WR_CMPLT));
+ 514              		.loc 1 130 0 discriminator 1
+ 515 0018 FFF7FEFF 		bl	I2C_I2CMasterStatus
+ 516              	.LVL57:
+ 517 001c 8307     		lsl	r3, r0, #30
+ 518 001e FBD5     		bpl	.L32
+ 131:.\ADXL345.c   ****     if (status != I2C_I2C_MSTR_NO_ERROR) debug("Write operation ended with error!");
+ 519              		.loc 1 131 0
+ 520 0020 002C     		cmp	r4, #0
+ 521 0022 02D0     		beq	.L33
+ 522              		.loc 1 131 0 is_stmt 0 discriminator 1
+ 523 0024 0348     		ldr	r0, .L34
+ 524 0026 FFF7FEFF 		bl	debug
+ 525              	.LVL58:
+ 526              	.L33:
+ 132:.\ADXL345.c   ****     I2C_I2CMasterClearStatus();
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 13
+
+
+ 527              		.loc 1 132 0 is_stmt 1
+ 528 002a FFF7FEFF 		bl	I2C_I2CMasterClearStatus
+ 529              	.LVL59:
+ 133:.\ADXL345.c   ****     
+ 134:.\ADXL345.c   **** }
+ 530              		.loc 1 134 0
+ 531 002e 02B0     		add	sp, sp, #8
+ 532              		@ sp needed
+ 533              	.LVL60:
+ 534 0030 10BD     		pop	{r4, pc}
+ 535              	.L35:
+ 536 0032 C046     		.align	2
+ 537              	.L34:
+ 538 0034 D8000000 		.word	.LC21
+ 539              		.cfi_endproc
+ 540              	.LFE50:
+ 541              		.size	writeRegister, .-writeRegister
+ 542              		.section	.text.startAccConnection,"ax",%progbits
+ 543              		.align	2
+ 544              		.global	startAccConnection
+ 545              		.code	16
+ 546              		.thumb_func
+ 547              		.type	startAccConnection, %function
+ 548              	startAccConnection:
+ 549              	.LFB37:
+  18:.\ADXL345.c   ****     CyDelay(50); // wait for initialization
+ 550              		.loc 1 18 0
+ 551              		.cfi_startproc
+ 552 0000 08B5     		push	{r3, lr}
+ 553              		.cfi_def_cfa_offset 8
+ 554              		.cfi_offset 3, -8
+ 555              		.cfi_offset 14, -4
+  19:.\ADXL345.c   ****     writeRegister(ADXL345_REG_POWER_CTL, 0x08);  
+ 556              		.loc 1 19 0
+ 557 0002 3220     		mov	r0, #50
+ 558 0004 FFF7FEFF 		bl	CyDelay
+ 559              	.LVL61:
+  20:.\ADXL345.c   ****     debug("Started measurement mode");
+ 560              		.loc 1 20 0
+ 561 0008 2D20     		mov	r0, #45
+ 562 000a 0821     		mov	r1, #8
+ 563 000c FFF7FEFF 		bl	writeRegister
+ 564              	.LVL62:
+  21:.\ADXL345.c   ****     
+ 565              		.loc 1 21 0
+ 566 0010 0248     		ldr	r0, .L37
+ 567 0012 FFF7FEFF 		bl	debug
+ 568              	.LVL63:
+  24:.\ADXL345.c   **** 
+ 569              		.loc 1 24 0
+ 570 0016 0120     		mov	r0, #1
+ 571              		@ sp needed
+ 572 0018 08BD     		pop	{r3, pc}
+ 573              	.L38:
+ 574 001a C046     		.align	2
+ 575              	.L37:
+ 576 001c FC000000 		.word	.LC23
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 14
+
+
+ 577              		.cfi_endproc
+ 578              	.LFE37:
+ 579              		.size	startAccConnection, .-startAccConnection
+ 580              		.section	.text.setMeasurementRate,"ax",%progbits
+ 581              		.align	2
+ 582              		.global	setMeasurementRate
+ 583              		.code	16
+ 584              		.thumb_func
+ 585              		.type	setMeasurementRate, %function
+ 586              	setMeasurementRate:
+ 587              	.LFB43:
+  56:.\ADXL345.c   ****     writeRegister(ADXL345_REG_BW_RATE, range);
+ 588              		.loc 1 56 0
+ 589              		.cfi_startproc
+ 590              	.LVL64:
+ 591 0000 08B5     		push	{r3, lr}
+ 592              		.cfi_def_cfa_offset 8
+ 593              		.cfi_offset 3, -8
+ 594              		.cfi_offset 14, -4
+ 595 0002 011C     		mov	r1, r0
+  57:.\ADXL345.c   **** }
+ 596              		.loc 1 57 0
+ 597 0004 2C20     		mov	r0, #44
+ 598              	.LVL65:
+ 599 0006 FFF7FEFF 		bl	writeRegister
+ 600              	.LVL66:
+  58:.\ADXL345.c   **** 
+ 601              		.loc 1 58 0
+ 602              		@ sp needed
+ 603 000a 08BD     		pop	{r3, pc}
+ 604              		.cfi_endproc
+ 605              	.LFE43:
+ 606              		.size	setMeasurementRate, .-setMeasurementRate
+ 607              		.section	.text.setRange,"ax",%progbits
+ 608              		.align	2
+ 609              		.global	setRange
+ 610              		.code	16
+ 611              		.thumb_func
+ 612              		.type	setRange, %function
+ 613              	setRange:
+ 614              	.LFB45:
+  66:.\ADXL345.c   ****     uint8 value = getRange();
+ 615              		.loc 1 66 0
+ 616              		.cfi_startproc
+ 617              	.LVL67:
+ 618 0000 10B5     		push	{r4, lr}
+ 619              		.cfi_def_cfa_offset 8
+ 620              		.cfi_offset 4, -8
+ 621              		.cfi_offset 14, -4
+ 622 0002 041C     		mov	r4, r0
+  67:.\ADXL345.c   ****     
+ 623              		.loc 1 67 0
+ 624 0004 FFF7FEFF 		bl	getRange
+ 625              	.LVL68:
+  74:.\ADXL345.c   ****     value |= range;
+ 626              		.loc 1 74 0
+ 627 0008 F023     		mov	r3, #240
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 15
+
+
+ 628 000a 011C     		mov	r1, r0
+ 629 000c 1940     		and	r1, r3
+ 630              	.LVL69:
+  75:.\ADXL345.c   ****     value |= 0x08;
+ 631              		.loc 1 75 0
+ 632 000e 2143     		orr	r1, r4
+ 633              	.LVL70:
+  76:.\ADXL345.c   ****     
+ 634              		.loc 1 76 0
+ 635 0010 E83B     		sub	r3, r3, #232
+ 636 0012 1943     		orr	r1, r3
+ 637              	.LVL71:
+  78:.\ADXL345.c   **** }
+ 638              		.loc 1 78 0
+ 639 0014 3120     		mov	r0, #49
+ 640 0016 FFF7FEFF 		bl	writeRegister
+ 641              	.LVL72:
+  79:.\ADXL345.c   **** 
+ 642              		.loc 1 79 0
+ 643              		@ sp needed
+ 644 001a 10BD     		pop	{r4, pc}
+ 645              		.cfi_endproc
+ 646              	.LFE45:
+ 647              		.size	setRange, .-setRange
+ 648              		.comm	rawDataZ,2,2
+ 649              		.comm	rawDataY,2,2
+ 650              		.comm	rawDataX,2,2
+ 651              		.comm	zData,4,4
+ 652              		.comm	yData,4,4
+ 653              		.comm	xData,4,4
+ 654              		.comm	bleConnected,4,4
+ 655              		.comm	notifyOn,4,4
+ 656              		.section	.rodata.str1.4,"aMS",%progbits,1
+ 657              		.align	2
+ 658              	.LC6:
+ 659 0000 57726974 		.ascii	"Write operation in readRegister ended with error!\000"
+ 659      65206F70 
+ 659      65726174 
+ 659      696F6E20 
+ 659      696E2072 
+ 660 0032 0000     		.space	2
+ 661              	.LC9:
+ 662 0034 52656164 		.ascii	"Read operation in readRegister ended with error!\000"
+ 662      206F7065 
+ 662      72617469 
+ 662      6F6E2069 
+ 662      6E207265 
+ 663 0065 000000   		.space	3
+ 664              	.LC11:
+ 665 0068 57726974 		.ascii	"Write operation in readRegister16 ended with error!"
+ 665      65206F70 
+ 665      65726174 
+ 665      696F6E20 
+ 665      696E2072 
+ 666 009b 00       		.ascii	"\000"
+ 667              	.LC14:
+ 668 009c 52656164 		.ascii	"Read operation in readRegister16 ended with error!\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 16
+
+
+ 668      206F7065 
+ 668      72617469 
+ 668      6F6E2069 
+ 668      6E207265 
+ 669 00cf 00       		.space	1
+ 670              	.LC17:
+ 671 00d0 52617720 		.ascii	"Raw X: \000"
+ 671      583A2000 
+ 672              	.LC21:
+ 673 00d8 57726974 		.ascii	"Write operation ended with error!\000"
+ 673      65206F70 
+ 673      65726174 
+ 673      696F6E20 
+ 673      656E6465 
+ 674 00fa 0000     		.space	2
+ 675              	.LC23:
+ 676 00fc 53746172 		.ascii	"Started measurement mode\000"
+ 676      74656420 
+ 676      6D656173 
+ 676      7572656D 
+ 676      656E7420 
+ 677 0115 000000   		.bss
+ 678              		.align	2
+ 679              		.set	.LANCHOR0,. + 0
+ 680              		.type	readBuffer.7898, %object
+ 681              		.size	readBuffer.7898, 1
+ 682              	readBuffer.7898:
+ 683 0000 00       		.space	1
+ 684 0001 000000   		.space	3
+ 685              		.type	readBuffer.7909, %object
+ 686              		.size	readBuffer.7909, 2
+ 687              	readBuffer.7909:
+ 688 0004 0000     		.space	2
+ 689 0006 0000     		.text
+ 690              	.Letext0:
+ 691              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 692              		.file 3 "./common.h"
+ 693              		.file 4 "Generated_Source\\PSoC4/BLE_Stack.h"
+ 694              		.file 5 "./ADXL345.h"
+ 695              		.file 6 "Generated_Source\\PSoC4/I2C_I2C.h"
+ 696              		.file 7 "Generated_Source\\PSoC4/CyLib.h"
+ 697              		.section	.debug_info,"",%progbits
+ 698              	.Ldebug_info0:
+ 699 0000 28090000 		.4byte	0x928
+ 700 0004 0400     		.2byte	0x4
+ 701 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 702 000a 04       		.byte	0x4
+ 703 000b 01       		.uleb128 0x1
+ 704 000c 88080000 		.4byte	.LASF139
+ 705 0010 01       		.byte	0x1
+ 706 0011 24030000 		.4byte	.LASF140
+ 707 0015 24020000 		.4byte	.LASF141
+ 708 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 709 001d 00000000 		.4byte	0
+ 710 0021 00000000 		.4byte	.Ldebug_line0
+ 711 0025 02       		.uleb128 0x2
+ 712 0026 01       		.byte	0x1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 17
+
+
+ 713 0027 06       		.byte	0x6
+ 714 0028 63020000 		.4byte	.LASF0
+ 715 002c 02       		.uleb128 0x2
+ 716 002d 01       		.byte	0x1
+ 717 002e 08       		.byte	0x8
+ 718 002f 40080000 		.4byte	.LASF1
+ 719 0033 02       		.uleb128 0x2
+ 720 0034 02       		.byte	0x2
+ 721 0035 05       		.byte	0x5
+ 722 0036 16090000 		.4byte	.LASF2
+ 723 003a 02       		.uleb128 0x2
+ 724 003b 02       		.byte	0x2
+ 725 003c 07       		.byte	0x7
+ 726 003d FF040000 		.4byte	.LASF3
+ 727 0041 02       		.uleb128 0x2
+ 728 0042 04       		.byte	0x4
+ 729 0043 05       		.byte	0x5
+ 730 0044 37010000 		.4byte	.LASF4
+ 731 0048 02       		.uleb128 0x2
+ 732 0049 04       		.byte	0x4
+ 733 004a 07       		.byte	0x7
+ 734 004b 4D040000 		.4byte	.LASF5
+ 735 004f 02       		.uleb128 0x2
+ 736 0050 08       		.byte	0x8
+ 737 0051 05       		.byte	0x5
+ 738 0052 55020000 		.4byte	.LASF6
+ 739 0056 02       		.uleb128 0x2
+ 740 0057 08       		.byte	0x8
+ 741 0058 07       		.byte	0x7
+ 742 0059 61010000 		.4byte	.LASF7
+ 743 005d 03       		.uleb128 0x3
+ 744 005e 04       		.byte	0x4
+ 745 005f 05       		.byte	0x5
+ 746 0060 696E7400 		.ascii	"int\000"
+ 747 0064 02       		.uleb128 0x2
+ 748 0065 04       		.byte	0x4
+ 749 0066 07       		.byte	0x7
+ 750 0067 17040000 		.4byte	.LASF8
+ 751 006b 04       		.uleb128 0x4
+ 752 006c 45070000 		.4byte	.LASF9
+ 753 0070 02       		.byte	0x2
+ 754 0071 3801     		.2byte	0x138
+ 755 0073 2C000000 		.4byte	0x2c
+ 756 0077 04       		.uleb128 0x4
+ 757 0078 3F000000 		.4byte	.LASF10
+ 758 007c 02       		.byte	0x2
+ 759 007d 3901     		.2byte	0x139
+ 760 007f 3A000000 		.4byte	0x3a
+ 761 0083 04       		.uleb128 0x4
+ 762 0084 62030000 		.4byte	.LASF11
+ 763 0088 02       		.byte	0x2
+ 764 0089 3A01     		.2byte	0x13a
+ 765 008b 48000000 		.4byte	0x48
+ 766 008f 02       		.uleb128 0x2
+ 767 0090 04       		.byte	0x4
+ 768 0091 04       		.byte	0x4
+ 769 0092 0D080000 		.4byte	.LASF12
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 18
+
+
+ 770 0096 02       		.uleb128 0x2
+ 771 0097 08       		.byte	0x8
+ 772 0098 04       		.byte	0x4
+ 773 0099 4F030000 		.4byte	.LASF13
+ 774 009d 02       		.uleb128 0x2
+ 775 009e 01       		.byte	0x1
+ 776 009f 08       		.byte	0x8
+ 777 00a0 250A0000 		.4byte	.LASF14
+ 778 00a4 02       		.uleb128 0x2
+ 779 00a5 04       		.byte	0x4
+ 780 00a6 07       		.byte	0x7
+ 781 00a7 B8060000 		.4byte	.LASF15
+ 782 00ab 05       		.uleb128 0x5
+ 783 00ac 04       		.byte	0x4
+ 784 00ad 9D000000 		.4byte	0x9d
+ 785 00b1 06       		.uleb128 0x6
+ 786 00b2 01       		.byte	0x1
+ 787 00b3 04       		.byte	0x4
+ 788 00b4 4201     		.2byte	0x142
+ 789 00b6 6E020000 		.4byte	0x26e
+ 790 00ba 07       		.uleb128 0x7
+ 791 00bb 12050000 		.4byte	.LASF16
+ 792 00bf 00       		.sleb128 0
+ 793 00c0 07       		.uleb128 0x7
+ 794 00c1 6F020000 		.4byte	.LASF17
+ 795 00c5 01       		.sleb128 1
+ 796 00c6 07       		.uleb128 0x7
+ 797 00c7 25010000 		.4byte	.LASF18
+ 798 00cb 02       		.sleb128 2
+ 799 00cc 07       		.uleb128 0x7
+ 800 00cd E10A0000 		.4byte	.LASF19
+ 801 00d1 03       		.sleb128 3
+ 802 00d2 07       		.uleb128 0x7
+ 803 00d3 78010000 		.4byte	.LASF20
+ 804 00d7 04       		.sleb128 4
+ 805 00d8 07       		.uleb128 0x7
+ 806 00d9 23000000 		.4byte	.LASF21
+ 807 00dd 05       		.sleb128 5
+ 808 00de 07       		.uleb128 0x7
+ 809 00df 47050000 		.4byte	.LASF22
+ 810 00e3 06       		.sleb128 6
+ 811 00e4 07       		.uleb128 0x7
+ 812 00e5 33060000 		.4byte	.LASF23
+ 813 00e9 20       		.sleb128 32
+ 814 00ea 07       		.uleb128 0x7
+ 815 00eb A1020000 		.4byte	.LASF24
+ 816 00ef 21       		.sleb128 33
+ 817 00f0 07       		.uleb128 0x7
+ 818 00f1 8C050000 		.4byte	.LASF25
+ 819 00f5 22       		.sleb128 34
+ 820 00f6 07       		.uleb128 0x7
+ 821 00f7 A30A0000 		.4byte	.LASF26
+ 822 00fb 23       		.sleb128 35
+ 823 00fc 07       		.uleb128 0x7
+ 824 00fd 4B070000 		.4byte	.LASF27
+ 825 0101 24       		.sleb128 36
+ 826 0102 07       		.uleb128 0x7
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 19
+
+
+ 827 0103 CF060000 		.4byte	.LASF28
+ 828 0107 25       		.sleb128 37
+ 829 0108 07       		.uleb128 0x7
+ 830 0109 320B0000 		.4byte	.LASF29
+ 831 010d 26       		.sleb128 38
+ 832 010e 07       		.uleb128 0x7
+ 833 010f B0050000 		.4byte	.LASF30
+ 834 0113 27       		.sleb128 39
+ 835 0114 07       		.uleb128 0x7
+ 836 0115 2A0A0000 		.4byte	.LASF31
+ 837 0119 28       		.sleb128 40
+ 838 011a 07       		.uleb128 0x7
+ 839 011b DE010000 		.4byte	.LASF32
+ 840 011f 29       		.sleb128 41
+ 841 0120 07       		.uleb128 0x7
+ 842 0121 65000000 		.4byte	.LASF33
+ 843 0125 2A       		.sleb128 42
+ 844 0126 07       		.uleb128 0x7
+ 845 0127 82020000 		.4byte	.LASF34
+ 846 012b 2B       		.sleb128 43
+ 847 012c 07       		.uleb128 0x7
+ 848 012d FC0B0000 		.4byte	.LASF35
+ 849 0131 2C       		.sleb128 44
+ 850 0132 07       		.uleb128 0x7
+ 851 0133 FB010000 		.4byte	.LASF36
+ 852 0137 2D       		.sleb128 45
+ 853 0138 07       		.uleb128 0x7
+ 854 0139 64080000 		.4byte	.LASF37
+ 855 013d 2E       		.sleb128 46
+ 856 013e 07       		.uleb128 0x7
+ 857 013f AF000000 		.4byte	.LASF38
+ 858 0143 2F       		.sleb128 47
+ 859 0144 07       		.uleb128 0x7
+ 860 0145 24070000 		.4byte	.LASF39
+ 861 0149 30       		.sleb128 48
+ 862 014a 07       		.uleb128 0x7
+ 863 014b D90C0000 		.4byte	.LASF40
+ 864 014f 31       		.sleb128 49
+ 865 0150 07       		.uleb128 0x7
+ 866 0151 03070000 		.4byte	.LASF41
+ 867 0155 32       		.sleb128 50
+ 868 0156 07       		.uleb128 0x7
+ 869 0157 DA090000 		.4byte	.LASF42
+ 870 015b 33       		.sleb128 51
+ 871 015c 07       		.uleb128 0x7
+ 872 015d C0090000 		.4byte	.LASF43
+ 873 0161 C000     		.sleb128 64
+ 874 0163 07       		.uleb128 0x7
+ 875 0164 FC050000 		.4byte	.LASF44
+ 876 0168 C100     		.sleb128 65
+ 877 016a 07       		.uleb128 0x7
+ 878 016b 060D0000 		.4byte	.LASF45
+ 879 016f C200     		.sleb128 66
+ 880 0171 07       		.uleb128 0x7
+ 881 0172 5A0B0000 		.4byte	.LASF46
+ 882 0176 C300     		.sleb128 67
+ 883 0178 07       		.uleb128 0x7
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 20
+
+
+ 884 0179 79040000 		.4byte	.LASF47
+ 885 017d C400     		.sleb128 68
+ 886 017f 07       		.uleb128 0x7
+ 887 0180 E0070000 		.4byte	.LASF48
+ 888 0184 C500     		.sleb128 69
+ 889 0186 07       		.uleb128 0x7
+ 890 0187 8E060000 		.4byte	.LASF49
+ 891 018b C600     		.sleb128 70
+ 892 018d 07       		.uleb128 0x7
+ 893 018e 29050000 		.4byte	.LASF50
+ 894 0192 C700     		.sleb128 71
+ 895 0194 07       		.uleb128 0x7
+ 896 0195 D50B0000 		.4byte	.LASF51
+ 897 0199 C800     		.sleb128 72
+ 898 019b 07       		.uleb128 0x7
+ 899 019c B8020000 		.4byte	.LASF52
+ 900 01a0 C900     		.sleb128 73
+ 901 01a2 07       		.uleb128 0x7
+ 902 01a3 A60B0000 		.4byte	.LASF53
+ 903 01a7 CA00     		.sleb128 74
+ 904 01a9 07       		.uleb128 0x7
+ 905 01aa D8000000 		.4byte	.LASF54
+ 906 01ae CB00     		.sleb128 75
+ 907 01b0 07       		.uleb128 0x7
+ 908 01b1 5F040000 		.4byte	.LASF55
+ 909 01b5 CC00     		.sleb128 76
+ 910 01b7 07       		.uleb128 0x7
+ 911 01b8 E9060000 		.4byte	.LASF56
+ 912 01bc CD00     		.sleb128 77
+ 913 01be 07       		.uleb128 0x7
+ 914 01bf E2020000 		.4byte	.LASF57
+ 915 01c3 CE00     		.sleb128 78
+ 916 01c5 07       		.uleb128 0x7
+ 917 01c6 41090000 		.4byte	.LASF58
+ 918 01ca CF00     		.sleb128 79
+ 919 01cc 07       		.uleb128 0x7
+ 920 01cd F7000000 		.4byte	.LASF59
+ 921 01d1 D000     		.sleb128 80
+ 922 01d3 07       		.uleb128 0x7
+ 923 01d4 30030000 		.4byte	.LASF60
+ 924 01d8 D100     		.sleb128 81
+ 925 01da 07       		.uleb128 0x7
+ 926 01db 7F070000 		.4byte	.LASF61
+ 927 01df D200     		.sleb128 82
+ 928 01e1 07       		.uleb128 0x7
+ 929 01e2 20090000 		.4byte	.LASF62
+ 930 01e6 D300     		.sleb128 83
+ 931 01e8 07       		.uleb128 0x7
+ 932 01e9 9F090000 		.4byte	.LASF63
+ 933 01ed D400     		.sleb128 84
+ 934 01ef 07       		.uleb128 0x7
+ 935 01f0 97040000 		.4byte	.LASF64
+ 936 01f4 D500     		.sleb128 85
+ 937 01f6 07       		.uleb128 0x7
+ 938 01f7 F5030000 		.4byte	.LASF65
+ 939 01fb D600     		.sleb128 86
+ 940 01fd 07       		.uleb128 0x7
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 21
+
+
+ 941 01fe 4C0A0000 		.4byte	.LASF66
+ 942 0202 D700     		.sleb128 87
+ 943 0204 07       		.uleb128 0x7
+ 944 0205 BB040000 		.4byte	.LASF67
+ 945 0209 D800     		.sleb128 88
+ 946 020b 07       		.uleb128 0x7
+ 947 020c B8010000 		.4byte	.LASF68
+ 948 0210 F000     		.sleb128 112
+ 949 0212 07       		.uleb128 0x7
+ 950 0213 8E0C0000 		.4byte	.LASF69
+ 951 0217 F100     		.sleb128 113
+ 952 0219 07       		.uleb128 0x7
+ 953 021a 17060000 		.4byte	.LASF70
+ 954 021e F200     		.sleb128 114
+ 955 0220 07       		.uleb128 0x7
+ 956 0221 70060000 		.4byte	.LASF71
+ 957 0225 F300     		.sleb128 115
+ 958 0227 07       		.uleb128 0x7
+ 959 0228 B6070000 		.4byte	.LASF72
+ 960 022c F400     		.sleb128 116
+ 961 022e 07       		.uleb128 0x7
+ 962 022f 370C0000 		.4byte	.LASF73
+ 963 0233 F500     		.sleb128 117
+ 964 0235 07       		.uleb128 0x7
+ 965 0236 8E000000 		.4byte	.LASF74
+ 966 023a F600     		.sleb128 118
+ 967 023c 07       		.uleb128 0x7
+ 968 023d 46000000 		.4byte	.LASF75
+ 969 0241 F700     		.sleb128 119
+ 970 0243 07       		.uleb128 0x7
+ 971 0244 00000000 		.4byte	.LASF76
+ 972 0248 F800     		.sleb128 120
+ 973 024a 07       		.uleb128 0x7
+ 974 024b 750A0000 		.4byte	.LASF77
+ 975 024f F900     		.sleb128 121
+ 976 0251 07       		.uleb128 0x7
+ 977 0252 A0030000 		.4byte	.LASF78
+ 978 0256 FA00     		.sleb128 122
+ 979 0258 07       		.uleb128 0x7
+ 980 0259 700C0000 		.4byte	.LASF79
+ 981 025d FA01     		.sleb128 250
+ 982 025f 07       		.uleb128 0x7
+ 983 0260 2E040000 		.4byte	.LASF80
+ 984 0264 FB01     		.sleb128 251
+ 985 0266 07       		.uleb128 0x7
+ 986 0267 C1060000 		.4byte	.LASF81
+ 987 026b FF01     		.sleb128 255
+ 988 026d 00       		.byte	0
+ 989 026e 05       		.uleb128 0x5
+ 990 026f 04       		.byte	0x4
+ 991 0270 6B000000 		.4byte	0x6b
+ 992 0274 08       		.uleb128 0x8
+ 993 0275 24040000 		.4byte	.LASF142
+ 994 0279 04       		.byte	0x4
+ 995 027a 03       		.byte	0x3
+ 996 027b 1E       		.byte	0x1e
+ 997 027c 97020000 		.4byte	0x297
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 22
+
+
+ 998 0280 09       		.uleb128 0x9
+ 999 0281 FD0C0000 		.4byte	.LASF82
+ 1000 0285 03       		.byte	0x3
+ 1001 0286 1F       		.byte	0x1f
+ 1002 0287 8F000000 		.4byte	0x8f
+ 1003 028b 09       		.uleb128 0x9
+ 1004 028c 97090000 		.4byte	.LASF83
+ 1005 0290 03       		.byte	0x3
+ 1006 0291 20       		.byte	0x20
+ 1007 0292 97020000 		.4byte	0x297
+ 1008 0296 00       		.byte	0
+ 1009 0297 0A       		.uleb128 0xa
+ 1010 0298 6B000000 		.4byte	0x6b
+ 1011 029c A7020000 		.4byte	0x2a7
+ 1012 02a0 0B       		.uleb128 0xb
+ 1013 02a1 A4000000 		.4byte	0xa4
+ 1014 02a5 03       		.byte	0x3
+ 1015 02a6 00       		.byte	0
+ 1016 02a7 0C       		.uleb128 0xc
+ 1017 02a8 01       		.byte	0x1
+ 1018 02a9 05       		.byte	0x5
+ 1019 02aa 2C       		.byte	0x2c
+ 1020 02ab 10030000 		.4byte	0x310
+ 1021 02af 07       		.uleb128 0x7
+ 1022 02b0 CF050000 		.4byte	.LASF84
+ 1023 02b4 0F       		.sleb128 15
+ 1024 02b5 07       		.uleb128 0x7
+ 1025 02b6 74050000 		.4byte	.LASF85
+ 1026 02ba 0E       		.sleb128 14
+ 1027 02bb 07       		.uleb128 0x7
+ 1028 02bc 71090000 		.4byte	.LASF86
+ 1029 02c0 0D       		.sleb128 13
+ 1030 02c1 07       		.uleb128 0x7
+ 1031 02c2 00030000 		.4byte	.LASF87
+ 1032 02c6 0C       		.sleb128 12
+ 1033 02c7 07       		.uleb128 0x7
+ 1034 02c8 200C0000 		.4byte	.LASF88
+ 1035 02cc 0B       		.sleb128 11
+ 1036 02cd 07       		.uleb128 0x7
+ 1037 02ce DE030000 		.4byte	.LASF89
+ 1038 02d2 0A       		.sleb128 10
+ 1039 02d3 07       		.uleb128 0x7
+ 1040 02d4 A0070000 		.4byte	.LASF90
+ 1041 02d8 09       		.sleb128 9
+ 1042 02d9 07       		.uleb128 0x7
+ 1043 02da 4E080000 		.4byte	.LASF91
+ 1044 02de 08       		.sleb128 8
+ 1045 02df 07       		.uleb128 0x7
+ 1046 02e0 C90A0000 		.4byte	.LASF92
+ 1047 02e4 07       		.sleb128 7
+ 1048 02e5 07       		.uleb128 0x7
+ 1049 02e6 88030000 		.4byte	.LASF93
+ 1050 02ea 06       		.sleb128 6
+ 1051 02eb 07       		.uleb128 0x7
+ 1052 02ec 40010000 		.4byte	.LASF94
+ 1053 02f0 05       		.sleb128 5
+ 1054 02f1 07       		.uleb128 0x7
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 23
+
+
+ 1055 02f2 67070000 		.4byte	.LASF95
+ 1056 02f6 04       		.sleb128 4
+ 1057 02f7 07       		.uleb128 0x7
+ 1058 02f8 1A0B0000 		.4byte	.LASF96
+ 1059 02fc 03       		.sleb128 3
+ 1060 02fd 07       		.uleb128 0x7
+ 1061 02fe A0010000 		.4byte	.LASF97
+ 1062 0302 02       		.sleb128 2
+ 1063 0303 07       		.uleb128 0x7
+ 1064 0304 020B0000 		.4byte	.LASF98
+ 1065 0308 01       		.sleb128 1
+ 1066 0309 07       		.uleb128 0x7
+ 1067 030a 580C0000 		.4byte	.LASF99
+ 1068 030e 00       		.sleb128 0
+ 1069 030f 00       		.byte	0
+ 1070 0310 0D       		.uleb128 0xd
+ 1071 0311 980A0000 		.4byte	.LASF100
+ 1072 0315 05       		.byte	0x5
+ 1073 0316 3D       		.byte	0x3d
+ 1074 0317 A7020000 		.4byte	0x2a7
+ 1075 031b 0C       		.uleb128 0xc
+ 1076 031c 01       		.byte	0x1
+ 1077 031d 05       		.byte	0x5
+ 1078 031e 40       		.byte	0x40
+ 1079 031f 3C030000 		.4byte	0x33c
+ 1080 0323 07       		.uleb128 0x7
+ 1081 0324 19080000 		.4byte	.LASF101
+ 1082 0328 03       		.sleb128 3
+ 1083 0329 07       		.uleb128 0x7
+ 1084 032a 60090000 		.4byte	.LASF102
+ 1085 032e 02       		.sleb128 2
+ 1086 032f 07       		.uleb128 0x7
+ 1087 0330 D1020000 		.4byte	.LASF103
+ 1088 0334 01       		.sleb128 1
+ 1089 0335 07       		.uleb128 0x7
+ 1090 0336 C40B0000 		.4byte	.LASF104
+ 1091 033a 00       		.sleb128 0
+ 1092 033b 00       		.byte	0
+ 1093 033c 0D       		.uleb128 0xd
+ 1094 033d 240D0000 		.4byte	.LASF105
+ 1095 0341 05       		.byte	0x5
+ 1096 0342 45       		.byte	0x45
+ 1097 0343 1B030000 		.4byte	0x31b
+ 1098 0347 0E       		.uleb128 0xe
+ 1099 0348 2B080000 		.4byte	.LASF143
+ 1100 034c 01       		.byte	0x1
+ 1101 034d 30       		.byte	0x30
+ 1102 034e 00000000 		.4byte	.LFB42
+ 1103 0352 6C000000 		.4byte	.LFE42-.LFB42
+ 1104 0356 01       		.uleb128 0x1
+ 1105 0357 9C       		.byte	0x9c
+ 1106 0358 0F       		.uleb128 0xf
+ 1107 0359 7B030000 		.4byte	.LASF111
+ 1108 035d 01       		.byte	0x1
+ 1109 035e 5F       		.byte	0x5f
+ 1110 035f 6B000000 		.4byte	0x6b
+ 1111 0363 00000000 		.4byte	.LFB48
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 24
+
+
+ 1112 0367 64000000 		.4byte	.LFE48-.LFB48
+ 1113 036b 01       		.uleb128 0x1
+ 1114 036c 9C       		.byte	0x9c
+ 1115 036d 3E040000 		.4byte	0x43e
+ 1116 0371 10       		.uleb128 0x10
+ 1117 0372 72656700 		.ascii	"reg\000"
+ 1118 0376 01       		.byte	0x1
+ 1119 0377 5F       		.byte	0x5f
+ 1120 0378 6B000000 		.4byte	0x6b
+ 1121 037c 00000000 		.4byte	.LLST0
+ 1122 0380 11       		.uleb128 0x11
+ 1123 0381 7E0B0000 		.4byte	.LASF106
+ 1124 0385 01       		.byte	0x1
+ 1125 0386 61       		.byte	0x61
+ 1126 0387 3E040000 		.4byte	0x43e
+ 1127 038b 05       		.uleb128 0x5
+ 1128 038c 03       		.byte	0x3
+ 1129 038d 00000000 		.4byte	readBuffer.7898
+ 1130 0391 12       		.uleb128 0x12
+ 1131 0392 890B0000 		.4byte	.LASF107
+ 1132 0396 01       		.byte	0x1
+ 1133 0397 62       		.byte	0x62
+ 1134 0398 6B000000 		.4byte	0x6b
+ 1135 039c 37000000 		.4byte	.LLST1
+ 1136 03a0 13       		.uleb128 0x13
+ 1137 03a1 14000000 		.4byte	.LVL11
+ 1138 03a5 9A080000 		.4byte	0x89a
+ 1139 03a9 C4030000 		.4byte	0x3c4
+ 1140 03ad 14       		.uleb128 0x14
+ 1141 03ae 01       		.uleb128 0x1
+ 1142 03af 53       		.byte	0x53
+ 1143 03b0 01       		.uleb128 0x1
+ 1144 03b1 30       		.byte	0x30
+ 1145 03b2 14       		.uleb128 0x14
+ 1146 03b3 01       		.uleb128 0x1
+ 1147 03b4 52       		.byte	0x52
+ 1148 03b5 01       		.uleb128 0x1
+ 1149 03b6 31       		.byte	0x31
+ 1150 03b7 14       		.uleb128 0x14
+ 1151 03b8 01       		.uleb128 0x1
+ 1152 03b9 51       		.byte	0x51
+ 1153 03ba 02       		.uleb128 0x2
+ 1154 03bb 7D       		.byte	0x7d
+ 1155 03bc 07       		.sleb128 7
+ 1156 03bd 14       		.uleb128 0x14
+ 1157 03be 01       		.uleb128 0x1
+ 1158 03bf 50       		.byte	0x50
+ 1159 03c0 02       		.uleb128 0x2
+ 1160 03c1 08       		.byte	0x8
+ 1161 03c2 53       		.byte	0x53
+ 1162 03c3 00       		.byte	0
+ 1163 03c4 13       		.uleb128 0x13
+ 1164 03c5 20000000 		.4byte	.LVL14
+ 1165 03c9 BF080000 		.4byte	0x8bf
+ 1166 03cd DB030000 		.4byte	0x3db
+ 1167 03d1 14       		.uleb128 0x14
+ 1168 03d2 01       		.uleb128 0x1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 25
+
+
+ 1169 03d3 50       		.byte	0x50
+ 1170 03d4 05       		.uleb128 0x5
+ 1171 03d5 03       		.byte	0x3
+ 1172 03d6 00000000 		.4byte	.LC6
+ 1173 03da 00       		.byte	0
+ 1174 03db 15       		.uleb128 0x15
+ 1175 03dc 24000000 		.4byte	.LVL15
+ 1176 03e0 D0080000 		.4byte	0x8d0
+ 1177 03e4 15       		.uleb128 0x15
+ 1178 03e5 2C000000 		.4byte	.LVL16
+ 1179 03e9 DC080000 		.4byte	0x8dc
+ 1180 03ed 13       		.uleb128 0x13
+ 1181 03ee 38000000 		.4byte	.LVL17
+ 1182 03f2 E8080000 		.4byte	0x8e8
+ 1183 03f6 14040000 		.4byte	0x414
+ 1184 03fa 14       		.uleb128 0x14
+ 1185 03fb 01       		.uleb128 0x1
+ 1186 03fc 53       		.byte	0x53
+ 1187 03fd 01       		.uleb128 0x1
+ 1188 03fe 30       		.byte	0x30
+ 1189 03ff 14       		.uleb128 0x14
+ 1190 0400 01       		.uleb128 0x1
+ 1191 0401 52       		.byte	0x52
+ 1192 0402 01       		.uleb128 0x1
+ 1193 0403 31       		.byte	0x31
+ 1194 0404 14       		.uleb128 0x14
+ 1195 0405 01       		.uleb128 0x1
+ 1196 0406 51       		.byte	0x51
+ 1197 0407 05       		.uleb128 0x5
+ 1198 0408 03       		.byte	0x3
+ 1199 0409 00000000 		.4byte	.LANCHOR0
+ 1200 040d 14       		.uleb128 0x14
+ 1201 040e 01       		.uleb128 0x1
+ 1202 040f 50       		.byte	0x50
+ 1203 0410 02       		.uleb128 0x2
+ 1204 0411 08       		.byte	0x8
+ 1205 0412 53       		.byte	0x53
+ 1206 0413 00       		.byte	0
+ 1207 0414 13       		.uleb128 0x13
+ 1208 0415 44000000 		.4byte	.LVL20
+ 1209 0419 BF080000 		.4byte	0x8bf
+ 1210 041d 2B040000 		.4byte	0x42b
+ 1211 0421 14       		.uleb128 0x14
+ 1212 0422 01       		.uleb128 0x1
+ 1213 0423 50       		.byte	0x50
+ 1214 0424 05       		.uleb128 0x5
+ 1215 0425 03       		.byte	0x3
+ 1216 0426 34000000 		.4byte	.LC9
+ 1217 042a 00       		.byte	0
+ 1218 042b 15       		.uleb128 0x15
+ 1219 042c 48000000 		.4byte	.LVL21
+ 1220 0430 D0080000 		.4byte	0x8d0
+ 1221 0434 15       		.uleb128 0x15
+ 1222 0435 50000000 		.4byte	.LVL22
+ 1223 0439 DC080000 		.4byte	0x8dc
+ 1224 043d 00       		.byte	0
+ 1225 043e 0A       		.uleb128 0xa
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 26
+
+
+ 1226 043f 6B000000 		.4byte	0x6b
+ 1227 0443 4E040000 		.4byte	0x44e
+ 1228 0447 0B       		.uleb128 0xb
+ 1229 0448 A4000000 		.4byte	0xa4
+ 1230 044c 00       		.byte	0
+ 1231 044d 00       		.byte	0
+ 1232 044e 16       		.uleb128 0x16
+ 1233 044f 56030000 		.4byte	.LASF108
+ 1234 0453 01       		.byte	0x1
+ 1235 0454 1A       		.byte	0x1a
+ 1236 0455 6B000000 		.4byte	0x6b
+ 1237 0459 00000000 		.4byte	.LFB38
+ 1238 045d 0A000000 		.4byte	.LFE38-.LFB38
+ 1239 0461 01       		.uleb128 0x1
+ 1240 0462 9C       		.byte	0x9c
+ 1241 0463 77040000 		.4byte	0x477
+ 1242 0467 17       		.uleb128 0x17
+ 1243 0468 08000000 		.4byte	.LVL24
+ 1244 046c 58030000 		.4byte	0x358
+ 1245 0470 14       		.uleb128 0x14
+ 1246 0471 01       		.uleb128 0x1
+ 1247 0472 50       		.byte	0x50
+ 1248 0473 01       		.uleb128 0x1
+ 1249 0474 30       		.byte	0x30
+ 1250 0475 00       		.byte	0
+ 1251 0476 00       		.byte	0
+ 1252 0477 16       		.uleb128 0x16
+ 1253 0478 DE040000 		.4byte	.LASF109
+ 1254 047c 01       		.byte	0x1
+ 1255 047d 3C       		.byte	0x3c
+ 1256 047e 10030000 		.4byte	0x310
+ 1257 0482 00000000 		.4byte	.LFB44
+ 1258 0486 0E000000 		.4byte	.LFE44-.LFB44
+ 1259 048a 01       		.uleb128 0x1
+ 1260 048b 9C       		.byte	0x9c
+ 1261 048c A1040000 		.4byte	0x4a1
+ 1262 0490 17       		.uleb128 0x17
+ 1263 0491 08000000 		.4byte	.LVL25
+ 1264 0495 58030000 		.4byte	0x358
+ 1265 0499 14       		.uleb128 0x14
+ 1266 049a 01       		.uleb128 0x1
+ 1267 049b 50       		.byte	0x50
+ 1268 049c 02       		.uleb128 0x2
+ 1269 049d 08       		.byte	0x8
+ 1270 049e 2C       		.byte	0x2c
+ 1271 049f 00       		.byte	0
+ 1272 04a0 00       		.byte	0
+ 1273 04a1 16       		.uleb128 0x16
+ 1274 04a2 58010000 		.4byte	.LASF110
+ 1275 04a6 01       		.byte	0x1
+ 1276 04a7 51       		.byte	0x51
+ 1277 04a8 3C030000 		.4byte	0x33c
+ 1278 04ac 00000000 		.4byte	.LFB46
+ 1279 04b0 0E000000 		.4byte	.LFE46-.LFB46
+ 1280 04b4 01       		.uleb128 0x1
+ 1281 04b5 9C       		.byte	0x9c
+ 1282 04b6 CB040000 		.4byte	0x4cb
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 27
+
+
+ 1283 04ba 17       		.uleb128 0x17
+ 1284 04bb 08000000 		.4byte	.LVL26
+ 1285 04bf 58030000 		.4byte	0x358
+ 1286 04c3 14       		.uleb128 0x14
+ 1287 04c4 01       		.uleb128 0x1
+ 1288 04c5 50       		.byte	0x50
+ 1289 04c6 02       		.uleb128 0x2
+ 1290 04c7 08       		.byte	0x8
+ 1291 04c8 31       		.byte	0x31
+ 1292 04c9 00       		.byte	0
+ 1293 04ca 00       		.byte	0
+ 1294 04cb 0F       		.uleb128 0xf
+ 1295 04cc 88090000 		.4byte	.LASF112
+ 1296 04d0 01       		.byte	0x1
+ 1297 04d1 6D       		.byte	0x6d
+ 1298 04d2 41000000 		.4byte	0x41
+ 1299 04d6 00000000 		.4byte	.LFB49
+ 1300 04da 6C000000 		.4byte	.LFE49-.LFB49
+ 1301 04de 01       		.uleb128 0x1
+ 1302 04df 9C       		.byte	0x9c
+ 1303 04e0 B1050000 		.4byte	0x5b1
+ 1304 04e4 10       		.uleb128 0x10
+ 1305 04e5 72656700 		.ascii	"reg\000"
+ 1306 04e9 01       		.byte	0x1
+ 1307 04ea 6D       		.byte	0x6d
+ 1308 04eb 6B000000 		.4byte	0x6b
+ 1309 04ef 55000000 		.4byte	.LLST2
+ 1310 04f3 11       		.uleb128 0x11
+ 1311 04f4 7E0B0000 		.4byte	.LASF106
+ 1312 04f8 01       		.byte	0x1
+ 1313 04f9 6F       		.byte	0x6f
+ 1314 04fa B1050000 		.4byte	0x5b1
+ 1315 04fe 05       		.uleb128 0x5
+ 1316 04ff 03       		.byte	0x3
+ 1317 0500 04000000 		.4byte	readBuffer.7909
+ 1318 0504 12       		.uleb128 0x12
+ 1319 0505 890B0000 		.4byte	.LASF107
+ 1320 0509 01       		.byte	0x1
+ 1321 050a 70       		.byte	0x70
+ 1322 050b 6B000000 		.4byte	0x6b
+ 1323 050f 8C000000 		.4byte	.LLST3
+ 1324 0513 13       		.uleb128 0x13
+ 1325 0514 14000000 		.4byte	.LVL29
+ 1326 0518 9A080000 		.4byte	0x89a
+ 1327 051c 37050000 		.4byte	0x537
+ 1328 0520 14       		.uleb128 0x14
+ 1329 0521 01       		.uleb128 0x1
+ 1330 0522 53       		.byte	0x53
+ 1331 0523 01       		.uleb128 0x1
+ 1332 0524 30       		.byte	0x30
+ 1333 0525 14       		.uleb128 0x14
+ 1334 0526 01       		.uleb128 0x1
+ 1335 0527 52       		.byte	0x52
+ 1336 0528 01       		.uleb128 0x1
+ 1337 0529 31       		.byte	0x31
+ 1338 052a 14       		.uleb128 0x14
+ 1339 052b 01       		.uleb128 0x1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 28
+
+
+ 1340 052c 51       		.byte	0x51
+ 1341 052d 02       		.uleb128 0x2
+ 1342 052e 7D       		.byte	0x7d
+ 1343 052f 07       		.sleb128 7
+ 1344 0530 14       		.uleb128 0x14
+ 1345 0531 01       		.uleb128 0x1
+ 1346 0532 50       		.byte	0x50
+ 1347 0533 02       		.uleb128 0x2
+ 1348 0534 08       		.byte	0x8
+ 1349 0535 53       		.byte	0x53
+ 1350 0536 00       		.byte	0
+ 1351 0537 13       		.uleb128 0x13
+ 1352 0538 20000000 		.4byte	.LVL32
+ 1353 053c BF080000 		.4byte	0x8bf
+ 1354 0540 4E050000 		.4byte	0x54e
+ 1355 0544 14       		.uleb128 0x14
+ 1356 0545 01       		.uleb128 0x1
+ 1357 0546 50       		.byte	0x50
+ 1358 0547 05       		.uleb128 0x5
+ 1359 0548 03       		.byte	0x3
+ 1360 0549 68000000 		.4byte	.LC11
+ 1361 054d 00       		.byte	0
+ 1362 054e 15       		.uleb128 0x15
+ 1363 054f 24000000 		.4byte	.LVL33
+ 1364 0553 D0080000 		.4byte	0x8d0
+ 1365 0557 15       		.uleb128 0x15
+ 1366 0558 2C000000 		.4byte	.LVL34
+ 1367 055c DC080000 		.4byte	0x8dc
+ 1368 0560 13       		.uleb128 0x13
+ 1369 0561 3A000000 		.4byte	.LVL35
+ 1370 0565 E8080000 		.4byte	0x8e8
+ 1371 0569 87050000 		.4byte	0x587
+ 1372 056d 14       		.uleb128 0x14
+ 1373 056e 01       		.uleb128 0x1
+ 1374 056f 53       		.byte	0x53
+ 1375 0570 01       		.uleb128 0x1
+ 1376 0571 30       		.byte	0x30
+ 1377 0572 14       		.uleb128 0x14
+ 1378 0573 01       		.uleb128 0x1
+ 1379 0574 52       		.byte	0x52
+ 1380 0575 01       		.uleb128 0x1
+ 1381 0576 32       		.byte	0x32
+ 1382 0577 14       		.uleb128 0x14
+ 1383 0578 01       		.uleb128 0x1
+ 1384 0579 51       		.byte	0x51
+ 1385 057a 05       		.uleb128 0x5
+ 1386 057b 03       		.byte	0x3
+ 1387 057c 04000000 		.4byte	.LANCHOR0+4
+ 1388 0580 14       		.uleb128 0x14
+ 1389 0581 01       		.uleb128 0x1
+ 1390 0582 50       		.byte	0x50
+ 1391 0583 02       		.uleb128 0x2
+ 1392 0584 08       		.byte	0x8
+ 1393 0585 53       		.byte	0x53
+ 1394 0586 00       		.byte	0
+ 1395 0587 13       		.uleb128 0x13
+ 1396 0588 46000000 		.4byte	.LVL38
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 29
+
+
+ 1397 058c BF080000 		.4byte	0x8bf
+ 1398 0590 9E050000 		.4byte	0x59e
+ 1399 0594 14       		.uleb128 0x14
+ 1400 0595 01       		.uleb128 0x1
+ 1401 0596 50       		.byte	0x50
+ 1402 0597 05       		.uleb128 0x5
+ 1403 0598 03       		.byte	0x3
+ 1404 0599 9C000000 		.4byte	.LC14
+ 1405 059d 00       		.byte	0
+ 1406 059e 15       		.uleb128 0x15
+ 1407 059f 4A000000 		.4byte	.LVL39
+ 1408 05a3 D0080000 		.4byte	0x8d0
+ 1409 05a7 15       		.uleb128 0x15
+ 1410 05a8 52000000 		.4byte	.LVL40
+ 1411 05ac DC080000 		.4byte	0x8dc
+ 1412 05b0 00       		.byte	0
+ 1413 05b1 0A       		.uleb128 0xa
+ 1414 05b2 6B000000 		.4byte	0x6b
+ 1415 05b6 C1050000 		.4byte	0x5c1
+ 1416 05ba 0B       		.uleb128 0xb
+ 1417 05bb A4000000 		.4byte	0xa4
+ 1418 05bf 01       		.byte	0x1
+ 1419 05c0 00       		.byte	0
+ 1420 05c1 18       		.uleb128 0x18
+ 1421 05c2 010A0000 		.4byte	.LASF113
+ 1422 05c6 01       		.byte	0x1
+ 1423 05c7 1F       		.byte	0x1f
+ 1424 05c8 00000000 		.4byte	.LFB39
+ 1425 05cc 24000000 		.4byte	.LFE39-.LFB39
+ 1426 05d0 01       		.uleb128 0x1
+ 1427 05d1 9C       		.byte	0x9c
+ 1428 05d2 0B060000 		.4byte	0x60b
+ 1429 05d6 13       		.uleb128 0x13
+ 1430 05d7 08000000 		.4byte	.LVL42
+ 1431 05db CB040000 		.4byte	0x4cb
+ 1432 05df EA050000 		.4byte	0x5ea
+ 1433 05e3 14       		.uleb128 0x14
+ 1434 05e4 01       		.uleb128 0x1
+ 1435 05e5 50       		.byte	0x50
+ 1436 05e6 02       		.uleb128 0x2
+ 1437 05e7 08       		.byte	0x8
+ 1438 05e8 32       		.byte	0x32
+ 1439 05e9 00       		.byte	0
+ 1440 05ea 13       		.uleb128 0x13
+ 1441 05eb 12000000 		.4byte	.LVL43
+ 1442 05ef BF080000 		.4byte	0x8bf
+ 1443 05f3 01060000 		.4byte	0x601
+ 1444 05f7 14       		.uleb128 0x14
+ 1445 05f8 01       		.uleb128 0x1
+ 1446 05f9 50       		.byte	0x50
+ 1447 05fa 05       		.uleb128 0x5
+ 1448 05fb 03       		.byte	0x3
+ 1449 05fc D0000000 		.4byte	.LC17
+ 1450 0600 00       		.byte	0
+ 1451 0601 15       		.uleb128 0x15
+ 1452 0602 18000000 		.4byte	.LVL44
+ 1453 0606 0D090000 		.4byte	0x90d
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 30
+
+
+ 1454 060a 00       		.byte	0
+ 1455 060b 18       		.uleb128 0x18
+ 1456 060c 0D0A0000 		.4byte	.LASF114
+ 1457 0610 01       		.byte	0x1
+ 1458 0611 26       		.byte	0x26
+ 1459 0612 00000000 		.4byte	.LFB40
+ 1460 0616 14000000 		.4byte	.LFE40-.LFB40
+ 1461 061a 01       		.uleb128 0x1
+ 1462 061b 9C       		.byte	0x9c
+ 1463 061c 31060000 		.4byte	0x631
+ 1464 0620 17       		.uleb128 0x17
+ 1465 0621 08000000 		.4byte	.LVL45
+ 1466 0625 CB040000 		.4byte	0x4cb
+ 1467 0629 14       		.uleb128 0x14
+ 1468 062a 01       		.uleb128 0x1
+ 1469 062b 50       		.byte	0x50
+ 1470 062c 02       		.uleb128 0x2
+ 1471 062d 08       		.byte	0x8
+ 1472 062e 34       		.byte	0x34
+ 1473 062f 00       		.byte	0
+ 1474 0630 00       		.byte	0
+ 1475 0631 18       		.uleb128 0x18
+ 1476 0632 190A0000 		.4byte	.LASF115
+ 1477 0636 01       		.byte	0x1
+ 1478 0637 2B       		.byte	0x2b
+ 1479 0638 00000000 		.4byte	.LFB41
+ 1480 063c 14000000 		.4byte	.LFE41-.LFB41
+ 1481 0640 01       		.uleb128 0x1
+ 1482 0641 9C       		.byte	0x9c
+ 1483 0642 57060000 		.4byte	0x657
+ 1484 0646 17       		.uleb128 0x17
+ 1485 0647 08000000 		.4byte	.LVL46
+ 1486 064b CB040000 		.4byte	0x4cb
+ 1487 064f 14       		.uleb128 0x14
+ 1488 0650 01       		.uleb128 0x1
+ 1489 0651 50       		.byte	0x50
+ 1490 0652 02       		.uleb128 0x2
+ 1491 0653 08       		.byte	0x8
+ 1492 0654 36       		.byte	0x36
+ 1493 0655 00       		.byte	0
+ 1494 0656 00       		.byte	0
+ 1495 0657 18       		.uleb128 0x18
+ 1496 0658 66050000 		.4byte	.LASF116
+ 1497 065c 01       		.byte	0x1
+ 1498 065d 56       		.byte	0x56
+ 1499 065e 00000000 		.4byte	.LFB47
+ 1500 0662 14000000 		.4byte	.LFE47-.LFB47
+ 1501 0666 01       		.uleb128 0x1
+ 1502 0667 9C       		.byte	0x9c
+ 1503 0668 91060000 		.4byte	0x691
+ 1504 066c 15       		.uleb128 0x15
+ 1505 066d 06000000 		.4byte	.LVL47
+ 1506 0671 C1050000 		.4byte	0x5c1
+ 1507 0675 15       		.uleb128 0x15
+ 1508 0676 0A000000 		.4byte	.LVL48
+ 1509 067a 0B060000 		.4byte	0x60b
+ 1510 067e 15       		.uleb128 0x15
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 31
+
+
+ 1511 067f 0E000000 		.4byte	.LVL49
+ 1512 0683 31060000 		.4byte	0x631
+ 1513 0687 15       		.uleb128 0x15
+ 1514 0688 12000000 		.4byte	.LVL50
+ 1515 068c 47030000 		.4byte	0x347
+ 1516 0690 00       		.byte	0
+ 1517 0691 19       		.uleb128 0x19
+ 1518 0692 F1040000 		.4byte	.LASF117
+ 1519 0696 01       		.byte	0x1
+ 1520 0697 7B       		.byte	0x7b
+ 1521 0698 00000000 		.4byte	.LFB50
+ 1522 069c 38000000 		.4byte	.LFE50-.LFB50
+ 1523 06a0 01       		.uleb128 0x1
+ 1524 06a1 9C       		.byte	0x9c
+ 1525 06a2 2F070000 		.4byte	0x72f
+ 1526 06a6 10       		.uleb128 0x10
+ 1527 06a7 72656700 		.ascii	"reg\000"
+ 1528 06ab 01       		.byte	0x1
+ 1529 06ac 7B       		.byte	0x7b
+ 1530 06ad 6B000000 		.4byte	0x6b
+ 1531 06b1 AA000000 		.4byte	.LLST4
+ 1532 06b5 10       		.uleb128 0x10
+ 1533 06b6 636D6400 		.ascii	"cmd\000"
+ 1534 06ba 01       		.byte	0x1
+ 1535 06bb 7B       		.byte	0x7b
+ 1536 06bc 6B000000 		.4byte	0x6b
+ 1537 06c0 E3000000 		.4byte	.LLST5
+ 1538 06c4 11       		.uleb128 0x11
+ 1539 06c5 D4070000 		.4byte	.LASF118
+ 1540 06c9 01       		.byte	0x1
+ 1541 06ca 7D       		.byte	0x7d
+ 1542 06cb B1050000 		.4byte	0x5b1
+ 1543 06cf 02       		.uleb128 0x2
+ 1544 06d0 91       		.byte	0x91
+ 1545 06d1 74       		.sleb128 -12
+ 1546 06d2 12       		.uleb128 0x12
+ 1547 06d3 890B0000 		.4byte	.LASF107
+ 1548 06d7 01       		.byte	0x1
+ 1549 06d8 81       		.byte	0x81
+ 1550 06d9 6B000000 		.4byte	0x6b
+ 1551 06dd 1C010000 		.4byte	.LLST6
+ 1552 06e1 13       		.uleb128 0x13
+ 1553 06e2 16000000 		.4byte	.LVL55
+ 1554 06e6 9A080000 		.4byte	0x89a
+ 1555 06ea 05070000 		.4byte	0x705
+ 1556 06ee 14       		.uleb128 0x14
+ 1557 06ef 01       		.uleb128 0x1
+ 1558 06f0 53       		.byte	0x53
+ 1559 06f1 01       		.uleb128 0x1
+ 1560 06f2 30       		.byte	0x30
+ 1561 06f3 14       		.uleb128 0x14
+ 1562 06f4 01       		.uleb128 0x1
+ 1563 06f5 52       		.byte	0x52
+ 1564 06f6 01       		.uleb128 0x1
+ 1565 06f7 32       		.byte	0x32
+ 1566 06f8 14       		.uleb128 0x14
+ 1567 06f9 01       		.uleb128 0x1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 32
+
+
+ 1568 06fa 51       		.byte	0x51
+ 1569 06fb 02       		.uleb128 0x2
+ 1570 06fc 91       		.byte	0x91
+ 1571 06fd 74       		.sleb128 -12
+ 1572 06fe 14       		.uleb128 0x14
+ 1573 06ff 01       		.uleb128 0x1
+ 1574 0700 50       		.byte	0x50
+ 1575 0701 02       		.uleb128 0x2
+ 1576 0702 08       		.byte	0x8
+ 1577 0703 53       		.byte	0x53
+ 1578 0704 00       		.byte	0
+ 1579 0705 15       		.uleb128 0x15
+ 1580 0706 1C000000 		.4byte	.LVL57
+ 1581 070a D0080000 		.4byte	0x8d0
+ 1582 070e 13       		.uleb128 0x13
+ 1583 070f 2A000000 		.4byte	.LVL58
+ 1584 0713 BF080000 		.4byte	0x8bf
+ 1585 0717 25070000 		.4byte	0x725
+ 1586 071b 14       		.uleb128 0x14
+ 1587 071c 01       		.uleb128 0x1
+ 1588 071d 50       		.byte	0x50
+ 1589 071e 05       		.uleb128 0x5
+ 1590 071f 03       		.byte	0x3
+ 1591 0720 D8000000 		.4byte	.LC21
+ 1592 0724 00       		.byte	0
+ 1593 0725 15       		.uleb128 0x15
+ 1594 0726 2E000000 		.4byte	.LVL59
+ 1595 072a DC080000 		.4byte	0x8dc
+ 1596 072e 00       		.byte	0
+ 1597 072f 16       		.uleb128 0x16
+ 1598 0730 C60C0000 		.4byte	.LASF119
+ 1599 0734 01       		.byte	0x1
+ 1600 0735 11       		.byte	0x11
+ 1601 0736 89070000 		.4byte	0x789
+ 1602 073a 00000000 		.4byte	.LFB37
+ 1603 073e 20000000 		.4byte	.LFE37-.LFB37
+ 1604 0742 01       		.uleb128 0x1
+ 1605 0743 9C       		.byte	0x9c
+ 1606 0744 89070000 		.4byte	0x789
+ 1607 0748 13       		.uleb128 0x13
+ 1608 0749 08000000 		.4byte	.LVL61
+ 1609 074d 1E090000 		.4byte	0x91e
+ 1610 0751 5C070000 		.4byte	0x75c
+ 1611 0755 14       		.uleb128 0x14
+ 1612 0756 01       		.uleb128 0x1
+ 1613 0757 50       		.byte	0x50
+ 1614 0758 02       		.uleb128 0x2
+ 1615 0759 08       		.byte	0x8
+ 1616 075a 32       		.byte	0x32
+ 1617 075b 00       		.byte	0
+ 1618 075c 13       		.uleb128 0x13
+ 1619 075d 10000000 		.4byte	.LVL62
+ 1620 0761 91060000 		.4byte	0x691
+ 1621 0765 75070000 		.4byte	0x775
+ 1622 0769 14       		.uleb128 0x14
+ 1623 076a 01       		.uleb128 0x1
+ 1624 076b 51       		.byte	0x51
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 33
+
+
+ 1625 076c 01       		.uleb128 0x1
+ 1626 076d 38       		.byte	0x38
+ 1627 076e 14       		.uleb128 0x14
+ 1628 076f 01       		.uleb128 0x1
+ 1629 0770 50       		.byte	0x50
+ 1630 0771 02       		.uleb128 0x2
+ 1631 0772 08       		.byte	0x8
+ 1632 0773 2D       		.byte	0x2d
+ 1633 0774 00       		.byte	0
+ 1634 0775 17       		.uleb128 0x17
+ 1635 0776 16000000 		.4byte	.LVL63
+ 1636 077a BF080000 		.4byte	0x8bf
+ 1637 077e 14       		.uleb128 0x14
+ 1638 077f 01       		.uleb128 0x1
+ 1639 0780 50       		.byte	0x50
+ 1640 0781 05       		.uleb128 0x5
+ 1641 0782 03       		.byte	0x3
+ 1642 0783 FC000000 		.4byte	.LC23
+ 1643 0787 00       		.byte	0
+ 1644 0788 00       		.byte	0
+ 1645 0789 02       		.uleb128 0x2
+ 1646 078a 01       		.byte	0x1
+ 1647 078b 02       		.byte	0x2
+ 1648 078c 3A080000 		.4byte	.LASF120
+ 1649 0790 19       		.uleb128 0x19
+ 1650 0791 8D010000 		.4byte	.LASF121
+ 1651 0795 01       		.byte	0x1
+ 1652 0796 37       		.byte	0x37
+ 1653 0797 00000000 		.4byte	.LFB43
+ 1654 079b 0C000000 		.4byte	.LFE43-.LFB43
+ 1655 079f 01       		.uleb128 0x1
+ 1656 07a0 9C       		.byte	0x9c
+ 1657 07a1 C5070000 		.4byte	0x7c5
+ 1658 07a5 1A       		.uleb128 0x1a
+ 1659 07a6 07080000 		.4byte	.LASF122
+ 1660 07aa 01       		.byte	0x1
+ 1661 07ab 37       		.byte	0x37
+ 1662 07ac 10030000 		.4byte	0x310
+ 1663 07b0 2F010000 		.4byte	.LLST7
+ 1664 07b4 17       		.uleb128 0x17
+ 1665 07b5 0A000000 		.4byte	.LVL66
+ 1666 07b9 91060000 		.4byte	0x691
+ 1667 07bd 14       		.uleb128 0x14
+ 1668 07be 01       		.uleb128 0x1
+ 1669 07bf 50       		.byte	0x50
+ 1670 07c0 02       		.uleb128 0x2
+ 1671 07c1 08       		.byte	0x8
+ 1672 07c2 2C       		.byte	0x2c
+ 1673 07c3 00       		.byte	0
+ 1674 07c4 00       		.byte	0
+ 1675 07c5 19       		.uleb128 0x19
+ 1676 07c6 16010000 		.4byte	.LASF123
+ 1677 07ca 01       		.byte	0x1
+ 1678 07cb 41       		.byte	0x41
+ 1679 07cc 00000000 		.4byte	.LFB45
+ 1680 07d0 1C000000 		.4byte	.LFE45-.LFB45
+ 1681 07d4 01       		.uleb128 0x1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 34
+
+
+ 1682 07d5 9C       		.byte	0x9c
+ 1683 07d6 12080000 		.4byte	0x812
+ 1684 07da 1A       		.uleb128 0x1a
+ 1685 07db 07080000 		.4byte	.LASF122
+ 1686 07df 01       		.byte	0x1
+ 1687 07e0 41       		.byte	0x41
+ 1688 07e1 3C030000 		.4byte	0x33c
+ 1689 07e5 50010000 		.4byte	.LLST8
+ 1690 07e9 12       		.uleb128 0x12
+ 1691 07ea D8030000 		.4byte	.LASF124
+ 1692 07ee 01       		.byte	0x1
+ 1693 07ef 43       		.byte	0x43
+ 1694 07f0 6B000000 		.4byte	0x6b
+ 1695 07f4 71010000 		.4byte	.LLST9
+ 1696 07f8 15       		.uleb128 0x15
+ 1697 07f9 08000000 		.4byte	.LVL68
+ 1698 07fd A1040000 		.4byte	0x4a1
+ 1699 0801 17       		.uleb128 0x17
+ 1700 0802 1A000000 		.4byte	.LVL72
+ 1701 0806 91060000 		.4byte	0x691
+ 1702 080a 14       		.uleb128 0x14
+ 1703 080b 01       		.uleb128 0x1
+ 1704 080c 50       		.byte	0x50
+ 1705 080d 02       		.uleb128 0x2
+ 1706 080e 08       		.byte	0x8
+ 1707 080f 31       		.byte	0x31
+ 1708 0810 00       		.byte	0
+ 1709 0811 00       		.byte	0
+ 1710 0812 1B       		.uleb128 0x1b
+ 1711 0813 AF060000 		.4byte	.LASF125
+ 1712 0817 03       		.byte	0x3
+ 1713 0818 1B       		.byte	0x1b
+ 1714 0819 5D000000 		.4byte	0x5d
+ 1715 081d 05       		.uleb128 0x5
+ 1716 081e 03       		.byte	0x3
+ 1717 081f 00000000 		.4byte	notifyOn
+ 1718 0823 1B       		.uleb128 0x1b
+ 1719 0824 17030000 		.4byte	.LASF126
+ 1720 0828 03       		.byte	0x3
+ 1721 0829 1C       		.byte	0x1c
+ 1722 082a 5D000000 		.4byte	0x5d
+ 1723 082e 05       		.uleb128 0x5
+ 1724 082f 03       		.byte	0x3
+ 1725 0830 00000000 		.4byte	bleConnected
+ 1726 0834 1B       		.uleb128 0x1b
+ 1727 0835 13080000 		.4byte	.LASF127
+ 1728 0839 05       		.byte	0x5
+ 1729 083a 13       		.byte	0x13
+ 1730 083b 74020000 		.4byte	0x274
+ 1731 083f 05       		.uleb128 0x5
+ 1732 0840 03       		.byte	0x3
+ 1733 0841 00000000 		.4byte	xData
+ 1734 0845 1B       		.uleb128 0x1b
+ 1735 0846 60050000 		.4byte	.LASF128
+ 1736 084a 05       		.byte	0x5
+ 1737 084b 13       		.byte	0x13
+ 1738 084c 74020000 		.4byte	0x274
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 35
+
+
+ 1739 0850 05       		.uleb128 0x5
+ 1740 0851 03       		.byte	0x3
+ 1741 0852 00000000 		.4byte	yData
+ 1742 0856 1B       		.uleb128 0x1b
+ 1743 0857 780B0000 		.4byte	.LASF129
+ 1744 085b 05       		.byte	0x5
+ 1745 085c 13       		.byte	0x13
+ 1746 085d 74020000 		.4byte	0x274
+ 1747 0861 05       		.uleb128 0x5
+ 1748 0862 03       		.byte	0x3
+ 1749 0863 00000000 		.4byte	zData
+ 1750 0867 1B       		.uleb128 0x1b
+ 1751 0868 72030000 		.4byte	.LASF130
+ 1752 086c 01       		.byte	0x1
+ 1753 086d 0F       		.byte	0xf
+ 1754 086e 77000000 		.4byte	0x77
+ 1755 0872 05       		.uleb128 0x5
+ 1756 0873 03       		.byte	0x3
+ 1757 0874 00000000 		.4byte	rawDataX
+ 1758 0878 1B       		.uleb128 0x1b
+ 1759 0879 B40C0000 		.4byte	.LASF131
+ 1760 087d 01       		.byte	0x1
+ 1761 087e 0F       		.byte	0xf
+ 1762 087f 77000000 		.4byte	0x77
+ 1763 0883 05       		.uleb128 0x5
+ 1764 0884 03       		.byte	0x3
+ 1765 0885 00000000 		.4byte	rawDataY
+ 1766 0889 1B       		.uleb128 0x1b
+ 1767 088a BD0C0000 		.4byte	.LASF132
+ 1768 088e 01       		.byte	0x1
+ 1769 088f 0F       		.byte	0xf
+ 1770 0890 77000000 		.4byte	0x77
+ 1771 0894 05       		.uleb128 0x5
+ 1772 0895 03       		.byte	0x3
+ 1773 0896 00000000 		.4byte	rawDataZ
+ 1774 089a 1C       		.uleb128 0x1c
+ 1775 089b 900B0000 		.4byte	.LASF135
+ 1776 089f 06       		.byte	0x6
+ 1777 08a0 1301     		.2byte	0x113
+ 1778 08a2 83000000 		.4byte	0x83
+ 1779 08a6 BF080000 		.4byte	0x8bf
+ 1780 08aa 1D       		.uleb128 0x1d
+ 1781 08ab 83000000 		.4byte	0x83
+ 1782 08af 1D       		.uleb128 0x1d
+ 1783 08b0 6E020000 		.4byte	0x26e
+ 1784 08b4 1D       		.uleb128 0x1d
+ 1785 08b5 83000000 		.4byte	0x83
+ 1786 08b9 1D       		.uleb128 0x1d
+ 1787 08ba 83000000 		.4byte	0x83
+ 1788 08be 00       		.byte	0
+ 1789 08bf 1E       		.uleb128 0x1e
+ 1790 08c0 1F010000 		.4byte	.LASF137
+ 1791 08c4 03       		.byte	0x3
+ 1792 08c5 25       		.byte	0x25
+ 1793 08c6 D0080000 		.4byte	0x8d0
+ 1794 08ca 1D       		.uleb128 0x1d
+ 1795 08cb AB000000 		.4byte	0xab
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 36
+
+
+ 1796 08cf 00       		.byte	0
+ 1797 08d0 1F       		.uleb128 0x1f
+ 1798 08d1 C4030000 		.4byte	.LASF133
+ 1799 08d5 06       		.byte	0x6
+ 1800 08d6 0F01     		.2byte	0x10f
+ 1801 08d8 83000000 		.4byte	0x83
+ 1802 08dc 1F       		.uleb128 0x1f
+ 1803 08dd 57060000 		.4byte	.LASF134
+ 1804 08e1 06       		.byte	0x6
+ 1805 08e2 1001     		.2byte	0x110
+ 1806 08e4 83000000 		.4byte	0x83
+ 1807 08e8 1C       		.uleb128 0x1c
+ 1808 08e9 E7050000 		.4byte	.LASF136
+ 1809 08ed 06       		.byte	0x6
+ 1810 08ee 1401     		.2byte	0x114
+ 1811 08f0 83000000 		.4byte	0x83
+ 1812 08f4 0D090000 		.4byte	0x90d
+ 1813 08f8 1D       		.uleb128 0x1d
+ 1814 08f9 83000000 		.4byte	0x83
+ 1815 08fd 1D       		.uleb128 0x1d
+ 1816 08fe 6E020000 		.4byte	0x26e
+ 1817 0902 1D       		.uleb128 0x1d
+ 1818 0903 83000000 		.4byte	0x83
+ 1819 0907 1D       		.uleb128 0x1d
+ 1820 0908 83000000 		.4byte	0x83
+ 1821 090c 00       		.byte	0
+ 1822 090d 1E       		.uleb128 0x1e
+ 1823 090e 69030000 		.4byte	.LASF138
+ 1824 0912 03       		.byte	0x3
+ 1825 0913 26       		.byte	0x26
+ 1826 0914 1E090000 		.4byte	0x91e
+ 1827 0918 1D       		.uleb128 0x1d
+ 1828 0919 5D000000 		.4byte	0x5d
+ 1829 091d 00       		.byte	0
+ 1830 091e 20       		.uleb128 0x20
+ 1831 091f FA0A0000 		.4byte	.LASF144
+ 1832 0923 07       		.byte	0x7
+ 1833 0924 5A       		.byte	0x5a
+ 1834 0925 1D       		.uleb128 0x1d
+ 1835 0926 83000000 		.4byte	0x83
+ 1836 092a 00       		.byte	0
+ 1837 092b 00       		.byte	0
+ 1838              		.section	.debug_abbrev,"",%progbits
+ 1839              	.Ldebug_abbrev0:
+ 1840 0000 01       		.uleb128 0x1
+ 1841 0001 11       		.uleb128 0x11
+ 1842 0002 01       		.byte	0x1
+ 1843 0003 25       		.uleb128 0x25
+ 1844 0004 0E       		.uleb128 0xe
+ 1845 0005 13       		.uleb128 0x13
+ 1846 0006 0B       		.uleb128 0xb
+ 1847 0007 03       		.uleb128 0x3
+ 1848 0008 0E       		.uleb128 0xe
+ 1849 0009 1B       		.uleb128 0x1b
+ 1850 000a 0E       		.uleb128 0xe
+ 1851 000b 55       		.uleb128 0x55
+ 1852 000c 17       		.uleb128 0x17
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 37
+
+
+ 1853 000d 11       		.uleb128 0x11
+ 1854 000e 01       		.uleb128 0x1
+ 1855 000f 10       		.uleb128 0x10
+ 1856 0010 17       		.uleb128 0x17
+ 1857 0011 00       		.byte	0
+ 1858 0012 00       		.byte	0
+ 1859 0013 02       		.uleb128 0x2
+ 1860 0014 24       		.uleb128 0x24
+ 1861 0015 00       		.byte	0
+ 1862 0016 0B       		.uleb128 0xb
+ 1863 0017 0B       		.uleb128 0xb
+ 1864 0018 3E       		.uleb128 0x3e
+ 1865 0019 0B       		.uleb128 0xb
+ 1866 001a 03       		.uleb128 0x3
+ 1867 001b 0E       		.uleb128 0xe
+ 1868 001c 00       		.byte	0
+ 1869 001d 00       		.byte	0
+ 1870 001e 03       		.uleb128 0x3
+ 1871 001f 24       		.uleb128 0x24
+ 1872 0020 00       		.byte	0
+ 1873 0021 0B       		.uleb128 0xb
+ 1874 0022 0B       		.uleb128 0xb
+ 1875 0023 3E       		.uleb128 0x3e
+ 1876 0024 0B       		.uleb128 0xb
+ 1877 0025 03       		.uleb128 0x3
+ 1878 0026 08       		.uleb128 0x8
+ 1879 0027 00       		.byte	0
+ 1880 0028 00       		.byte	0
+ 1881 0029 04       		.uleb128 0x4
+ 1882 002a 16       		.uleb128 0x16
+ 1883 002b 00       		.byte	0
+ 1884 002c 03       		.uleb128 0x3
+ 1885 002d 0E       		.uleb128 0xe
+ 1886 002e 3A       		.uleb128 0x3a
+ 1887 002f 0B       		.uleb128 0xb
+ 1888 0030 3B       		.uleb128 0x3b
+ 1889 0031 05       		.uleb128 0x5
+ 1890 0032 49       		.uleb128 0x49
+ 1891 0033 13       		.uleb128 0x13
+ 1892 0034 00       		.byte	0
+ 1893 0035 00       		.byte	0
+ 1894 0036 05       		.uleb128 0x5
+ 1895 0037 0F       		.uleb128 0xf
+ 1896 0038 00       		.byte	0
+ 1897 0039 0B       		.uleb128 0xb
+ 1898 003a 0B       		.uleb128 0xb
+ 1899 003b 49       		.uleb128 0x49
+ 1900 003c 13       		.uleb128 0x13
+ 1901 003d 00       		.byte	0
+ 1902 003e 00       		.byte	0
+ 1903 003f 06       		.uleb128 0x6
+ 1904 0040 04       		.uleb128 0x4
+ 1905 0041 01       		.byte	0x1
+ 1906 0042 0B       		.uleb128 0xb
+ 1907 0043 0B       		.uleb128 0xb
+ 1908 0044 3A       		.uleb128 0x3a
+ 1909 0045 0B       		.uleb128 0xb
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 38
+
+
+ 1910 0046 3B       		.uleb128 0x3b
+ 1911 0047 05       		.uleb128 0x5
+ 1912 0048 01       		.uleb128 0x1
+ 1913 0049 13       		.uleb128 0x13
+ 1914 004a 00       		.byte	0
+ 1915 004b 00       		.byte	0
+ 1916 004c 07       		.uleb128 0x7
+ 1917 004d 28       		.uleb128 0x28
+ 1918 004e 00       		.byte	0
+ 1919 004f 03       		.uleb128 0x3
+ 1920 0050 0E       		.uleb128 0xe
+ 1921 0051 1C       		.uleb128 0x1c
+ 1922 0052 0D       		.uleb128 0xd
+ 1923 0053 00       		.byte	0
+ 1924 0054 00       		.byte	0
+ 1925 0055 08       		.uleb128 0x8
+ 1926 0056 17       		.uleb128 0x17
+ 1927 0057 01       		.byte	0x1
+ 1928 0058 03       		.uleb128 0x3
+ 1929 0059 0E       		.uleb128 0xe
+ 1930 005a 0B       		.uleb128 0xb
+ 1931 005b 0B       		.uleb128 0xb
+ 1932 005c 3A       		.uleb128 0x3a
+ 1933 005d 0B       		.uleb128 0xb
+ 1934 005e 3B       		.uleb128 0x3b
+ 1935 005f 0B       		.uleb128 0xb
+ 1936 0060 01       		.uleb128 0x1
+ 1937 0061 13       		.uleb128 0x13
+ 1938 0062 00       		.byte	0
+ 1939 0063 00       		.byte	0
+ 1940 0064 09       		.uleb128 0x9
+ 1941 0065 0D       		.uleb128 0xd
+ 1942 0066 00       		.byte	0
+ 1943 0067 03       		.uleb128 0x3
+ 1944 0068 0E       		.uleb128 0xe
+ 1945 0069 3A       		.uleb128 0x3a
+ 1946 006a 0B       		.uleb128 0xb
+ 1947 006b 3B       		.uleb128 0x3b
+ 1948 006c 0B       		.uleb128 0xb
+ 1949 006d 49       		.uleb128 0x49
+ 1950 006e 13       		.uleb128 0x13
+ 1951 006f 00       		.byte	0
+ 1952 0070 00       		.byte	0
+ 1953 0071 0A       		.uleb128 0xa
+ 1954 0072 01       		.uleb128 0x1
+ 1955 0073 01       		.byte	0x1
+ 1956 0074 49       		.uleb128 0x49
+ 1957 0075 13       		.uleb128 0x13
+ 1958 0076 01       		.uleb128 0x1
+ 1959 0077 13       		.uleb128 0x13
+ 1960 0078 00       		.byte	0
+ 1961 0079 00       		.byte	0
+ 1962 007a 0B       		.uleb128 0xb
+ 1963 007b 21       		.uleb128 0x21
+ 1964 007c 00       		.byte	0
+ 1965 007d 49       		.uleb128 0x49
+ 1966 007e 13       		.uleb128 0x13
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 39
+
+
+ 1967 007f 2F       		.uleb128 0x2f
+ 1968 0080 0B       		.uleb128 0xb
+ 1969 0081 00       		.byte	0
+ 1970 0082 00       		.byte	0
+ 1971 0083 0C       		.uleb128 0xc
+ 1972 0084 04       		.uleb128 0x4
+ 1973 0085 01       		.byte	0x1
+ 1974 0086 0B       		.uleb128 0xb
+ 1975 0087 0B       		.uleb128 0xb
+ 1976 0088 3A       		.uleb128 0x3a
+ 1977 0089 0B       		.uleb128 0xb
+ 1978 008a 3B       		.uleb128 0x3b
+ 1979 008b 0B       		.uleb128 0xb
+ 1980 008c 01       		.uleb128 0x1
+ 1981 008d 13       		.uleb128 0x13
+ 1982 008e 00       		.byte	0
+ 1983 008f 00       		.byte	0
+ 1984 0090 0D       		.uleb128 0xd
+ 1985 0091 16       		.uleb128 0x16
+ 1986 0092 00       		.byte	0
+ 1987 0093 03       		.uleb128 0x3
+ 1988 0094 0E       		.uleb128 0xe
+ 1989 0095 3A       		.uleb128 0x3a
+ 1990 0096 0B       		.uleb128 0xb
+ 1991 0097 3B       		.uleb128 0x3b
+ 1992 0098 0B       		.uleb128 0xb
+ 1993 0099 49       		.uleb128 0x49
+ 1994 009a 13       		.uleb128 0x13
+ 1995 009b 00       		.byte	0
+ 1996 009c 00       		.byte	0
+ 1997 009d 0E       		.uleb128 0xe
+ 1998 009e 2E       		.uleb128 0x2e
+ 1999 009f 00       		.byte	0
+ 2000 00a0 3F       		.uleb128 0x3f
+ 2001 00a1 19       		.uleb128 0x19
+ 2002 00a2 03       		.uleb128 0x3
+ 2003 00a3 0E       		.uleb128 0xe
+ 2004 00a4 3A       		.uleb128 0x3a
+ 2005 00a5 0B       		.uleb128 0xb
+ 2006 00a6 3B       		.uleb128 0x3b
+ 2007 00a7 0B       		.uleb128 0xb
+ 2008 00a8 11       		.uleb128 0x11
+ 2009 00a9 01       		.uleb128 0x1
+ 2010 00aa 12       		.uleb128 0x12
+ 2011 00ab 06       		.uleb128 0x6
+ 2012 00ac 40       		.uleb128 0x40
+ 2013 00ad 18       		.uleb128 0x18
+ 2014 00ae 9642     		.uleb128 0x2116
+ 2015 00b0 19       		.uleb128 0x19
+ 2016 00b1 00       		.byte	0
+ 2017 00b2 00       		.byte	0
+ 2018 00b3 0F       		.uleb128 0xf
+ 2019 00b4 2E       		.uleb128 0x2e
+ 2020 00b5 01       		.byte	0x1
+ 2021 00b6 3F       		.uleb128 0x3f
+ 2022 00b7 19       		.uleb128 0x19
+ 2023 00b8 03       		.uleb128 0x3
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 40
+
+
+ 2024 00b9 0E       		.uleb128 0xe
+ 2025 00ba 3A       		.uleb128 0x3a
+ 2026 00bb 0B       		.uleb128 0xb
+ 2027 00bc 3B       		.uleb128 0x3b
+ 2028 00bd 0B       		.uleb128 0xb
+ 2029 00be 27       		.uleb128 0x27
+ 2030 00bf 19       		.uleb128 0x19
+ 2031 00c0 49       		.uleb128 0x49
+ 2032 00c1 13       		.uleb128 0x13
+ 2033 00c2 11       		.uleb128 0x11
+ 2034 00c3 01       		.uleb128 0x1
+ 2035 00c4 12       		.uleb128 0x12
+ 2036 00c5 06       		.uleb128 0x6
+ 2037 00c6 40       		.uleb128 0x40
+ 2038 00c7 18       		.uleb128 0x18
+ 2039 00c8 9742     		.uleb128 0x2117
+ 2040 00ca 19       		.uleb128 0x19
+ 2041 00cb 01       		.uleb128 0x1
+ 2042 00cc 13       		.uleb128 0x13
+ 2043 00cd 00       		.byte	0
+ 2044 00ce 00       		.byte	0
+ 2045 00cf 10       		.uleb128 0x10
+ 2046 00d0 05       		.uleb128 0x5
+ 2047 00d1 00       		.byte	0
+ 2048 00d2 03       		.uleb128 0x3
+ 2049 00d3 08       		.uleb128 0x8
+ 2050 00d4 3A       		.uleb128 0x3a
+ 2051 00d5 0B       		.uleb128 0xb
+ 2052 00d6 3B       		.uleb128 0x3b
+ 2053 00d7 0B       		.uleb128 0xb
+ 2054 00d8 49       		.uleb128 0x49
+ 2055 00d9 13       		.uleb128 0x13
+ 2056 00da 02       		.uleb128 0x2
+ 2057 00db 17       		.uleb128 0x17
+ 2058 00dc 00       		.byte	0
+ 2059 00dd 00       		.byte	0
+ 2060 00de 11       		.uleb128 0x11
+ 2061 00df 34       		.uleb128 0x34
+ 2062 00e0 00       		.byte	0
+ 2063 00e1 03       		.uleb128 0x3
+ 2064 00e2 0E       		.uleb128 0xe
+ 2065 00e3 3A       		.uleb128 0x3a
+ 2066 00e4 0B       		.uleb128 0xb
+ 2067 00e5 3B       		.uleb128 0x3b
+ 2068 00e6 0B       		.uleb128 0xb
+ 2069 00e7 49       		.uleb128 0x49
+ 2070 00e8 13       		.uleb128 0x13
+ 2071 00e9 02       		.uleb128 0x2
+ 2072 00ea 18       		.uleb128 0x18
+ 2073 00eb 00       		.byte	0
+ 2074 00ec 00       		.byte	0
+ 2075 00ed 12       		.uleb128 0x12
+ 2076 00ee 34       		.uleb128 0x34
+ 2077 00ef 00       		.byte	0
+ 2078 00f0 03       		.uleb128 0x3
+ 2079 00f1 0E       		.uleb128 0xe
+ 2080 00f2 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 41
+
+
+ 2081 00f3 0B       		.uleb128 0xb
+ 2082 00f4 3B       		.uleb128 0x3b
+ 2083 00f5 0B       		.uleb128 0xb
+ 2084 00f6 49       		.uleb128 0x49
+ 2085 00f7 13       		.uleb128 0x13
+ 2086 00f8 02       		.uleb128 0x2
+ 2087 00f9 17       		.uleb128 0x17
+ 2088 00fa 00       		.byte	0
+ 2089 00fb 00       		.byte	0
+ 2090 00fc 13       		.uleb128 0x13
+ 2091 00fd 898201   		.uleb128 0x4109
+ 2092 0100 01       		.byte	0x1
+ 2093 0101 11       		.uleb128 0x11
+ 2094 0102 01       		.uleb128 0x1
+ 2095 0103 31       		.uleb128 0x31
+ 2096 0104 13       		.uleb128 0x13
+ 2097 0105 01       		.uleb128 0x1
+ 2098 0106 13       		.uleb128 0x13
+ 2099 0107 00       		.byte	0
+ 2100 0108 00       		.byte	0
+ 2101 0109 14       		.uleb128 0x14
+ 2102 010a 8A8201   		.uleb128 0x410a
+ 2103 010d 00       		.byte	0
+ 2104 010e 02       		.uleb128 0x2
+ 2105 010f 18       		.uleb128 0x18
+ 2106 0110 9142     		.uleb128 0x2111
+ 2107 0112 18       		.uleb128 0x18
+ 2108 0113 00       		.byte	0
+ 2109 0114 00       		.byte	0
+ 2110 0115 15       		.uleb128 0x15
+ 2111 0116 898201   		.uleb128 0x4109
+ 2112 0119 00       		.byte	0
+ 2113 011a 11       		.uleb128 0x11
+ 2114 011b 01       		.uleb128 0x1
+ 2115 011c 31       		.uleb128 0x31
+ 2116 011d 13       		.uleb128 0x13
+ 2117 011e 00       		.byte	0
+ 2118 011f 00       		.byte	0
+ 2119 0120 16       		.uleb128 0x16
+ 2120 0121 2E       		.uleb128 0x2e
+ 2121 0122 01       		.byte	0x1
+ 2122 0123 3F       		.uleb128 0x3f
+ 2123 0124 19       		.uleb128 0x19
+ 2124 0125 03       		.uleb128 0x3
+ 2125 0126 0E       		.uleb128 0xe
+ 2126 0127 3A       		.uleb128 0x3a
+ 2127 0128 0B       		.uleb128 0xb
+ 2128 0129 3B       		.uleb128 0x3b
+ 2129 012a 0B       		.uleb128 0xb
+ 2130 012b 49       		.uleb128 0x49
+ 2131 012c 13       		.uleb128 0x13
+ 2132 012d 11       		.uleb128 0x11
+ 2133 012e 01       		.uleb128 0x1
+ 2134 012f 12       		.uleb128 0x12
+ 2135 0130 06       		.uleb128 0x6
+ 2136 0131 40       		.uleb128 0x40
+ 2137 0132 18       		.uleb128 0x18
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 42
+
+
+ 2138 0133 9742     		.uleb128 0x2117
+ 2139 0135 19       		.uleb128 0x19
+ 2140 0136 01       		.uleb128 0x1
+ 2141 0137 13       		.uleb128 0x13
+ 2142 0138 00       		.byte	0
+ 2143 0139 00       		.byte	0
+ 2144 013a 17       		.uleb128 0x17
+ 2145 013b 898201   		.uleb128 0x4109
+ 2146 013e 01       		.byte	0x1
+ 2147 013f 11       		.uleb128 0x11
+ 2148 0140 01       		.uleb128 0x1
+ 2149 0141 31       		.uleb128 0x31
+ 2150 0142 13       		.uleb128 0x13
+ 2151 0143 00       		.byte	0
+ 2152 0144 00       		.byte	0
+ 2153 0145 18       		.uleb128 0x18
+ 2154 0146 2E       		.uleb128 0x2e
+ 2155 0147 01       		.byte	0x1
+ 2156 0148 3F       		.uleb128 0x3f
+ 2157 0149 19       		.uleb128 0x19
+ 2158 014a 03       		.uleb128 0x3
+ 2159 014b 0E       		.uleb128 0xe
+ 2160 014c 3A       		.uleb128 0x3a
+ 2161 014d 0B       		.uleb128 0xb
+ 2162 014e 3B       		.uleb128 0x3b
+ 2163 014f 0B       		.uleb128 0xb
+ 2164 0150 11       		.uleb128 0x11
+ 2165 0151 01       		.uleb128 0x1
+ 2166 0152 12       		.uleb128 0x12
+ 2167 0153 06       		.uleb128 0x6
+ 2168 0154 40       		.uleb128 0x40
+ 2169 0155 18       		.uleb128 0x18
+ 2170 0156 9742     		.uleb128 0x2117
+ 2171 0158 19       		.uleb128 0x19
+ 2172 0159 01       		.uleb128 0x1
+ 2173 015a 13       		.uleb128 0x13
+ 2174 015b 00       		.byte	0
+ 2175 015c 00       		.byte	0
+ 2176 015d 19       		.uleb128 0x19
+ 2177 015e 2E       		.uleb128 0x2e
+ 2178 015f 01       		.byte	0x1
+ 2179 0160 3F       		.uleb128 0x3f
+ 2180 0161 19       		.uleb128 0x19
+ 2181 0162 03       		.uleb128 0x3
+ 2182 0163 0E       		.uleb128 0xe
+ 2183 0164 3A       		.uleb128 0x3a
+ 2184 0165 0B       		.uleb128 0xb
+ 2185 0166 3B       		.uleb128 0x3b
+ 2186 0167 0B       		.uleb128 0xb
+ 2187 0168 27       		.uleb128 0x27
+ 2188 0169 19       		.uleb128 0x19
+ 2189 016a 11       		.uleb128 0x11
+ 2190 016b 01       		.uleb128 0x1
+ 2191 016c 12       		.uleb128 0x12
+ 2192 016d 06       		.uleb128 0x6
+ 2193 016e 40       		.uleb128 0x40
+ 2194 016f 18       		.uleb128 0x18
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 43
+
+
+ 2195 0170 9742     		.uleb128 0x2117
+ 2196 0172 19       		.uleb128 0x19
+ 2197 0173 01       		.uleb128 0x1
+ 2198 0174 13       		.uleb128 0x13
+ 2199 0175 00       		.byte	0
+ 2200 0176 00       		.byte	0
+ 2201 0177 1A       		.uleb128 0x1a
+ 2202 0178 05       		.uleb128 0x5
+ 2203 0179 00       		.byte	0
+ 2204 017a 03       		.uleb128 0x3
+ 2205 017b 0E       		.uleb128 0xe
+ 2206 017c 3A       		.uleb128 0x3a
+ 2207 017d 0B       		.uleb128 0xb
+ 2208 017e 3B       		.uleb128 0x3b
+ 2209 017f 0B       		.uleb128 0xb
+ 2210 0180 49       		.uleb128 0x49
+ 2211 0181 13       		.uleb128 0x13
+ 2212 0182 02       		.uleb128 0x2
+ 2213 0183 17       		.uleb128 0x17
+ 2214 0184 00       		.byte	0
+ 2215 0185 00       		.byte	0
+ 2216 0186 1B       		.uleb128 0x1b
+ 2217 0187 34       		.uleb128 0x34
+ 2218 0188 00       		.byte	0
+ 2219 0189 03       		.uleb128 0x3
+ 2220 018a 0E       		.uleb128 0xe
+ 2221 018b 3A       		.uleb128 0x3a
+ 2222 018c 0B       		.uleb128 0xb
+ 2223 018d 3B       		.uleb128 0x3b
+ 2224 018e 0B       		.uleb128 0xb
+ 2225 018f 49       		.uleb128 0x49
+ 2226 0190 13       		.uleb128 0x13
+ 2227 0191 3F       		.uleb128 0x3f
+ 2228 0192 19       		.uleb128 0x19
+ 2229 0193 02       		.uleb128 0x2
+ 2230 0194 18       		.uleb128 0x18
+ 2231 0195 00       		.byte	0
+ 2232 0196 00       		.byte	0
+ 2233 0197 1C       		.uleb128 0x1c
+ 2234 0198 2E       		.uleb128 0x2e
+ 2235 0199 01       		.byte	0x1
+ 2236 019a 3F       		.uleb128 0x3f
+ 2237 019b 19       		.uleb128 0x19
+ 2238 019c 03       		.uleb128 0x3
+ 2239 019d 0E       		.uleb128 0xe
+ 2240 019e 3A       		.uleb128 0x3a
+ 2241 019f 0B       		.uleb128 0xb
+ 2242 01a0 3B       		.uleb128 0x3b
+ 2243 01a1 05       		.uleb128 0x5
+ 2244 01a2 27       		.uleb128 0x27
+ 2245 01a3 19       		.uleb128 0x19
+ 2246 01a4 49       		.uleb128 0x49
+ 2247 01a5 13       		.uleb128 0x13
+ 2248 01a6 3C       		.uleb128 0x3c
+ 2249 01a7 19       		.uleb128 0x19
+ 2250 01a8 01       		.uleb128 0x1
+ 2251 01a9 13       		.uleb128 0x13
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 44
+
+
+ 2252 01aa 00       		.byte	0
+ 2253 01ab 00       		.byte	0
+ 2254 01ac 1D       		.uleb128 0x1d
+ 2255 01ad 05       		.uleb128 0x5
+ 2256 01ae 00       		.byte	0
+ 2257 01af 49       		.uleb128 0x49
+ 2258 01b0 13       		.uleb128 0x13
+ 2259 01b1 00       		.byte	0
+ 2260 01b2 00       		.byte	0
+ 2261 01b3 1E       		.uleb128 0x1e
+ 2262 01b4 2E       		.uleb128 0x2e
+ 2263 01b5 01       		.byte	0x1
+ 2264 01b6 3F       		.uleb128 0x3f
+ 2265 01b7 19       		.uleb128 0x19
+ 2266 01b8 03       		.uleb128 0x3
+ 2267 01b9 0E       		.uleb128 0xe
+ 2268 01ba 3A       		.uleb128 0x3a
+ 2269 01bb 0B       		.uleb128 0xb
+ 2270 01bc 3B       		.uleb128 0x3b
+ 2271 01bd 0B       		.uleb128 0xb
+ 2272 01be 27       		.uleb128 0x27
+ 2273 01bf 19       		.uleb128 0x19
+ 2274 01c0 3C       		.uleb128 0x3c
+ 2275 01c1 19       		.uleb128 0x19
+ 2276 01c2 01       		.uleb128 0x1
+ 2277 01c3 13       		.uleb128 0x13
+ 2278 01c4 00       		.byte	0
+ 2279 01c5 00       		.byte	0
+ 2280 01c6 1F       		.uleb128 0x1f
+ 2281 01c7 2E       		.uleb128 0x2e
+ 2282 01c8 00       		.byte	0
+ 2283 01c9 3F       		.uleb128 0x3f
+ 2284 01ca 19       		.uleb128 0x19
+ 2285 01cb 03       		.uleb128 0x3
+ 2286 01cc 0E       		.uleb128 0xe
+ 2287 01cd 3A       		.uleb128 0x3a
+ 2288 01ce 0B       		.uleb128 0xb
+ 2289 01cf 3B       		.uleb128 0x3b
+ 2290 01d0 05       		.uleb128 0x5
+ 2291 01d1 27       		.uleb128 0x27
+ 2292 01d2 19       		.uleb128 0x19
+ 2293 01d3 49       		.uleb128 0x49
+ 2294 01d4 13       		.uleb128 0x13
+ 2295 01d5 3C       		.uleb128 0x3c
+ 2296 01d6 19       		.uleb128 0x19
+ 2297 01d7 00       		.byte	0
+ 2298 01d8 00       		.byte	0
+ 2299 01d9 20       		.uleb128 0x20
+ 2300 01da 2E       		.uleb128 0x2e
+ 2301 01db 01       		.byte	0x1
+ 2302 01dc 3F       		.uleb128 0x3f
+ 2303 01dd 19       		.uleb128 0x19
+ 2304 01de 03       		.uleb128 0x3
+ 2305 01df 0E       		.uleb128 0xe
+ 2306 01e0 3A       		.uleb128 0x3a
+ 2307 01e1 0B       		.uleb128 0xb
+ 2308 01e2 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 45
+
+
+ 2309 01e3 0B       		.uleb128 0xb
+ 2310 01e4 27       		.uleb128 0x27
+ 2311 01e5 19       		.uleb128 0x19
+ 2312 01e6 3C       		.uleb128 0x3c
+ 2313 01e7 19       		.uleb128 0x19
+ 2314 01e8 00       		.byte	0
+ 2315 01e9 00       		.byte	0
+ 2316 01ea 00       		.byte	0
+ 2317              		.section	.debug_loc,"",%progbits
+ 2318              	.Ldebug_loc0:
+ 2319              	.LLST0:
+ 2320 0000 00000000 		.4byte	.LVL9
+ 2321 0004 0C000000 		.4byte	.LVL10
+ 2322 0008 0100     		.2byte	0x1
+ 2323 000a 50       		.byte	0x50
+ 2324 000b 0C000000 		.4byte	.LVL10
+ 2325 000f 13000000 		.4byte	.LVL11-1
+ 2326 0013 0200     		.2byte	0x2
+ 2327 0015 71       		.byte	0x71
+ 2328 0016 00       		.sleb128 0
+ 2329 0017 13000000 		.4byte	.LVL11-1
+ 2330 001b 56000000 		.4byte	.LVL23
+ 2331 001f 0200     		.2byte	0x2
+ 2332 0021 7D       		.byte	0x7d
+ 2333 0022 07       		.sleb128 7
+ 2334 0023 56000000 		.4byte	.LVL23
+ 2335 0027 64000000 		.4byte	.LFE48
+ 2336 002b 0200     		.2byte	0x2
+ 2337 002d 91       		.byte	0x91
+ 2338 002e 77       		.sleb128 -9
+ 2339 002f 00000000 		.4byte	0
+ 2340 0033 00000000 		.4byte	0
+ 2341              	.LLST1:
+ 2342 0037 16000000 		.4byte	.LVL12
+ 2343 003b 1C000000 		.4byte	.LVL13
+ 2344 003f 0100     		.2byte	0x1
+ 2345 0041 50       		.byte	0x50
+ 2346 0042 3A000000 		.4byte	.LVL18
+ 2347 0046 40000000 		.4byte	.LVL19
+ 2348 004a 0100     		.2byte	0x1
+ 2349 004c 50       		.byte	0x50
+ 2350 004d 00000000 		.4byte	0
+ 2351 0051 00000000 		.4byte	0
+ 2352              	.LLST2:
+ 2353 0055 00000000 		.4byte	.LVL27
+ 2354 0059 0C000000 		.4byte	.LVL28
+ 2355 005d 0100     		.2byte	0x1
+ 2356 005f 50       		.byte	0x50
+ 2357 0060 0C000000 		.4byte	.LVL28
+ 2358 0064 13000000 		.4byte	.LVL29-1
+ 2359 0068 0200     		.2byte	0x2
+ 2360 006a 71       		.byte	0x71
+ 2361 006b 00       		.sleb128 0
+ 2362 006c 13000000 		.4byte	.LVL29-1
+ 2363 0070 5E000000 		.4byte	.LVL41
+ 2364 0074 0200     		.2byte	0x2
+ 2365 0076 7D       		.byte	0x7d
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 46
+
+
+ 2366 0077 07       		.sleb128 7
+ 2367 0078 5E000000 		.4byte	.LVL41
+ 2368 007c 6C000000 		.4byte	.LFE49
+ 2369 0080 0200     		.2byte	0x2
+ 2370 0082 91       		.byte	0x91
+ 2371 0083 77       		.sleb128 -9
+ 2372 0084 00000000 		.4byte	0
+ 2373 0088 00000000 		.4byte	0
+ 2374              	.LLST3:
+ 2375 008c 16000000 		.4byte	.LVL30
+ 2376 0090 1C000000 		.4byte	.LVL31
+ 2377 0094 0100     		.2byte	0x1
+ 2378 0096 50       		.byte	0x50
+ 2379 0097 3C000000 		.4byte	.LVL36
+ 2380 009b 42000000 		.4byte	.LVL37
+ 2381 009f 0100     		.2byte	0x1
+ 2382 00a1 50       		.byte	0x50
+ 2383 00a2 00000000 		.4byte	0
+ 2384 00a6 00000000 		.4byte	0
+ 2385              	.LLST4:
+ 2386 00aa 00000000 		.4byte	.LVL51
+ 2387 00ae 0C000000 		.4byte	.LVL52
+ 2388 00b2 0100     		.2byte	0x1
+ 2389 00b4 50       		.byte	0x50
+ 2390 00b5 0C000000 		.4byte	.LVL52
+ 2391 00b9 12000000 		.4byte	.LVL54
+ 2392 00bd 0200     		.2byte	0x2
+ 2393 00bf 73       		.byte	0x73
+ 2394 00c0 00       		.sleb128 0
+ 2395 00c1 12000000 		.4byte	.LVL54
+ 2396 00c5 15000000 		.4byte	.LVL55-1
+ 2397 00c9 0200     		.2byte	0x2
+ 2398 00cb 71       		.byte	0x71
+ 2399 00cc 00       		.sleb128 0
+ 2400 00cd 15000000 		.4byte	.LVL55-1
+ 2401 00d1 38000000 		.4byte	.LFE50
+ 2402 00d5 0400     		.2byte	0x4
+ 2403 00d7 F3       		.byte	0xf3
+ 2404 00d8 01       		.uleb128 0x1
+ 2405 00d9 50       		.byte	0x50
+ 2406 00da 9F       		.byte	0x9f
+ 2407 00db 00000000 		.4byte	0
+ 2408 00df 00000000 		.4byte	0
+ 2409              	.LLST5:
+ 2410 00e3 00000000 		.4byte	.LVL51
+ 2411 00e7 0E000000 		.4byte	.LVL53
+ 2412 00eb 0100     		.2byte	0x1
+ 2413 00ed 51       		.byte	0x51
+ 2414 00ee 0E000000 		.4byte	.LVL53
+ 2415 00f2 12000000 		.4byte	.LVL54
+ 2416 00f6 0200     		.2byte	0x2
+ 2417 00f8 73       		.byte	0x73
+ 2418 00f9 01       		.sleb128 1
+ 2419 00fa 12000000 		.4byte	.LVL54
+ 2420 00fe 15000000 		.4byte	.LVL55-1
+ 2421 0102 0200     		.2byte	0x2
+ 2422 0104 71       		.byte	0x71
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 47
+
+
+ 2423 0105 01       		.sleb128 1
+ 2424 0106 15000000 		.4byte	.LVL55-1
+ 2425 010a 38000000 		.4byte	.LFE50
+ 2426 010e 0400     		.2byte	0x4
+ 2427 0110 F3       		.byte	0xf3
+ 2428 0111 01       		.uleb128 0x1
+ 2429 0112 51       		.byte	0x51
+ 2430 0113 9F       		.byte	0x9f
+ 2431 0114 00000000 		.4byte	0
+ 2432 0118 00000000 		.4byte	0
+ 2433              	.LLST6:
+ 2434 011c 18000000 		.4byte	.LVL56
+ 2435 0120 30000000 		.4byte	.LVL60
+ 2436 0124 0100     		.2byte	0x1
+ 2437 0126 54       		.byte	0x54
+ 2438 0127 00000000 		.4byte	0
+ 2439 012b 00000000 		.4byte	0
+ 2440              	.LLST7:
+ 2441 012f 00000000 		.4byte	.LVL64
+ 2442 0133 06000000 		.4byte	.LVL65
+ 2443 0137 0100     		.2byte	0x1
+ 2444 0139 50       		.byte	0x50
+ 2445 013a 06000000 		.4byte	.LVL65
+ 2446 013e 0C000000 		.4byte	.LFE43
+ 2447 0142 0400     		.2byte	0x4
+ 2448 0144 F3       		.byte	0xf3
+ 2449 0145 01       		.uleb128 0x1
+ 2450 0146 50       		.byte	0x50
+ 2451 0147 9F       		.byte	0x9f
+ 2452 0148 00000000 		.4byte	0
+ 2453 014c 00000000 		.4byte	0
+ 2454              	.LLST8:
+ 2455 0150 00000000 		.4byte	.LVL67
+ 2456 0154 07000000 		.4byte	.LVL68-1
+ 2457 0158 0100     		.2byte	0x1
+ 2458 015a 50       		.byte	0x50
+ 2459 015b 07000000 		.4byte	.LVL68-1
+ 2460 015f 1C000000 		.4byte	.LFE45
+ 2461 0163 0400     		.2byte	0x4
+ 2462 0165 F3       		.byte	0xf3
+ 2463 0166 01       		.uleb128 0x1
+ 2464 0167 50       		.byte	0x50
+ 2465 0168 9F       		.byte	0x9f
+ 2466 0169 00000000 		.4byte	0
+ 2467 016d 00000000 		.4byte	0
+ 2468              	.LLST9:
+ 2469 0171 08000000 		.4byte	.LVL68
+ 2470 0175 0E000000 		.4byte	.LVL69
+ 2471 0179 0100     		.2byte	0x1
+ 2472 017b 50       		.byte	0x50
+ 2473 017c 0E000000 		.4byte	.LVL69
+ 2474 0180 19000000 		.4byte	.LVL72-1
+ 2475 0184 0100     		.2byte	0x1
+ 2476 0186 51       		.byte	0x51
+ 2477 0187 00000000 		.4byte	0
+ 2478 018b 00000000 		.4byte	0
+ 2479              		.section	.debug_aranges,"",%progbits
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 48
+
+
+ 2480 0000 84000000 		.4byte	0x84
+ 2481 0004 0200     		.2byte	0x2
+ 2482 0006 00000000 		.4byte	.Ldebug_info0
+ 2483 000a 04       		.byte	0x4
+ 2484 000b 00       		.byte	0
+ 2485 000c 0000     		.2byte	0
+ 2486 000e 0000     		.2byte	0
+ 2487 0010 00000000 		.4byte	.LFB42
+ 2488 0014 6C000000 		.4byte	.LFE42-.LFB42
+ 2489 0018 00000000 		.4byte	.LFB48
+ 2490 001c 64000000 		.4byte	.LFE48-.LFB48
+ 2491 0020 00000000 		.4byte	.LFB38
+ 2492 0024 0A000000 		.4byte	.LFE38-.LFB38
+ 2493 0028 00000000 		.4byte	.LFB44
+ 2494 002c 0E000000 		.4byte	.LFE44-.LFB44
+ 2495 0030 00000000 		.4byte	.LFB46
+ 2496 0034 0E000000 		.4byte	.LFE46-.LFB46
+ 2497 0038 00000000 		.4byte	.LFB49
+ 2498 003c 6C000000 		.4byte	.LFE49-.LFB49
+ 2499 0040 00000000 		.4byte	.LFB39
+ 2500 0044 24000000 		.4byte	.LFE39-.LFB39
+ 2501 0048 00000000 		.4byte	.LFB40
+ 2502 004c 14000000 		.4byte	.LFE40-.LFB40
+ 2503 0050 00000000 		.4byte	.LFB41
+ 2504 0054 14000000 		.4byte	.LFE41-.LFB41
+ 2505 0058 00000000 		.4byte	.LFB47
+ 2506 005c 14000000 		.4byte	.LFE47-.LFB47
+ 2507 0060 00000000 		.4byte	.LFB50
+ 2508 0064 38000000 		.4byte	.LFE50-.LFB50
+ 2509 0068 00000000 		.4byte	.LFB37
+ 2510 006c 20000000 		.4byte	.LFE37-.LFB37
+ 2511 0070 00000000 		.4byte	.LFB43
+ 2512 0074 0C000000 		.4byte	.LFE43-.LFB43
+ 2513 0078 00000000 		.4byte	.LFB45
+ 2514 007c 1C000000 		.4byte	.LFE45-.LFB45
+ 2515 0080 00000000 		.4byte	0
+ 2516 0084 00000000 		.4byte	0
+ 2517              		.section	.debug_ranges,"",%progbits
+ 2518              	.Ldebug_ranges0:
+ 2519 0000 00000000 		.4byte	.LFB42
+ 2520 0004 6C000000 		.4byte	.LFE42
+ 2521 0008 00000000 		.4byte	.LFB48
+ 2522 000c 64000000 		.4byte	.LFE48
+ 2523 0010 00000000 		.4byte	.LFB38
+ 2524 0014 0A000000 		.4byte	.LFE38
+ 2525 0018 00000000 		.4byte	.LFB44
+ 2526 001c 0E000000 		.4byte	.LFE44
+ 2527 0020 00000000 		.4byte	.LFB46
+ 2528 0024 0E000000 		.4byte	.LFE46
+ 2529 0028 00000000 		.4byte	.LFB49
+ 2530 002c 6C000000 		.4byte	.LFE49
+ 2531 0030 00000000 		.4byte	.LFB39
+ 2532 0034 24000000 		.4byte	.LFE39
+ 2533 0038 00000000 		.4byte	.LFB40
+ 2534 003c 14000000 		.4byte	.LFE40
+ 2535 0040 00000000 		.4byte	.LFB41
+ 2536 0044 14000000 		.4byte	.LFE41
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 49
+
+
+ 2537 0048 00000000 		.4byte	.LFB47
+ 2538 004c 14000000 		.4byte	.LFE47
+ 2539 0050 00000000 		.4byte	.LFB50
+ 2540 0054 38000000 		.4byte	.LFE50
+ 2541 0058 00000000 		.4byte	.LFB37
+ 2542 005c 20000000 		.4byte	.LFE37
+ 2543 0060 00000000 		.4byte	.LFB43
+ 2544 0064 0C000000 		.4byte	.LFE43
+ 2545 0068 00000000 		.4byte	.LFB45
+ 2546 006c 1C000000 		.4byte	.LFE45
+ 2547 0070 00000000 		.4byte	0
+ 2548 0074 00000000 		.4byte	0
+ 2549              		.section	.debug_line,"",%progbits
+ 2550              	.Ldebug_line0:
+ 2551 0000 DD010000 		.section	.debug_str,"MS",%progbits,1
+ 2551      02008A00 
+ 2551      00000201 
+ 2551      FB0E0D00 
+ 2551      01010101 
+ 2552              	.LASF76:
+ 2553 0000 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_RX_CREDIT_IND\000"
+ 2553      455F4556 
+ 2553      545F4C32 
+ 2553      4341505F 
+ 2553      43424643 
+ 2554              	.LASF21:
+ 2555 0023 4359424C 		.ascii	"CYBLE_EVT_STACK_BUSY_STATUS\000"
+ 2555      455F4556 
+ 2555      545F5354 
+ 2555      41434B5F 
+ 2555      42555359 
+ 2556              	.LASF10:
+ 2557 003f 75696E74 		.ascii	"uint16\000"
+ 2557      313600
+ 2558              	.LASF75:
+ 2559 0046 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_DATA_READ\000"
+ 2559      455F4556 
+ 2559      545F4C32 
+ 2559      4341505F 
+ 2559      43424643 
+ 2560              	.LASF33:
+ 2561 0065 4359424C 		.ascii	"CYBLE_EVT_GAP_CONNECTION_UPDATE_COMPLETE\000"
+ 2561      455F4556 
+ 2561      545F4741 
+ 2561      505F434F 
+ 2561      4E4E4543 
+ 2562              	.LASF74:
+ 2563 008e 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_DISCONN_CNF\000"
+ 2563      455F4556 
+ 2563      545F4C32 
+ 2563      4341505F 
+ 2563      43424643 
+ 2564              	.LASF38:
+ 2565 00af 4359424C 		.ascii	"CYBLE_EVT_GAP_OOB_GENERATED_NOTIFICATION\000"
+ 2565      455F4556 
+ 2565      545F4741 
+ 2565      505F4F4F 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 50
+
+
+ 2565      425F4745 
+ 2566              	.LASF54:
+ 2567 00d8 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_MULTI_RSP\000"
+ 2567      455F4556 
+ 2567      545F4741 
+ 2567      5454435F 
+ 2567      52454144 
+ 2568              	.LASF59:
+ 2569 00f7 4359424C 		.ascii	"CYBLE_EVT_GATTS_EXEC_WRITE_REQ\000"
+ 2569      455F4556 
+ 2569      545F4741 
+ 2569      5454535F 
+ 2569      45584543 
+ 2570              	.LASF123:
+ 2571 0116 73657452 		.ascii	"setRange\000"
+ 2571      616E6765 
+ 2571      00
+ 2572              	.LASF137:
+ 2573 011f 64656275 		.ascii	"debug\000"
+ 2573      6700
+ 2574              	.LASF18:
+ 2575 0125 4359424C 		.ascii	"CYBLE_EVT_TIMEOUT\000"
+ 2575      455F4556 
+ 2575      545F5449 
+ 2575      4D454F55 
+ 2575      5400
+ 2576              	.LASF4:
+ 2577 0137 6C6F6E67 		.ascii	"long int\000"
+ 2577      20696E74 
+ 2577      00
+ 2578              	.LASF94:
+ 2579 0140 4144584C 		.ascii	"ADXL345_DATARATE_3_13HZ\000"
+ 2579      3334355F 
+ 2579      44415441 
+ 2579      52415445 
+ 2579      5F335F31 
+ 2580              	.LASF110:
+ 2581 0158 67657452 		.ascii	"getRange\000"
+ 2581      616E6765 
+ 2581      00
+ 2582              	.LASF7:
+ 2583 0161 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 2583      206C6F6E 
+ 2583      6720756E 
+ 2583      7369676E 
+ 2583      65642069 
+ 2584              	.LASF20:
+ 2585 0178 4359424C 		.ascii	"CYBLE_EVT_HCI_STATUS\000"
+ 2585      455F4556 
+ 2585      545F4843 
+ 2585      495F5354 
+ 2585      41545553 
+ 2586              	.LASF121:
+ 2587 018d 7365744D 		.ascii	"setMeasurementRate\000"
+ 2587      65617375 
+ 2587      72656D65 
+ 2587      6E745261 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 51
+
+
+ 2587      746500
+ 2588              	.LASF97:
+ 2589 01a0 4144584C 		.ascii	"ADXL345_DATARATE_0_39HZ\000"
+ 2589      3334355F 
+ 2589      44415441 
+ 2589      52415445 
+ 2589      5F305F33 
+ 2590              	.LASF68:
+ 2591 01b8 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CONN_PARAM_UPDATE_REQ\000"
+ 2591      455F4556 
+ 2591      545F4C32 
+ 2591      4341505F 
+ 2591      434F4E4E 
+ 2592              	.LASF32:
+ 2593 01de 4359424C 		.ascii	"CYBLE_EVT_GAP_ENCRYPT_CHANGE\000"
+ 2593      455F4556 
+ 2593      545F4741 
+ 2593      505F454E 
+ 2593      43525950 
+ 2594              	.LASF36:
+ 2595 01fb 4359424C 		.ascii	"CYBLE_EVT_GAP_NUMERIC_COMPARISON_REQUEST\000"
+ 2595      455F4556 
+ 2595      545F4741 
+ 2595      505F4E55 
+ 2595      4D455249 
+ 2596              	.LASF141:
+ 2597 0224 443A5C48 		.ascii	"D:\\Henny\\magisterka\\CY8KIT\\BLE\\BLE\\WaveSim.cy"
+ 2597      656E6E79 
+ 2597      5C6D6167 
+ 2597      69737465 
+ 2597      726B615C 
+ 2598 0251 64736E00 		.ascii	"dsn\000"
+ 2599              	.LASF6:
+ 2600 0255 6C6F6E67 		.ascii	"long long int\000"
+ 2600      206C6F6E 
+ 2600      6720696E 
+ 2600      7400
+ 2601              	.LASF0:
+ 2602 0263 7369676E 		.ascii	"signed char\000"
+ 2602      65642063 
+ 2602      68617200 
+ 2603              	.LASF17:
+ 2604 026f 4359424C 		.ascii	"CYBLE_EVT_STACK_ON\000"
+ 2604      455F4556 
+ 2604      545F5354 
+ 2604      41434B5F 
+ 2604      4F4E00
+ 2605              	.LASF34:
+ 2606 0282 4359424C 		.ascii	"CYBLE_EVT_GAPC_SCAN_START_STOP\000"
+ 2606      455F4556 
+ 2606      545F4741 
+ 2606      50435F53 
+ 2606      43414E5F 
+ 2607              	.LASF24:
+ 2608 02a1 4359424C 		.ascii	"CYBLE_EVT_GAP_AUTH_REQ\000"
+ 2608      455F4556 
+ 2608      545F4741 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 52
+
+
+ 2608      505F4155 
+ 2608      54485F52 
+ 2609              	.LASF52:
+ 2610 02b8 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_RSP\000"
+ 2610      455F4556 
+ 2610      545F4741 
+ 2610      5454435F 
+ 2610      52454144 
+ 2611              	.LASF103:
+ 2612 02d1 4144584C 		.ascii	"ADXL345_RANGE_4G\000"
+ 2612      3334355F 
+ 2612      52414E47 
+ 2612      455F3447 
+ 2612      00
+ 2613              	.LASF57:
+ 2614 02e2 4359424C 		.ascii	"CYBLE_EVT_GATTS_WRITE_CMD_REQ\000"
+ 2614      455F4556 
+ 2614      545F4741 
+ 2614      5454535F 
+ 2614      57524954 
+ 2615              	.LASF87:
+ 2616 0300 4144584C 		.ascii	"ADXL345_DATARATE_400HZ\000"
+ 2616      3334355F 
+ 2616      44415441 
+ 2616      52415445 
+ 2616      5F343030 
+ 2617              	.LASF126:
+ 2618 0317 626C6543 		.ascii	"bleConnected\000"
+ 2618      6F6E6E65 
+ 2618      63746564 
+ 2618      00
+ 2619              	.LASF140:
+ 2620 0324 2E5C4144 		.ascii	".\\ADXL345.c\000"
+ 2620      584C3334 
+ 2620      352E6300 
+ 2621              	.LASF60:
+ 2622 0330 4359424C 		.ascii	"CYBLE_EVT_GATTC_EXEC_WRITE_RSP\000"
+ 2622      455F4556 
+ 2622      545F4741 
+ 2622      5454435F 
+ 2622      45584543 
+ 2623              	.LASF13:
+ 2624 034f 646F7562 		.ascii	"double\000"
+ 2624      6C6500
+ 2625              	.LASF108:
+ 2626 0356 67657444 		.ascii	"getDeviceId\000"
+ 2626      65766963 
+ 2626      65496400 
+ 2627              	.LASF11:
+ 2628 0362 75696E74 		.ascii	"uint32\000"
+ 2628      333200
+ 2629              	.LASF138:
+ 2630 0369 64656275 		.ascii	"debugInt\000"
+ 2630      67496E74 
+ 2630      00
+ 2631              	.LASF130:
+ 2632 0372 72617744 		.ascii	"rawDataX\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 53
+
+
+ 2632      61746158 
+ 2632      00
+ 2633              	.LASF111:
+ 2634 037b 72656164 		.ascii	"readRegister\000"
+ 2634      52656769 
+ 2634      73746572 
+ 2634      00
+ 2635              	.LASF93:
+ 2636 0388 4144584C 		.ascii	"ADXL345_DATARATE_6_25HZ\000"
+ 2636      3334355F 
+ 2636      44415441 
+ 2636      52415445 
+ 2636      5F365F32 
+ 2637              	.LASF78:
+ 2638 03a0 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_DATA_WRITE_IND\000"
+ 2638      455F4556 
+ 2638      545F4C32 
+ 2638      4341505F 
+ 2638      43424643 
+ 2639              	.LASF133:
+ 2640 03c4 4932435F 		.ascii	"I2C_I2CMasterStatus\000"
+ 2640      4932434D 
+ 2640      61737465 
+ 2640      72537461 
+ 2640      74757300 
+ 2641              	.LASF124:
+ 2642 03d8 76616C75 		.ascii	"value\000"
+ 2642      6500
+ 2643              	.LASF89:
+ 2644 03de 4144584C 		.ascii	"ADXL345_DATARATE_100HZ\000"
+ 2644      3334355F 
+ 2644      44415441 
+ 2644      52415445 
+ 2644      5F313030 
+ 2645              	.LASF65:
+ 2646 03f5 4359424C 		.ascii	"CYBLE_EVT_GATTC_STOP_CMD_COMPLETE\000"
+ 2646      455F4556 
+ 2646      545F4741 
+ 2646      5454435F 
+ 2646      53544F50 
+ 2647              	.LASF8:
+ 2648 0417 756E7369 		.ascii	"unsigned int\000"
+ 2648      676E6564 
+ 2648      20696E74 
+ 2648      00
+ 2649              	.LASF142:
+ 2650 0424 43686172 		.ascii	"CharValue\000"
+ 2650      56616C75 
+ 2650      6500
+ 2651              	.LASF80:
+ 2652 042e 4359424C 		.ascii	"CYBLE_EVT_LE_PING_AUTH_TIMEOUT\000"
+ 2652      455F4556 
+ 2652      545F4C45 
+ 2652      5F50494E 
+ 2652      475F4155 
+ 2653              	.LASF5:
+ 2654 044d 6C6F6E67 		.ascii	"long unsigned int\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 54
+
+
+ 2654      20756E73 
+ 2654      69676E65 
+ 2654      6420696E 
+ 2654      7400
+ 2655              	.LASF55:
+ 2656 045f 4359424C 		.ascii	"CYBLE_EVT_GATTS_WRITE_REQ\000"
+ 2656      455F4556 
+ 2656      545F4741 
+ 2656      5454535F 
+ 2656      57524954 
+ 2657              	.LASF47:
+ 2658 0479 4359424C 		.ascii	"CYBLE_EVT_GATTC_XCHNG_MTU_RSP\000"
+ 2658      455F4556 
+ 2658      545F4741 
+ 2658      5454435F 
+ 2658      5843484E 
+ 2659              	.LASF64:
+ 2660 0497 4359424C 		.ascii	"CYBLE_EVT_GATTS_DATA_SIGNED_CMD_REQ\000"
+ 2660      455F4556 
+ 2660      545F4741 
+ 2660      5454535F 
+ 2660      44415441 
+ 2661              	.LASF67:
+ 2662 04bb 4359424C 		.ascii	"CYBLE_EVT_GATTC_LONG_PROCEDURE_END\000"
+ 2662      455F4556 
+ 2662      545F4741 
+ 2662      5454435F 
+ 2662      4C4F4E47 
+ 2663              	.LASF109:
+ 2664 04de 6765744D 		.ascii	"getMeasurementRate\000"
+ 2664      65617375 
+ 2664      72656D65 
+ 2664      6E745261 
+ 2664      746500
+ 2665              	.LASF117:
+ 2666 04f1 77726974 		.ascii	"writeRegister\000"
+ 2666      65526567 
+ 2666      69737465 
+ 2666      7200
+ 2667              	.LASF3:
+ 2668 04ff 73686F72 		.ascii	"short unsigned int\000"
+ 2668      7420756E 
+ 2668      7369676E 
+ 2668      65642069 
+ 2668      6E7400
+ 2669              	.LASF16:
+ 2670 0512 4359424C 		.ascii	"CYBLE_EVT_HOST_INVALID\000"
+ 2670      455F4556 
+ 2670      545F484F 
+ 2670      53545F49 
+ 2670      4E56414C 
+ 2671              	.LASF50:
+ 2672 0529 4359424C 		.ascii	"CYBLE_EVT_GATTC_FIND_INFO_RSP\000"
+ 2672      455F4556 
+ 2672      545F4741 
+ 2672      5454435F 
+ 2672      46494E44 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 55
+
+
+ 2673              	.LASF22:
+ 2674 0547 4359424C 		.ascii	"CYBLE_EVT_MEMORY_REQUEST\000"
+ 2674      455F4556 
+ 2674      545F4D45 
+ 2674      4D4F5259 
+ 2674      5F524551 
+ 2675              	.LASF128:
+ 2676 0560 79446174 		.ascii	"yData\000"
+ 2676      6100
+ 2677              	.LASF116:
+ 2678 0566 67657453 		.ascii	"getSensorData\000"
+ 2678      656E736F 
+ 2678      72446174 
+ 2678      6100
+ 2679              	.LASF85:
+ 2680 0574 4144584C 		.ascii	"ADXL345_DATARATE_1600HZ\000"
+ 2680      3334355F 
+ 2680      44415441 
+ 2680      52415445 
+ 2680      5F313630 
+ 2681              	.LASF25:
+ 2682 058c 4359424C 		.ascii	"CYBLE_EVT_GAP_PASSKEY_ENTRY_REQUEST\000"
+ 2682      455F4556 
+ 2682      545F4741 
+ 2682      505F5041 
+ 2682      53534B45 
+ 2683              	.LASF30:
+ 2684 05b0 4359424C 		.ascii	"CYBLE_EVT_GAP_DEVICE_CONNECTED\000"
+ 2684      455F4556 
+ 2684      545F4741 
+ 2684      505F4445 
+ 2684      56494345 
+ 2685              	.LASF84:
+ 2686 05cf 4144584C 		.ascii	"ADXL345_DATARATE_3200HZ\000"
+ 2686      3334355F 
+ 2686      44415441 
+ 2686      52415445 
+ 2686      5F333230 
+ 2687              	.LASF136:
+ 2688 05e7 4932435F 		.ascii	"I2C_I2CMasterReadBuf\000"
+ 2688      4932434D 
+ 2688      61737465 
+ 2688      72526561 
+ 2688      64427566 
+ 2689              	.LASF44:
+ 2690 05fc 4359424C 		.ascii	"CYBLE_EVT_GATT_CONNECT_IND\000"
+ 2690      455F4556 
+ 2690      545F4741 
+ 2690      54545F43 
+ 2690      4F4E4E45 
+ 2691              	.LASF70:
+ 2692 0617 4359424C 		.ascii	"CYBLE_EVT_L2CAP_COMMAND_REJ\000"
+ 2692      455F4556 
+ 2692      545F4C32 
+ 2692      4341505F 
+ 2692      434F4D4D 
+ 2693              	.LASF23:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 56
+
+
+ 2694 0633 4359424C 		.ascii	"CYBLE_EVT_GAPC_SCAN_PROGRESS_RESULT\000"
+ 2694      455F4556 
+ 2694      545F4741 
+ 2694      50435F53 
+ 2694      43414E5F 
+ 2695              	.LASF134:
+ 2696 0657 4932435F 		.ascii	"I2C_I2CMasterClearStatus\000"
+ 2696      4932434D 
+ 2696      61737465 
+ 2696      72436C65 
+ 2696      61725374 
+ 2697              	.LASF71:
+ 2698 0670 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_CONN_IND\000"
+ 2698      455F4556 
+ 2698      545F4C32 
+ 2698      4341505F 
+ 2698      43424643 
+ 2699              	.LASF49:
+ 2700 068e 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_BY_TYPE_RSP\000"
+ 2700      455F4556 
+ 2700      545F4741 
+ 2700      5454435F 
+ 2700      52454144 
+ 2701              	.LASF125:
+ 2702 06af 6E6F7469 		.ascii	"notifyOn\000"
+ 2702      66794F6E 
+ 2702      00
+ 2703              	.LASF15:
+ 2704 06b8 73697A65 		.ascii	"sizetype\000"
+ 2704      74797065 
+ 2704      00
+ 2705              	.LASF81:
+ 2706 06c1 4359424C 		.ascii	"CYBLE_EVT_MAX\000"
+ 2706      455F4556 
+ 2706      545F4D41 
+ 2706      5800
+ 2707              	.LASF28:
+ 2708 06cf 4359424C 		.ascii	"CYBLE_EVT_GAP_AUTH_FAILED\000"
+ 2708      455F4556 
+ 2708      545F4741 
+ 2708      505F4155 
+ 2708      54485F46 
+ 2709              	.LASF56:
+ 2710 06e9 4359424C 		.ascii	"CYBLE_EVT_GATTC_WRITE_RSP\000"
+ 2710      455F4556 
+ 2710      545F4741 
+ 2710      5454435F 
+ 2710      57524954 
+ 2711              	.LASF41:
+ 2712 0703 4359424C 		.ascii	"CYBLE_EVT_GAPC_DIRECT_ADV_REPORT\000"
+ 2712      455F4556 
+ 2712      545F4741 
+ 2712      50435F44 
+ 2712      49524543 
+ 2713              	.LASF39:
+ 2714 0724 4359424C 		.ascii	"CYBLE_EVT_GAP_DATA_LENGTH_CHANGE\000"
+ 2714      455F4556 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 57
+
+
+ 2714      545F4741 
+ 2714      505F4441 
+ 2714      54415F4C 
+ 2715              	.LASF9:
+ 2716 0745 75696E74 		.ascii	"uint8\000"
+ 2716      3800
+ 2717              	.LASF27:
+ 2718 074b 4359424C 		.ascii	"CYBLE_EVT_GAP_AUTH_COMPLETE\000"
+ 2718      455F4556 
+ 2718      545F4741 
+ 2718      505F4155 
+ 2718      54485F43 
+ 2719              	.LASF95:
+ 2720 0767 4144584C 		.ascii	"ADXL345_DATARATE_1_56HZ\000"
+ 2720      3334355F 
+ 2720      44415441 
+ 2720      52415445 
+ 2720      5F315F35 
+ 2721              	.LASF61:
+ 2722 077f 4359424C 		.ascii	"CYBLE_EVT_GATTC_HANDLE_VALUE_NTF\000"
+ 2722      455F4556 
+ 2722      545F4741 
+ 2722      5454435F 
+ 2722      48414E44 
+ 2723              	.LASF90:
+ 2724 07a0 4144584C 		.ascii	"ADXL345_DATARATE_50HZ\000"
+ 2724      3334355F 
+ 2724      44415441 
+ 2724      52415445 
+ 2724      5F353048 
+ 2725              	.LASF72:
+ 2726 07b6 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_CONN_CNF\000"
+ 2726      455F4556 
+ 2726      545F4C32 
+ 2726      4341505F 
+ 2726      43424643 
+ 2727              	.LASF118:
+ 2728 07d4 77726974 		.ascii	"writeBuffer\000"
+ 2728      65427566 
+ 2728      66657200 
+ 2729              	.LASF48:
+ 2730 07e0 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_BY_GROUP_TYPE_RSP\000"
+ 2730      455F4556 
+ 2730      545F4741 
+ 2730      5454435F 
+ 2730      52454144 
+ 2731              	.LASF122:
+ 2732 0807 72616E67 		.ascii	"range\000"
+ 2732      6500
+ 2733              	.LASF12:
+ 2734 080d 666C6F61 		.ascii	"float\000"
+ 2734      7400
+ 2735              	.LASF127:
+ 2736 0813 78446174 		.ascii	"xData\000"
+ 2736      6100
+ 2737              	.LASF101:
+ 2738 0819 4144584C 		.ascii	"ADXL345_RANGE_16G\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 58
+
+
+ 2738      3334355F 
+ 2738      52414E47 
+ 2738      455F3136 
+ 2738      4700
+ 2739              	.LASF143:
+ 2740 082b 7363616C 		.ascii	"scaleAccValues\000"
+ 2740      65416363 
+ 2740      56616C75 
+ 2740      657300
+ 2741              	.LASF120:
+ 2742 083a 5F426F6F 		.ascii	"_Bool\000"
+ 2742      6C00
+ 2743              	.LASF1:
+ 2744 0840 756E7369 		.ascii	"unsigned char\000"
+ 2744      676E6564 
+ 2744      20636861 
+ 2744      7200
+ 2745              	.LASF91:
+ 2746 084e 4144584C 		.ascii	"ADXL345_DATARATE_25HZ\000"
+ 2746      3334355F 
+ 2746      44415441 
+ 2746      52415445 
+ 2746      5F323548 
+ 2747              	.LASF37:
+ 2748 0864 4359424C 		.ascii	"CYBLE_EVT_GAP_KEYPRESS_NOTIFICATION\000"
+ 2748      455F4556 
+ 2748      545F4741 
+ 2748      505F4B45 
+ 2748      59505245 
+ 2749              	.LASF139:
+ 2750 0888 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 2750      4320342E 
+ 2750      392E3320 
+ 2750      32303135 
+ 2750      30333033 
+ 2751 08bb 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 2751      20726576 
+ 2751      6973696F 
+ 2751      6E203232 
+ 2751      31323230 
+ 2752 08ee 67202D66 		.ascii	"g -ffunction-sections -ffat-lto-objects\000"
+ 2752      66756E63 
+ 2752      74696F6E 
+ 2752      2D736563 
+ 2752      74696F6E 
+ 2753              	.LASF2:
+ 2754 0916 73686F72 		.ascii	"short int\000"
+ 2754      7420696E 
+ 2754      7400
+ 2755              	.LASF62:
+ 2756 0920 4359424C 		.ascii	"CYBLE_EVT_GATTC_HANDLE_VALUE_IND\000"
+ 2756      455F4556 
+ 2756      545F4741 
+ 2756      5454435F 
+ 2756      48414E44 
+ 2757              	.LASF58:
+ 2758 0941 4359424C 		.ascii	"CYBLE_EVT_GATTS_PREP_WRITE_REQ\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 59
+
+
+ 2758      455F4556 
+ 2758      545F4741 
+ 2758      5454535F 
+ 2758      50524550 
+ 2759              	.LASF102:
+ 2760 0960 4144584C 		.ascii	"ADXL345_RANGE_8G\000"
+ 2760      3334355F 
+ 2760      52414E47 
+ 2760      455F3847 
+ 2760      00
+ 2761              	.LASF86:
+ 2762 0971 4144584C 		.ascii	"ADXL345_DATARATE_800HZ\000"
+ 2762      3334355F 
+ 2762      44415441 
+ 2762      52415445 
+ 2762      5F383030 
+ 2763              	.LASF112:
+ 2764 0988 72656164 		.ascii	"readRegister16\000"
+ 2764      52656769 
+ 2764      73746572 
+ 2764      313600
+ 2765              	.LASF83:
+ 2766 0997 75696E74 		.ascii	"uintVal\000"
+ 2766      56616C00 
+ 2767              	.LASF63:
+ 2768 099f 4359424C 		.ascii	"CYBLE_EVT_GATTS_HANDLE_VALUE_CNF\000"
+ 2768      455F4556 
+ 2768      545F4741 
+ 2768      5454535F 
+ 2768      48414E44 
+ 2769              	.LASF43:
+ 2770 09c0 4359424C 		.ascii	"CYBLE_EVT_GATTC_ERROR_RSP\000"
+ 2770      455F4556 
+ 2770      545F4741 
+ 2770      5454435F 
+ 2770      4552524F 
+ 2771              	.LASF42:
+ 2772 09da 4359424C 		.ascii	"CYBLE_EVT_GAP_SMP_NEGOTIATED_AUTH_INFO\000"
+ 2772      455F4556 
+ 2772      545F4741 
+ 2772      505F534D 
+ 2772      505F4E45 
+ 2773              	.LASF113:
+ 2774 0a01 67657452 		.ascii	"getRawDataX\000"
+ 2774      61774461 
+ 2774      74615800 
+ 2775              	.LASF114:
+ 2776 0a0d 67657452 		.ascii	"getRawDataY\000"
+ 2776      61774461 
+ 2776      74615900 
+ 2777              	.LASF115:
+ 2778 0a19 67657452 		.ascii	"getRawDataZ\000"
+ 2778      61774461 
+ 2778      74615A00 
+ 2779              	.LASF14:
+ 2780 0a25 63686172 		.ascii	"char\000"
+ 2780      00
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 60
+
+
+ 2781              	.LASF31:
+ 2782 0a2a 4359424C 		.ascii	"CYBLE_EVT_GAP_DEVICE_DISCONNECTED\000"
+ 2782      455F4556 
+ 2782      545F4741 
+ 2782      505F4445 
+ 2782      56494345 
+ 2783              	.LASF66:
+ 2784 0a4c 4359424C 		.ascii	"CYBLE_EVT_GATTS_READ_CHAR_VAL_ACCESS_REQ\000"
+ 2784      455F4556 
+ 2784      545F4741 
+ 2784      5454535F 
+ 2784      52454144 
+ 2785              	.LASF77:
+ 2786 0a75 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_TX_CREDIT_IND\000"
+ 2786      455F4556 
+ 2786      545F4C32 
+ 2786      4341505F 
+ 2786      43424643 
+ 2787              	.LASF100:
+ 2788 0a98 44617461 		.ascii	"DataRate_t\000"
+ 2788      52617465 
+ 2788      5F7400
+ 2789              	.LASF26:
+ 2790 0aa3 4359424C 		.ascii	"CYBLE_EVT_GAP_PASSKEY_DISPLAY_REQUEST\000"
+ 2790      455F4556 
+ 2790      545F4741 
+ 2790      505F5041 
+ 2790      53534B45 
+ 2791              	.LASF92:
+ 2792 0ac9 4144584C 		.ascii	"ADXL345_DATARATE_12_5HZ\000"
+ 2792      3334355F 
+ 2792      44415441 
+ 2792      52415445 
+ 2792      5F31325F 
+ 2793              	.LASF19:
+ 2794 0ae1 4359424C 		.ascii	"CYBLE_EVT_HARDWARE_ERROR\000"
+ 2794      455F4556 
+ 2794      545F4841 
+ 2794      52445741 
+ 2794      52455F45 
+ 2795              	.LASF144:
+ 2796 0afa 43794465 		.ascii	"CyDelay\000"
+ 2796      6C617900 
+ 2797              	.LASF98:
+ 2798 0b02 4144584C 		.ascii	"ADXL345_DATARATE_0_20HZ\000"
+ 2798      3334355F 
+ 2798      44415441 
+ 2798      52415445 
+ 2798      5F305F32 
+ 2799              	.LASF96:
+ 2800 0b1a 4144584C 		.ascii	"ADXL345_DATARATE_0_78HZ\000"
+ 2800      3334355F 
+ 2800      44415441 
+ 2800      52415445 
+ 2800      5F305F37 
+ 2801              	.LASF29:
+ 2802 0b32 4359424C 		.ascii	"CYBLE_EVT_GAPP_ADVERTISEMENT_START_STOP\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 61
+
+
+ 2802      455F4556 
+ 2802      545F4741 
+ 2802      50505F41 
+ 2802      44564552 
+ 2803              	.LASF46:
+ 2804 0b5a 4359424C 		.ascii	"CYBLE_EVT_GATTS_XCNHG_MTU_REQ\000"
+ 2804      455F4556 
+ 2804      545F4741 
+ 2804      5454535F 
+ 2804      58434E48 
+ 2805              	.LASF129:
+ 2806 0b78 7A446174 		.ascii	"zData\000"
+ 2806      6100
+ 2807              	.LASF106:
+ 2808 0b7e 72656164 		.ascii	"readBuffer\000"
+ 2808      42756666 
+ 2808      657200
+ 2809              	.LASF107:
+ 2810 0b89 73746174 		.ascii	"status\000"
+ 2810      757300
+ 2811              	.LASF135:
+ 2812 0b90 4932435F 		.ascii	"I2C_I2CMasterWriteBuf\000"
+ 2812      4932434D 
+ 2812      61737465 
+ 2812      72577269 
+ 2812      74654275 
+ 2813              	.LASF53:
+ 2814 0ba6 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_BLOB_RSP\000"
+ 2814      455F4556 
+ 2814      545F4741 
+ 2814      5454435F 
+ 2814      52454144 
+ 2815              	.LASF104:
+ 2816 0bc4 4144584C 		.ascii	"ADXL345_RANGE_2G\000"
+ 2816      3334355F 
+ 2816      52414E47 
+ 2816      455F3247 
+ 2816      00
+ 2817              	.LASF51:
+ 2818 0bd5 4359424C 		.ascii	"CYBLE_EVT_GATTC_FIND_BY_TYPE_VALUE_RSP\000"
+ 2818      455F4556 
+ 2818      545F4741 
+ 2818      5454435F 
+ 2818      46494E44 
+ 2819              	.LASF35:
+ 2820 0bfc 4359424C 		.ascii	"CYBLE_EVT_GAP_KEYINFO_EXCHNGE_CMPLT\000"
+ 2820      455F4556 
+ 2820      545F4741 
+ 2820      505F4B45 
+ 2820      59494E46 
+ 2821              	.LASF88:
+ 2822 0c20 4144584C 		.ascii	"ADXL345_DATARATE_200HZ\000"
+ 2822      3334355F 
+ 2822      44415441 
+ 2822      52415445 
+ 2822      5F323030 
+ 2823              	.LASF73:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 62
+
+
+ 2824 0c37 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_DISCONN_IND\000"
+ 2824      455F4556 
+ 2824      545F4C32 
+ 2824      4341505F 
+ 2824      43424643 
+ 2825              	.LASF99:
+ 2826 0c58 4144584C 		.ascii	"ADXL345_DATARATE_0_10HZ\000"
+ 2826      3334355F 
+ 2826      44415441 
+ 2826      52415445 
+ 2826      5F305F31 
+ 2827              	.LASF79:
+ 2828 0c70 4359424C 		.ascii	"CYBLE_EVT_PENDING_FLASH_WRITE\000"
+ 2828      455F4556 
+ 2828      545F5045 
+ 2828      4E44494E 
+ 2828      475F464C 
+ 2829              	.LASF69:
+ 2830 0c8e 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CONN_PARAM_UPDATE_RSP\000"
+ 2830      455F4556 
+ 2830      545F4C32 
+ 2830      4341505F 
+ 2830      434F4E4E 
+ 2831              	.LASF131:
+ 2832 0cb4 72617744 		.ascii	"rawDataY\000"
+ 2832      61746159 
+ 2832      00
+ 2833              	.LASF132:
+ 2834 0cbd 72617744 		.ascii	"rawDataZ\000"
+ 2834      6174615A 
+ 2834      00
+ 2835              	.LASF119:
+ 2836 0cc6 73746172 		.ascii	"startAccConnection\000"
+ 2836      74416363 
+ 2836      436F6E6E 
+ 2836      65637469 
+ 2836      6F6E00
+ 2837              	.LASF40:
+ 2838 0cd9 4359424C 		.ascii	"CYBLE_EVT_GAP_ENHANCE_CONN_COMPLETE\000"
+ 2838      455F4556 
+ 2838      545F4741 
+ 2838      505F454E 
+ 2838      48414E43 
+ 2839              	.LASF82:
+ 2840 0cfd 666C6F61 		.ascii	"floatVal\000"
+ 2840      7456616C 
+ 2840      00
+ 2841              	.LASF45:
+ 2842 0d06 4359424C 		.ascii	"CYBLE_EVT_GATT_DISCONNECT_IND\000"
+ 2842      455F4556 
+ 2842      545F4741 
+ 2842      54545F44 
+ 2842      4953434F 
+ 2843              	.LASF105:
+ 2844 0d24 52616E67 		.ascii	"Range_t\000"
+ 2844      655F7400 
+ 2845              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccCiizHl.s 			page 63
+
+

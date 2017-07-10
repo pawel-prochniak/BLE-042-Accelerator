@@ -1,0 +1,1 @@
+'D:\Henny\magisterka\CY8KIT\BLE\BLE\WaveSim.cydsn\ADXL345.c' -o .o -T C_FILE -I 'D:\Henny\magisterka\CY8KIT\BLE\BLE\WaveSim.cydsn' -I 'D:\Henny\magisterka\CY8KIT\BLE\BLE\WaveSim.cydsn\Generated_Source\PSoC4' -f 'D:\Henny\magisterka\CY8KIT\BLE\BLE\WaveSim.cydsn\CortexM0\ARM_GCC_493\Debug\.deps\C_FILE.d'

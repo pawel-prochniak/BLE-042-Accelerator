@@ -1,0 +1,1012 @@
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 1
+
+
+   1              		.cpu cortex-m0
+   2              		.fpu softvfp
+   3              		.eabi_attribute 20, 1
+   4              		.eabi_attribute 21, 1
+   5              		.eabi_attribute 23, 3
+   6              		.eabi_attribute 24, 1
+   7              		.eabi_attribute 25, 1
+   8              		.eabi_attribute 26, 1
+   9              		.eabi_attribute 30, 6
+  10              		.eabi_attribute 34, 0
+  11              		.eabi_attribute 18, 4
+  12              		.code	16
+  13              		.file	"debug.c"
+  14              		.text
+  15              	.Ltext0:
+  16              		.cfi_sections	.debug_frame
+  17              		.section	.text._write,"ax",%progbits
+  18              		.align	2
+  19              		.global	_write
+  20              		.code	16
+  21              		.thumb_func
+  22              		.type	_write, %function
+  23              	_write:
+  24              	.LFB37:
+  25              		.file 1 ".\\debug.c"
+   1:.\debug.c     **** /*******************************************************************************
+   2:.\debug.c     **** * File Name: debug.c
+   3:.\debug.c     **** *
+   4:.\debug.c     **** * Version: 1.0
+   5:.\debug.c     **** *
+   6:.\debug.c     **** * Description:
+   7:.\debug.c     **** *  This file contains functions for printf functionality.
+   8:.\debug.c     **** *
+   9:.\debug.c     **** * Hardware Dependency:
+  10:.\debug.c     **** *  CY8CKIT-042 BLE
+  11:.\debug.c     **** * 
+  12:.\debug.c     **** ********************************************************************************
+  13:.\debug.c     **** * Copyright 2015, Cypress Semiconductor Corporation.  All rights reserved.
+  14:.\debug.c     **** * You may use this file only in accordance with the license, terms, conditions,
+  15:.\debug.c     **** * disclaimers, and limitations in the end user license agreement accompanying
+  16:.\debug.c     **** * the software package with which this file was provided.
+  17:.\debug.c     **** *******************************************************************************/
+  18:.\debug.c     **** 
+  19:.\debug.c     **** 
+  20:.\debug.c     **** #include "common.h"
+  21:.\debug.c     **** 
+  22:.\debug.c     **** #if (DEBUG_UART_ENABLED == ENABLED)
+  23:.\debug.c     **** 
+  24:.\debug.c     **** #if defined(__ARMCC_VERSION)
+  25:.\debug.c     ****     
+  26:.\debug.c     **** /* For MDK/RVDS compiler revise fputc function for printf functionality */
+  27:.\debug.c     **** struct __FILE 
+  28:.\debug.c     **** {
+  29:.\debug.c     ****     int handle;  
+  30:.\debug.c     **** };
+  31:.\debug.c     **** 
+  32:.\debug.c     **** enum 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 2
+
+
+  33:.\debug.c     **** {
+  34:.\debug.c     ****     STDIN_HANDLE,
+  35:.\debug.c     ****     STDOUT_HANDLE,
+  36:.\debug.c     ****     STDERR_HANDLE
+  37:.\debug.c     **** };
+  38:.\debug.c     **** 
+  39:.\debug.c     **** FILE __stdin = {STDIN_HANDLE};
+  40:.\debug.c     **** FILE __stdout = {STDOUT_HANDLE};
+  41:.\debug.c     **** FILE __stderr = {STDERR_HANDLE};
+  42:.\debug.c     **** 
+  43:.\debug.c     **** int fputc(int ch, FILE *file) 
+  44:.\debug.c     **** {
+  45:.\debug.c     ****     int ret = EOF;
+  46:.\debug.c     **** 
+  47:.\debug.c     ****     switch( file->handle )
+  48:.\debug.c     ****     {
+  49:.\debug.c     ****         case STDOUT_HANDLE:
+  50:.\debug.c     ****             UART_DEB_UartPutChar(ch);
+  51:.\debug.c     ****             ret = ch ;
+  52:.\debug.c     ****             break ;
+  53:.\debug.c     **** 
+  54:.\debug.c     ****         case STDERR_HANDLE:
+  55:.\debug.c     ****             ret = ch ;
+  56:.\debug.c     ****             break ;
+  57:.\debug.c     **** 
+  58:.\debug.c     ****         default:
+  59:.\debug.c     ****             file = file;
+  60:.\debug.c     ****             break ;
+  61:.\debug.c     ****     }
+  62:.\debug.c     ****     return ret ;
+  63:.\debug.c     **** }
+  64:.\debug.c     **** 
+  65:.\debug.c     **** #elif defined (__ICCARM__)      /* IAR */
+  66:.\debug.c     **** 
+  67:.\debug.c     **** /* For IAR compiler revise __write() function for printf functionality */
+  68:.\debug.c     **** size_t __write(int handle, const unsigned char * buffer, size_t size)
+  69:.\debug.c     **** {
+  70:.\debug.c     ****     size_t nChars = 0;
+  71:.\debug.c     **** 
+  72:.\debug.c     ****     if (buffer == 0)
+  73:.\debug.c     ****     {
+  74:.\debug.c     ****         /*
+  75:.\debug.c     ****          * This means that we should flush internal buffers.  Since we
+  76:.\debug.c     ****          * don't we just return.  (Remember, "handle" == -1 means that all
+  77:.\debug.c     ****          * handles should be flushed.)
+  78:.\debug.c     ****          */
+  79:.\debug.c     ****         return (0);
+  80:.\debug.c     ****     }
+  81:.\debug.c     **** 
+  82:.\debug.c     ****     for (/* Empty */; size != 0; --size)
+  83:.\debug.c     ****     {
+  84:.\debug.c     ****         UART_DEB_UartPutChar(*buffer++);
+  85:.\debug.c     ****         ++nChars;
+  86:.\debug.c     ****     }
+  87:.\debug.c     **** 
+  88:.\debug.c     ****     return (nChars);
+  89:.\debug.c     **** }
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 3
+
+
+  90:.\debug.c     **** 
+  91:.\debug.c     **** #else  /* (__GNUC__)  GCC */
+  92:.\debug.c     **** 
+  93:.\debug.c     **** /* For GCC compiler revise _write() function for printf functionality */
+  94:.\debug.c     **** int _write(int file, char *ptr, int len)
+  95:.\debug.c     **** {
+  26              		.loc 1 95 0
+  27              		.cfi_startproc
+  28 0000 80B5     		push	{r7, lr}
+  29              		.cfi_def_cfa_offset 8
+  30              		.cfi_offset 7, -8
+  31              		.cfi_offset 14, -4
+  32 0002 86B0     		sub	sp, sp, #24
+  33              		.cfi_def_cfa_offset 32
+  34 0004 00AF     		add	r7, sp, #0
+  35              		.cfi_def_cfa_register 7
+  36 0006 F860     		str	r0, [r7, #12]
+  37 0008 B960     		str	r1, [r7, #8]
+  38 000a 7A60     		str	r2, [r7, #4]
+  96:.\debug.c     ****     int i;
+  97:.\debug.c     ****     file = file;
+  98:.\debug.c     ****     for (i = 0; i < len; i++)
+  39              		.loc 1 98 0
+  40 000c 0023     		mov	r3, #0
+  41 000e 7B61     		str	r3, [r7, #20]
+  42 0010 09E0     		b	.L2
+  43              	.L3:
+  99:.\debug.c     ****     {
+ 100:.\debug.c     ****         UART_DEB_UartPutChar(*ptr++);
+  44              		.loc 1 100 0 discriminator 3
+  45 0012 BB68     		ldr	r3, [r7, #8]
+  46 0014 5A1C     		add	r2, r3, #1
+  47 0016 BA60     		str	r2, [r7, #8]
+  48 0018 1B78     		ldrb	r3, [r3]
+  49 001a 181C     		mov	r0, r3
+  50 001c FFF7FEFF 		bl	UART_DEB_SpiUartWriteTxData
+  98:.\debug.c     ****     {
+  51              		.loc 1 98 0 discriminator 3
+  52 0020 7B69     		ldr	r3, [r7, #20]
+  53 0022 0133     		add	r3, r3, #1
+  54 0024 7B61     		str	r3, [r7, #20]
+  55              	.L2:
+  98:.\debug.c     ****     {
+  56              		.loc 1 98 0 is_stmt 0 discriminator 1
+  57 0026 7A69     		ldr	r2, [r7, #20]
+  58 0028 7B68     		ldr	r3, [r7, #4]
+  59 002a 9A42     		cmp	r2, r3
+  60 002c F1DB     		blt	.L3
+ 101:.\debug.c     ****     }
+ 102:.\debug.c     ****     return len;
+  61              		.loc 1 102 0 is_stmt 1
+  62 002e 7B68     		ldr	r3, [r7, #4]
+ 103:.\debug.c     **** }
+  63              		.loc 1 103 0
+  64 0030 181C     		mov	r0, r3
+  65 0032 BD46     		mov	sp, r7
+  66 0034 06B0     		add	sp, sp, #24
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 4
+
+
+  67              		@ sp needed
+  68 0036 80BD     		pop	{r7, pc}
+  69              		.cfi_endproc
+  70              	.LFE37:
+  71              		.size	_write, .-_write
+  72              		.section	.rodata
+  73              		.align	2
+  74              	.LC0:
+  75 0000 25322E32 		.ascii	"%2.2x \000"
+  75      782000
+  76 0007 00       		.align	2
+  77              	.LC2:
+  78 0008 0D00     		.ascii	"\015\000"
+  79 000a 0000     		.section	.text.ShowValue,"ax",%progbits
+  80              		.align	2
+  81              		.global	ShowValue
+  82              		.code	16
+  83              		.thumb_func
+  84              		.type	ShowValue, %function
+  85              	ShowValue:
+  86              	.LFB38:
+ 104:.\debug.c     **** 
+ 105:.\debug.c     **** 
+ 106:.\debug.c     **** #endif  /* (__ARMCC_VERSION) */   
+ 107:.\debug.c     **** 
+ 108:.\debug.c     **** #endif /* DEBUG_UART_ENABLED == ENABLED */
+ 109:.\debug.c     **** 
+ 110:.\debug.c     **** 
+ 111:.\debug.c     **** void ShowValue(CYBLE_GATT_VALUE_T *value)
+ 112:.\debug.c     **** {
+  87              		.loc 1 112 0
+  88              		.cfi_startproc
+  89 0000 80B5     		push	{r7, lr}
+  90              		.cfi_def_cfa_offset 8
+  91              		.cfi_offset 7, -8
+  92              		.cfi_offset 14, -4
+  93 0002 84B0     		sub	sp, sp, #16
+  94              		.cfi_def_cfa_offset 24
+  95 0004 00AF     		add	r7, sp, #0
+  96              		.cfi_def_cfa_register 7
+  97 0006 7860     		str	r0, [r7, #4]
+ 113:.\debug.c     ****     int16 i;
+ 114:.\debug.c     ****     
+ 115:.\debug.c     ****     for(i = 0; i < value->len; i++)
+  98              		.loc 1 115 0
+  99 0008 0E23     		mov	r3, #14
+ 100 000a FB18     		add	r3, r7, r3
+ 101 000c 0022     		mov	r2, #0
+ 102 000e 1A80     		strh	r2, [r3]
+ 103 0010 16E0     		b	.L6
+ 104              	.L7:
+ 116:.\debug.c     ****     {
+ 117:.\debug.c     ****         DBG_PRINTF("%2.2x ", value->val[i]);
+ 105              		.loc 1 117 0 discriminator 3
+ 106 0012 7B68     		ldr	r3, [r7, #4]
+ 107 0014 1A68     		ldr	r2, [r3]
+ 108 0016 0E23     		mov	r3, #14
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 5
+
+
+ 109 0018 FB18     		add	r3, r7, r3
+ 110 001a 0021     		mov	r1, #0
+ 111 001c 5B5E     		ldrsh	r3, [r3, r1]
+ 112 001e D318     		add	r3, r2, r3
+ 113 0020 1B78     		ldrb	r3, [r3]
+ 114 0022 1A1C     		mov	r2, r3
+ 115 0024 0E4B     		ldr	r3, .L8
+ 116 0026 181C     		mov	r0, r3
+ 117 0028 111C     		mov	r1, r2
+ 118 002a FFF7FEFF 		bl	printf
+ 115:.\debug.c     ****     {
+ 119              		.loc 1 115 0 discriminator 3
+ 120 002e 0E23     		mov	r3, #14
+ 121 0030 FB18     		add	r3, r7, r3
+ 122 0032 1B88     		ldrh	r3, [r3]
+ 123 0034 9BB2     		uxth	r3, r3
+ 124 0036 0133     		add	r3, r3, #1
+ 125 0038 9AB2     		uxth	r2, r3
+ 126 003a 0E23     		mov	r3, #14
+ 127 003c FB18     		add	r3, r7, r3
+ 128 003e 1A80     		strh	r2, [r3]
+ 129              	.L6:
+ 115:.\debug.c     ****     {
+ 130              		.loc 1 115 0 is_stmt 0 discriminator 1
+ 131 0040 0E23     		mov	r3, #14
+ 132 0042 FB18     		add	r3, r7, r3
+ 133 0044 0022     		mov	r2, #0
+ 134 0046 9B5E     		ldrsh	r3, [r3, r2]
+ 135 0048 7A68     		ldr	r2, [r7, #4]
+ 136 004a 9288     		ldrh	r2, [r2, #4]
+ 137 004c 9342     		cmp	r3, r2
+ 138 004e E0DB     		blt	.L7
+ 118:.\debug.c     ****     }
+ 119:.\debug.c     ****     DBG_PRINTF("\r\n");
+ 139              		.loc 1 119 0 is_stmt 1
+ 140 0050 044B     		ldr	r3, .L8+4
+ 141 0052 181C     		mov	r0, r3
+ 142 0054 FFF7FEFF 		bl	puts
+ 120:.\debug.c     **** }
+ 143              		.loc 1 120 0
+ 144 0058 BD46     		mov	sp, r7
+ 145 005a 04B0     		add	sp, sp, #16
+ 146              		@ sp needed
+ 147 005c 80BD     		pop	{r7, pc}
+ 148              	.L9:
+ 149 005e C046     		.align	2
+ 150              	.L8:
+ 151 0060 00000000 		.word	.LC0
+ 152 0064 08000000 		.word	.LC2
+ 153              		.cfi_endproc
+ 154              	.LFE38:
+ 155              		.size	ShowValue, .-ShowValue
+ 156              		.section	.text.Set32ByPtr,"ax",%progbits
+ 157              		.align	2
+ 158              		.global	Set32ByPtr
+ 159              		.code	16
+ 160              		.thumb_func
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 6
+
+
+ 161              		.type	Set32ByPtr, %function
+ 162              	Set32ByPtr:
+ 163              	.LFB39:
+ 121:.\debug.c     **** 
+ 122:.\debug.c     **** 
+ 123:.\debug.c     **** void Set32ByPtr(uint8 ptr[], uint32 value)
+ 124:.\debug.c     **** {
+ 164              		.loc 1 124 0
+ 165              		.cfi_startproc
+ 166 0000 80B5     		push	{r7, lr}
+ 167              		.cfi_def_cfa_offset 8
+ 168              		.cfi_offset 7, -8
+ 169              		.cfi_offset 14, -4
+ 170 0002 82B0     		sub	sp, sp, #8
+ 171              		.cfi_def_cfa_offset 16
+ 172 0004 00AF     		add	r7, sp, #0
+ 173              		.cfi_def_cfa_register 7
+ 174 0006 7860     		str	r0, [r7, #4]
+ 175 0008 3960     		str	r1, [r7]
+ 125:.\debug.c     ****     ptr[0u] = (uint8) value;
+ 176              		.loc 1 125 0
+ 177 000a 3B68     		ldr	r3, [r7]
+ 178 000c DAB2     		uxtb	r2, r3
+ 179 000e 7B68     		ldr	r3, [r7, #4]
+ 180 0010 1A70     		strb	r2, [r3]
+ 126:.\debug.c     ****     ptr[1u] = (uint8) (value >> 8u);    
+ 181              		.loc 1 126 0
+ 182 0012 7B68     		ldr	r3, [r7, #4]
+ 183 0014 0133     		add	r3, r3, #1
+ 184 0016 3A68     		ldr	r2, [r7]
+ 185 0018 120A     		lsr	r2, r2, #8
+ 186 001a D2B2     		uxtb	r2, r2
+ 187 001c 1A70     		strb	r2, [r3]
+ 127:.\debug.c     ****     ptr[2u] = (uint8) (value >> 16u);    
+ 188              		.loc 1 127 0
+ 189 001e 7B68     		ldr	r3, [r7, #4]
+ 190 0020 0233     		add	r3, r3, #2
+ 191 0022 3A68     		ldr	r2, [r7]
+ 192 0024 120C     		lsr	r2, r2, #16
+ 193 0026 D2B2     		uxtb	r2, r2
+ 194 0028 1A70     		strb	r2, [r3]
+ 128:.\debug.c     ****     ptr[3u] = (uint8) (value >> 24u);
+ 195              		.loc 1 128 0
+ 196 002a 7B68     		ldr	r3, [r7, #4]
+ 197 002c 0333     		add	r3, r3, #3
+ 198 002e 3A68     		ldr	r2, [r7]
+ 199 0030 120E     		lsr	r2, r2, #24
+ 200 0032 D2B2     		uxtb	r2, r2
+ 201 0034 1A70     		strb	r2, [r3]
+ 129:.\debug.c     **** }
+ 202              		.loc 1 129 0
+ 203 0036 BD46     		mov	sp, r7
+ 204 0038 02B0     		add	sp, sp, #8
+ 205              		@ sp needed
+ 206 003a 80BD     		pop	{r7, pc}
+ 207              		.cfi_endproc
+ 208              	.LFE39:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 7
+
+
+ 209              		.size	Set32ByPtr, .-Set32ByPtr
+ 210              		.text
+ 211              	.Letext0:
+ 212              		.file 2 "Generated_Source\\PSoC4/cytypes.h"
+ 213              		.file 3 "Generated_Source\\PSoC4/BLE_StackGatt.h"
+ 214              		.section	.debug_info,"",%progbits
+ 215              	.Ldebug_info0:
+ 216 0000 B1010000 		.4byte	0x1b1
+ 217 0004 0400     		.2byte	0x4
+ 218 0006 00000000 		.4byte	.Ldebug_abbrev0
+ 219 000a 04       		.byte	0x4
+ 220 000b 01       		.uleb128 0x1
+ 221 000c 66000000 		.4byte	.LASF21
+ 222 0010 01       		.byte	0x1
+ 223 0011 22010000 		.4byte	.LASF22
+ 224 0015 31010000 		.4byte	.LASF23
+ 225 0019 00000000 		.4byte	.Ldebug_ranges0+0
+ 226 001d 00000000 		.4byte	0
+ 227 0021 00000000 		.4byte	.Ldebug_line0
+ 228 0025 02       		.uleb128 0x2
+ 229 0026 01       		.byte	0x1
+ 230 0027 06       		.byte	0x6
+ 231 0028 AF010000 		.4byte	.LASF0
+ 232 002c 02       		.uleb128 0x2
+ 233 002d 01       		.byte	0x1
+ 234 002e 08       		.byte	0x8
+ 235 002f 39000000 		.4byte	.LASF1
+ 236 0033 02       		.uleb128 0x2
+ 237 0034 02       		.byte	0x2
+ 238 0035 05       		.byte	0x5
+ 239 0036 96010000 		.4byte	.LASF2
+ 240 003a 02       		.uleb128 0x2
+ 241 003b 02       		.byte	0x2
+ 242 003c 07       		.byte	0x7
+ 243 003d 06000000 		.4byte	.LASF3
+ 244 0041 02       		.uleb128 0x2
+ 245 0042 04       		.byte	0x4
+ 246 0043 05       		.byte	0x5
+ 247 0044 A6010000 		.4byte	.LASF4
+ 248 0048 02       		.uleb128 0x2
+ 249 0049 04       		.byte	0x4
+ 250 004a 07       		.byte	0x7
+ 251 004b 4D000000 		.4byte	.LASF5
+ 252 004f 02       		.uleb128 0x2
+ 253 0050 08       		.byte	0x8
+ 254 0051 05       		.byte	0x5
+ 255 0052 81010000 		.4byte	.LASF6
+ 256 0056 02       		.uleb128 0x2
+ 257 0057 08       		.byte	0x8
+ 258 0058 07       		.byte	0x7
+ 259 0059 C5010000 		.4byte	.LASF7
+ 260 005d 03       		.uleb128 0x3
+ 261 005e 04       		.byte	0x4
+ 262 005f 05       		.byte	0x5
+ 263 0060 696E7400 		.ascii	"int\000"
+ 264 0064 02       		.uleb128 0x2
+ 265 0065 04       		.byte	0x4
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 8
+
+
+ 266 0066 07       		.byte	0x7
+ 267 0067 15010000 		.4byte	.LASF8
+ 268 006b 04       		.uleb128 0x4
+ 269 006c A0010000 		.4byte	.LASF9
+ 270 0070 02       		.byte	0x2
+ 271 0071 3801     		.2byte	0x138
+ 272 0073 2C000000 		.4byte	0x2c
+ 273 0077 04       		.uleb128 0x4
+ 274 0078 F4000000 		.4byte	.LASF10
+ 275 007c 02       		.byte	0x2
+ 276 007d 3901     		.2byte	0x139
+ 277 007f 3A000000 		.4byte	0x3a
+ 278 0083 04       		.uleb128 0x4
+ 279 0084 FB000000 		.4byte	.LASF11
+ 280 0088 02       		.byte	0x2
+ 281 0089 3A01     		.2byte	0x13a
+ 282 008b 48000000 		.4byte	0x48
+ 283 008f 04       		.uleb128 0x4
+ 284 0090 47000000 		.4byte	.LASF12
+ 285 0094 02       		.byte	0x2
+ 286 0095 3C01     		.2byte	0x13c
+ 287 0097 33000000 		.4byte	0x33
+ 288 009b 02       		.uleb128 0x2
+ 289 009c 04       		.byte	0x4
+ 290 009d 04       		.byte	0x4
+ 291 009e 2E000000 		.4byte	.LASF13
+ 292 00a2 02       		.uleb128 0x2
+ 293 00a3 08       		.byte	0x8
+ 294 00a4 04       		.byte	0x4
+ 295 00a5 5F000000 		.4byte	.LASF14
+ 296 00a9 02       		.uleb128 0x2
+ 297 00aa 01       		.byte	0x1
+ 298 00ab 08       		.byte	0x8
+ 299 00ac 2C010000 		.4byte	.LASF15
+ 300 00b0 02       		.uleb128 0x2
+ 301 00b1 04       		.byte	0x4
+ 302 00b2 07       		.byte	0x7
+ 303 00b3 78010000 		.4byte	.LASF16
+ 304 00b7 05       		.uleb128 0x5
+ 305 00b8 04       		.byte	0x4
+ 306 00b9 A9000000 		.4byte	0xa9
+ 307 00bd 05       		.uleb128 0x5
+ 308 00be 04       		.byte	0x4
+ 309 00bf 6B000000 		.4byte	0x6b
+ 310 00c3 06       		.uleb128 0x6
+ 311 00c4 08       		.byte	0x8
+ 312 00c5 03       		.byte	0x3
+ 313 00c6 BD01     		.2byte	0x1bd
+ 314 00c8 F4000000 		.4byte	0xf4
+ 315 00cc 07       		.uleb128 0x7
+ 316 00cd 76616C00 		.ascii	"val\000"
+ 317 00d1 03       		.byte	0x3
+ 318 00d2 C001     		.2byte	0x1c0
+ 319 00d4 BD000000 		.4byte	0xbd
+ 320 00d8 00       		.byte	0
+ 321 00d9 07       		.uleb128 0x7
+ 322 00da 6C656E00 		.ascii	"len\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 9
+
+
+ 323 00de 03       		.byte	0x3
+ 324 00df C301     		.2byte	0x1c3
+ 325 00e1 77000000 		.4byte	0x77
+ 326 00e5 04       		.byte	0x4
+ 327 00e6 08       		.uleb128 0x8
+ 328 00e7 BB010000 		.4byte	.LASF17
+ 329 00eb 03       		.byte	0x3
+ 330 00ec CA01     		.2byte	0x1ca
+ 331 00ee 77000000 		.4byte	0x77
+ 332 00f2 06       		.byte	0x6
+ 333 00f3 00       		.byte	0
+ 334 00f4 04       		.uleb128 0x4
+ 335 00f5 02010000 		.4byte	.LASF18
+ 336 00f9 03       		.byte	0x3
+ 337 00fa CC01     		.2byte	0x1cc
+ 338 00fc C3000000 		.4byte	0xc3
+ 339 0100 05       		.uleb128 0x5
+ 340 0101 04       		.byte	0x4
+ 341 0102 F4000000 		.4byte	0xf4
+ 342 0106 09       		.uleb128 0x9
+ 343 0107 8F010000 		.4byte	.LASF24
+ 344 010b 01       		.byte	0x1
+ 345 010c 5E       		.byte	0x5e
+ 346 010d 5D000000 		.4byte	0x5d
+ 347 0111 00000000 		.4byte	.LFB37
+ 348 0115 38000000 		.4byte	.LFE37-.LFB37
+ 349 0119 01       		.uleb128 0x1
+ 350 011a 9C       		.byte	0x9c
+ 351 011b 56010000 		.4byte	0x156
+ 352 011f 0A       		.uleb128 0xa
+ 353 0120 34000000 		.4byte	.LASF19
+ 354 0124 01       		.byte	0x1
+ 355 0125 5E       		.byte	0x5e
+ 356 0126 5D000000 		.4byte	0x5d
+ 357 012a 02       		.uleb128 0x2
+ 358 012b 91       		.byte	0x91
+ 359 012c 6C       		.sleb128 -20
+ 360 012d 0B       		.uleb128 0xb
+ 361 012e 70747200 		.ascii	"ptr\000"
+ 362 0132 01       		.byte	0x1
+ 363 0133 5E       		.byte	0x5e
+ 364 0134 B7000000 		.4byte	0xb7
+ 365 0138 02       		.uleb128 0x2
+ 366 0139 91       		.byte	0x91
+ 367 013a 68       		.sleb128 -24
+ 368 013b 0B       		.uleb128 0xb
+ 369 013c 6C656E00 		.ascii	"len\000"
+ 370 0140 01       		.byte	0x1
+ 371 0141 5E       		.byte	0x5e
+ 372 0142 5D000000 		.4byte	0x5d
+ 373 0146 02       		.uleb128 0x2
+ 374 0147 91       		.byte	0x91
+ 375 0148 64       		.sleb128 -28
+ 376 0149 0C       		.uleb128 0xc
+ 377 014a 6900     		.ascii	"i\000"
+ 378 014c 01       		.byte	0x1
+ 379 014d 60       		.byte	0x60
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 10
+
+
+ 380 014e 5D000000 		.4byte	0x5d
+ 381 0152 02       		.uleb128 0x2
+ 382 0153 91       		.byte	0x91
+ 383 0154 74       		.sleb128 -12
+ 384 0155 00       		.byte	0
+ 385 0156 0D       		.uleb128 0xd
+ 386 0157 24000000 		.4byte	.LASF25
+ 387 015b 01       		.byte	0x1
+ 388 015c 6F       		.byte	0x6f
+ 389 015d 00000000 		.4byte	.LFB38
+ 390 0161 68000000 		.4byte	.LFE38-.LFB38
+ 391 0165 01       		.uleb128 0x1
+ 392 0166 9C       		.byte	0x9c
+ 393 0167 86010000 		.4byte	0x186
+ 394 016b 0A       		.uleb128 0xa
+ 395 016c 00000000 		.4byte	.LASF20
+ 396 0170 01       		.byte	0x1
+ 397 0171 6F       		.byte	0x6f
+ 398 0172 00010000 		.4byte	0x100
+ 399 0176 02       		.uleb128 0x2
+ 400 0177 91       		.byte	0x91
+ 401 0178 6C       		.sleb128 -20
+ 402 0179 0C       		.uleb128 0xc
+ 403 017a 6900     		.ascii	"i\000"
+ 404 017c 01       		.byte	0x1
+ 405 017d 71       		.byte	0x71
+ 406 017e 8F000000 		.4byte	0x8f
+ 407 0182 02       		.uleb128 0x2
+ 408 0183 91       		.byte	0x91
+ 409 0184 76       		.sleb128 -10
+ 410 0185 00       		.byte	0
+ 411 0186 0E       		.uleb128 0xe
+ 412 0187 19000000 		.4byte	.LASF26
+ 413 018b 01       		.byte	0x1
+ 414 018c 7B       		.byte	0x7b
+ 415 018d 00000000 		.4byte	.LFB39
+ 416 0191 3C000000 		.4byte	.LFE39-.LFB39
+ 417 0195 01       		.uleb128 0x1
+ 418 0196 9C       		.byte	0x9c
+ 419 0197 0B       		.uleb128 0xb
+ 420 0198 70747200 		.ascii	"ptr\000"
+ 421 019c 01       		.byte	0x1
+ 422 019d 7B       		.byte	0x7b
+ 423 019e BD000000 		.4byte	0xbd
+ 424 01a2 02       		.uleb128 0x2
+ 425 01a3 91       		.byte	0x91
+ 426 01a4 74       		.sleb128 -12
+ 427 01a5 0A       		.uleb128 0xa
+ 428 01a6 00000000 		.4byte	.LASF20
+ 429 01aa 01       		.byte	0x1
+ 430 01ab 7B       		.byte	0x7b
+ 431 01ac 83000000 		.4byte	0x83
+ 432 01b0 02       		.uleb128 0x2
+ 433 01b1 91       		.byte	0x91
+ 434 01b2 70       		.sleb128 -16
+ 435 01b3 00       		.byte	0
+ 436 01b4 00       		.byte	0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 11
+
+
+ 437              		.section	.debug_abbrev,"",%progbits
+ 438              	.Ldebug_abbrev0:
+ 439 0000 01       		.uleb128 0x1
+ 440 0001 11       		.uleb128 0x11
+ 441 0002 01       		.byte	0x1
+ 442 0003 25       		.uleb128 0x25
+ 443 0004 0E       		.uleb128 0xe
+ 444 0005 13       		.uleb128 0x13
+ 445 0006 0B       		.uleb128 0xb
+ 446 0007 03       		.uleb128 0x3
+ 447 0008 0E       		.uleb128 0xe
+ 448 0009 1B       		.uleb128 0x1b
+ 449 000a 0E       		.uleb128 0xe
+ 450 000b 55       		.uleb128 0x55
+ 451 000c 17       		.uleb128 0x17
+ 452 000d 11       		.uleb128 0x11
+ 453 000e 01       		.uleb128 0x1
+ 454 000f 10       		.uleb128 0x10
+ 455 0010 17       		.uleb128 0x17
+ 456 0011 00       		.byte	0
+ 457 0012 00       		.byte	0
+ 458 0013 02       		.uleb128 0x2
+ 459 0014 24       		.uleb128 0x24
+ 460 0015 00       		.byte	0
+ 461 0016 0B       		.uleb128 0xb
+ 462 0017 0B       		.uleb128 0xb
+ 463 0018 3E       		.uleb128 0x3e
+ 464 0019 0B       		.uleb128 0xb
+ 465 001a 03       		.uleb128 0x3
+ 466 001b 0E       		.uleb128 0xe
+ 467 001c 00       		.byte	0
+ 468 001d 00       		.byte	0
+ 469 001e 03       		.uleb128 0x3
+ 470 001f 24       		.uleb128 0x24
+ 471 0020 00       		.byte	0
+ 472 0021 0B       		.uleb128 0xb
+ 473 0022 0B       		.uleb128 0xb
+ 474 0023 3E       		.uleb128 0x3e
+ 475 0024 0B       		.uleb128 0xb
+ 476 0025 03       		.uleb128 0x3
+ 477 0026 08       		.uleb128 0x8
+ 478 0027 00       		.byte	0
+ 479 0028 00       		.byte	0
+ 480 0029 04       		.uleb128 0x4
+ 481 002a 16       		.uleb128 0x16
+ 482 002b 00       		.byte	0
+ 483 002c 03       		.uleb128 0x3
+ 484 002d 0E       		.uleb128 0xe
+ 485 002e 3A       		.uleb128 0x3a
+ 486 002f 0B       		.uleb128 0xb
+ 487 0030 3B       		.uleb128 0x3b
+ 488 0031 05       		.uleb128 0x5
+ 489 0032 49       		.uleb128 0x49
+ 490 0033 13       		.uleb128 0x13
+ 491 0034 00       		.byte	0
+ 492 0035 00       		.byte	0
+ 493 0036 05       		.uleb128 0x5
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 12
+
+
+ 494 0037 0F       		.uleb128 0xf
+ 495 0038 00       		.byte	0
+ 496 0039 0B       		.uleb128 0xb
+ 497 003a 0B       		.uleb128 0xb
+ 498 003b 49       		.uleb128 0x49
+ 499 003c 13       		.uleb128 0x13
+ 500 003d 00       		.byte	0
+ 501 003e 00       		.byte	0
+ 502 003f 06       		.uleb128 0x6
+ 503 0040 13       		.uleb128 0x13
+ 504 0041 01       		.byte	0x1
+ 505 0042 0B       		.uleb128 0xb
+ 506 0043 0B       		.uleb128 0xb
+ 507 0044 3A       		.uleb128 0x3a
+ 508 0045 0B       		.uleb128 0xb
+ 509 0046 3B       		.uleb128 0x3b
+ 510 0047 05       		.uleb128 0x5
+ 511 0048 01       		.uleb128 0x1
+ 512 0049 13       		.uleb128 0x13
+ 513 004a 00       		.byte	0
+ 514 004b 00       		.byte	0
+ 515 004c 07       		.uleb128 0x7
+ 516 004d 0D       		.uleb128 0xd
+ 517 004e 00       		.byte	0
+ 518 004f 03       		.uleb128 0x3
+ 519 0050 08       		.uleb128 0x8
+ 520 0051 3A       		.uleb128 0x3a
+ 521 0052 0B       		.uleb128 0xb
+ 522 0053 3B       		.uleb128 0x3b
+ 523 0054 05       		.uleb128 0x5
+ 524 0055 49       		.uleb128 0x49
+ 525 0056 13       		.uleb128 0x13
+ 526 0057 38       		.uleb128 0x38
+ 527 0058 0B       		.uleb128 0xb
+ 528 0059 00       		.byte	0
+ 529 005a 00       		.byte	0
+ 530 005b 08       		.uleb128 0x8
+ 531 005c 0D       		.uleb128 0xd
+ 532 005d 00       		.byte	0
+ 533 005e 03       		.uleb128 0x3
+ 534 005f 0E       		.uleb128 0xe
+ 535 0060 3A       		.uleb128 0x3a
+ 536 0061 0B       		.uleb128 0xb
+ 537 0062 3B       		.uleb128 0x3b
+ 538 0063 05       		.uleb128 0x5
+ 539 0064 49       		.uleb128 0x49
+ 540 0065 13       		.uleb128 0x13
+ 541 0066 38       		.uleb128 0x38
+ 542 0067 0B       		.uleb128 0xb
+ 543 0068 00       		.byte	0
+ 544 0069 00       		.byte	0
+ 545 006a 09       		.uleb128 0x9
+ 546 006b 2E       		.uleb128 0x2e
+ 547 006c 01       		.byte	0x1
+ 548 006d 3F       		.uleb128 0x3f
+ 549 006e 19       		.uleb128 0x19
+ 550 006f 03       		.uleb128 0x3
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 13
+
+
+ 551 0070 0E       		.uleb128 0xe
+ 552 0071 3A       		.uleb128 0x3a
+ 553 0072 0B       		.uleb128 0xb
+ 554 0073 3B       		.uleb128 0x3b
+ 555 0074 0B       		.uleb128 0xb
+ 556 0075 27       		.uleb128 0x27
+ 557 0076 19       		.uleb128 0x19
+ 558 0077 49       		.uleb128 0x49
+ 559 0078 13       		.uleb128 0x13
+ 560 0079 11       		.uleb128 0x11
+ 561 007a 01       		.uleb128 0x1
+ 562 007b 12       		.uleb128 0x12
+ 563 007c 06       		.uleb128 0x6
+ 564 007d 40       		.uleb128 0x40
+ 565 007e 18       		.uleb128 0x18
+ 566 007f 9642     		.uleb128 0x2116
+ 567 0081 19       		.uleb128 0x19
+ 568 0082 01       		.uleb128 0x1
+ 569 0083 13       		.uleb128 0x13
+ 570 0084 00       		.byte	0
+ 571 0085 00       		.byte	0
+ 572 0086 0A       		.uleb128 0xa
+ 573 0087 05       		.uleb128 0x5
+ 574 0088 00       		.byte	0
+ 575 0089 03       		.uleb128 0x3
+ 576 008a 0E       		.uleb128 0xe
+ 577 008b 3A       		.uleb128 0x3a
+ 578 008c 0B       		.uleb128 0xb
+ 579 008d 3B       		.uleb128 0x3b
+ 580 008e 0B       		.uleb128 0xb
+ 581 008f 49       		.uleb128 0x49
+ 582 0090 13       		.uleb128 0x13
+ 583 0091 02       		.uleb128 0x2
+ 584 0092 18       		.uleb128 0x18
+ 585 0093 00       		.byte	0
+ 586 0094 00       		.byte	0
+ 587 0095 0B       		.uleb128 0xb
+ 588 0096 05       		.uleb128 0x5
+ 589 0097 00       		.byte	0
+ 590 0098 03       		.uleb128 0x3
+ 591 0099 08       		.uleb128 0x8
+ 592 009a 3A       		.uleb128 0x3a
+ 593 009b 0B       		.uleb128 0xb
+ 594 009c 3B       		.uleb128 0x3b
+ 595 009d 0B       		.uleb128 0xb
+ 596 009e 49       		.uleb128 0x49
+ 597 009f 13       		.uleb128 0x13
+ 598 00a0 02       		.uleb128 0x2
+ 599 00a1 18       		.uleb128 0x18
+ 600 00a2 00       		.byte	0
+ 601 00a3 00       		.byte	0
+ 602 00a4 0C       		.uleb128 0xc
+ 603 00a5 34       		.uleb128 0x34
+ 604 00a6 00       		.byte	0
+ 605 00a7 03       		.uleb128 0x3
+ 606 00a8 08       		.uleb128 0x8
+ 607 00a9 3A       		.uleb128 0x3a
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 14
+
+
+ 608 00aa 0B       		.uleb128 0xb
+ 609 00ab 3B       		.uleb128 0x3b
+ 610 00ac 0B       		.uleb128 0xb
+ 611 00ad 49       		.uleb128 0x49
+ 612 00ae 13       		.uleb128 0x13
+ 613 00af 02       		.uleb128 0x2
+ 614 00b0 18       		.uleb128 0x18
+ 615 00b1 00       		.byte	0
+ 616 00b2 00       		.byte	0
+ 617 00b3 0D       		.uleb128 0xd
+ 618 00b4 2E       		.uleb128 0x2e
+ 619 00b5 01       		.byte	0x1
+ 620 00b6 3F       		.uleb128 0x3f
+ 621 00b7 19       		.uleb128 0x19
+ 622 00b8 03       		.uleb128 0x3
+ 623 00b9 0E       		.uleb128 0xe
+ 624 00ba 3A       		.uleb128 0x3a
+ 625 00bb 0B       		.uleb128 0xb
+ 626 00bc 3B       		.uleb128 0x3b
+ 627 00bd 0B       		.uleb128 0xb
+ 628 00be 27       		.uleb128 0x27
+ 629 00bf 19       		.uleb128 0x19
+ 630 00c0 11       		.uleb128 0x11
+ 631 00c1 01       		.uleb128 0x1
+ 632 00c2 12       		.uleb128 0x12
+ 633 00c3 06       		.uleb128 0x6
+ 634 00c4 40       		.uleb128 0x40
+ 635 00c5 18       		.uleb128 0x18
+ 636 00c6 9642     		.uleb128 0x2116
+ 637 00c8 19       		.uleb128 0x19
+ 638 00c9 01       		.uleb128 0x1
+ 639 00ca 13       		.uleb128 0x13
+ 640 00cb 00       		.byte	0
+ 641 00cc 00       		.byte	0
+ 642 00cd 0E       		.uleb128 0xe
+ 643 00ce 2E       		.uleb128 0x2e
+ 644 00cf 01       		.byte	0x1
+ 645 00d0 3F       		.uleb128 0x3f
+ 646 00d1 19       		.uleb128 0x19
+ 647 00d2 03       		.uleb128 0x3
+ 648 00d3 0E       		.uleb128 0xe
+ 649 00d4 3A       		.uleb128 0x3a
+ 650 00d5 0B       		.uleb128 0xb
+ 651 00d6 3B       		.uleb128 0x3b
+ 652 00d7 0B       		.uleb128 0xb
+ 653 00d8 27       		.uleb128 0x27
+ 654 00d9 19       		.uleb128 0x19
+ 655 00da 11       		.uleb128 0x11
+ 656 00db 01       		.uleb128 0x1
+ 657 00dc 12       		.uleb128 0x12
+ 658 00dd 06       		.uleb128 0x6
+ 659 00de 40       		.uleb128 0x40
+ 660 00df 18       		.uleb128 0x18
+ 661 00e0 9742     		.uleb128 0x2117
+ 662 00e2 19       		.uleb128 0x19
+ 663 00e3 00       		.byte	0
+ 664 00e4 00       		.byte	0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 15
+
+
+ 665 00e5 00       		.byte	0
+ 666              		.section	.debug_aranges,"",%progbits
+ 667 0000 2C000000 		.4byte	0x2c
+ 668 0004 0200     		.2byte	0x2
+ 669 0006 00000000 		.4byte	.Ldebug_info0
+ 670 000a 04       		.byte	0x4
+ 671 000b 00       		.byte	0
+ 672 000c 0000     		.2byte	0
+ 673 000e 0000     		.2byte	0
+ 674 0010 00000000 		.4byte	.LFB37
+ 675 0014 38000000 		.4byte	.LFE37-.LFB37
+ 676 0018 00000000 		.4byte	.LFB38
+ 677 001c 68000000 		.4byte	.LFE38-.LFB38
+ 678 0020 00000000 		.4byte	.LFB39
+ 679 0024 3C000000 		.4byte	.LFE39-.LFB39
+ 680 0028 00000000 		.4byte	0
+ 681 002c 00000000 		.4byte	0
+ 682              		.section	.debug_ranges,"",%progbits
+ 683              	.Ldebug_ranges0:
+ 684 0000 00000000 		.4byte	.LFB37
+ 685 0004 38000000 		.4byte	.LFE37
+ 686 0008 00000000 		.4byte	.LFB38
+ 687 000c 68000000 		.4byte	.LFE38
+ 688 0010 00000000 		.4byte	.LFB39
+ 689 0014 3C000000 		.4byte	.LFE39
+ 690 0018 00000000 		.4byte	0
+ 691 001c 00000000 		.4byte	0
+ 692              		.section	.debug_line,"",%progbits
+ 693              	.Ldebug_line0:
+ 694 0000 BA000000 		.section	.debug_str,"MS",%progbits,1
+ 694      02005700 
+ 694      00000201 
+ 694      FB0E0D00 
+ 694      01010101 
+ 695              	.LASF20:
+ 696 0000 76616C75 		.ascii	"value\000"
+ 696      6500
+ 697              	.LASF3:
+ 698 0006 73686F72 		.ascii	"short unsigned int\000"
+ 698      7420756E 
+ 698      7369676E 
+ 698      65642069 
+ 698      6E7400
+ 699              	.LASF26:
+ 700 0019 53657433 		.ascii	"Set32ByPtr\000"
+ 700      32427950 
+ 700      747200
+ 701              	.LASF25:
+ 702 0024 53686F77 		.ascii	"ShowValue\000"
+ 702      56616C75 
+ 702      6500
+ 703              	.LASF13:
+ 704 002e 666C6F61 		.ascii	"float\000"
+ 704      7400
+ 705              	.LASF19:
+ 706 0034 66696C65 		.ascii	"file\000"
+ 706      00
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 16
+
+
+ 707              	.LASF1:
+ 708 0039 756E7369 		.ascii	"unsigned char\000"
+ 708      676E6564 
+ 708      20636861 
+ 708      7200
+ 709              	.LASF12:
+ 710 0047 696E7431 		.ascii	"int16\000"
+ 710      3600
+ 711              	.LASF5:
+ 712 004d 6C6F6E67 		.ascii	"long unsigned int\000"
+ 712      20756E73 
+ 712      69676E65 
+ 712      6420696E 
+ 712      7400
+ 713              	.LASF14:
+ 714 005f 646F7562 		.ascii	"double\000"
+ 714      6C6500
+ 715              	.LASF21:
+ 716 0066 474E5520 		.ascii	"GNU C 4.9.3 20150303 (release) [ARM/embedded-4_9-br"
+ 716      4320342E 
+ 716      392E3320 
+ 716      32303135 
+ 716      30333033 
+ 717 0099 616E6368 		.ascii	"anch revision 221220] -mcpu=cortex-m0 -mthumb -g -O"
+ 717      20726576 
+ 717      6973696F 
+ 717      6E203232 
+ 717      31323230 
+ 718 00cc 30202D66 		.ascii	"0 -ffunction-sections -ffat-lto-objects\000"
+ 718      66756E63 
+ 718      74696F6E 
+ 718      2D736563 
+ 718      74696F6E 
+ 719              	.LASF10:
+ 720 00f4 75696E74 		.ascii	"uint16\000"
+ 720      313600
+ 721              	.LASF11:
+ 722 00fb 75696E74 		.ascii	"uint32\000"
+ 722      333200
+ 723              	.LASF18:
+ 724 0102 4359424C 		.ascii	"CYBLE_GATT_VALUE_T\000"
+ 724      455F4741 
+ 724      54545F56 
+ 724      414C5545 
+ 724      5F5400
+ 725              	.LASF8:
+ 726 0115 756E7369 		.ascii	"unsigned int\000"
+ 726      676E6564 
+ 726      20696E74 
+ 726      00
+ 727              	.LASF22:
+ 728 0122 2E5C6465 		.ascii	".\\debug.c\000"
+ 728      6275672E 
+ 728      6300
+ 729              	.LASF15:
+ 730 012c 63686172 		.ascii	"char\000"
+ 730      00
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc4SLGwu.s 			page 17
+
+
+ 731              	.LASF23:
+ 732 0131 443A5C48 		.ascii	"D:\\Henny\\magisterka\\CY8KIT\\BLE\\BLE\\BLE_Temper"
+ 732      656E6E79 
+ 732      5C6D6167 
+ 732      69737465 
+ 732      726B615C 
+ 733 015e 61747572 		.ascii	"ature_Measurement01.cydsn\000"
+ 733      655F4D65 
+ 733      61737572 
+ 733      656D656E 
+ 733      7430312E 
+ 734              	.LASF16:
+ 735 0178 73697A65 		.ascii	"sizetype\000"
+ 735      74797065 
+ 735      00
+ 736              	.LASF6:
+ 737 0181 6C6F6E67 		.ascii	"long long int\000"
+ 737      206C6F6E 
+ 737      6720696E 
+ 737      7400
+ 738              	.LASF24:
+ 739 018f 5F777269 		.ascii	"_write\000"
+ 739      746500
+ 740              	.LASF2:
+ 741 0196 73686F72 		.ascii	"short int\000"
+ 741      7420696E 
+ 741      7400
+ 742              	.LASF9:
+ 743 01a0 75696E74 		.ascii	"uint8\000"
+ 743      3800
+ 744              	.LASF4:
+ 745 01a6 6C6F6E67 		.ascii	"long int\000"
+ 745      20696E74 
+ 745      00
+ 746              	.LASF0:
+ 747 01af 7369676E 		.ascii	"signed char\000"
+ 747      65642063 
+ 747      68617200 
+ 748              	.LASF17:
+ 749 01bb 61637475 		.ascii	"actualLen\000"
+ 749      616C4C65 
+ 749      6E00
+ 750              	.LASF7:
+ 751 01c5 6C6F6E67 		.ascii	"long long unsigned int\000"
+ 751      206C6F6E 
+ 751      6720756E 
+ 751      7369676E 
+ 751      65642069 
+ 752              		.ident	"GCC: (GNU Tools for ARM Embedded Processors) 4.9.3 20150303 (release) [ARM/embedded-4_9-br
