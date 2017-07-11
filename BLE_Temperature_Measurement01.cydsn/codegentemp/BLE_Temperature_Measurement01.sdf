@@ -1,6 +1,6 @@
 (DELAYFILE
  (SDFVERSION "IEEE 1497 4.0")
- (DATE "2017-07-10T16:24:45Z")
+ (DATE "2017-07-11T11:07:59Z")
  (DESIGN "BLE_Temperature_Measurement01")
  (VENDOR "Cypress Semiconductor")
  (PROGRAM "PSoC Creator")

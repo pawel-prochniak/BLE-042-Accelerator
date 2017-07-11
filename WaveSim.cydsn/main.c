@@ -34,7 +34,8 @@ int main()
     UART_Start();
     I2C_Start();
     
-    debug("\r\n--- START ---");
+    
+    printf("\r\n--- START ---\r\n");
     
     startAccConnection();
 

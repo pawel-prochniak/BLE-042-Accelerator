@@ -14,13 +14,25 @@
 
 uint16 rawDataX, rawDataY, rawDataZ;
 
-bool startAccConnection() 
+union SomeUnion 
+{
+    float32 fl;
+    char ch[4];
+    uint8 u[4];
+} someUnion;
+
+void startAccConnection() 
 {      
     CyDelay(50); // wait for initialization
     writeRegister(ADXL345_REG_POWER_CTL, 0x08);  
-    debug("Started measurement mode");
     
-    return true;
+    printf("\r\n--- Some Union tests ---");
+    printf("\r\nRandom float (12.04f): %f", 12.04f);
+    someUnion.fl = 12.3f;
+    printf("\r\nUnion float value (12.3f): %f", someUnion.fl);
+    printf("\r\n--- Tests ended ---\r\n");
+    
+    printf("\r\nStarted measurement mode\r\n");
 }
 
 uint8 getDeviceId() 
@@ -31,8 +43,6 @@ uint8 getDeviceId()
 void getRawDataX() 
 {
     rawDataX = readRegister16(ADXL345_REG_DATAX0);
-    debug("Raw X: ");
-    debugInt(rawDataX);
 }
 
 void getRawDataY() 
@@ -47,9 +57,24 @@ void getRawDataZ()
 
 void scaleAccValues()
 {
-    xData.floatVal = rawDataX * SCALE_FACTOR;
-    yData.floatVal = rawDataY * SCALE_FACTOR;
-    zData.floatVal = rawDataZ * SCALE_FACTOR;
+    /*
+    xData.floatVal = 12.9f;
+    debug("Fake float: ");
+    debugFloat(xData.floatVal);
+    */
+    
+    xData.floatVal = (float) (rawDataX * SCALE_FACTOR);
+    yData.floatVal = (float) (rawDataY * SCALE_FACTOR);
+    zData.floatVal = (float) (rawDataZ * SCALE_FACTOR);
+    
+    /*
+    debug("Scaled 1st byte: ");
+    debugInt(xData.uintVal[0]);
+    debug("Scaled float: ");
+    debugFloat(xData.floatVal);
+    debug("");
+    */
+    
 }
 
 void setMeasurementRate(DataRate_t range) 
@@ -96,11 +121,11 @@ uint8 readRegister(uint8 reg)
 {
     static uint8 readBuffer[0x01];
     uint8 status = I2C_I2CMasterWriteBuf(ADXL345_ADDRESS, &reg, sizeof(reg), I2C_I2C_MODE_COMPLETE_XFER);
-    if (status != I2C_I2C_MSTR_NO_ERROR) debug("Write operation in readRegister ended with error!");
+    if (status != I2C_I2C_MSTR_NO_ERROR) printf("\r\nWrite operation in readRegister ended with error!");
     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_WR_CMPLT));
     I2C_I2CMasterClearStatus();
     status = I2C_I2CMasterReadBuf(ADXL345_ADDRESS, (uint8 *) readBuffer, sizeof(readBuffer), I2C_I2C_MODE_COMPLETE_XFER);
-    if (status != I2C_I2C_MSTR_NO_ERROR) debug("Read operation in readRegister ended with error!");
+    if (status != I2C_I2C_MSTR_NO_ERROR) printf("\r\nRead operation in readRegister ended with error!");
     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_RD_CMPLT));
     I2C_I2CMasterClearStatus();
     return readBuffer[0x00];
@@ -110,11 +135,11 @@ long readRegister16(uint8 reg)
 {
     static uint8 readBuffer[0x02];
     uint8 status = I2C_I2CMasterWriteBuf(ADXL345_ADDRESS, &reg, sizeof(reg), I2C_I2C_MODE_COMPLETE_XFER);
-    if (status != I2C_I2C_MSTR_NO_ERROR) debug("Write operation in readRegister16 ended with error!");
+    if (status != I2C_I2C_MSTR_NO_ERROR) printf("\r\nWrite operation in readRegister16 ended with error!");
     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_WR_CMPLT));
     I2C_I2CMasterClearStatus();
     status = I2C_I2CMasterReadBuf(ADXL345_ADDRESS, (uint8 *) readBuffer, sizeof(readBuffer), I2C_I2C_MODE_COMPLETE_XFER);
-        if (status != I2C_I2C_MSTR_NO_ERROR) debug("Read operation in readRegister16 ended with error!");
+        if (status != I2C_I2C_MSTR_NO_ERROR) printf("\r\nRead operation in readRegister16 ended with error!");
     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_RD_CMPLT));
     I2C_I2CMasterClearStatus();
     return readBuffer[0x00] << 0x08 | readBuffer[0x01];   
@@ -128,7 +153,7 @@ void writeRegister(uint8 reg, uint8 cmd)
     
     uint8 status = I2C_I2CMasterWriteBuf(ADXL345_ADDRESS, (uint8 *) writeBuffer, sizeof(writeBuffer), I2C_I2C_MODE_COMPLETE_XFER);
     while(!(I2C_I2CMasterStatus() & I2C_I2C_MSTAT_WR_CMPLT));
-    if (status != I2C_I2C_MSTR_NO_ERROR) debug("Write operation ended with error!");
+    if (status != I2C_I2C_MSTR_NO_ERROR) printf("\r\nWrite operation ended with error!");
     I2C_I2CMasterClearStatus();
     
 }

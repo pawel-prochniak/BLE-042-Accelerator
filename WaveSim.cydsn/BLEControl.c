@@ -40,14 +40,14 @@ void Stack_Handler( uint32 eventCode, void *eventParam )
             break;
         
         case CYBLE_EVT_GAP_DEVICE_CONNECTED:
-            debug("Connected to device");
+            printf("\r\nConnected to device");
             bleConnected = 1;
             AdvLED_Write(LED_OFF);
             ConnectedLED_Write(LED_ON);
             break;
             
         case CYBLE_EVT_GAP_DEVICE_DISCONNECTED:
-            debug("Disconnected from device");
+            printf("\r\nDisconnected from device");
             bleConnected = 0;
             ConnectedLED_Write(LED_OFF);
             AdvLED_Write(LED_ON);
@@ -63,16 +63,19 @@ void Stack_Handler( uint32 eventCode, void *eventParam )
             wrReq = (CYBLE_GATTS_WRITE_REQ_PARAM_T *) eventParam;
             if ( wrReq->handleValPair.attrHandle == CYBLE_SENSOR_X_SENSORCCCD_DESC_HANDLE )
             {
+                printf("\r\nWriting to CYBLE_SENSOR_X_SENSORCCCD_DESC_HANDLE");
                 CyBle_GattsWriteAttributeValue( &wrReq->handleValPair, 0, &cyBle_connHandle, CYBLE_GATT_DB_LOCALLY_INITIATED);
                 notifyOn = wrReq->handleValPair.value.val[0];
             }
             if ( wrReq->handleValPair.attrHandle == CYBLE_SENSOR_Y_SENSORCCCD_DESC_HANDLE )
             {
+                printf("\r\nWriting to CYBLE_SENSOR_Y_SENSORCCCD_DESC_HANDLE");
                 CyBle_GattsWriteAttributeValue( &wrReq->handleValPair, 0, &cyBle_connHandle, CYBLE_GATT_DB_LOCALLY_INITIATED);
                 notifyOn = wrReq->handleValPair.value.val[0];
             }
             if ( wrReq->handleValPair.attrHandle == CYBLE_SENSOR_Z_SENSORCCCD_DESC_HANDLE )
             {
+                printf("\r\nWriting to CYBLE_SENSOR_Z_SENSORCCCD_DESC_HANDLE");
                 CyBle_GattsWriteAttributeValue( &wrReq->handleValPair, 0, &cyBle_connHandle, CYBLE_GATT_DB_LOCALLY_INITIATED);
                 notifyOn = wrReq->handleValPair.value.val[0];
             }
@@ -86,36 +89,50 @@ void Stack_Handler( uint32 eventCode, void *eventParam )
     }
 }
 
+int counter = 0;
+
 void sendNotifications()
-{
-    
+{    
     // X data handle
     CYBLE_GATTS_HANDLE_VALUE_NTF_T xDataHandle;
     xDataHandle.attrHandle = CYBLE_SENSOR_X_CHAR_HANDLE;
     xDataHandle.value.len = sizeof(xData);
-    xDataHandle.value.val = (uint8 *)&xData;               
+    xDataHandle.value.val = (uint8 *)&xData.uintVal;               
     CyBle_GattsWriteAttributeValue( &xDataHandle, 0u, &cyBle_connHandle, 0 );
     while (BLEStackStatus != CYBLE_STACK_STATE_FREE) {CyBle_ProcessEvents();}
-    CyBle_GattsNotification( cyBle_connHandle, &xDataHandle );
-   
+    int notifResult = CyBle_GattsNotification( cyBle_connHandle, &xDataHandle );
+    if (notifResult != 0) {
+        printf("\r\nError sending X notif, error code: %d", notifResult);
+    }
+    if (counter < 10) 
+    {
+        printf("\r\nSending value %d: %f", counter, xData.floatVal);
+        counter++;     
+    }
     
     // Y data handle
     CYBLE_GATTS_HANDLE_VALUE_NTF_T yDataHandle;
     yDataHandle.attrHandle = CYBLE_SENSOR_Y_CHAR_HANDLE;
     yDataHandle.value.len = sizeof(yData);
-    yDataHandle.value.val = (uint8 *)&yData;               
+    yDataHandle.value.val = (uint8 *)&yData.uintVal;               
     CyBle_GattsWriteAttributeValue( &yDataHandle, 0u, &cyBle_connHandle, 0 ); 
     while (BLEStackStatus != CYBLE_STACK_STATE_FREE) {CyBle_ProcessEvents();}
-    CyBle_GattsNotification( cyBle_connHandle, &yDataHandle );
+    notifResult = CyBle_GattsNotification( cyBle_connHandle, &yDataHandle );
+    if (notifResult != 0) {
+        printf("\r\nError sending Y notif, error code: %d", notifResult);
+    }
     
     // Z data handle
     CYBLE_GATTS_HANDLE_VALUE_NTF_T zDataHandle;
     zDataHandle.attrHandle = CYBLE_SENSOR_Z_CHAR_HANDLE;;
     zDataHandle.value.len = sizeof(zData);
-    zDataHandle.value.val = (uint8 *)&zData;              
+    zDataHandle.value.val = (uint8 *)&zData.uintVal;              
     CyBle_GattsWriteAttributeValue( &zDataHandle, 0u, &cyBle_connHandle, 0 );
     while (BLEStackStatus != CYBLE_STACK_STATE_FREE) {CyBle_ProcessEvents();}
-    CyBle_GattsNotification( cyBle_connHandle, &zDataHandle );
+    notifResult = CyBle_GattsNotification( cyBle_connHandle, &zDataHandle );
+    if (notifResult != 0) {
+        printf("\r\nError sending Z notif, error code: %d", notifResult);
+    }
 }
 
 

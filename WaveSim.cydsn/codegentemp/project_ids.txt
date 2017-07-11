@@ -7,3 +7,4 @@ D:\Henny\magisterka\CY8KIT\BLE\BLE\BLE_FindMe.cydsn\BLE_FindMe.cyprj|25ca5856-05
 D:\Henny\magisterka\CY8KIT\BLE\BLE\BLE_CustomProfile.cydsn\BLE_CustomProfile.cyprj|2ffe8f7d-e356-44f0-b329-61ad0271b32e
 D:\Henny\magisterka\CY8KIT\BLE\BLE\WaveSim.cydsn\WaveSim.cyprj|4c77ed7e-9c10-4c64-8802-fb98f503912e
 D:\Henny\magisterka\CY8KIT\BLE\BLE\BLE_Temperature_Measurement01.cydsn\BLE_Temperature_Measurement01.cyprj|60924db2-e7a0-424b-80e3-fd8442adb2b6
+D:\programy\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\default\CyReferenceLibrary\CyReferenceLibrary.cylib\CyReferenceLibrary.cyprj|4ebf91bf-f7aa-4f07-8e5a-8cf4dec2671e

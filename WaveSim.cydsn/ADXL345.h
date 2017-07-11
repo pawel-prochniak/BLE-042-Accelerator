@@ -72,7 +72,7 @@ typedef enum
 
 
 // Functions to control accel
-bool startAccConnection();
+void startAccConnection();
 uint8 getDeviceId();
 void setMeasurementRate(DataRate_t dataRate_t);
 DataRate_t getMeasurementRate();

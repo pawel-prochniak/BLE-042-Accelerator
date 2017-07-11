@@ -1,4 +1,4 @@
---------------- Rebuild Started: 07/10/2017 18:24:23 Project: WaveSim, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+--------------- Rebuild Started: 07/11/2017 13:06:45 Project: WaveSim, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\main.o"
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\BLEControl.o"
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\ADXL345.o"
@@ -50,6 +50,8 @@ Deleting file ".\CortexM0\ARM_GCC_493\Debug\I2C_sda_PM.o"
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\I2C_scl.o"
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\I2C_scl_PM.o"
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\I2C_SCB_IRQ.o"
+Deleting file ".\CortexM0\ARM_GCC_493\Debug\WaveSim.hex"
+Deleting file ".\CortexM0\ARM_GCC_493\Debug\WaveSim.elf"
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\WaveSim.map"
 Deleting file ".\WaveSim.cycdx"
 Deleting file ".\WaveSim.svd"
@@ -78,6 +80,10 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\P
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/BLEControl.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\BLEControl.c -o .\CortexM0\ARM_GCC_493\Debug\BLEControl.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/ADXL345.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\ADXL345.c -o .\CortexM0\ARM_GCC_493\Debug\ADXL345.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/common.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\common.c -o .\CortexM0\ARM_GCC_493\Debug\common.o
+.\common.c: In function 'debugFloat':
+.\common.c:33:5: warning: implicit declaration of function 'dtostrf' [-Wimplicit-function-declaration]
+     dtostrf(f, 2, 4, temp);
+     ^
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/cyfitter_cfg.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\cyfitter_cfg.c -o .\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/cymetadata.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\cymetadata.c -o .\CortexM0\ARM_GCC_493\Debug\cymetadata.o
 arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/Cm0Start.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\Generated_Source\PSoC4\Cm0Start.c -o .\CortexM0\ARM_GCC_493\Debug\Cm0Start.o
@@ -128,8 +134,8 @@ arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\P
 arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_493\Debug\WaveSim.a .\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_493\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_493\Debug\CyFlash.o .\CortexM0\ARM_GCC_493\Debug\CyLib.o .\CortexM0\ARM_GCC_493\Debug\cyPm.o .\CortexM0\ARM_GCC_493\Debug\cyutils.o .\CortexM0\ARM_GCC_493\Debug\CyLFClk.o .\CortexM0\ARM_GCC_493\Debug\BlueLED.o .\CortexM0\ARM_GCC_493\Debug\BlueLED_PM.o .\CortexM0\ARM_GCC_493\Debug\ConnectedLED.o .\CortexM0\ARM_GCC_493\Debug\ConnectedLED_PM.o .\CortexM0\ARM_GCC_493\Debug\AdvLED.o .\CortexM0\ARM_GCC_493\Debug\AdvLED_PM.o .\CortexM0\ARM_GCC_493\Debug\BLE.o .\CortexM0\ARM_GCC_493\Debug\BLE_gatt.o .\CortexM0\ARM_GCC_493\Debug\BLE_eventHandler.o .\CortexM0\ARM_GCC_493\Debug\BLE_HAL_INT.o .\CortexM0\ARM_GCC_493\Debug\BLE_HAL_PVT.o .\CortexM0\ARM_GCC_493\Debug\BLE_custom.o .\CortexM0\ARM_GCC_493\Debug\BLE_bless_isr.o .\CortexM0\ARM_GCC_493\Debug\UART.o .\CortexM0\ARM_GCC_493\Debug\UART_SPI_UART.o .\CortexM0\ARM_GCC_493\Debug\UART_SPI_UART_INT.o .\CortexM0\ARM_GCC_493\Debug\UART_PM.o .\CortexM0\ARM_GCC_493\Debug\UART_UART.o .\CortexM0\ARM_GCC_493\Debug\UART_BOOT.o .\CortexM0\ARM_GCC_493\Debug\UART_UART_BOOT.o .\CortexM0\ARM_GCC_493\Debug\UART_SCBCLK.o .\CortexM0\ARM_GCC_493\Debug\UART_tx.o .\CortexM0\ARM_GCC_493\Debug\UART_tx_PM.o .\CortexM0\ARM_GCC_493\Debug\UART_rx.o .\CortexM0\ARM_GCC_493\Debug\UART_rx_PM.o .\CortexM0\ARM_GCC_493\Debug\I2C.o .\CortexM0\ARM_GCC_493\Debug\I2C_I2C_INT.o .\CortexM0\ARM_GCC_493\Debug\I2C_I2C.o .\CortexM0\ARM_GCC_493\Debug\I2C_I2C_BOOT.o .\CortexM0\ARM_GCC_493\Debug\I2C_I2C_MASTER.o .\CortexM0\ARM_GCC_493\Debug\I2C_PM.o .\CortexM0\ARM_GCC_493\Debug\I2C_BOOT.o .\CortexM0\ARM_GCC_493\Debug\I2C_SCBCLK.o .\CortexM0\ARM_GCC_493\Debug\I2C_sda.o .\CortexM0\ARM_GCC_493\Debug\I2C_sda_PM.o .\CortexM0\ARM_GCC_493\Debug\I2C_scl.o .\CortexM0\ARM_GCC_493\Debug\I2C_scl_PM.o .\CortexM0\ARM_GCC_493\Debug\I2C_SCB_IRQ.o
 arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_493\Debug\WaveSim.a
 arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM0\ARM_GCC_493\Debug\WaveSim.elf .\CortexM0\ARM_GCC_493\Debug\main.o .\CortexM0\ARM_GCC_493\Debug\BLEControl.o .\CortexM0\ARM_GCC_493\Debug\ADXL345.o .\CortexM0\ARM_GCC_493\Debug\common.o .\CortexM0\ARM_GCC_493\Debug\cymetadata.o .\CortexM0\ARM_GCC_493\Debug\Cm0Start.o .\CortexM0\ARM_GCC_493\Debug\WaveSim.a "D:\programy\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\BLE_v3_10\Library\gccCyBLEStack_BLE_SOC_PERIPHERAL.a" "D:\programy\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_493\Debug\CyComponentLibrary.a" -mcpu=cortex-m0 -mthumb -g -ffunction-sections -Og -ffat-lto-objects -L Generated_Source\PSoC4 -Wl,-Map,.\CortexM0\ARM_GCC_493\Debug/WaveSim.map -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections -Wl,--end-group
-cyelftool.exe -C D:\Henny\magisterka\CY8KIT\BLE\BLE\WaveSim.cydsn\CortexM0\ARM_GCC_493\Debug\WaveSim.elf --flash_row_size 128 --flash_size 131072
-cyelftool.exe -S D:\Henny\magisterka\CY8KIT\BLE\BLE\WaveSim.cydsn\CortexM0\ARM_GCC_493\Debug\WaveSim.elf
-Flash used: 85248 of 131072 bytes (65,0%).
-SRAM used: 10864 of 16384 bytes (66,3%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Rebuild Succeeded: 07/10/2017 18:24:38 ---------------
+.\CortexM0\ARM_GCC_493\Debug\common.o: In function `debugFloat':
+D:\Henny\magisterka\CY8KIT\BLE\BLE\WaveSim.cydsn/.\common.c:33: undefined reference to `dtostrf'
+collect2.exe: error: ld returned 1 exit status
+The command 'arm-none-eabi-gcc.exe' failed with exit code '1'.
+--------------- Rebuild Failed: 07/11/2017 13:07:50 ---------------

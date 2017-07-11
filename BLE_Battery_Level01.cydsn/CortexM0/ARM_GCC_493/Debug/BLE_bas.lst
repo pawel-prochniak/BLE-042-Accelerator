@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
   12:.\Generated_Source\PSoC4/BLE_bas.c **** * disclaimers, and limitations in the end user license agreement accompanying
   13:.\Generated_Source\PSoC4/BLE_bas.c **** * the software package with which this file was provided.
   14:.\Generated_Source\PSoC4/BLE_bas.c **** *******************************************************************************/
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 2
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 2
 
 
   15:.\Generated_Source\PSoC4/BLE_bas.c **** 
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
   61:.\Generated_Source\PSoC4/BLE_bas.c **** 
   62:.\Generated_Source\PSoC4/BLE_bas.c **** #ifdef CYBLE_BAS_CLIENT
   63:.\Generated_Source\PSoC4/BLE_bas.c **** 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 3
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 3
 
 
   64:.\Generated_Source\PSoC4/BLE_bas.c ****     (void)memset(&cyBle_basc, 0, sizeof(cyBle_basc));
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  103:.\Generated_Source\PSoC4/BLE_bas.c **** {
   67              		.loc 1 103 0
   68              		.cfi_startproc
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 4
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 4
 
 
   69 0000 80B5     		push	{r7, lr}
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  125:.\Generated_Source\PSoC4/BLE_bas.c **** *  Return value is of type CYBLE_API_RESULT_T.
  126:.\Generated_Source\PSoC4/BLE_bas.c **** *  * CYBLE_ERROR_OK - The request handled successfully
  127:.\Generated_Source\PSoC4/BLE_bas.c **** *  * CYBLE_ERROR_INVALID_PARAMETER - Validation of the input parameter failed
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 5
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 5
 
 
  128:.\Generated_Source\PSoC4/BLE_bas.c **** *
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  144 003c 012B     		cmp	r3, #1
  145 003e 03D1     		bne	.L6
  140:.\Generated_Source\PSoC4/BLE_bas.c ****        (attrSize != CYBLE_BAS_BATTERY_LEVEL_LEN) || (*attrValue > CYBLE_BAS_MAX_BATTERY_LEVEL_VALUE
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 6
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 6
 
 
  146              		.loc 1 140 0 is_stmt 1
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  189 0088 031E     		sub	r3, r0, #0
  150:.\Generated_Source\PSoC4/BLE_bas.c ****         if(CYBLE_GATT_ERR_NONE !=
  190              		.loc 1 150 0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 7
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 7
 
 
  191 008a 03D0     		beq	.L8
@@ -418,7 +418,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  174:.\Generated_Source\PSoC4/BLE_bas.c **** *  \param attrValue: The pointer to the location where characteristic value data
  175:.\Generated_Source\PSoC4/BLE_bas.c **** *               should be stored.
  176:.\Generated_Source\PSoC4/BLE_bas.c **** * 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 8
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 8
 
 
  177:.\Generated_Source\PSoC4/BLE_bas.c **** * \return
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  261 0036 03D1     		bne	.L13
  262              		.loc 1 192 0 discriminator 2
  263 0038 7B1D     		add	r3, r7, #5
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 9
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 9
 
 
  264 003a 1B78     		ldrb	r3, [r3]
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  305              		.loc 1 203 0
  306 0080 03D0     		beq	.L15
  205:.\Generated_Source\PSoC4/BLE_bas.c ****         {
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 10
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 10
 
 
  206:.\Generated_Source\PSoC4/BLE_bas.c ****             apiResult = CYBLE_ERROR_INVALID_PARAMETER;
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  229:.\Generated_Source\PSoC4/BLE_bas.c **** *  \param attrValue: The pointer to the location where characteristic descriptor 
  230:.\Generated_Source\PSoC4/BLE_bas.c **** *               value data should be stored.
  231:.\Generated_Source\PSoC4/BLE_bas.c **** * 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 11
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 11
 
 
  232:.\Generated_Source\PSoC4/BLE_bas.c **** * \return
@@ -658,7 +658,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  376              		.loc 1 247 0 is_stmt 0 discriminator 1
  377 0036 BB1D     		add	r3, r7, #6
  378 0038 1B78     		ldrb	r3, [r3]
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 12
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 12
 
 
  379 003a 002B     		cmp	r3, #0
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  419 007a FB18     		add	r3, r7, r3
  420 007c 1A81     		strh	r2, [r3, #8]
  421              	.L24:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 13
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 13
 
 
  262:.\Generated_Source\PSoC4/BLE_bas.c ****         }
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  464              		.cfi_endproc
  465              	.LFE6:
  466              		.size	CyBle_BassGetCharacteristicDescriptor, .-CyBle_BassGetCharacteristicDescriptor
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 14
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 14
 
 
  467              		.section	.text.CyBle_BassWriteEventHandler,"ax",%progbits
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  297:.\Generated_Source\PSoC4/BLE_bas.c ****     if(NULL != CyBle_BasApplCallback)
  497              		.loc 1 297 0
  498 0018 4A4B     		ldr	r3, .L38
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 15
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 15
 
 
  499 001a 1B68     		ldr	r3, [r3]
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  543 0068 101C     		mov	r0, r2
  544 006a 0021     		mov	r1, #0
  545 006c 1A1C     		mov	r2, r3
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 16
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 16
 
 
  546 006e 4023     		mov	r3, #64
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  317:.\Generated_Source\PSoC4/BLE_bas.c ****                         {
  318:.\Generated_Source\PSoC4/BLE_bas.c ****                             CyBle_BasApplCallback((uint32)CYBLE_EVT_BASS_NOTIFICATION_ENABLED, &loc
  591              		.loc 1 318 0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 17
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 17
 
 
  592 00c0 204B     		ldr	r3, .L38
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  335:.\Generated_Source\PSoC4/BLE_bas.c ****                 {
  336:.\Generated_Source\PSoC4/BLE_bas.c ****                     gattErr = CYBLE_GATT_ERR_REQUEST_NOT_SUPPORTED;
  630              		.loc 1 336 0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 18
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 18
 
 
  631 0100 1623     		mov	r3, #22
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  676 0142 C046     		.align	2
  677              	.L38:
  678 0144 00000000 		.word	CyBle_BasApplCallback
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 19
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 19
 
 
  679 0148 00000000 		.word	cyBle_bass
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  384:.\Generated_Source\PSoC4/BLE_bas.c **** {
  695              		.loc 1 384 0
  696              		.cfi_startproc
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 20
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 20
 
 
  697 0000 90B5     		push	{r4, r7, lr}
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  742 004a 022B     		cmp	r3, #2
  743 004c 05D0     		beq	.L42
  394:.\Generated_Source\PSoC4/BLE_bas.c ****         {
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 21
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 21
 
 
  395:.\Generated_Source\PSoC4/BLE_bas.c ****             apiResult = CYBLE_ERROR_INVALID_STATE;
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  792 00a4 5200     		lsl	r2, r2, #1
  793 00a6 1A80     		strh	r2, [r3]
  794 00a8 1DE0     		b	.L41
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 22
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 22
 
 
  795              	.L44:
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  833 00e6 1623     		mov	r3, #22
  834 00e8 FB18     		add	r3, r7, r3
  835 00ea 1B88     		ldrh	r3, [r3]
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 23
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 23
 
 
  417:.\Generated_Source\PSoC4/BLE_bas.c **** }
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  889 003a 02       		.uleb128 0x2
  890 003b 02       		.byte	0x2
  891 003c 07       		.byte	0x7
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 24
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 24
 
 
  892 003d AF340000 		.4byte	.LASF3
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  946 00a9 02       		.uleb128 0x2
  947 00aa 04       		.byte	0x4
  948 00ab 07       		.byte	0x7
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 25
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 25
 
 
  949 00ac A5000000 		.4byte	.LASF15
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1003 0115 A0250000 		.4byte	.LASF31
  1004 0119 29       		.sleb128 41
  1005 011a 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 26
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 26
 
 
  1006 011b 9D190000 		.4byte	.LASF32
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1060 0196 7A200000 		.4byte	.LASF50
  1061 019a CF00     		.sleb128 79
  1062 019c 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 27
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 27
 
 
  1063 019d 27300000 		.4byte	.LASF51
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1117 021b 43360000 		.4byte	.LASF69
  1118 021f FA00     		.sleb128 122
  1119 0221 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 28
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 28
 
 
  1120 0222 F71C0000 		.4byte	.LASF70
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1174 028f 16220000 		.4byte	.LASF86
  1175 0293 0D       		.sleb128 13
  1176 0294 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 29
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 29
 
 
  1177 0295 8C180000 		.4byte	.LASF87
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1231 0304 F3030000 		.4byte	0x3f3
  1232 0308 08       		.uleb128 0x8
  1233 0309 58280000 		.4byte	.LASF102
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 30
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 30
 
 
  1234 030d 00       		.sleb128 0
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1288 0379 8001     		.sleb128 128
  1289 037b 08       		.uleb128 0x8
  1290 037c 3E160000 		.4byte	.LASF121
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 31
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 31
 
 
  1291 0380 8001     		.sleb128 128
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1345 03fb 00030000 		.4byte	0x300
  1346 03ff 04       		.uleb128 0x4
  1347 0400 19280000 		.4byte	.LASF139
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 32
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 32
 
 
  1348 0404 04       		.byte	0x4
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1402 0474 3B040000 		.4byte	0x43b
  1403 0478 0B       		.uleb128 0xb
  1404 0479 0C       		.byte	0xc
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 33
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 33
 
 
  1405 047a 04       		.byte	0x4
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1459 04e7 10       		.uleb128 0x10
  1460 04e8 722A0000 		.4byte	.LASF152
  1461 04ec 06       		.byte	0x6
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 34
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 34
 
 
  1462 04ed C4       		.byte	0xc4
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1516 0556 E5       		.byte	0xe5
  1517 0557 77000000 		.4byte	0x77
  1518 055b 00       		.byte	0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 35
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 35
 
 
  1519 055c 0E       		.uleb128 0xe
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1573 05cc 13       		.uleb128 0x13
  1574 05cd DC050000 		.4byte	0x5dc
  1575 05d1 14       		.uleb128 0x14
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 36
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 36
 
 
  1576 05d2 83000000 		.4byte	0x83
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1630 063b 08       		.byte	0x8
  1631 063c 4E       		.byte	0x4e
  1632 063d FF030000 		.4byte	0x3ff
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 37
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 37
 
 
  1633 0641 02       		.byte	0x2
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1687 06aa 08       		.byte	0x8
  1688 06ab 71       		.byte	0x71
  1689 06ac 66060000 		.4byte	0x666
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 38
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 38
 
 
  1690 06b0 07       		.uleb128 0x7
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1744 071a 4C270000 		.4byte	.LASF197
  1745 071e 8402     		.sleb128 260
  1746 0720 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 39
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 39
 
 
  1747 0721 CC310000 		.4byte	.LASF198
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1801 079f 79370000 		.4byte	.LASF216
  1802 07a3 9702     		.sleb128 279
  1803 07a5 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 40
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 40
 
 
  1804 07a6 AB1F0000 		.4byte	.LASF217
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1858 0824 F7150000 		.4byte	.LASF235
  1859 0828 AA02     		.sleb128 298
  1860 082a 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 41
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 41
 
 
  1861 082b 1E030000 		.4byte	.LASF236
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1915 08a9 2E320000 		.4byte	.LASF254
  1916 08ad BD02     		.sleb128 317
  1917 08af 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 42
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 42
 
 
  1918 08b0 881C0000 		.4byte	.LASF255
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  1972 092e 85350000 		.4byte	.LASF273
  1973 0932 D002     		.sleb128 336
  1974 0934 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 43
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 43
 
 
  1975 0935 82110000 		.4byte	.LASF274
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2029 09b3 4E370000 		.4byte	.LASF292
  2030 09b7 E302     		.sleb128 355
  2031 09b9 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 44
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 44
 
 
  2032 09ba B8150000 		.4byte	.LASF293
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2086 0a38 1B1F0000 		.4byte	.LASF311
  2087 0a3c F602     		.sleb128 374
  2088 0a3e 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 45
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 45
 
 
  2089 0a3f C6120000 		.4byte	.LASF312
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2143 0abd 5C1F0000 		.4byte	.LASF330
  2144 0ac1 8903     		.sleb128 393
  2145 0ac3 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 46
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 46
 
 
  2146 0ac4 0D370000 		.4byte	.LASF331
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2200 0b42 AD0A0000 		.4byte	.LASF349
  2201 0b46 9C03     		.sleb128 412
  2202 0b48 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 47
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 47
 
 
  2203 0b49 50000000 		.4byte	.LASF350
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2257 0bc7 25090000 		.4byte	.LASF368
  2258 0bcb AF03     		.sleb128 431
  2259 0bcd 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 48
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 48
 
 
  2260 0bce BE1A0000 		.4byte	.LASF369
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2314 0c4c 53170000 		.4byte	.LASF387
  2315 0c50 C203     		.sleb128 450
  2316 0c52 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 49
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 49
 
 
  2317 0c53 F50C0000 		.4byte	.LASF388
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2371 0cd1 54040000 		.4byte	.LASF406
  2372 0cd5 D503     		.sleb128 469
  2373 0cd7 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 50
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 50
 
 
  2374 0cd8 042C0000 		.4byte	.LASF407
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2428 0d56 032B0000 		.4byte	.LASF425
  2429 0d5a E803     		.sleb128 488
  2430 0d5c 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 51
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 51
 
 
  2431 0d5d 4B1D0000 		.4byte	.LASF426
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2485 0ddb 4B0C0000 		.4byte	.LASF444
  2486 0ddf FB03     		.sleb128 507
  2487 0de1 08       		.uleb128 0x8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 52
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 52
 
 
  2488 0de2 79240000 		.4byte	.LASF445
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2542 0e52 00       		.byte	0
  2543 0e53 18       		.uleb128 0x18
  2544 0e54 841B0000 		.4byte	.LASF457
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 53
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 53
 
 
  2545 0e58 01       		.byte	0x1
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2599 0ebe 91       		.byte	0x91
  2600 0ebf 60       		.sleb128 -32
  2601 0ec0 00       		.byte	0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 54
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 54
 
 
  2602 0ec1 18       		.uleb128 0x18
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2656 0f27 9C040000 		.4byte	0x49c
  2657 0f2b 02       		.uleb128 0x2
  2658 0f2c 91       		.byte	0x91
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 55
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 55
 
 
  2659 0f2d 60       		.sleb128 -32
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2713 0f93 01       		.byte	0x1
  2714 0f94 F4       		.byte	0xf4
  2715 0f95 EE020000 		.4byte	0x2ee
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 56
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 56
 
 
  2716 0f99 02       		.uleb128 0x2
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2770 1001 00       		.byte	0
  2771 1002 0A       		.uleb128 0xa
  2772 1003 04       		.byte	0x4
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 57
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 57
 
 
  2773 1004 D4040000 		.4byte	0x4d4
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2827 1073 8101     		.2byte	0x181
  2828 1075 EE020000 		.4byte	0x2ee
  2829 1079 02       		.uleb128 0x2
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 58
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 58
 
 
  2830 107a 91       		.byte	0x91
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2884 10f0 FB100000 		.4byte	0x10fb
  2885 10f4 20       		.uleb128 0x20
  2886 10f5 A9000000 		.4byte	0xa9
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 59
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 59
 
 
  2887 10f9 01       		.byte	0x1
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2941 0022 0B       		.uleb128 0xb
  2942 0023 3E       		.uleb128 0x3e
  2943 0024 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 60
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 60
 
 
  2944 0025 03       		.uleb128 0x3
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  2998 005b 04       		.uleb128 0x4
  2999 005c 01       		.byte	0x1
  3000 005d 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 61
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 61
 
 
  3001 005e 0B       		.uleb128 0xb
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3055 0094 05       		.uleb128 0x5
  3056 0095 49       		.uleb128 0x49
  3057 0096 13       		.uleb128 0x13
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 62
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 62
 
 
  3058 0097 38       		.uleb128 0x38
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3112 00cd 01       		.uleb128 0x1
  3113 00ce 13       		.uleb128 0x13
  3114 00cf 00       		.byte	0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 63
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 63
 
 
  3115 00d0 00       		.byte	0
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3169 0107 2E       		.uleb128 0x2e
  3170 0108 01       		.byte	0x1
  3171 0109 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 64
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 64
 
 
  3172 010a 19       		.uleb128 0x19
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3226 0141 06       		.uleb128 0x6
  3227 0142 40       		.uleb128 0x40
  3228 0143 18       		.uleb128 0x18
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 65
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 65
 
 
  3229 0144 9642     		.uleb128 0x2116
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3283 017c 0B       		.uleb128 0xb
  3284 017d 3B       		.uleb128 0x3b
  3285 017e 05       		.uleb128 0x5
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 66
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 66
 
 
  3286 017f 49       		.uleb128 0x49
@@ -3958,7 +3958,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3340 01b5 00       		.byte	0
  3341 01b6 00       		.byte	0
  3342 01b7 20       		.uleb128 0x20
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 67
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 67
 
 
  3343 01b8 21       		.uleb128 0x21
@@ -4018,7 +4018,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3397 000a 04       		.byte	0x4
  3398 000b 00       		.byte	0
  3399 000c 0000     		.2byte	0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 68
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 68
 
 
  3400 000e 0000     		.2byte	0
@@ -4078,7 +4078,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3442              	.LASF461:
  3443 0034 4379426C 		.ascii	"CyBle_BassWriteEventHandler\000"
  3443      655F4261 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 69
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 69
 
 
  3443      73735772 
@@ -4138,7 +4138,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3461      57524954 
  3462              	.LASF181:
  3463 014c 63686172 		.ascii	"charIndex\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 70
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 70
 
 
  3463      496E6465 
@@ -4198,7 +4198,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3482              	.LASF29:
  3483 0267 4359424C 		.ascii	"CYBLE_EVT_GAP_DEVICE_CONNECTED\000"
  3483      455F4556 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 71
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 71
 
 
  3483      545F4741 
@@ -4258,7 +4258,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3503      455F4556 
  3503      545F4354 
  3503      53435F52 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 72
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 72
 
 
  3503      4541445F 
@@ -4318,7 +4318,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3521      4E535546 
  3522              	.LASF118:
  3523 04e2 4359424C 		.ascii	"CYBLE_GATT_ERR_UNSUPPORTED_GROUP_TYPE\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 73
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 73
 
 
  3523      455F4741 
@@ -4378,7 +4378,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3541      69737369 
  3541      6F6E00
  3542              	.LASF371:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 74
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 74
 
 
  3543 061e 4359424C 		.ascii	"CYBLE_EVT_LNSC_INDICATION\000"
@@ -4438,7 +4438,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3561 0714 4359424C 		.ascii	"CYBLE_EVT_GAP_AUTH_REQ\000"
  3561      455F4556 
  3561      545F4741 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 75
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 75
 
 
  3561      505F4155 
@@ -4498,7 +4498,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3579      41445645 
  3579      52544953 
  3580              	.LASF140:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 76
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 76
 
 
  3581 082e 62644861 		.ascii	"bdHandle\000"
@@ -4558,7 +4558,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3598      57524954 
  3599              	.LASF280:
  3600 0967 4359424C 		.ascii	"CYBLE_EVT_CPSC_WRITE_DESCR_RESPONSE\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 77
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 77
 
 
  3600      455F4556 
@@ -4618,7 +4618,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3618      00
  3619              	.LASF316:
  3620 0a7b 4359424C 		.ascii	"CYBLE_EVT_ESSC_WRITE_DESCR_RESPONSE\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 78
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 78
 
 
  3620      455F4556 
@@ -4678,7 +4678,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3640 0b7e 4359424C 		.ascii	"CYBLE_EVT_HIDSC_NOTIFICATION\000"
  3640      455F4556 
  3640      545F4849 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 79
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 79
 
 
  3640      4453435F 
@@ -4738,7 +4738,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3659              	.LASF73:
  3660 0cab 4359424C 		.ascii	"CYBLE_ERROR_OK\000"
  3660      455F4552 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 80
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 80
 
 
  3660      524F525F 
@@ -4798,7 +4798,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3678      4541445F 
  3679              	.LASF429:
  3680 0dcb 4359424C 		.ascii	"CYBLE_EVT_WPTSS_INDICATION_DISABLED\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 81
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 81
 
 
  3680      455F4556 
@@ -4858,7 +4858,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3698      57524954 
  3699              	.LASF14:
  3700 0efb 63686172 		.ascii	"char\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 82
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 82
 
 
  3700      00
@@ -4918,7 +4918,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3719              	.LASF45:
  3720 1003 4359424C 		.ascii	"CYBLE_EVT_GATTC_READ_BLOB_RSP\000"
  3720      455F4556 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 83
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 83
 
 
  3720      545F4741 
@@ -4978,7 +4978,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3739      455F4449 
  3739      535F534F 
  3739      46545741 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 84
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 84
 
 
  3739      52455F52 
@@ -5038,7 +5038,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3757      4F544946 
  3758              	.LASF189:
  3759 127a 4359424C 		.ascii	"CYBLE_DIS_SYSTEM_ID\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 85
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 85
 
 
  3759      455F4449 
@@ -5098,7 +5098,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3777      455F4556 
  3777      545F5253 
  3777      4353535F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 86
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 86
 
 
  3777      494E4449 
@@ -5158,7 +5158,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3797 14c9 4359424C 		.ascii	"CYBLE_GATTS_ERR_CCCD_IMPROPERLY_CONFIGURED\000"
  3797      455F4741 
  3797      5454535F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 87
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 87
 
 
  3797      4552525F 
@@ -5218,7 +5218,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3815      4E444943 
  3816              	.LASF342:
  3817 161a 4359424C 		.ascii	"CYBLE_EVT_HRSS_NOTIFICATION_ENABLED\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 88
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 88
 
 
  3817      455F4556 
@@ -5278,7 +5278,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3835      455F4556 
  3835      545F5253 
  3835      4353535F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 89
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 89
 
 
  3835      4E4F5449 
@@ -5338,7 +5338,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3853      4541445F 
  3854              	.LASF87:
  3855 188c 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_ALREADY_REGISTERED\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 90
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 90
 
 
  3855      455F4552 
@@ -5398,7 +5398,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3873      545F4741 
  3873      505F434F 
  3873      4E4E4543 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 91
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 91
 
 
  3874              	.LASF263:
@@ -5458,7 +5458,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3892              	.LASF272:
  3893 1ae3 4359424C 		.ascii	"CYBLE_EVT_CPSS_BROADCAST_ENABLED\000"
  3893      455F4556 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 92
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 92
 
 
  3893      545F4350 
@@ -5518,7 +5518,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3911      43484152 
  3912              	.LASF320:
  3913 1bf9 4359424C 		.ascii	"CYBLE_EVT_GLSS_NOTIFICATION_ENABLED\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 93
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 93
 
 
  3913      455F4556 
@@ -5578,7 +5578,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3931      4E535546 
  3932              	.LASF179:
  3933 1d3e 4359424C 		.ascii	"CYBLE_BASS_T\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 94
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 94
 
 
  3933      455F4241 
@@ -5638,7 +5638,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3951      53535F44 
  3951      45534352 
  3952              	.LASF458:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 95
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 95
 
 
  3953 1e75 4379426C 		.ascii	"CyBle_BassGetCharacteristicValue\000"
@@ -5698,7 +5698,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3971      5454535F 
  3971      52454144 
  3972              	.LASF217:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 96
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 96
 
 
  3973 1fab 4359424C 		.ascii	"CYBLE_EVT_ANCSC_READ_DESCR_RESPONSE\000"
@@ -5758,7 +5758,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  3993 20a6 4359424C 		.ascii	"CYBLE_GATT_ERR_INSUFFICIENT_AUTHENTICATION\000"
  3993      455F4741 
  3993      54545F45 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 97
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 97
 
 
  3993      52525F49 
@@ -5818,7 +5818,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4012              	.LASF193:
  4013 21f3 4359424C 		.ascii	"CYBLE_AUTHENTICATION_REQUEST_REPLY\000"
  4013      455F4155 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 98
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 98
 
 
  4013      5448454E 
@@ -5878,7 +5878,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4031      53435F57 
  4031      52495445 
  4032              	.LASF433:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 99
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 99
 
 
  4033 2334 4359424C 		.ascii	"CYBLE_EVT_WPTSC_INDICATION\000"
@@ -5938,7 +5938,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4051 2438 4359424C 		.ascii	"CYBLE_GATTS_ATT_GEN_VAL_LEN_T\000"
  4051      455F4741 
  4051      5454535F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 100
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 100
 
 
  4051      4154545F 
@@ -5998,7 +5998,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4070              	.LASF345:
  4071 2562 4359424C 		.ascii	"CYBLE_EVT_HRSC_READ_CHAR_RESPONSE\000"
  4071      455F4556 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 101
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 101
 
 
  4071      545F4852 
@@ -6058,7 +6058,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4089      53535F49 
  4089      4E444943 
  4090              	.LASF227:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 102
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 102
 
 
  4091 268c 4359424C 		.ascii	"CYBLE_EVT_ANSC_WRITE_DESCR_RESPONSE\000"
@@ -6118,7 +6118,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4109      455F4741 
  4109      54545F45 
  4109      52525F49 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 103
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 103
 
 
  4109      4E56414C 
@@ -6178,7 +6178,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4129      53435F4E 
  4129      4F544946 
  4130              	.LASF250:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 104
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 104
 
 
  4131 288e 4359424C 		.ascii	"CYBLE_EVT_BLSC_WRITE_DESCR_RESPONSE\000"
@@ -6238,7 +6238,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4149      545F4C4E 
  4149      53535F49 
  4149      4E444943 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 105
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 105
 
 
  4150              	.LASF475:
@@ -6298,7 +6298,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4167      73685772 
  4168              	.LASF425:
  4169 2b03 4359424C 		.ascii	"CYBLE_EVT_UDSC_ERROR_RESPONSE\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 106
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 106
 
 
  4169      455F4556 
@@ -6358,7 +6358,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4188              	.LASF404:
  4189 2c29 4359424C 		.ascii	"CYBLE_EVT_SCPSC_READ_DESCR_RESPONSE\000"
  4189      455F4556 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 107
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 107
 
 
  4189      545F5343 
@@ -6418,7 +6418,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4207      5454535F 
  4207      4154545F 
  4207      5041434B 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 108
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 108
 
 
  4208              	.LASF28:
@@ -6478,7 +6478,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4228              	.LASF150:
  4229 2e66 68616E64 		.ascii	"handleValPair\000"
  4229      6C655661 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 109
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 109
 
 
  4229      6C506169 
@@ -6538,7 +6538,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4248      4353435F 
  4248      4552524F 
  4249              	.LASF233:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 110
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 110
 
 
  4250 2f83 4359424C 		.ascii	"CYBLE_EVT_BASC_WRITE_DESCR_RESPONSE\000"
@@ -6598,7 +6598,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4268 30a6 4359424C 		.ascii	"CYBLE_GATT_ERR_ANCS_INVALID_PARAMETER\000"
  4268      455F4741 
  4268      54545F45 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 111
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 111
 
 
  4268      52525F41 
@@ -6658,7 +6658,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4286      5454535F 
  4286      494E4449 
  4287              	.LASF79:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 112
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 112
 
 
  4288 31f0 4359424C 		.ascii	"CYBLE_ERROR_NO_CONNECTION\000"
@@ -6718,7 +6718,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4306 3309 4359424C 		.ascii	"CYBLE_EVT_GATTC_HANDLE_VALUE_IND\000"
  4306      455F4556 
  4306      545F4741 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 113
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 113
 
 
  4306      5454435F 
@@ -6778,7 +6778,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4324      4D53535F 
  4324      4E4F5449 
  4325              	.LASF465:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 114
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 114
 
 
  4326 345e 67617474 		.ascii	"gattErr\000"
@@ -6838,7 +6838,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4346      455F4556 
  4346      545F414E 
  4346      4353535F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 115
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 115
 
 
  4346      57524954 
@@ -6898,7 +6898,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4366      455F5041 
  4366      53534B45 
  4366      595F454E 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 116
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 116
 
 
  4366      5452595F 
@@ -6958,7 +6958,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 1
  4386      455F4552 
  4386      524F525F 
  4386      54585F50 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccpF4mKl.s 			page 117
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccq9UIDM.s 			page 117
 
 
  4386      4F574552 

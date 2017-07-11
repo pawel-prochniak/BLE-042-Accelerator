@@ -1,11 +1,5 @@
---------------- Build Started: 04/26/2017 18:15:29 Project: MyBLEImpl, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+--------------- Build Started: 07/11/2017 13:00:35 Project: BLE_FindMe, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
 The code generation step is up to date.
-arm-none-eabi-gcc.exe -mcpu=cortex-m0 -mthumb -Wno-main -I. -IGenerated_Source\PSoC4 -Wa,-alh=.\CortexM0\ARM_GCC_493\Debug/main.lst -g -D DEBUG -Wall -ffunction-sections -Og -ffat-lto-objects -c .\main.c -o .\CortexM0\ARM_GCC_493\Debug\main.o
-arm-none-eabi-ar.exe -rs .\CortexM0\ARM_GCC_493\Debug\MyBLEImpl.a .\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o .\CortexM0\ARM_GCC_493\Debug\BLE.o .\CortexM0\ARM_GCC_493\Debug\BLE_gatt.o .\CortexM0\ARM_GCC_493\Debug\BLE_ias.o .\CortexM0\ARM_GCC_493\Debug\BLE_eventHandler.o .\CortexM0\ARM_GCC_493\Debug\BLE_HAL_INT.o .\CortexM0\ARM_GCC_493\Debug\BLE_HAL_PVT.o .\CortexM0\ARM_GCC_493\Debug\BLE_bas.o .\CortexM0\ARM_GCC_493\Debug\Clock_1.o .\CortexM0\ARM_GCC_493\Debug\LED.o .\CortexM0\ARM_GCC_493\Debug\LED_PM.o .\CortexM0\ARM_GCC_493\Debug\BLE_bless_isr.o .\CortexM0\ARM_GCC_493\Debug\CyBootAsmGnu.o .\CortexM0\ARM_GCC_493\Debug\CyFlash.o .\CortexM0\ARM_GCC_493\Debug\CyLib.o .\CortexM0\ARM_GCC_493\Debug\cyPm.o .\CortexM0\ARM_GCC_493\Debug\cyutils.o .\CortexM0\ARM_GCC_493\Debug\CyLFClk.o .\CortexM0\ARM_GCC_493\Debug\PWM.o .\CortexM0\ARM_GCC_493\Debug\PWM_PM.o .\CortexM0\ARM_GCC_493\Debug\Timer.o .\CortexM0\ARM_GCC_493\Debug\Timer_PM.o .\CortexM0\ARM_GCC_493\Debug\Clock_2.o .\CortexM0\ARM_GCC_493\Debug\Timer_ISR.o
-arm-none-eabi-ar.exe: creating .\CortexM0\ARM_GCC_493\Debug\MyBLEImpl.a
-arm-none-eabi-gcc.exe -Wl,--start-group -o .\CortexM0\ARM_GCC_493\Debug\MyBLEImpl.elf .\CortexM0\ARM_GCC_493\Debug\main.o .\CortexM0\ARM_GCC_493\Debug\cymetadata.o .\CortexM0\ARM_GCC_493\Debug\Cm0Start.o .\CortexM0\ARM_GCC_493\Debug\MyBLEImpl.a "D:\programy\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\BLE_v3_10\Library\gccCyBLEStack_BLE_SOC_PERIPHERAL.a" "D:\programy\Cypress\PSoC Creator\3.3\PSoC Creator\psoc\content\cycomponentlibrary\CyComponentLibrary.cylib\CortexM0\ARM_GCC_493\Debug\CyComponentLibrary.a" -mcpu=cortex-m0 -mthumb -g -ffunction-sections -Og -ffat-lto-objects -L Generated_Source\PSoC4 -Wl,-Map,.\CortexM0\ARM_GCC_493\Debug/MyBLEImpl.map -T Generated_Source\PSoC4\cm0gcc.ld -specs=nano.specs -Wl,--gc-sections -Wl,--end-group
-cyelftool.exe -C D:\Henny\magisterka\CY8KIT\BLE\BLE\MyBLEImpl.cydsn\CortexM0\ARM_GCC_493\Debug\MyBLEImpl.elf --flash_row_size 128 --flash_size 131072
-cyelftool.exe -S D:\Henny\magisterka\CY8KIT\BLE\BLE\MyBLEImpl.cydsn\CortexM0\ARM_GCC_493\Debug\MyBLEImpl.elf
-Flash used: 78336 of 131072 bytes (59,8%).
-SRAM used: 10624 of 16384 bytes (64,8%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Build Succeeded: 04/26/2017 18:15:30 ---------------
+The compile step is up to date, no work needs to be done.
+The link step is up to date, no work needs to be done.
+--------------- Build Succeeded: 07/11/2017 13:00:36 ---------------

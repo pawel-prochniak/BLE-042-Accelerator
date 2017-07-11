@@ -1,4 +1,4 @@
---------------- Rebuild Started: 07/10/2017 18:24:53 Project: BLE_CustomProfile, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
+--------------- Rebuild Started: 07/11/2017 13:08:10 Project: BLE_CustomProfile, Configuration: ARM GCC 4.9-2015-q1-update Debug ---------------
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\main.o"
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\cyfitter_cfg.o"
 Deleting file ".\CortexM0\ARM_GCC_493\Debug\cymetadata.o"
@@ -107,4 +107,4 @@ cyelftool.exe -C D:\Henny\magisterka\CY8KIT\BLE\BLE\BLE_CustomProfile.cydsn\Cort
 cyelftool.exe -S D:\Henny\magisterka\CY8KIT\BLE\BLE\BLE_CustomProfile.cydsn\CortexM0\ARM_GCC_493\Debug\BLE_CustomProfile.elf
 Flash used: 81664 of 131072 bytes (62,3%).
 SRAM used: 10880 of 16384 bytes (66,4%). Stack: 2048 bytes. Heap: 128 bytes.
---------------- Rebuild Succeeded: 07/10/2017 18:25:10 ---------------
+--------------- Rebuild Succeeded: 07/11/2017 13:08:34 ---------------

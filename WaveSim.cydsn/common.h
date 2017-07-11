@@ -34,11 +34,6 @@ union CharValue {
 
 union CharValue xData, yData, zData;
 
-void debug(char msg[]);
-void debugInt(int integer);
-void debugFloat(float f);
-void debugHex(int hex);
-
 #endif
 
 /* [] END OF FILE */

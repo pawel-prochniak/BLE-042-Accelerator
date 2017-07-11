@@ -2,7 +2,7 @@
 --	Conversion of WaveSim.v to vh2:
 --
 --	Cypress Semiconductor - WARP Version 6.3 IR 41
---	Mon Jul 10 18:24:27 2017
+--	Tue Jul 11 13:34:44 2017
 --
 
 USE cypress.cypress.all;

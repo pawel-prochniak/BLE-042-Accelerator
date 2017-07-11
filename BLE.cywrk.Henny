@@ -13,7 +13,7 @@
 <v>Output</v>
 </TreeKeys>
 <TreeStates>
-<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE\WaveSim\Source Files\common.c">
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE\WaveSim\WaveSim.cydwr">
 <ExpandedNodeIds>
 <v>BLE</v>
 <v>BLE\BLE_Battery_Level01\TopDesign</v>
@@ -377,7 +377,6 @@
 <v>BLE\BLE_FindMe\Generated_Source\PSoC4\cyfitterrv.inc</v>
 <v>BLE\BLE_FindMe\Generated_Source\PSoC4\cymetadata.c</v>
 <v>BLE\BLE_FindMe\Generated_Source\PSoC4\project.h</v>
-<v>BLE\BLE_Temperature_Measurement01</v>
 <v>BLE\BLE_Temperature_Measurement01\TopDesign</v>
 <v>BLE\BLE_Temperature_Measurement01\BLE_Temperature_Measurement01.cydwr</v>
 <v>BLE\BLE_Temperature_Measurement01\Header Files</v>
@@ -552,6 +551,7 @@
 <v>BLE\WaveSim\Generated_Source\PSoC4\AdvLED\AdvLED.h</v>
 <v>BLE\WaveSim\Generated_Source\PSoC4\AdvLED\AdvLED_aliases.h</v>
 <v>BLE\WaveSim\Generated_Source\PSoC4\AdvLED\AdvLED_PM.c</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE</v>
 <v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE.c</v>
 <v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE.h</v>
 <v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_custom.c</v>
@@ -676,35 +676,36 @@
 <v>BLE\WaveSim\Generated_Source\PSoC4\project.h</v>
 </ExpandedNodeIds>
 <VisibleNodeIds>
-<v>BLE</v>
-<v>BLE\BLE_Battery_Level01</v>
-<v>BLE\BLE_CustomProfile</v>
-<v>BLE\BLE_FindMe</v>
-<v>BLE\BLE_Temperature_Measurement01</v>
-<v>BLE\BLE_Temperature_Measurement01\TopDesign</v>
-<v>BLE\BLE_Temperature_Measurement01\BLE_Temperature_Measurement01.cydwr</v>
-<v>BLE\BLE_Temperature_Measurement01\Header Files</v>
-<v>BLE\BLE_Temperature_Measurement01\Header Files\bas.h</v>
-<v>BLE\BLE_Temperature_Measurement01\Header Files\common.h</v>
-<v>BLE\BLE_Temperature_Measurement01\Header Files\cyapicallbacks.h</v>
-<v>BLE\BLE_Temperature_Measurement01\Header Files\hts.h</v>
-<v>BLE\BLE_Temperature_Measurement01\Source Files</v>
-<v>BLE\BLE_Temperature_Measurement01\Source Files\bas.c</v>
-<v>BLE\BLE_Temperature_Measurement01\Source Files\debug.c</v>
-<v>BLE\BLE_Temperature_Measurement01\Source Files\hts.c</v>
-<v>BLE\BLE_Temperature_Measurement01\Source Files\main.c</v>
-<v>BLE\BLE_Temperature_Measurement01\BLE_Temperature_Measurement.pdf</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4\ADC</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4\ADC\ADC.c</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4\ADC\ADC.h</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4\ADC\ADC_INT.c</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4\ADC\ADC_PM.c</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4\ADC_intClock</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4\ADC_intClock\ADC_intClock.c</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4\ADC_intClock\ADC_intClock.h</v>
-<v>BLE\BLE_Temperature_Measurement01\Generated_Source\PSoC4\ADC_IRQ</v>
+<v>BLE\WaveSim\TopDesign</v>
+<v>BLE\WaveSim\WaveSim.cydwr</v>
+<v>BLE\WaveSim\Header Files</v>
+<v>BLE\WaveSim\Header Files\ADXL345.h</v>
+<v>BLE\WaveSim\Header Files\BLEControl.h</v>
+<v>BLE\WaveSim\Header Files\common.h</v>
+<v>BLE\WaveSim\Source Files</v>
+<v>BLE\WaveSim\Source Files\ADXL345.c</v>
+<v>BLE\WaveSim\Source Files\BLEControl.c</v>
+<v>BLE\WaveSim\Source Files\common.c</v>
+<v>BLE\WaveSim\Source Files\main.c</v>
+<v>BLE\WaveSim\Generated_Source</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\AdvLED</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE.c</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE.h</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_custom.c</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_custom.h</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_eventHandler.c</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_eventHandler.h</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_gatt.c</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_gatt.h</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_HAL_INT.c</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_HAL_PVT.c</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_HAL_PVT.h</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_Stack.h</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_STACK_PVT.h</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_StackGap.h</v>
+<v>BLE\WaveSim\Generated_Source\PSoC4\BLE\BLE_StackGatt.h</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 <CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="BLE\WaveSim">
@@ -1022,6 +1023,34 @@
 <VisibleNodeIds>
 <v>BLE</v>
 <v>BLE\BLE_Battery_Level01</v>
+<v>BLE\BLE_Battery_Level01\CortexM0</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\ADC.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\ADC_INT.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\ADC_intClock.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\ADC_IRQ.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\ADC_PM.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\Advertising_LED.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\Advertising_LED_PM.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\bas.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\BLE.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\BLE_bas.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\BLE_bless_isr.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\BLE_dis.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\BLE_eventHandler.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\BLE_gatt.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\BLE_HAL_INT.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\BLE_HAL_PVT.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\Cm0Start.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\CyBootAsmGnu.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\cyfitter_cfg.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\CyFlash.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\CyLFClk.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\CyLib.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\cymetadata.lst</v>
+<v>BLE\BLE_Battery_Level01\CortexM0\ARM_GCC_493\Debug\Listing Files\cyPm.lst</v>
 </VisibleNodeIds>
 </CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
 </TreeStates>
