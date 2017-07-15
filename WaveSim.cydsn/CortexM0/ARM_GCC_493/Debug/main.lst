@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
   30              		.cfi_offset 3, -8
   31              		.cfi_offset 14, -4
   26:.\main.c      ****     CyGlobalIntEnable; /* Enable global interrupts. */
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 2
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 2
 
 
   32              		.loc 1 26 0
@@ -98,49 +98,48 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
   57 0020 FFF7FEFF 		bl	I2C_Start
   58              	.LVL5:
   36:.\main.c      ****     
-  37:.\main.c      ****     
-  38:.\main.c      ****     printf("\r\n--- START ---\r\n");
-  59              		.loc 1 38 0
+  37:.\main.c      ****     printf("\r\n--- START ---\r\n");
+  59              		.loc 1 37 0
   60 0024 0A48     		ldr	r0, .L4+4
   61 0026 FFF7FEFF 		bl	puts
   62              	.LVL6:
-  39:.\main.c      ****     
-  40:.\main.c      ****     startAccConnection();
-  63              		.loc 1 40 0
+  38:.\main.c      ****     
+  39:.\main.c      ****     startAccConnection();
+  63              		.loc 1 39 0
   64 002a FFF7FEFF 		bl	startAccConnection
   65              	.LVL7:
   66              	.L2:
-  41:.\main.c      **** 
-  42:.\main.c      ****     for(;;)
-  43:.\main.c      ****     {
-  44:.\main.c      ****         /* Process all the generated events. */
-  45:.\main.c      ****         CyBle_ProcessEvents();
-  67              		.loc 1 45 0
+  40:.\main.c      **** 
+  41:.\main.c      ****     for(;;)
+  42:.\main.c      ****     {
+  43:.\main.c      ****         /* Process all the generated events. */
+  44:.\main.c      ****         CyBle_ProcessEvents();
+  67              		.loc 1 44 0
   68 002e FFF7FEFF 		bl	CyBle_ProcessEvents
   69              	.LVL8:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 3
+  45:.\main.c      ****         
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 3
 
 
-  46:.\main.c      ****         
-  47:.\main.c      ****         getSensorData();
-  70              		.loc 1 47 0
+  46:.\main.c      ****         getSensorData();
+  70              		.loc 1 46 0
   71 0032 FFF7FEFF 		bl	getSensorData
   72              	.LVL9:
-  48:.\main.c      ****         
-  49:.\main.c      ****         if (bleConnected && notifyOn) 
-  73              		.loc 1 49 0
+  47:.\main.c      ****         
+  48:.\main.c      ****         if (bleConnected && notifyOn) 
+  73              		.loc 1 48 0
   74 0036 074B     		ldr	r3, .L4+8
   75 0038 1B68     		ldr	r3, [r3]
   76 003a 002B     		cmp	r3, #0
   77 003c F7D0     		beq	.L2
-  78              		.loc 1 49 0 is_stmt 0 discriminator 1
+  78              		.loc 1 48 0 is_stmt 0 discriminator 1
   79 003e 064B     		ldr	r3, .L4+12
   80 0040 1B68     		ldr	r3, [r3]
   81 0042 002B     		cmp	r3, #0
   82 0044 F3D0     		beq	.L2
-  50:.\main.c      ****         {   
-  51:.\main.c      ****             sendNotifications();                
-  83              		.loc 1 51 0 is_stmt 1
+  49:.\main.c      ****         {   
+  50:.\main.c      ****             sendNotifications();                
+  83              		.loc 1 50 0 is_stmt 1
   84 0046 FFF7FEFF 		bl	sendNotifications
   85              	.LVL10:
   86 004a F0E7     		b	.L2
@@ -178,10 +177,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  114              		.file 8 "Generated_Source\\PSoC4/AdvLED.h"
  115              		.file 9 "Generated_Source\\PSoC4/ConnectedLED.h"
  116              		.file 10 "Generated_Source\\PSoC4/UART.h"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 4
-
-
  117              		.file 11 "Generated_Source\\PSoC4/I2C.h"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 4
+
+
  118              		.file 12 "<built-in>"
  119              		.file 13 "./BLEControl.h"
  120              		.section	.debug_info,"",%progbits
@@ -238,10 +237,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  171 0065 04       		.byte	0x4
  172 0066 07       		.byte	0x7
  173 0067 BC0B0000 		.4byte	.LASF8
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 5
-
-
  174 006b 04       		.uleb128 0x4
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 5
+
+
  175 006c 41040000 		.4byte	.LASF9
  176 0070 02       		.byte	0x2
  177 0071 3801     		.2byte	0x138
@@ -298,10 +297,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  228 00d4 23000000 		.4byte	.LASF20
  229 00d8 05       		.sleb128 5
  230 00d9 09       		.uleb128 0x9
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 6
-
-
  231 00da BF060000 		.4byte	.LASF21
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 6
+
+
  232 00de 06       		.sleb128 6
  233 00df 09       		.uleb128 0x9
  234 00e0 A7070000 		.4byte	.LASF22
@@ -358,10 +357,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  285 0146 180E0000 		.4byte	.LASF39
  286 014a 31       		.sleb128 49
  287 014b 09       		.uleb128 0x9
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 7
-
-
  288 014c 5F080000 		.4byte	.LASF40
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 7
+
+
  289 0150 32       		.sleb128 50
  290 0151 09       		.uleb128 0x9
  291 0152 320B0000 		.4byte	.LASF41
@@ -418,10 +417,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  342 01c8 48010000 		.4byte	.LASF58
  343 01cc D000     		.sleb128 80
  344 01ce 09       		.uleb128 0x9
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 8
-
-
  345 01cf 47040000 		.4byte	.LASF59
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 8
+
+
  346 01d3 D100     		.sleb128 81
  347 01d5 09       		.uleb128 0x9
  348 01d6 E4080000 		.4byte	.LASF60
@@ -478,10 +477,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  399 024d EF040000 		.4byte	.LASF77
  400 0251 FA00     		.sleb128 122
  401 0253 09       		.uleb128 0x9
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 9
-
-
  402 0254 56020000 		.4byte	.LASF78
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 9
+
+
  403 0258 FA01     		.sleb128 250
  404 025a 09       		.uleb128 0x9
  405 025b 74050000 		.4byte	.LASF79
@@ -538,10 +537,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  456 02c1 BD010000 		.4byte	.LASF94
  457 02c5 0D       		.sleb128 13
  458 02c6 09       		.uleb128 0x9
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 10
-
-
  459 02c7 93050000 		.4byte	.LASF95
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 10
+
+
  460 02cb 0E       		.sleb128 14
  461 02cc 09       		.uleb128 0x9
  462 02cd 470D0000 		.4byte	.LASF96
@@ -598,10 +597,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  513 0339 04       		.uleb128 0x4
  514 033a D1080000 		.4byte	.LASF113
  515 033e 03       		.byte	0x3
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 11
-
-
  516 033f 6B03     		.2byte	0x36b
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 11
+
+
  517 0341 69020000 		.4byte	0x269
  518 0345 04       		.uleb128 0x4
  519 0346 B20C0000 		.4byte	.LASF114
@@ -658,10 +657,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  570 03bc C6030000 		.4byte	0x3c6
  571 03c0 12       		.uleb128 0x12
  572 03c1 01       		.uleb128 0x1
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 12
-
-
  573 03c2 50       		.byte	0x50
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 12
+
+
  574 03c3 01       		.uleb128 0x1
  575 03c4 31       		.byte	0x31
  576 03c5 00       		.byte	0
@@ -718,10 +717,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  627 043a 4A000000 		.4byte	.LVL10
  628 043e 2A050000 		.4byte	0x52a
  629 0442 00       		.byte	0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 13
-
-
  630 0443 14       		.uleb128 0x14
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 13
+
+
  631 0444 19080000 		.4byte	.LASF117
  632 0448 01       		.byte	0x1
  633 0449 13       		.byte	0x13
@@ -740,7 +739,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  646 0465 14       		.uleb128 0x14
  647 0466 98090000 		.4byte	.LASF119
  648 046a 06       		.byte	0x6
- 649 046b 13       		.byte	0x13
+ 649 046b 14       		.byte	0x14
  650 046c 67030000 		.4byte	0x367
  651 0470 05       		.uleb128 0x5
  652 0471 03       		.byte	0x3
@@ -748,7 +747,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  654 0476 14       		.uleb128 0x14
  655 0477 D8060000 		.4byte	.LASF120
  656 047b 06       		.byte	0x6
- 657 047c 13       		.byte	0x13
+ 657 047c 14       		.byte	0x14
  658 047d 67030000 		.4byte	0x367
  659 0481 05       		.uleb128 0x5
  660 0482 03       		.byte	0x3
@@ -756,7 +755,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  662 0487 14       		.uleb128 0x14
  663 0488 E10C0000 		.4byte	.LASF121
  664 048c 06       		.byte	0x6
- 665 048d 13       		.byte	0x13
+ 665 048d 14       		.byte	0x14
  666 048e 67030000 		.4byte	0x367
  667 0492 05       		.uleb128 0x5
  668 0493 03       		.byte	0x3
@@ -778,10 +777,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  684 04b5 6B000000 		.4byte	0x6b
  685 04b9 00       		.byte	0
  686 04ba 15       		.uleb128 0x15
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 14
-
-
  687 04bb 620B0000 		.4byte	.LASF124
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 14
+
+
  688 04bf 09       		.byte	0x9
  689 04c0 33       		.byte	0x33
  690 04c1 CB040000 		.4byte	0x4cb
@@ -818,7 +817,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  721 0508 19       		.uleb128 0x19
  722 0509 B8030000 		.4byte	.LASF128
  723 050d 06       		.byte	0x6
- 724 050e 4B       		.byte	0x4b
+ 724 050e 51       		.byte	0x51
  725 050f 15050000 		.4byte	0x515
  726 0513 1A       		.uleb128 0x1a
  727 0514 00       		.byte	0
@@ -829,7 +828,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  732 051d 19       		.uleb128 0x19
  733 051e DE060000 		.4byte	.LASF129
  734 0522 06       		.byte	0x6
- 735 0523 54       		.byte	0x54
+ 735 0523 5B       		.byte	0x5b
  736 0524 2A050000 		.4byte	0x52a
  737 0528 1A       		.uleb128 0x1a
  738 0529 00       		.byte	0
@@ -838,10 +837,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  741 052f 0D       		.byte	0xd
  742 0530 19       		.byte	0x19
  743 0531 1A       		.uleb128 0x1a
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 15
-
-
  744 0532 00       		.byte	0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 15
+
+
  745 0533 00       		.byte	0
  746              		.section	.debug_abbrev,"",%progbits
  747              	.Ldebug_abbrev0:
@@ -898,10 +897,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  798 0032 49       		.uleb128 0x49
  799 0033 13       		.uleb128 0x13
  800 0034 00       		.byte	0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 16
-
-
  801 0035 00       		.byte	0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 16
+
+
  802 0036 05       		.uleb128 0x5
  803 0037 0F       		.uleb128 0xf
  804 0038 00       		.byte	0
@@ -958,10 +957,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  855 006b 00       		.byte	0
  856 006c 0B       		.uleb128 0xb
  857 006d 05       		.uleb128 0x5
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 17
-
-
  858 006e 00       		.byte	0
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 17
+
+
  859 006f 49       		.uleb128 0x49
  860 0070 13       		.uleb128 0x13
  861 0071 00       		.byte	0
@@ -1018,10 +1017,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  912 00a4 3F       		.uleb128 0x3f
  913 00a5 19       		.uleb128 0x19
  914 00a6 03       		.uleb128 0x3
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 18
-
-
  915 00a7 0E       		.uleb128 0xe
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 18
+
+
  916 00a8 3A       		.uleb128 0x3a
  917 00a9 0B       		.uleb128 0xb
  918 00aa 3B       		.uleb128 0x3b
@@ -1078,10 +1077,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  969 00e5 0B       		.uleb128 0xb
  970 00e6 3B       		.uleb128 0x3b
  971 00e7 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 19
-
-
  972 00e8 49       		.uleb128 0x49
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 19
+
+
  973 00e9 13       		.uleb128 0x13
  974 00ea 3F       		.uleb128 0x3f
  975 00eb 19       		.uleb128 0x19
@@ -1138,10 +1137,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1026 011e 0E       		.uleb128 0xe
  1027 011f 3A       		.uleb128 0x3a
  1028 0120 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 20
-
-
  1029 0121 3B       		.uleb128 0x3b
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 20
+
+
  1030 0122 0B       		.uleb128 0xb
  1031 0123 27       		.uleb128 0x27
  1032 0124 19       		.uleb128 0x19
@@ -1198,10 +1197,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1083 0157 2E       		.uleb128 0x2e
  1084 0158 00       		.byte	0
  1085 0159 3F       		.uleb128 0x3f
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 21
-
-
  1086 015a 19       		.uleb128 0x19
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 21
+
+
  1087 015b 03       		.uleb128 0x3
  1088 015c 0E       		.uleb128 0xe
  1089 015d 3A       		.uleb128 0x3a
@@ -1258,10 +1257,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1136              	.LASF75:
  1137 0000 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_RX_CREDIT_IND\000"
  1137      455F4556 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 22
-
-
  1137      545F4C32 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 22
+
+
  1137      4341505F 
  1137      43424643 
  1138              	.LASF20:
@@ -1318,10 +1317,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1155      545F4741 
  1155      5454535F 
  1155      45584543 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 23
-
-
  1156              	.LASF70:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 23
+
+
  1157 0167 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_CONN_IND\000"
  1157      455F4556 
  1157      545F4C32 
@@ -1378,10 +1377,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1175      50435F53 
  1175      43414E5F 
  1176              	.LASF78:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 24
-
-
  1177 0256 4359424C 		.ascii	"CYBLE_EVT_PENDING_FLASH_WRITE\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 24
+
+
  1177      455F4556 
  1177      545F5045 
  1177      4E44494E 
@@ -1438,10 +1437,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1196      524F525F 
  1196      4E4F5F44 
  1196      45564943 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 25
-
-
  1197              	.LASF23:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 25
+
+
  1198 036e 4359424C 		.ascii	"CYBLE_EVT_GAP_AUTH_REQ\000"
  1198      455F4556 
  1198      545F4741 
@@ -1498,10 +1497,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1216      5454435F 
  1216      45584543 
  1217              	.LASF12:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 26
-
-
  1218 0466 646F7562 		.ascii	"double\000"
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 26
+
+
  1218      6C6500
  1219              	.LASF82:
  1220 046d 4359424C 		.ascii	"CYBLE_ERROR_INVALID_PARAMETER\000"
@@ -1558,10 +1557,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1238      524F525F 
  1238      4F4F425F 
  1238      4E4F545F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 27
-
-
  1239              	.LASF133:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 27
+
+
  1240 056a 43686172 		.ascii	"CharValue\000"
  1240      56616C75 
  1240      6500
@@ -1618,10 +1617,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1258      455F4552 
  1258      524F525F 
  1258      4E54465F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 28
-
-
  1258      44495341 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 28
+
+
  1259              	.LASF15:
  1260 068a 4359424C 		.ascii	"CYBLE_EVT_HOST_INVALID\000"
  1260      455F4556 
@@ -1678,10 +1677,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1279              	.LASF43:
  1280 0770 4359424C 		.ascii	"CYBLE_EVT_GATT_CONNECT_IND\000"
  1280      455F4556 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 29
-
-
  1280      545F4741 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 29
+
+
  1280      54545F43 
  1280      4F4E4E45 
  1281              	.LASF69:
@@ -1738,10 +1737,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1300      57524954 
  1301              	.LASF40:
  1302 085f 4359424C 		.ascii	"CYBLE_EVT_GAPC_DIRECT_ADV_REPORT\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 30
-
-
  1302      455F4556 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 30
+
+
  1302      545F4741 
  1302      50435F44 
  1302      49524543 
@@ -1798,10 +1797,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1320      7400
  1321              	.LASF62:
  1322 0969 4359424C 		.ascii	"CYBLE_EVT_GATTS_HANDLE_VALUE_CNF\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 31
-
-
  1322      455F4556 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 31
+
+
  1322      545F4741 
  1322      5454535F 
  1322      48414E44 
@@ -1858,10 +1857,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1340      7400
  1341              	.LASF61:
  1342 0aa5 4359424C 		.ascii	"CYBLE_EVT_GATTC_HANDLE_VALUE_IND\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 32
-
-
  1342      455F4556 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 32
+
+
  1342      545F4741 
  1342      5454435F 
  1342      48414E44 
@@ -1918,10 +1917,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1362      4E5F4E4F 
  1363              	.LASF30:
  1364 0b9a 4359424C 		.ascii	"CYBLE_EVT_GAP_DEVICE_DISCONNECTED\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 33
-
-
  1364      455F4556 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 33
+
+
  1364      545F4741 
  1364      505F4445 
  1364      56494345 
@@ -1978,10 +1977,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1382      4C4C4241 
  1382      434B5F54 
  1382      00
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 34
-
-
  1383              	.LASF45:
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 34
+
+
  1384 0cc3 4359424C 		.ascii	"CYBLE_EVT_GATTS_XCNHG_MTU_REQ\000"
  1384      455F4556 
  1384      545F4741 
@@ -2038,10 +2037,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 1
  1402      59494E46 
  1403              	.LASF72:
  1404 0dcc 4359424C 		.ascii	"CYBLE_EVT_L2CAP_CBFC_DISCONN_IND\000"
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc1IOS8a.s 			page 35
-
-
  1404      455F4556 
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccXs3ORg.s 			page 35
+
+
  1404      545F4C32 
  1404      4341505F 
  1404      43424643 

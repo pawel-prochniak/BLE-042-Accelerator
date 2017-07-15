@@ -106,7 +106,7 @@ void sendNotifications()
     }
     if (counter < 10) 
     {
-        printf("\r\nSending value %d: %f", counter, xData.floatVal);
+        printf("\r\nSending value %d: %f", counter, zData.floatVal);
         counter++;     
     }
     

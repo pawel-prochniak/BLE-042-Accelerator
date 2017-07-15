@@ -1,4 +1,4 @@
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 1
 
 
    1              		.cpu cortex-m0
@@ -58,7 +58,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
   31              		.cfi_offset 4, -8
   32              		.cfi_offset 14, -4
   33 0002 0C1C     		mov	r4, r1
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 2
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 2
 
 
   25:.\BLEControl.c ****     CYBLE_GATTS_WRITE_REQ_PARAM_T *wrReq;
@@ -118,7 +118,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
   74 003a 042B     		cmp	r3, #4
   75 003c 57D1     		bne	.L1
   39:.\BLEControl.c ****                 AdvLED_Write(LED_ON);
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 3
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 3
 
 
   76              		.loc 1 39 0
@@ -178,7 +178,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  117              	.LVL15:
   53:.\BLEControl.c ****             AdvLED_Write(LED_ON);
  118              		.loc 1 53 0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 4
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 4
 
 
  119 0072 0020     		mov	r0, #0
@@ -238,7 +238,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
   71:.\BLEControl.c ****             {
   72:.\BLEControl.c ****                 printf("\r\nWriting to CYBLE_SENSOR_Y_SENSORCCCD_DESC_HANDLE");
  156              		.loc 1 72 0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 5
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 5
 
 
  157 00a6 1A48     		ldr	r0, .L13+32
@@ -298,7 +298,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  201              	.LVL26:
  202              	.L1:
   83:.\BLEControl.c ****             break;
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 6
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 6
 
 
   84:.\BLEControl.c ****            
@@ -358,7 +358,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  242 0006 1023     		mov	r3, #16
  243 0008 0381     		strh	r3, [r0, #8]
   99:.\BLEControl.c ****     xDataHandle.value.len = sizeof(xData);
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 7
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 7
 
 
  244              		.loc 1 99 0
@@ -418,18 +418,18 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  290 0048 092C     		cmp	r4, #9
  291 004a 0DDC     		bgt	.L19
  108:.\BLEControl.c ****     {
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 8
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 8
 
 
- 109:.\BLEControl.c ****         printf("\r\nSending value %d: %f", counter, xData.floatVal);
+ 109:.\BLEControl.c ****         printf("\r\nSending value %d: %f", counter, zData.floatVal);
  292              		.loc 1 109 0
- 293 004c 274B     		ldr	r3, .L26
+ 293 004c 2B4B     		ldr	r3, .L26+16
  294 004e 1868     		ldr	r0, [r3]
  295 0050 FFF7FEFF 		bl	__aeabi_f2d
  296              	.LVL34:
  297 0054 021C     		mov	r2, r0
  298 0056 0B1C     		mov	r3, r1
- 299 0058 2848     		ldr	r0, .L26+16
+ 299 0058 2948     		ldr	r0, .L26+20
  300 005a 211C     		mov	r1, r4
  301 005c FFF7FEFF 		bl	printf
  302              	.LVL35:
@@ -455,7 +455,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  315 0070 8380     		strh	r3, [r0, #4]
  117:.\BLEControl.c ****     yDataHandle.value.val = (uint8 *)&yData.uintVal;               
  316              		.loc 1 117 0
- 317 0072 234B     		ldr	r3, .L26+20
+ 317 0072 244B     		ldr	r3, .L26+24
  318 0074 0493     		str	r3, [sp, #16]
  118:.\BLEControl.c ****     CyBle_GattsWriteAttributeValue( &yDataHandle, 0u, &cyBle_connHandle, 0 ); 
  319              		.loc 1 118 0
@@ -478,7 +478,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  335 008a 002B     		cmp	r3, #0
  336 008c F9D1     		bne	.L21
  120:.\BLEControl.c ****     notifResult = CyBle_GattsNotification( cyBle_connHandle, &yDataHandle );
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 9
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 9
 
 
  337              		.loc 1 120 0 is_stmt 1
@@ -497,7 +497,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  349 00a0 02D0     		beq	.L22
  122:.\BLEControl.c ****         printf("\r\nError sending Y notif, error code: %d", notifResult);
  350              		.loc 1 122 0
- 351 00a2 1848     		ldr	r0, .L26+24
+ 351 00a2 1948     		ldr	r0, .L26+28
  352              	.LVL40:
  353 00a4 FFF7FEFF 		bl	printf
  354              	.LVL41:
@@ -517,7 +517,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  362 00b0 8380     		strh	r3, [r0, #4]
  129:.\BLEControl.c ****     zDataHandle.value.val = (uint8 *)&zData.uintVal;              
  363              		.loc 1 129 0
- 364 00b2 154B     		ldr	r3, .L26+28
+ 364 00b2 124B     		ldr	r3, .L26+16
  365 00b4 0193     		str	r3, [sp, #4]
  130:.\BLEControl.c ****     CyBle_GattsWriteAttributeValue( &zDataHandle, 0u, &cyBle_connHandle, 0 );
  366              		.loc 1 130 0
@@ -538,7 +538,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  380 00c6 0B4B     		ldr	r3, .L26+8
  381 00c8 1B78     		ldrb	r3, [r3]
  382 00ca 002B     		cmp	r3, #0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 10
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 10
 
 
  383 00cc F9D1     		bne	.L24
@@ -577,10 +577,10 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  411 00f0 00000000 		.word	cyBle_connHandle
  412 00f4 00000000 		.word	.LANCHOR0
  413 00f8 D0000000 		.word	.LC18
- 414 00fc F8000000 		.word	.LC20
- 415 0100 00000000 		.word	yData
- 416 0104 10010000 		.word	.LC23
- 417 0108 00000000 		.word	zData
+ 414 00fc 00000000 		.word	zData
+ 415 0100 F8000000 		.word	.LC21
+ 416 0104 00000000 		.word	yData
+ 417 0108 10010000 		.word	.LC24
  418 010c 38010000 		.word	.LC26
  419              		.cfi_endproc
  420              	.LFE38:
@@ -598,7 +598,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  432 0000 0D0A436F 		.ascii	"\015\012Connected to device\000"
  432      6E6E6563 
  432      74656420 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 11
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 11
 
 
  432      746F2064 
@@ -644,21 +644,21 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  450      73656E64 
  450      696E6720 
  450      58206E6F 
- 451              	.LC20:
+ 451              	.LC21:
  452 00f8 0D0A5365 		.ascii	"\015\012Sending value %d: %f\000"
  452      6E64696E 
  452      67207661 
  452      6C756520 
  452      25643A20 
  453 010f 00       		.space	1
- 454              	.LC23:
+ 454              	.LC24:
  455 0110 0D0A4572 		.ascii	"\015\012Error sending Y notif, error code: %d\000"
  455      726F7220 
  455      73656E64 
  455      696E6720 
  455      59206E6F 
  456              	.LC26:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 12
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 12
 
 
  457 0138 0D0A4572 		.ascii	"\015\012Error sending Z notif, error code: %d\000"
@@ -718,7 +718,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  507 0035 05       		.byte	0x5
  508 0036 E60F0000 		.4byte	.LASF2
  509 003a 02       		.uleb128 0x2
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 13
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 13
 
 
  510 003b 02       		.byte	0x2
@@ -778,7 +778,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  564 00a4 02       		.uleb128 0x2
  565 00a5 04       		.byte	0x4
  566 00a6 07       		.byte	0x7
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 14
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 14
 
 
  567 00a7 DD0B0000 		.4byte	.LASF15
@@ -838,7 +838,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  621 0114 26       		.sleb128 38
  622 0115 09       		.uleb128 0x9
  623 0116 220A0000 		.4byte	.LASF30
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 15
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 15
 
 
  624 011a 27       		.sleb128 39
@@ -898,7 +898,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  678 018b C500     		.sleb128 69
  679 018d 09       		.uleb128 0x9
  680 018e B30B0000 		.4byte	.LASF49
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 16
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 16
 
 
  681 0192 C600     		.sleb128 70
@@ -958,7 +958,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  735 0210 D800     		.sleb128 88
  736 0212 09       		.uleb128 0x9
  737 0213 CD060000 		.4byte	.LASF68
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 17
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 17
 
 
  738 0217 F000     		.sleb128 112
@@ -1018,7 +1018,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  792 028f 02       		.sleb128 2
  793 0290 09       		.uleb128 0x9
  794 0291 EA000000 		.4byte	.LASF85
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 18
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 18
 
 
  795 0295 03       		.sleb128 3
@@ -1078,7 +1078,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  849 0301 28       		.sleb128 40
  850 0302 09       		.uleb128 0x9
  851 0303 31140000 		.4byte	.LASF104
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 19
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 19
 
 
  852 0307 29       		.sleb128 41
@@ -1138,7 +1138,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  906 0377 09       		.uleb128 0x9
  907 0378 0F050000 		.4byte	.LASF119
  908 037c 04       		.sleb128 4
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 20
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 20
 
 
  909 037d 09       		.uleb128 0x9
@@ -1198,7 +1198,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  963 03ee 09       		.uleb128 0x9
  964 03ef D0030000 		.4byte	.LASF138
  965 03f3 8001     		.sleb128 128
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 21
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 21
 
 
  966 03f5 09       		.uleb128 0x9
@@ -1258,7 +1258,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1020 0471 02       		.byte	0x2
  1021 0472 04       		.byte	0x4
  1022 0473 9C01     		.2byte	0x19c
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 22
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 22
 
 
  1023 0475 94040000 		.4byte	0x494
@@ -1318,7 +1318,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1077 04e7 80070000 		.4byte	.LASF160
  1078 04eb 04       		.byte	0x4
  1079 04ec DC01     		.2byte	0x1dc
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 23
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 23
 
 
  1080 04ee D1040000 		.4byte	0x4d1
@@ -1378,7 +1378,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1134 055a 73140000 		.4byte	.LASF169
  1135 055e 02       		.sleb128 2
  1136 055f 09       		.uleb128 0x9
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 24
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 24
 
 
  1137 0560 20040000 		.4byte	.LASF170
@@ -1438,7 +1438,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1191 05d6 AB000000 		.4byte	0xab
  1192 05da 85000000 		.4byte	.LLST1
  1193 05de 17       		.uleb128 0x17
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 25
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 25
 
 
  1194 05df DE0E0000 		.4byte	.LASF177
@@ -1498,7 +1498,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1248 064e 31       		.byte	0x31
  1249 064f 00       		.byte	0
  1250 0650 18       		.uleb128 0x18
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 26
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 26
 
 
  1251 0651 5E000000 		.4byte	.LVL11
@@ -1558,7 +1558,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1305 06c0 19       		.uleb128 0x19
  1306 06c1 01       		.uleb128 0x1
  1307 06c2 50       		.byte	0x50
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 27
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 27
 
 
  1308 06c3 05       		.uleb128 0x5
@@ -1618,7 +1618,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1362 071a 74       		.byte	0x74
  1363 071b 04       		.sleb128 4
  1364 071c 00       		.byte	0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 28
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 28
 
 
  1365 071d 18       		.uleb128 0x18
@@ -1678,7 +1678,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1419 0783 91       		.byte	0x91
  1420 0784 6C       		.sleb128 -20
  1421 0785 17       		.uleb128 0x17
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 29
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 29
 
 
  1422 0786 3F000000 		.4byte	.LASF179
@@ -1738,7 +1738,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1476 07e9 6C       		.sleb128 -20
  1477 07ea 00       		.byte	0
  1478 07eb 18       		.uleb128 0x18
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 30
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 30
 
 
  1479 07ec 44000000 		.4byte	.LVL33
@@ -1766,7 +1766,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1501 0817 50       		.byte	0x50
  1502 0818 05       		.uleb128 0x5
  1503 0819 03       		.byte	0x3
- 1504 081a F8000000 		.4byte	.LC20
+ 1504 081a F8000000 		.4byte	.LC21
  1505 081e 00       		.byte	0
  1506 081f 18       		.uleb128 0x18
  1507 0820 80000000 		.4byte	.LVL36
@@ -1798,7 +1798,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1533 084f 5A080000 		.4byte	0x85a
  1534 0853 19       		.uleb128 0x19
  1535 0854 01       		.uleb128 0x1
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 31
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 31
 
 
  1536 0855 51       		.byte	0x51
@@ -1815,7 +1815,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1547 0869 50       		.byte	0x50
  1548 086a 05       		.uleb128 0x5
  1549 086b 03       		.byte	0x3
- 1550 086c 10010000 		.4byte	.LC23
+ 1550 086c 10010000 		.4byte	.LC24
  1551 0870 00       		.byte	0
  1552 0871 18       		.uleb128 0x18
  1553 0872 C0000000 		.4byte	.LVL42
@@ -1858,7 +1858,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1590 08b5 19       		.uleb128 0x19
  1591 08b6 01       		.uleb128 0x1
  1592 08b7 50       		.byte	0x50
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 32
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 32
 
 
  1593 08b8 05       		.uleb128 0x5
@@ -1918,7 +1918,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1647 0929 00000000 		.4byte	zData
  1648 092d 1F       		.uleb128 0x1f
  1649 092e 680A0000 		.4byte	.LASF189
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 33
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 33
 
 
  1650 0932 01       		.byte	0x1
@@ -1978,7 +1978,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1704 09a9 C2090000 		.4byte	0x9c2
  1705 09ad 21       		.uleb128 0x21
  1706 09ae C2090000 		.4byte	0x9c2
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 34
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 34
 
 
  1707 09b2 21       		.uleb128 0x21
@@ -2038,7 +2038,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1761 000b 55       		.uleb128 0x55
  1762 000c 17       		.uleb128 0x17
  1763 000d 11       		.uleb128 0x11
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 35
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 35
 
 
  1764 000e 01       		.uleb128 0x1
@@ -2098,7 +2098,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1818 0044 00       		.byte	0
  1819 0045 00       		.byte	0
  1820 0046 07       		.uleb128 0x7
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 36
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 36
 
 
  1821 0047 26       		.uleb128 0x26
@@ -2158,7 +2158,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1875 007d 0C       		.uleb128 0xc
  1876 007e 0D       		.uleb128 0xd
  1877 007f 00       		.byte	0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 37
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 37
 
 
  1878 0080 03       		.uleb128 0x3
@@ -2218,7 +2218,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1932 00b6 0D       		.uleb128 0xd
  1933 00b7 00       		.byte	0
  1934 00b8 03       		.uleb128 0x3
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 38
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 38
 
 
  1935 00b9 0E       		.uleb128 0xe
@@ -2278,7 +2278,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  1989 00ef 0B       		.uleb128 0xb
  1990 00f0 00       		.byte	0
  1991 00f1 00       		.byte	0
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 39
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 39
 
 
  1992 00f2 15       		.uleb128 0x15
@@ -2338,7 +2338,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2046 0129 00       		.byte	0
  2047 012a 18       		.uleb128 0x18
  2048 012b 898201   		.uleb128 0x4109
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 40
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 40
 
 
  2049 012e 01       		.byte	0x1
@@ -2398,7 +2398,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2103 016a 0E       		.uleb128 0xe
  2104 016b 3A       		.uleb128 0x3a
  2105 016c 0B       		.uleb128 0xb
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 41
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 41
 
 
  2106 016d 3B       		.uleb128 0x3b
@@ -2458,7 +2458,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2160 01a5 3F       		.uleb128 0x3f
  2161 01a6 19       		.uleb128 0x19
  2162 01a7 03       		.uleb128 0x3
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 42
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 42
 
 
  2163 01a8 0E       		.uleb128 0xe
@@ -2518,7 +2518,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2217 01de 49       		.uleb128 0x49
  2218 01df 13       		.uleb128 0x13
  2219 01e0 3C       		.uleb128 0x3c
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 43
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 43
 
 
  2220 01e1 19       		.uleb128 0x19
@@ -2578,7 +2578,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2274 0036 48000000 		.4byte	.LVL8
  2275 003a 0100     		.2byte	0x1
  2276 003c 50       		.byte	0x50
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 44
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 44
 
 
  2277 003d 48000000 		.4byte	.LVL8
@@ -2638,7 +2638,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2331 00c4 0100     		.2byte	0x1
  2332 00c6 54       		.byte	0x54
  2333 00c7 60000000 		.4byte	.LVL12
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 45
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 45
 
 
  2334 00cb 65000000 		.4byte	.LVL14-1
@@ -2698,7 +2698,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2388 015b 0100     		.2byte	0x1
  2389 015d 50       		.byte	0x50
  2390 015e E4000000 		.4byte	.LVL46
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 46
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 46
 
 
  2391 0162 E7000000 		.4byte	.LVL47-1
@@ -2758,7 +2758,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2428      53544F50 
  2428      50454400 
  2429              	.LASF143:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 47
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 47
 
 
  2430 005f 4359424C 		.ascii	"CYBLE_GATTS_ERR_HPS_INVALID_REQUEST\000"
@@ -2818,7 +2818,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2448      505F434F 
  2448      4E4E4543 
  2449              	.LASF178:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 48
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 48
 
 
  2450 018a 78446174 		.ascii	"xDataHandle\000"
@@ -2878,7 +2878,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2468      545F5449 
  2468      4D454F55 
  2468      5400
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 49
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 49
 
 
  2469              	.LASF4:
@@ -2938,7 +2938,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2490 038a 4359424C 		.ascii	"CYBLE_EVT_GAP_ENCRYPT_CHANGE\000"
  2490      455F4556 
  2490      545F4741 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 50
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 50
 
 
  2490      505F454E 
@@ -2998,7 +2998,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2510              	.LASF89:
  2511 04b8 4359424C 		.ascii	"CYBLE_ERROR_NO_DEVICE_ENTITY\000"
  2511      455F4552 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 51
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 51
 
 
  2511      524F525F 
@@ -3058,7 +3058,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2530              	.LASF100:
  2531 05b0 4359424C 		.ascii	"CYBLE_ERROR_L2CAP_PSM_NOT_IN_RANGE\000"
  2531      455F4552 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 52
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 52
 
 
  2531      524F525F 
@@ -3118,7 +3118,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2553      455F4552 
  2553      524F525F 
  2553      4F4B00
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 53
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 53
 
 
  2554              	.LASF115:
@@ -3178,7 +3178,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2575      455F4556 
  2575      545F4741 
  2575      5454435F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 54
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 54
 
 
  2575      53544F50 
@@ -3238,7 +3238,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2595 08cf 4359424C 		.ascii	"CYBLE_EVT_GATTC_XCHNG_MTU_RSP\000"
  2595      455F4556 
  2595      545F4741 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 55
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 55
 
 
  2595      5454435F 
@@ -3298,7 +3298,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2615      54545F45 
  2615      52525F41 
  2615      4E43535F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 56
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 56
 
 
  2616              	.LASF25:
@@ -3358,7 +3358,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2636              	.LASF70:
  2637 0b00 4359424C 		.ascii	"CYBLE_EVT_L2CAP_COMMAND_REJ\000"
  2637      455F4556 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 57
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 57
 
 
  2637      545F4C32 
@@ -3418,7 +3418,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2658 0c0b 4359424C 		.ascii	"CYBLE_GATTS_WRITE_REQ_PARAM_T\000"
  2658      455F4741 
  2658      5454535F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 58
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 58
 
 
  2658      57524954 
@@ -3478,7 +3478,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2676      505F4155 
  2676      54485F43 
  2677              	.LASF114:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 59
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 59
 
 
  2678 0d2e 4359424C 		.ascii	"CYBLE_API_RESULT_T\000"
@@ -3538,7 +3538,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2698 0e32 4359424C 		.ascii	"CYBLE_GATT_ERR_PREPARE_WRITE_QUEUE_FULL\000"
  2698      455F4741 
  2698      54545F45 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 60
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 60
 
 
  2698      52525F50 
@@ -3598,7 +3598,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2718      4320342E 
  2718      392E3320 
  2718      32303135 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 61
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 61
 
 
  2718      30333033 
@@ -3658,7 +3658,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2737              	.LASF174:
  2738 10bb 75696E74 		.ascii	"uintVal\000"
  2738      56616C00 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 62
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 62
 
 
  2739              	.LASF193:
@@ -3718,7 +3718,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2759      20696E74 
  2759      00
  2760              	.LASF66:
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 63
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 63
 
 
  2761 11df 4359424C 		.ascii	"CYBLE_EVT_GATTS_READ_CHAR_VAL_ACCESS_REQ\000"
@@ -3778,7 +3778,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2779 1317 4359424C 		.ascii	"CYBLE_EVT_GATTC_ERROR_RSP\000"
  2779      455F4556 
  2779      545F4741 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 64
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 64
 
 
  2779      5454435F 
@@ -3838,7 +3838,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2801 1415 4359424C 		.ascii	"CYBLE_ERROR_CONTROLLER_BUSY\000"
  2801      455F4552 
  2801      524F525F 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 65
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 65
 
 
  2801      434F4E54 
@@ -3898,7 +3898,7 @@ ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 1
  2820              	.LASF79:
  2821 151e 4359424C 		.ascii	"CYBLE_EVT_PENDING_FLASH_WRITE\000"
  2821      455F4556 
-ARM GAS  C:\Users\Henny\AppData\Local\Temp\ccSi2o1N.s 			page 66
+ARM GAS  C:\Users\Henny\AppData\Local\Temp\cc5VheQt.s 			page 66
 
 
  2821      545F5045 

@@ -14,7 +14,8 @@
 #ifndef ADXL345_H
 #define ADXL345_H
     
-
+#define NumAve 10 // Calibration samples
+    
 // Global data
 extern union CharValue xData, yData, zData;
 
@@ -25,11 +26,14 @@ extern union CharValue xData, yData, zData;
     #define ADXL345_ID                      (0xE5)
     
     // CONTROL REGISTERS
-    #define ADXL345_REG_BW_RATE             (0x2C)    // Baud rate
+    #define ADXL345_REG_BW_RATE             (0x2C)    // Output baud rate
     #define ADXL345_REG_POWER_CTL           (0x2D)    // Power-saving features control
 
     // DATA REGISTERS
     #define ADXL345_REG_DEVID               (0x00)    // device ID
+    #define ADXL345_OFSX                    (0x1E)    // X-axis offset
+    #define ADXL345_OFSY                    (0x1F)    // Y-axis offset
+    #define ADXL345_OFSZ                    (0x20)    // Z-axis offset
     #define ADXL345_REG_DATA_FORMAT 	    (0x31) 	  // Data format control
     #define ADXL345_REG_DATAX0              (0x32)    // X-axis data 0
     #define ADXL345_REG_DATAX1              (0x33)    // X-axis data 1
@@ -68,7 +72,9 @@ typedef enum
     ADXL345_RANGE_2G           = 0b00
 } Range_t ;
 
-    #define SCALE_FACTOR        (0.004)
+    // Constants to scale acc output
+    #define SCALE_FACTOR        (0.0039)
+    #define GRAVITY_FACTOR      (9.80665)
 
 
 // Functions to control accel
@@ -77,14 +83,24 @@ uint8 getDeviceId();
 void setMeasurementRate(DataRate_t dataRate_t);
 DataRate_t getMeasurementRate();
 void setRange(Range_t range);
+void setFullRange();
 Range_t getRange();
 void getRawDataX();
 void getRawDataY();
 void getRawDataZ();
 void getSensorData();
-void writeRegister(uint8 reg, uint8 cmd);
-uint8 readRegister(uint8 reg);
-long readRegister16(uint8 reg);
+void offsetCalibration();
+void setXOffset(int8 xOff);
+void setYOffset(int8 yOff);
+void setZOffset(int8 zOff);
+void writeRegister(uint8_t reg, uint8_t cmd);
+int8_t readRegister(uint8_t reg);
+int16_t readRegister16(uint8_t reg);
+void showRange();
+void showMeasurementRate();
+void showXOffset();
+void showYOffset();
+void showZOffset();
 
 #endif
 /* [] END OF FILE */
